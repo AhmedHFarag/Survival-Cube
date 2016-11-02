@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Enemies_Manager : MonoBehaviour {
     public static Enemies_Manager Instance;
 
+    float EllapsedTime =0;
     #region PoolManager
     public PoolManager Pool_Manager;
     List<ObjectPool> Enemies_Pool = new List<ObjectPool>();
@@ -18,6 +20,7 @@ public class Enemies_Manager : MonoBehaviour {
 
     #region EnemiesWaves
     int WaveNumber = 0;
+    int intensity = 1;
     public List<MobWave> Waves = new List<MobWave>();
 
     [HideInInspector]
@@ -37,16 +40,22 @@ public class Enemies_Manager : MonoBehaviour {
         Pool_Manager = new PoolManager();
     }
 	void Start () {
-        foreach (var item in _SpawnPoints.GetComponentsInChildren<Transform>())
+        foreach (var item in _SpawnPoints.GetComponentsInChildren<Transform>().Skip(1))
         {
             spawnPoints.Add(item);
         }
-
-        //Enemies_Pool.Add(Pool_Manager.CreatePool(eniemytype, 10, 20));
-
+        foreach (var item in Waves)
+        {
+            Enemies_Pool.Add(Pool_Manager.CreatePool(item.Prefab, item.Count, item.Count));
+        }
 	}
 	void FixedUpdate () {
-        //Spawn(0, 1);
+        EllapsedTime += Time.deltaTime;
+        if (EllapsedTime>intensity)
+        {
+            EllapsedTime = 0;
+            Spawn(0,Random.Range(0,4));
+        }
 	}
     public void Spawn(int spawnPrefabIndex, int spawnPointIndex)
     {

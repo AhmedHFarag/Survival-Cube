@@ -2,13 +2,23 @@
 using System.Collections;
 
 public class Player_Controller : MonoBehaviour {
-
+    public static Player_Controller Instance;
     public GameObject Bullet;
     public Transform FirePos;
     Rigidbody _MyRig;
     int Dir = 0;
 
-	// Use this for initialization
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
 	void Start ()
     {
         _MyRig = GetComponent<Rigidbody>();

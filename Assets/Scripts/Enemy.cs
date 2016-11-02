@@ -14,14 +14,12 @@ public class Enemy : MonoBehaviour {
     private Rigidbody myRigid;
     private float Distance;
     public float Dampling=5f;
-    private Renderer rend;
     
    
     // Use this for initialization
     void Start () {
         myRigid = GetComponent<Rigidbody>();
-        rend = GetComponent<Renderer>();
-        rend.material = materialColor1;
+        Target = Player_Controller.Instance.GetComponent<Transform>();
 	}
 	
 	// Update is called once per frame
@@ -29,10 +27,6 @@ public class Enemy : MonoBehaviour {
     {
         Distance = Vector3.Distance(myRigid.transform.position, Target.transform.position);
         float lerp = Mathf.PingPong(Time.time, duration) / duration;
-        if (Distance < 3)
-        {
-            rend.material.Lerp(materialColor1, materialColor2,lerp);
-        }
 
         Attack();
     }
@@ -53,8 +47,8 @@ public class Enemy : MonoBehaviour {
     }
     public void Die()
     {
-       
-        Destroy(myRigid);
+
+        this.gameObject.SetActive(false);
        
     }
     public void OnCollisionEnter(Collision col )
