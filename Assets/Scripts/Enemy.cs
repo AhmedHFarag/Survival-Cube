@@ -44,6 +44,10 @@ public class Enemy : MonoBehaviour {
     {
 
         Health -= 5;
+        if (Health<0)
+        {
+            Die();
+        }
     }
     public void Die()
     {
@@ -57,6 +61,10 @@ public class Enemy : MonoBehaviour {
         {
             Health = 0;
             Die();
+        }
+        else if (col.gameObject.tag == "Bullet")
+        {
+            TakeDamage();
         }
     }
 }
