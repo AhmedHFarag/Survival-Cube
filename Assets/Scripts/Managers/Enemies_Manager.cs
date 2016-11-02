@@ -54,7 +54,7 @@ public class Enemies_Manager : MonoBehaviour {
         if (EllapsedTime>intensity)
         {
             EllapsedTime = 0;
-            Spawn(0,Random.Range(0,4));
+            Spawn(0,Random.Range(0,spawnPoints.Count));
         }
 	}
     public void Spawn(int spawnPrefabIndex, int spawnPointIndex)

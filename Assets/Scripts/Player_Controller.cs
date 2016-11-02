@@ -5,6 +5,9 @@ public class Player_Controller : MonoBehaviour {
     public static Player_Controller Instance;
     public GameObject Bullet;
     public Transform FirePos;
+    public int HitPoints=100;
+    public int Damage=10;
+    public float speed=2f;
     Rigidbody _MyRig;
     int Dir = 0;
     float EllapsedTime = 0;
@@ -31,42 +34,12 @@ public class Player_Controller : MonoBehaviour {
     {
         EllapsedTime += Time.deltaTime;
 
-        if (Dir > 0.1)
-        {
-            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * 2.0f);
-            
-            if (EllapsedTime>2)
-            {
-                EllapsedTime = 0;
-                GameObject Shot = Instantiate(Bullet) as GameObject;
-                Shot.transform.position = FirePos.position;
-                Shot.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
-                Destroy(Shot, 1);
-            }
-            
-        }
-        else if (Dir < -0.1)
-        {
-            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * 2.0f);
-            if (EllapsedTime > 2)
-            {
-                EllapsedTime = 0;
-                GameObject Shot = Instantiate(Bullet) as GameObject;
-                Shot.transform.position = FirePos.position;
-                Shot.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
-                Destroy(Shot, 1);
-            }
-        }
-        else
-        {
-
-        }
     }
     public void Move(float _Dir)
     {
        if(_Dir>0.1f)
         {
-            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * 2.0f);
+            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * speed);
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
@@ -78,7 +51,7 @@ public class Player_Controller : MonoBehaviour {
         }
         else if (_Dir < -0.1)
         {
-            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * 2.0f);
+            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * speed);
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
