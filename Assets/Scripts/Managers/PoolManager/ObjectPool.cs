@@ -58,7 +58,7 @@ public class ObjectPool
             if (pooledObjects[i].activeSelf == false)
             {
                 //set the object to active.
-                //pooledObjects[i].SetActive(true);
+                pooledObjects[i].SetActive(true);
                 //return the object we found.
                 return pooledObjects[i];
             }
