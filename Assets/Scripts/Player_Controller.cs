@@ -35,6 +35,17 @@ public class Player_Controller : MonoBehaviour {
         EllapsedTime += Time.deltaTime;
 
     }
+    public void TakeDamage(int damage)
+    {
+        HitPoints -= damage;
+        if (HitPoints <= 0)
+            Die();
+    }
+    public void Die()
+    {
+        //gameManager event where the player dies
+        gameObject.SetActive(false);
+    }
     public void Move(float _Dir)
     {
        if(_Dir>0.1f)

@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
     public Transform Target;
     public float moveSpeed = 0;
-    public float attackDamage = 0;
+    public int attackDamage = 0;
     public float lookatDisace = 1;
     public float Health = 5;
     public float attackRange = 0;
@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour {
         if (col.gameObject.tag == "Player")
         {
             Health = 0;
+            col.gameObject.GetComponent<Player_Controller>().TakeDamage(attackDamage);
             Die();
         }
         else if (col.gameObject.tag == "Bullet")
