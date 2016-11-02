@@ -26,7 +26,7 @@ public class WaveDataEditor : Editor {
 			if (prefab) EditorGUIUtility.PingObject(prefab.gameObject);
 		};
 		list.onCanRemoveCallback = (ReorderableList l) => {
-			return l.count > 1;
+			return l.count > 0;
 		};
 		list.onRemoveCallback = (ReorderableList l) => {
 			if (EditorUtility.DisplayDialog("Warning!", "Are you sure you want to delete the wave?", "Yes", "No"))
@@ -41,16 +41,16 @@ public class WaveDataEditor : Editor {
 			var element = l.serializedProperty.GetArrayElementAtIndex(index);
 			element.FindPropertyRelative("Type").enumValueIndex = 0;
 			element.FindPropertyRelative("Count").intValue = 20;
-			element.FindPropertyRelative("Prefab").objectReferenceValue = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Mobs/Cube.prefab", typeof(GameObject)) as GameObject;
+			element.FindPropertyRelative("Prefab").objectReferenceValue = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Enemies/Mobs/Cube.prefab", typeof(GameObject)) as GameObject;
 		};
 		list.onAddDropdownCallback = (Rect buttonRect, ReorderableList l) => {
 			var menu = new GenericMenu();
-			var guids = AssetDatabase.FindAssets("", new[]{"Assets/Prefabs/Mobs"});
+			var guids = AssetDatabase.FindAssets("", new[]{ "Assets/Prefabs/Enemies/Mobs" });
 			foreach (var guid in guids) {
 				var path = AssetDatabase.GUIDToAssetPath(guid);
 				menu.AddItem(new GUIContent("Mobs/" + Path.GetFileNameWithoutExtension(path)), false, clickHandler, new WaveCreationParams() {Type = MobWave.WaveType.Mobs, Path = path});
 			}
-			guids = AssetDatabase.FindAssets("", new[]{"Assets/Prefabs/Bosses"});
+			guids = AssetDatabase.FindAssets("", new[]{ "Assets/Prefabs/Enemies/Bosses" });
 			foreach (var guid in guids) {
 				var path = AssetDatabase.GUIDToAssetPath(guid);
 				menu.AddItem(new GUIContent("Bosses/" + Path.GetFileNameWithoutExtension(path)), false, clickHandler, new WaveCreationParams() {Type = MobWave.WaveType.Boss, Path = path});
