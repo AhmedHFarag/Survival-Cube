@@ -46,7 +46,7 @@ public class Enemies_Manager : MonoBehaviour {
 
 	}
 	void FixedUpdate () {
-        Spawn(0, 1);
+        //Spawn(0, 1);
 	}
     public void Spawn(int spawnPrefabIndex, int spawnPointIndex)
     {
