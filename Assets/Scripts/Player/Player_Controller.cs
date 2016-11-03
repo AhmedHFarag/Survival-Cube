@@ -77,7 +77,7 @@ public class Player_Controller : MonoBehaviour {
     public void UpgradeWeapon()
     {
         Destroy(Weapon.gameObject);
-        GameObject obj = Instantiate(Weapons[1]);
+        GameObject obj = Instantiate(Weapons[2]);
         obj.transform.rotation = transform.rotation;
         obj.transform.position = WeaponPos.position;
         obj.transform.parent = transform;
