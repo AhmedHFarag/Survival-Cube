@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Player_Controller : MonoBehaviour {
     public static Player_Controller Instance;
-    public GameObject Bullet;
-    public Transform FirePos;
+    public DefaultWeapon Weapon;
+    public Transform WeaponPos;
+    public GameObject[] Weapons;
     public int HitPoints=100;
     public int Damage=10;
     public float speed=2f;
@@ -22,12 +23,18 @@ public class Player_Controller : MonoBehaviour {
         {
             DestroyImmediate(gameObject);
         }
+        
     }
 	void Start ()
     {
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
-	}
+        GameObject obj=Instantiate(Weapons[0]);
+
+        obj.transform.position = WeaponPos.position;
+        obj.transform.parent = transform;
+        Weapon = obj.GetComponent<DefaultWeapon>();
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate ()
@@ -54,10 +61,7 @@ public class Player_Controller : MonoBehaviour {
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
-                GameObject Shot = Instantiate(Bullet) as GameObject;
-                Shot.transform.position = FirePos.position;
-                Shot.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
-                Destroy(Shot, 1);
+                Weapon.Fire();
             }
         }
         else if (_Dir < -0.1)
@@ -66,10 +70,7 @@ public class Player_Controller : MonoBehaviour {
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
-                GameObject Shot = Instantiate(Bullet) as GameObject;
-                Shot.transform.position = FirePos.position;
-                Shot.GetComponent<Rigidbody>().AddForce(transform.forward * 500);
-                Destroy(Shot, 1);
+                Weapon.Fire();
             }
         }
     }
