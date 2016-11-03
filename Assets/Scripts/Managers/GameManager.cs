@@ -21,7 +21,7 @@ public enum GameScenes
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    public GameObject Item;
     [HideInInspector]
     public GameStates currentGameStates;
 
@@ -37,9 +37,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int score;
 
-    PoolManager poolManager;
-
-
 
     void Awake()
     {
@@ -53,7 +50,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        poolManager = new PoolManager();
     }
 
     // Use this for initialization
@@ -134,10 +130,13 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
     }
-
-    public ObjectPool CreatePool(GameObject poolObject, int size, int maxSize)
+    public void SpawnItem(Vector3 _pos)
     {
-        return poolManager.CreatePool(poolObject, size, maxSize);
+        if (Random.Range(0,4)==2)
+        {
+            GameObject obj = Instantiate(Item);
+            obj.transform.position = _pos+new Vector3(0,5,0);
+        }
     }
 
 }
