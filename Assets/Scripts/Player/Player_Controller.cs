@@ -30,7 +30,7 @@ public class Player_Controller : MonoBehaviour {
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
         GameObject obj=Instantiate(Weapons[0]);
-
+        obj.transform.rotation = transform.rotation;
         obj.transform.position = WeaponPos.position;
         obj.transform.parent = transform;
         Weapon = obj.GetComponent<DefaultWeapon>();
@@ -51,7 +51,7 @@ public class Player_Controller : MonoBehaviour {
     public void Die()
     {
         //gameManager event where the player dies
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
     public void Move(float _Dir)
     {
@@ -73,5 +73,14 @@ public class Player_Controller : MonoBehaviour {
                 Weapon.Fire();
             }
         }
+    }
+    public void UpgradeWeapon()
+    {
+        Destroy(Weapon.gameObject);
+        GameObject obj = Instantiate(Weapons[1]);
+        obj.transform.rotation = transform.rotation;
+        obj.transform.position = WeaponPos.position;
+        obj.transform.parent = transform;
+        Weapon = obj.GetComponent<DefaultWeapon>();
     }
 }

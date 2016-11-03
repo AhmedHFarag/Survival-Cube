@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour {
     }
     public void Die()
     {
-
+        GameManager.Instance.SpawnItem(transform.position);
         this.gameObject.SetActive(false);
        
     }
@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour {
         {
             Health = 0;
             col.gameObject.GetComponent<Player_Controller>().TakeDamage(attackDamage);
-            Die();
+            this.gameObject.SetActive(false);
         }
         
     }
