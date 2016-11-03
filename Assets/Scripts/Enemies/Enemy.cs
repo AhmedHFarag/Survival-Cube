@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour {
         Health -= damage;
         if (Health<0)
         {
+            GameManager.Instance.SpawnItem(transform.position);
             Die();
         }
     }
