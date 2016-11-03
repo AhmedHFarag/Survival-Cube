@@ -12,5 +12,7 @@ public struct MobWave {
 	public WaveType Type;
 	public GameObject Prefab;
 	public int Count;
-	
+    public float Intensity;
+
+
 }

@@ -16,8 +16,9 @@ public class WaveDataEditor : Editor {
 			rect.y += 2;
 			EditorGUI.PropertyField(new Rect(rect.x, rect.y, 60, EditorGUIUtility.singleLineHeight), element.FindPropertyRelative("Type"), GUIContent.none);
 			EditorGUI.PropertyField(new Rect(rect.x + 60, rect.y, rect.width - 60 - 30, EditorGUIUtility.singleLineHeight), element.FindPropertyRelative("Prefab"), GUIContent.none);
-			EditorGUI.PropertyField(new Rect(rect.x + rect.width - 30, rect.y, 30, EditorGUIUtility.singleLineHeight), element.FindPropertyRelative("Count"), GUIContent.none);
-		};
+			EditorGUI.PropertyField(new Rect(rect.x + rect.width - 60, rect.y, 30, EditorGUIUtility.singleLineHeight), element.FindPropertyRelative("Count"), GUIContent.none);
+            EditorGUI.PropertyField(new Rect(rect.x + rect.width - 30, rect.y, 30, EditorGUIUtility.singleLineHeight), element.FindPropertyRelative("Intensity"), GUIContent.none);
+        };
 		list.drawHeaderCallback = (Rect rect) => {
 			EditorGUI.LabelField(rect, "Monster Waves");
 		};
@@ -41,7 +42,8 @@ public class WaveDataEditor : Editor {
 			var element = l.serializedProperty.GetArrayElementAtIndex(index);
 			element.FindPropertyRelative("Type").enumValueIndex = 0;
 			element.FindPropertyRelative("Count").intValue = 20;
-			element.FindPropertyRelative("Prefab").objectReferenceValue = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Enemies/Mobs/Cube.prefab", typeof(GameObject)) as GameObject;
+            element.FindPropertyRelative("Intensity").intValue = 1;
+            element.FindPropertyRelative("Prefab").objectReferenceValue = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Enemies/Mobs/Cube.prefab", typeof(GameObject)) as GameObject;
 		};
 		list.onAddDropdownCallback = (Rect buttonRect, ReorderableList l) => {
 			var menu = new GenericMenu();

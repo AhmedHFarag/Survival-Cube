@@ -22,7 +22,7 @@ public class Enemies_Manager : MonoBehaviour {
 
     #region EnemiesWaves
     int WaveNumber = 0;
-    int intensity = 1;
+    int Enemiescount=0;
     public List<MobWave> Waves = new List<MobWave>();
 
     [HideInInspector]
@@ -56,19 +56,39 @@ public class Enemies_Manager : MonoBehaviour {
         deltaTime += (Time.deltaTime - deltaTime);
 
     }
-    void FixedUpdate () {
+    void FixedUpdate()
+    {
         EllapsedTime += Time.deltaTime;
-        if (EllapsedTime>intensity)
+        if (WaveNumber < Waves.Count)
         {
-            EllapsedTime = 0;
-            Spawn(0,Random.Range(0,spawnPoints.Count));
+            if (EllapsedTime > Waves[WaveNumber].Intensity)
+            {
+                EllapsedTime = 0;
+
+                Spawn(WaveNumber, Random.Range(0, spawnPoints.Count));
+                Enemiescount++;
+                if (Enemiescount >= Waves[WaveNumber].Count)
+                {
+                    WaveNumber++;
+                    Enemiescount = 0;
+                }
+            }
         }
-	}
-    public void Spawn(int spawnPrefabIndex, int spawnPointIndex)
+        else
+        {
+            Debug.Log("Spawn Ended");
+        }
+    }
+    public bool Spawn(int spawnPrefabIndex, int spawnPointIndex)
     {
         GameObject obj= Enemies_Pool[spawnPrefabIndex].GetObject();
+        if (obj==null)
+        {
+            return false;
+        }
         obj.transform.position=spawnPoints[spawnPointIndex].position;
         activeEnemies.Add(obj);
+        return true;
     }
     public void EnemyKilled(GameObject _obj)
     {
