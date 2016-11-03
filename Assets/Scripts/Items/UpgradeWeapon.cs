@@ -8,9 +8,13 @@ public class UpgradeWeapon : MonoBehaviour {
         if (col.gameObject.tag == "Bullet")
         {
 
-            Player_Controller.Instance.UpgradeWeapon();
-            Destroy(gameObject);
+            Hit();
         }
 
+    }
+    public void Hit()
+    {
+        Player_Controller.Instance.UpgradeWeapon();
+        Destroy(gameObject);
     }
 }
