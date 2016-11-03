@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour {
     public float attackRange = 0;
     public Material materialColor1;
     public Material materialColor2;
+    public ParticleSystem Explosion;
     public float duration = 2.0F;
     private Rigidbody myRigid;
     private float Distance;
@@ -17,6 +18,9 @@ public class Enemy : MonoBehaviour {
    
     // Use this for initialization
     void Start () {
+       
+            Explosion = gameObject.GetComponentInChildren<ParticleSystem>();
+        
         myRigid = GetComponent<Rigidbody>();
         Target = Player_Controller.Instance.GetComponent<Transform>();
 	}
@@ -51,8 +55,11 @@ public class Enemy : MonoBehaviour {
     public void Die()
     {
 
-        this.gameObject.SetActive(false);
-       
+        StartCoroutine("death");
+        gameObject.GetComponent<BoxCollider>().enabled=false;
+        gameObject.GetComponent<MeshRenderer>().enabled=false;
+
+        Explosion.Play();
     }
     public void OnCollisionEnter(Collision col )
     {
@@ -63,5 +70,13 @@ public class Enemy : MonoBehaviour {
             Die();
         }
         
+    }
+    IEnumerator death()
+    {
+        yield return new WaitForSeconds(1);
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        Explosion.Stop();
+        gameObject.SetActive(false);
     }
 }
