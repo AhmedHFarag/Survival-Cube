@@ -63,9 +63,6 @@ public class Enemy : MonoBehaviour {
             col.gameObject.GetComponent<Player_Controller>().TakeDamage(attackDamage);
             Die();
         }
-        else if (col.gameObject.tag == "Bullet")
-        {
-            TakeDamage();
-        }
+        
     }
 }

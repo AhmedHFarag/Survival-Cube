@@ -2,13 +2,12 @@
 using System.Collections;
 
 public class BulletBehavior : MonoBehaviour {
-    int damage;
-    float speed=2;
+    public int Damage;
+    public float Speed=2;
     public Rigidbody MyRigid;
 	// Use this for initialization
     void OnEnable()
     {
-        MyRigid.velocity = transform.forward * speed;
     }
 	void Start () {
 	if(MyRigid==null)
@@ -20,7 +19,8 @@ void OnCollisionEnter(Collision other)
     {
         if(other.collider.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage();
+            other.gameObject.GetComponent<Enemy>().TakeDamage(Damage);
+            Debug.Log("enemy");
         }
     }
 }
