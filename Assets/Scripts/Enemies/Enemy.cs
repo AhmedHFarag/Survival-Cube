@@ -40,10 +40,10 @@ public class Enemy : MonoBehaviour {
        //    myRigid.transform.Translate(Vector3.left * 5f * Time.deltaTime);
         myRigid.transform.Translate(Vector3.forward * Dampling * Time.deltaTime);
     }
-    public virtual void TakeDamage()
+    public virtual void TakeDamage(int damage)
     {
 
-        Health -= 5;
+        Health -= damage;
         if (Health<0)
         {
             Die();
