@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
     public Transform Target;
-    public float moveSpeed = 0;
+    public float moveSpeed = 5;
     public int attackDamage = 0;
     public float lookatDisace = 1;
     public float Health = 5;
@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour {
     public float duration = 2.0F;
     private Rigidbody myRigid;
     private float Distance;
-    public float Dampling=5f;
     
    
     // Use this for initialization
@@ -37,8 +36,8 @@ public class Enemy : MonoBehaviour {
     public virtual void Attack()
     {
         myRigid.transform.LookAt(Target);
-       //    myRigid.transform.Translate(Vector3.left * 5f * Time.deltaTime);
-        myRigid.transform.Translate(Vector3.forward * Dampling * Time.deltaTime);
+         //myRigid.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        myRigid.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
     public virtual void TakeDamage(int damage)
     {
