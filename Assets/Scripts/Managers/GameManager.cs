@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
             Instance = this;
         }
         else if (Instance != this)
@@ -141,6 +141,10 @@ public class GameManager : MonoBehaviour
     public void ReloadSameScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
     }
 
 }
