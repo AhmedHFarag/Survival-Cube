@@ -21,6 +21,8 @@ public enum GameScenes
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public PoolManager Pool_Manager;
+
     public GameObject Item;
     [HideInInspector]
     public GameStates currentGameStates;
