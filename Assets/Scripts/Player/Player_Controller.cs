@@ -82,6 +82,7 @@ public class Player_Controller : MonoBehaviour
     public void Die()
     {
         //gameManager event where the player dies
+        GameManager.Instance.ThePlayerDied();
         //gameObject.SetActive(false);
     }
     public void Move(float _Dir)

@@ -17,10 +17,17 @@ public enum GameScenes
     Tutorial,
     InGame
 }
+#region Declaring delegate events
+public delegate void PlayerDied();//Declaring Die event delegate
+#endregion
 
 public class GameManager : MonoBehaviour
 {
+    public static event PlayerDied PlayerDied;
+
     public static GameManager Instance;
+    public PoolManager Pool_Manager;
+
     public GameObject Item;
     [HideInInspector]
     public GameStates currentGameStates;
@@ -42,14 +49,14 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
             Instance = this;
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
-
+        Pool_Manager = new PoolManager();
     }
 
     // Use this for initialization
@@ -63,7 +70,11 @@ public class GameManager : MonoBehaviour
     {
     }
 
-
+    private static void OnPlayerDies()
+    {
+        var handler = PlayerDied;
+        if (handler != null) handler();
+    }
     public void SwitchGameStates()
     {
         switch (currentGameStates)
@@ -132,15 +143,26 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnItem(Vector3 _pos)
     {
-        if (Random.Range(0,4)==2)
+        if (Random.Range(0, 4) == 2)
         {
             GameObject obj = Instantiate(Item);
-            obj.transform.position = _pos+new Vector3(0,5,0);
+            obj.transform.position = _pos + new Vector3(0, 5, 0);
         }
     }
     public void ReloadSameScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void ThePlayerDied()
+    {
+        OnPlayerDies();
+    }
+    public ObjectPool CreatePool(GameObject poolObject, int size, int maxSize)
+    {
+        return Pool_Manager.CreatePool(poolObject, size, maxSize);
+    }
 }

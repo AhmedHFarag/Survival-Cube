@@ -10,7 +10,6 @@ public class Enemies_Manager : MonoBehaviour {
 
     float EllapsedTime =0;
     #region PoolManager
-    public PoolManager Pool_Manager;
     List<ObjectPool> Enemies_Pool = new List<ObjectPool>();
     #endregion
 
@@ -39,7 +38,6 @@ public class Enemies_Manager : MonoBehaviour {
         {
             DestroyImmediate(gameObject);
         }
-        Pool_Manager = new PoolManager();
     }
 	void Start () {
         foreach (var item in _SpawnPoints.GetComponentsInChildren<Transform>().Skip(1))
@@ -48,7 +46,7 @@ public class Enemies_Manager : MonoBehaviour {
         }
         foreach (var item in Waves)
         {
-            Enemies_Pool.Add(Pool_Manager.CreatePool(item.Prefab, item.Count, item.Count));
+            Enemies_Pool.Add(GameManager.Instance.Pool_Manager.CreatePool(item.Prefab, item.Count, item.Count));
         }
 	}
     void Update()
