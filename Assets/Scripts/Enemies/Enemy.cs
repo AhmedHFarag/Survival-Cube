@@ -20,11 +20,18 @@ public class Enemy : MonoBehaviour
     private Rigidbody myRigid;
     private float Distance;
 
-    private GameObject health;
+    private Canvas health;
 
     void Awake()
     {
-        health = gameObject.GetComponentInChildren<Canvas>()?gameObject.GetComponentInChildren<Canvas>().gameObject:null;
+
+    }
+
+    void OnEnable()
+    {
+        health = gameObject.GetComponentInChildren<Canvas>() ? gameObject.GetComponentInChildren<Canvas>() : null;
+        healthBar.value = healthBar.maxValue;
+        health.enabled = true;
     }
 
     // Use this for initialization
@@ -36,6 +43,7 @@ public class Enemy : MonoBehaviour
         myRigid = GetComponent<Rigidbody>();
         Target = Player_Controller.Instance.GetComponent<Transform>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -59,7 +67,10 @@ public class Enemy : MonoBehaviour
     {
 
         Health -= damage;
-        healthBar.value = Health;
+        if (healthBar)
+        {
+            healthBar.value = Health;
+        }
         if (Health < 0)
         {
             GameManager.Instance.SpawnItem(transform.position);
@@ -74,7 +85,7 @@ public class Enemy : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (health)
         {
-            health.SetActive(false);
+            health.enabled = false;
         }
 
 

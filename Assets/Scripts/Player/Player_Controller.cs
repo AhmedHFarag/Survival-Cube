@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class Player_Controller : MonoBehaviour {
+public class Player_Controller : MonoBehaviour
+{
     public static Player_Controller Instance;
     public DefaultWeapon Weapon;
     GameObject BaiscWeapon;
     bool Upgraded = false;
     public Transform WeaponPos;
     public GameObject[] Weapons;
-    public int HitPoints=100;
-    public int Damage=10;
-    public float speed=2f;
+    public int HitPoints = 100;
+    public int Damage = 10;
+    public float speed = 2f;
     Rigidbody _MyRig;
     int Dir = 0;
     float EllapsedTime = 0;
+
+    public Slider healthBar;
 
     void Awake()
     {
@@ -25,9 +29,9 @@ public class Player_Controller : MonoBehaviour {
         {
             DestroyImmediate(gameObject);
         }
-        
+
     }
-	void Start ()
+    void Start()
     {
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
@@ -38,9 +42,9 @@ public class Player_Controller : MonoBehaviour {
         BaiscWeapon.transform.parent = transform;
         Weapon = BaiscWeapon.GetComponent<DefaultWeapon>();
     }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
         EllapsedTime += Time.deltaTime;
 
@@ -48,6 +52,10 @@ public class Player_Controller : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         HitPoints -= damage;
+        if (healthBar)
+        {
+            healthBar.value = HitPoints;
+        }
         if (HitPoints <= 0)
             Die();
     }
@@ -58,14 +66,14 @@ public class Player_Controller : MonoBehaviour {
     }
     public void Move(float _Dir)
     {
-       if(_Dir>0.1f)
+        if (_Dir > 0.1f)
         {
             _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * speed);
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
 #if UNITY_EDITOR
-                
+
                 Weapon.Fire();
 #else
                 if(InputManager.Instance.ControlScheme0)
@@ -94,7 +102,7 @@ public class Player_Controller : MonoBehaviour {
     }
     void Fire(bool attacking)
     {
-        if(attacking)
+        if (attacking)
         {
             Weapon.Fire();
         }
