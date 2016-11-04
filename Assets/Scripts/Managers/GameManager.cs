@@ -17,9 +17,14 @@ public enum GameScenes
     Tutorial,
     InGame
 }
+#region Declaring delegate events
+public delegate void PlayerDied();//Declaring Die event delegate
+#endregion
 
 public class GameManager : MonoBehaviour
 {
+    public static event PlayerDied PlayerDied;
+
     public static GameManager Instance;
     public PoolManager Pool_Manager;
 
@@ -65,7 +70,11 @@ public class GameManager : MonoBehaviour
     {
     }
 
-
+    private static void OnPlayerDies()
+    {
+        var handler = PlayerDied;
+        if (handler != null) handler();
+    }
     public void SwitchGameStates()
     {
         switch (currentGameStates)
@@ -148,5 +157,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
+    public void ThePlayerDied()
+    {
+        OnPlayerDies();
+    }
 }
