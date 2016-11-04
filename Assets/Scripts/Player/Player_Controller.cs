@@ -4,6 +4,7 @@ using System.Collections;
 public class Player_Controller : MonoBehaviour {
     public static Player_Controller Instance;
     public DefaultWeapon Weapon;
+    GameObject BaiscWeapon;
     public Transform WeaponPos;
     public GameObject[] Weapons;
     public int HitPoints=100;
@@ -29,12 +30,11 @@ public class Player_Controller : MonoBehaviour {
     {
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
-        InputManager.attack += Fire;
-        GameObject obj=Instantiate(Weapons[0]);
-        obj.transform.rotation = transform.rotation;
-        obj.transform.position = WeaponPos.position;
-        obj.transform.parent = transform;
-        Weapon = obj.GetComponent<DefaultWeapon>();
+        BaiscWeapon = Instantiate(Weapons[0]);
+        BaiscWeapon.transform.rotation = transform.rotation;
+        BaiscWeapon.transform.position = WeaponPos.position;
+        BaiscWeapon.transform.parent = transform;
+        Weapon = BaiscWeapon.GetComponent<DefaultWeapon>();
     }
 	
 	// Update is called once per frame
@@ -62,9 +62,7 @@ public class Player_Controller : MonoBehaviour {
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
-#if UNITY_EDITOR
                 Weapon.Fire();
-#endif
             }
         }
         else if (_Dir < -0.1)
@@ -73,26 +71,27 @@ public class Player_Controller : MonoBehaviour {
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
-#if UNITY_EDITOR
                 Weapon.Fire();
-#endif
             }
-            }
-        }
-    void Fire(bool attacking)
-    {
-        if(attacking)
-        {
-            Weapon.Fire();
         }
     }
     public void UpgradeWeapon()
     {
-        Destroy(Weapon.gameObject);
+        Weapon = null;
+        BaiscWeapon.SetActive(false);
+        StartCoroutine("NewWeapon");
         GameObject obj = Instantiate(Weapons[2]);
         obj.transform.rotation = transform.rotation;
         obj.transform.position = WeaponPos.position;
         obj.transform.parent = transform;
         Weapon = obj.GetComponent<DefaultWeapon>();
+
+    }
+    IEnumerator NewWeapon()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(Weapon.gameObject);
+        BaiscWeapon.SetActive(true);
+        Weapon = BaiscWeapon.GetComponent<DefaultWeapon>();
     }
 }
