@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Enemy : MonoBehaviour
@@ -13,6 +14,9 @@ public class Enemy : MonoBehaviour
     public Material materialColor2;
     public ParticleSystem Explosion;
     public float duration = 2.0F;
+
+    public Slider healthBar;
+
     private Rigidbody myRigid;
     private float Distance;
 
@@ -55,6 +59,7 @@ public class Enemy : MonoBehaviour
     {
 
         Health -= damage;
+        healthBar.value = Health;
         if (Health < 0)
         {
             GameManager.Instance.SpawnItem(transform.position);
