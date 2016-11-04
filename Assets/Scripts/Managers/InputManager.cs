@@ -13,7 +13,6 @@ public class InputManager : MonoBehaviour {
     public string horizontalAxisName = "Horizontal"; // The name given to the horizontal axis for the cross platform input
     public string FireButtonName = "Fire";
     private float m_xAxis;
-    public bool Is_attacking;
     private float m_lastDirection;
     private bool updateHorizontal = true;
     public bool ControlScheme0 = true;

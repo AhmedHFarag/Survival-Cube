@@ -5,6 +5,7 @@ public class Player_Controller : MonoBehaviour {
     public static Player_Controller Instance;
     public DefaultWeapon Weapon;
     GameObject BaiscWeapon;
+    bool Upgraded = false;
     public Transform WeaponPos;
     public GameObject[] Weapons;
     public int HitPoints=100;
@@ -89,15 +90,19 @@ public class Player_Controller : MonoBehaviour {
     }
     public void UpgradeWeapon()
     {
-        Weapon = null;
-        BaiscWeapon.SetActive(false);
-        StartCoroutine("NewWeapon");
-        GameObject obj = Instantiate(Weapons[2]);
-        obj.transform.rotation = transform.rotation;
-        obj.transform.position = WeaponPos.position;
-        obj.transform.parent = transform;
-        Weapon = obj.GetComponent<DefaultWeapon>();
+        if (!Upgraded)
+        {
+            Weapon = null;
+            BaiscWeapon.SetActive(false);
+            StartCoroutine("NewWeapon");
+            GameObject obj = Instantiate(Weapons[2]);
+            obj.transform.rotation = transform.rotation;
+            obj.transform.position = WeaponPos.position;
+            obj.transform.parent = transform;
+            Weapon = obj.GetComponent<DefaultWeapon>();
+            Upgraded = true;
 
+        }
     }
     IEnumerator NewWeapon()
     {
@@ -105,5 +110,6 @@ public class Player_Controller : MonoBehaviour {
         Destroy(Weapon.gameObject);
         BaiscWeapon.SetActive(true);
         Weapon = BaiscWeapon.GetComponent<DefaultWeapon>();
+        Upgraded = false;
     }
 }
