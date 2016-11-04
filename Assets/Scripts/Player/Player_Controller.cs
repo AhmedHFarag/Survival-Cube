@@ -61,13 +61,14 @@ public class Player_Controller : MonoBehaviour
             {
                 transform.LookAt(Hit.point);
             }
-            if (EllapsedTime > 0.1f)
-            {
-                EllapsedTime = 0;
-                Weapon.Fire();
-            }
+            
         }
-        
+        if (EllapsedTime > 0.1f)
+        {
+            EllapsedTime = 0;
+            Weapon.Fire();
+        }
+
     }
     public void TakeDamage(int damage)
     {
@@ -98,10 +99,10 @@ public class Player_Controller : MonoBehaviour
 
                 Weapon.Fire();
 #else
-                if(InputManager.Instance.ControlScheme0)
-                {
-                    Weapon.Fire();
-                }
+                //if(InputManager.Instance.ControlScheme0)
+                //{
+                //    Weapon.Fire();
+                //}
 #endif
             }
         }
@@ -114,10 +115,10 @@ public class Player_Controller : MonoBehaviour
 #if UNITY_EDITOR
                 Weapon.Fire();
 #else
-                if(InputManager.Instance.ControlScheme0)
-                {
-                    Weapon.Fire();
-                }
+                //if(InputManager.Instance.ControlScheme0)
+                //{
+                //    Weapon.Fire();
+                //}
                 
 #endif
             }
