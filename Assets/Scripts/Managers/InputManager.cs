@@ -84,7 +84,7 @@ public class InputManager : MonoBehaviour {
 #if UNITY_EDITOR  //platform defines Run In Unity Only
 
         m_xAxis = Input.GetAxis("Horizontal");
-//#else
+#else
         if(ControlScheme0)
         {
 if(RightButton && !LeftButton)
