@@ -65,7 +65,13 @@ public class Player_Controller : MonoBehaviour {
             {
                 EllapsedTime = 0;
 #if UNITY_EDITOR
+                
                 Weapon.Fire();
+#else
+                if(InputManager.Instance.ControlScheme0)
+                {
+                    Weapon.Fire();
+                }
 #endif
             }
         }
@@ -77,6 +83,11 @@ public class Player_Controller : MonoBehaviour {
                 EllapsedTime = 0;
 #if UNITY_EDITOR
                 Weapon.Fire();
+#else
+                if(InputManager.Instance.ControlScheme0)
+                {
+                    Weapon.Fire();
+                }
 #endif
             }
         }
