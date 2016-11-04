@@ -61,13 +61,13 @@ public class Player_Controller : MonoBehaviour
             {
                 transform.LookAt(Hit.point);
             }
-
+            if (EllapsedTime > 0.1f)
+            {
+                EllapsedTime = 0;
+                Weapon.Fire();
+            }
         }
-        if (EllapsedTime > 0.1f)
-        {
-            EllapsedTime = 0;
-            Weapon.Fire();
-        }
+        
     }
     public void TakeDamage(int damage)
     {
