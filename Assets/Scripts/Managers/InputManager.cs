@@ -130,5 +130,7 @@ else if(LeftButton && !RightButton)
     {
         if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
             CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
+        if (CrossPlatformInputManager.ButtonExists(FireButtonName))
+            CrossPlatformInputManager.UnRegisterVirtualButton(FireButtonName);
     }
 }

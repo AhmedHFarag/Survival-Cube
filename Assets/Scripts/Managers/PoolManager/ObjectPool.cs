@@ -40,7 +40,7 @@ public class ObjectPool
 
             //Don't destroy on load, so
             //we can manage centrally.
-            GameObject.DontDestroyOnLoad(nObj);
+            //GameObject.DontDestroyOnLoad(nObj);
         }
 
         this.maxPoolSize = maxPoolSize;
