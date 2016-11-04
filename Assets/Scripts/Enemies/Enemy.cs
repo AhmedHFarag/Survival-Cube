@@ -22,10 +22,7 @@ public class Enemy : MonoBehaviour
 
     private Canvas health;
 
-    void Awake()
-    {
 
-    }
 
     void OnEnable()
     {
@@ -79,7 +76,8 @@ public class Enemy : MonoBehaviour
     }
     public void Die()
     {
-
+        //update score
+        GameManager.Instance.score += 10;
         StartCoroutine("death");
         gameObject.GetComponent<BoxCollider>().enabled = false;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
