@@ -95,7 +95,7 @@ public class Player_Controller : MonoBehaviour {
             Weapon = null;
             BaiscWeapon.SetActive(false);
             StartCoroutine("NewWeapon");
-            GameObject obj = Instantiate(Weapons[2]);
+            GameObject obj = Instantiate(Weapons[1]);
             obj.transform.rotation = transform.rotation;
             obj.transform.position = WeaponPos.position;
             obj.transform.parent = transform;
