@@ -38,7 +38,6 @@ public class Enemies_Manager : MonoBehaviour {
         {
             DestroyImmediate(gameObject);
         }
-        GameManager.Instance.Pool_Manager = new PoolManager();
     }
 	void Start () {
         foreach (var item in _SpawnPoints.GetComponentsInChildren<Transform>().Skip(1))
