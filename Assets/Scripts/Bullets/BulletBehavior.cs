@@ -1,26 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletBehavior : MonoBehaviour {
+public class BulletBehavior : MonoBehaviour
+{
     public int Damage;
-    public float Speed=2;
+    public float Speed = 2;
     public Rigidbody MyRigid;
-	// Use this for initialization
+
+    [SerializeField]
+    private float timeForSelfDestory = 1;
+
+    // Use this for initialization
     void OnEnable()
     {
+        StartCoroutine(SelfDestory());
     }
-	void Start () {
-	if(MyRigid==null)
+    void Start()
+    {
+        if (MyRigid == null)
         {
             MyRigid = gameObject.GetComponent<Rigidbody>();
         }
-	}
-void OnCollisionEnter(Collision other)
+    }
+    void OnCollisionEnter(Collision other)
     {
-        if(other.collider.CompareTag("Enemy"))
+        if (other.collider.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Enemy>().TakeDamage(Damage);
             Debug.Log("enemy");
         }
+    }
+
+    IEnumerator SelfDestory()
+    {
+        yield return new WaitForSeconds(timeForSelfDestory);
+        MyRigid.velocity = Vector3.zero;
+        transform.position = Vector3.zero;
+        gameObject.SetActive(false);
     }
 }
