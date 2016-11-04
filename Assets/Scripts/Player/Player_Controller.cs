@@ -6,6 +6,7 @@ public class Player_Controller : MonoBehaviour
 {
     public static Player_Controller Instance;
     public DefaultWeapon Weapon;
+    public LayerMask Plane;
     GameObject BaiscWeapon;
     bool Upgraded = false;
     public Transform WeaponPos;
@@ -49,6 +50,25 @@ public class Player_Controller : MonoBehaviour
         EllapsedTime += Time.deltaTime;
 
     }
+    void Update()
+    {
+        if (InputManager.Instance.ControlScheme2)
+        {
+            Touch touch = Input.GetTouch(0);
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit Hit;
+            if (Physics.Raycast(ray, out Hit, 200, Plane))
+            {
+                transform.LookAt(Hit.point);
+            }
+
+        }
+        if (EllapsedTime > 0.1f)
+        {
+            EllapsedTime = 0;
+            Weapon.Fire();
+        }
+    }
     public void TakeDamage(int damage)
     {
         HitPoints -= damage;
@@ -66,6 +86,7 @@ public class Player_Controller : MonoBehaviour
     }
     public void Move(float _Dir)
     {
+        
         if (_Dir > 0.1f)
         {
             _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * speed);
@@ -96,6 +117,7 @@ public class Player_Controller : MonoBehaviour
                 {
                     Weapon.Fire();
                 }
+                
 #endif
             }
         }

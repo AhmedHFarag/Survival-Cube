@@ -84,7 +84,7 @@ public class InputManager : MonoBehaviour {
 #if UNITY_EDITOR  //platform defines Run In Unity Only
 
         m_xAxis = Input.GetAxis("Horizontal");
-#else
+//#else
         if(ControlScheme0)
         {
 if(RightButton && !LeftButton)
@@ -120,6 +120,10 @@ else if(LeftButton && !RightButton)
             OnAttack(LeftButton);
         }
         m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
+        if(ControlScheme2)
+        {
+
+        }
 #endif
         if (Mathf.Abs(m_xAxis)>0)
         {
