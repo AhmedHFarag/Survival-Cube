@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
     public Transform Target;
     public float moveSpeed = 5;
     public int attackDamage = 0;
@@ -14,19 +15,26 @@ public class Enemy : MonoBehaviour {
     public float duration = 2.0F;
     private Rigidbody myRigid;
     private float Distance;
-    
-   
+
+    private GameObject health;
+
+    void Awake()
+    {
+        health = gameObject.GetComponentInChildren<Canvas>()?gameObject.GetComponentInChildren<Canvas>().gameObject:null;
+    }
+
     // Use this for initialization
-    void Start () {
-       
-            Explosion = gameObject.GetComponentInChildren<ParticleSystem>();
-        
+    void Start()
+    {
+
+        Explosion = gameObject.GetComponentInChildren<ParticleSystem>();
+
         myRigid = GetComponent<Rigidbody>();
         Target = Player_Controller.Instance.GetComponent<Transform>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         Distance = Vector3.Distance(myRigid.transform.position, Target.transform.position);
         float lerp = Mathf.PingPong(Time.time, duration) / duration;
@@ -40,14 +48,14 @@ public class Enemy : MonoBehaviour {
     public virtual void Attack()
     {
         myRigid.transform.LookAt(Target);
-         //myRigid.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        //myRigid.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         myRigid.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
     public virtual void TakeDamage(int damage)
     {
 
         Health -= damage;
-        if (Health<0)
+        if (Health < 0)
         {
             GameManager.Instance.SpawnItem(transform.position);
             Die();
@@ -57,12 +65,17 @@ public class Enemy : MonoBehaviour {
     {
 
         StartCoroutine("death");
-        gameObject.GetComponent<BoxCollider>().enabled=false;
-        gameObject.GetComponent<MeshRenderer>().enabled=false;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        if (health)
+        {
+            health.SetActive(false);
+        }
+
 
         Explosion.Play();
     }
-    public void OnCollisionEnter(Collision col )
+    public void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Player")
         {
@@ -70,7 +83,7 @@ public class Enemy : MonoBehaviour {
             col.gameObject.GetComponent<Player_Controller>().TakeDamage(attackDamage);
             Die();
         }
-        
+
     }
     IEnumerator death()
     {
