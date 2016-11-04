@@ -123,4 +123,9 @@ public class Player_Controller : MonoBehaviour {
         Weapon = BaiscWeapon.GetComponent<DefaultWeapon>();
         Upgraded = false;
     }
+    void OnDisable()
+    {
+        InputManager.movementChanged -= Move;
+        InputManager.attack -= Fire;
+    }
 }
