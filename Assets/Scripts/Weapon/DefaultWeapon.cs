@@ -20,11 +20,10 @@ public class DefaultWeapon : MonoBehaviour
 
     public virtual void Fire()
     {
-
         currentbulletObj = bulletPool.GetObject();
-        currentbulletObj.SetActive(true);
         currentbulletObj.transform.position = FirePos1.position;
-
+        currentbulletObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        currentbulletObj.SetActive(true);
         currentbulletObj.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);
 
         //GameObject Shot = Instantiate(Bullet) as GameObject;

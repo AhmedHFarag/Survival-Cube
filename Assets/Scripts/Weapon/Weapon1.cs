@@ -23,21 +23,21 @@ public class Weapon1 : DefaultWeapon
         currentbulletObj1.SetActive(true);
         currentbulletObj1.transform.position = FirePos1.position;
 
-        currentbulletObj1.GetComponent<Rigidbody>().AddForce(transform.forward * 5000);
+        currentbulletObj1.GetComponent<Rigidbody>().AddForce(FirePos1.forward * 5000);
 
 
-        //currentbulletObj2 = bulletPool.GetObject();
-        //currentbulletObj2.SetActive(true);
-        //currentbulletObj2.transform.position = FirePos2.position;
+        currentbulletObj2 = bulletPool.GetObject();
+        currentbulletObj2.SetActive(true);
+        currentbulletObj2.transform.position = FirePos2.position;
 
-        //currentbulletObj2.GetComponent<Rigidbody>().AddForce(transform.forward * 5000);
+        currentbulletObj2.GetComponent<Rigidbody>().AddForce(FirePos2.forward * 5000);
 
 
-        //currentbulletObj3 = bulletPool.GetObject();
-        //currentbulletObj3.SetActive(true);
-        //currentbulletObj3.transform.position = FirePos3.position;
+        currentbulletObj3 = bulletPool.GetObject();
+        currentbulletObj3.SetActive(true);
+        currentbulletObj3.transform.position = FirePos3.position;
 
-        //currentbulletObj3.GetComponent<Rigidbody>().AddForce(transform.forward * 5000);
+        currentbulletObj3.GetComponent<Rigidbody>().AddForce(FirePos3.forward * 5000);
 
         //GameObject Shot = Instantiate(Bullet) as GameObject;
         //Shot.transform.position = FirePos1.position;

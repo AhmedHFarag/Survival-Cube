@@ -35,7 +35,6 @@ public class BulletBehavior : MonoBehaviour
     {
         yield return new WaitForSeconds(timeForSelfDestory);
         MyRigid.velocity = Vector3.zero;
-        transform.position = Vector3.zero;
         gameObject.SetActive(false);
     }
 }
