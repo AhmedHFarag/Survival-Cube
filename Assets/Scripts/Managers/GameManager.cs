@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        Pool_Manager = new PoolManager();
     }
 
     // Use this for initialization
@@ -143,10 +143,10 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnItem(Vector3 _pos)
     {
-        if (Random.Range(0,4)==2)
+        if (Random.Range(0, 4) == 2)
         {
             GameObject obj = Instantiate(Item);
-            obj.transform.position = _pos+new Vector3(0,5,0);
+            obj.transform.position = _pos + new Vector3(0, 5, 0);
         }
     }
     public void ReloadSameScene()
@@ -160,5 +160,9 @@ public class GameManager : MonoBehaviour
     public void ThePlayerDied()
     {
         OnPlayerDies();
+    }
+    public ObjectPool CreatePool(GameObject poolObject, int size, int maxSize)
+    {
+        return Pool_Manager.CreatePool(poolObject, size, maxSize);
     }
 }
