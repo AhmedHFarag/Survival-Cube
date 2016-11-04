@@ -29,6 +29,7 @@ public class Player_Controller : MonoBehaviour {
     {
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
+        InputManager.attack += Fire;
         GameObject obj=Instantiate(Weapons[0]);
         obj.transform.rotation = transform.rotation;
         obj.transform.position = WeaponPos.position;
@@ -61,7 +62,9 @@ public class Player_Controller : MonoBehaviour {
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
+#if UNITY_EDITOR
                 Weapon.Fire();
+#endif
             }
         }
         else if (_Dir < -0.1)
@@ -70,8 +73,17 @@ public class Player_Controller : MonoBehaviour {
             if (EllapsedTime > 0.1f)
             {
                 EllapsedTime = 0;
+#if UNITY_EDITOR
                 Weapon.Fire();
+#endif
             }
+            }
+        }
+    void Fire(bool attacking)
+    {
+        if(attacking)
+        {
+            Weapon.Fire();
         }
     }
     public void UpgradeWeapon()
