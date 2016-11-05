@@ -8,6 +8,7 @@ public class UI : MonoBehaviour
     public GameObject GameEnded;
     public Text txtScore;
     public Text txtEndScore;
+    public Text txtHightScore;
 
     void Awake()
     {
@@ -34,7 +35,6 @@ public class UI : MonoBehaviour
     }
     public void ReStartGame()
     {
-        Debug.Log("is working");
         Time.timeScale = 1;
         GameManager.Instance.ReloadSameScene();
 
@@ -43,6 +43,7 @@ public class UI : MonoBehaviour
     {
         Time.timeScale = 0;
         txtEndScore.text = GameManager.Instance.score.ToString();
+        CalculateScore();
         GameEnded.SetActive(true);
     }
     void OnDisable()
@@ -54,5 +55,20 @@ public class UI : MonoBehaviour
     void EnemyDeath()
     {
         txtScore.text = GameManager.Instance.score.ToString();
+    }
+
+     void CalculateScore()
+    {
+        int GMscore = GameManager.Instance.score;
+        txtScore.text = GMscore.ToString();
+
+        int intBestScore = PlayerPrefs.GetInt("BestScore", 0);
+
+        if (intBestScore < GMscore)
+        {
+            //bestScore.text = lastScore.text;
+            PlayerPrefs.SetInt("BestScore", GMscore);
+        }
+        txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
     }
 }
