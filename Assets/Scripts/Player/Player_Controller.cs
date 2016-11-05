@@ -63,7 +63,7 @@ public class Player_Controller : MonoBehaviour
             }
             
         }
-        if (EllapsedTime > 0.1f)
+        if (EllapsedTime > 0.05f)
         {
             EllapsedTime = 0;
             Weapon.Fire();
