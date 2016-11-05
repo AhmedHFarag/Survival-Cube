@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 5;
     public int attackDamage = 0;
     public float lookatDisace = 1;
-    public float Health = 5;
+    public float DefaultHP = 200;
+    float HP;
     public float attackRange = 0;
     public Material materialColor1;
     public Material materialColor2;
@@ -26,8 +27,10 @@ public class Enemy : MonoBehaviour
 
     void OnEnable()
     {
+        HP = DefaultHP;
         health = gameObject.GetComponentInChildren<Canvas>() ? gameObject.GetComponentInChildren<Canvas>() : null;
-        healthBar.value = healthBar.maxValue;
+        healthBar.maxValue = DefaultHP;
+        healthBar.value = DefaultHP;
         health.enabled = true;
     }
 
@@ -43,11 +46,15 @@ public class Enemy : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Distance = Vector3.Distance(myRigid.transform.position, Target.transform.position);
         float lerp = Mathf.PingPong(Time.time, duration) / duration;
-
+        if (healthBar)
+        {
+            healthBar.value = HP;
+        }
+        
         Attack();
     }
     public virtual void Patrol()
@@ -63,12 +70,8 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
 
-        Health -= damage;
-        if (healthBar)
-        {
-            healthBar.value = Health;
-        }
-        if (Health < 0)
+        HP -= damage;
+        if (HP <= 0)
         {
             GameManager.Instance.SpawnItem(transform.position);
             Die();
@@ -93,7 +96,7 @@ public class Enemy : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Health = 0;
+            HP = 0;
             col.gameObject.GetComponent<Player_Controller>().TakeDamage(attackDamage);
             Die();
         }

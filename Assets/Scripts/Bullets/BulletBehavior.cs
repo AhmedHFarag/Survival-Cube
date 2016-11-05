@@ -4,8 +4,7 @@ using System.Collections;
 public class BulletBehavior : MonoBehaviour
 {
     public int Damage;
-    public float Speed = 2;
-    public Rigidbody MyRigid;
+    Rigidbody MyRigid;
 
     [SerializeField]
     private float timeForSelfDestory = 1;
