@@ -4,6 +4,9 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
+    public delegate void EnemyBehaviour();
+    public static event EnemyBehaviour OnEnemyDie;
+
     public Transform Target;
     public float moveSpeed = 5;
     public int attackDamage = 0;
@@ -54,7 +57,7 @@ public class Enemy : MonoBehaviour
         {
             healthBar.value = HP;
         }
-        
+
         Attack();
     }
     public virtual void Patrol()
@@ -79,6 +82,7 @@ public class Enemy : MonoBehaviour
     }
     public void Die()
     {
+
         //update score
         GameManager.Instance.score += 10;
         StartCoroutine("death");
@@ -88,9 +92,9 @@ public class Enemy : MonoBehaviour
         {
             health.enabled = false;
         }
-
-
         Explosion.Play();
+        //raise event
+        if (OnEnemyDie != null) { OnEnemyDie(); }
     }
     public void OnCollisionEnter(Collision col)
     {

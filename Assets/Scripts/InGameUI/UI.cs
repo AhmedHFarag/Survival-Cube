@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class UI : MonoBehaviour {
+public class UI : MonoBehaviour
+{
     public static UI Instance;
 
     public GameObject GameEnded;
+    public Text txtscore;
+
     void Awake()
     {
         if (Instance == null)
@@ -15,14 +18,18 @@ public class UI : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        Enemy.OnEnemyDie += EnemyDeath;
     }
-    void Start () {
+    void Start()
+    {
         GameManager.PlayerDied += ShowGameEnded;
-	}
-	
-	void Update () {
-	
-	}
+        Enemy.OnEnemyDie += EnemyDeath;
+    }
+
+    void Update()
+    {
+
+    }
     public void ReStartGame()
     {
         GameManager.Instance.ReloadSameScene();
@@ -35,5 +42,11 @@ public class UI : MonoBehaviour {
     void OnDisable()
     {
         GameManager.PlayerDied -= ShowGameEnded;
+        Enemy.OnEnemyDie -= EnemyDeath;
+    }
+
+    void EnemyDeath()
+    {
+        txtscore.text = GameManager.Instance.score.ToString();
     }
 }
