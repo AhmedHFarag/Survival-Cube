@@ -143,14 +143,14 @@ public class Player_Controller : MonoBehaviour
             Weapon.Fire();
         }
     }
-    public void UpgradeWeapon()
+    public void UpgradeWeapon(int index)
     {
         if (!Upgraded)
         {
             Weapon = null;
             BaiscWeapon.SetActive(false);
             StartCoroutine("NewWeapon");
-            GameObject obj = Instantiate(Weapons[1]);
+            GameObject obj = Instantiate(Weapons[index]);
             obj.transform.rotation = transform.rotation;
             obj.transform.position = WeaponPos.position;
             obj.transform.parent = transform;

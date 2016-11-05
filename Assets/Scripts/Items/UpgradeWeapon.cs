@@ -14,7 +14,7 @@ public class UpgradeWeapon : MonoBehaviour {
     }
     public void Hit()
     {
-        Player_Controller.Instance.UpgradeWeapon();
+        Player_Controller.Instance.UpgradeWeapon(1);
         Destroy(gameObject);
     }
 }
