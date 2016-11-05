@@ -19,7 +19,7 @@ public class Player_Controller : MonoBehaviour
     float EllapsedTime = 0;
 
     public Slider healthBar;
-
+    public ParticleSystem Explosion;
     void Awake()
     {
         if (Instance == null)
@@ -83,8 +83,20 @@ public class Player_Controller : MonoBehaviour
     public void Die()
     {
         //gameManager event where the player dies
+        StartCoroutine("death");
+        //gameObject.GetComponent<BoxCollider>().enabled = false;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        Explosion.Play();
+    }
+    IEnumerator death()
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        Explosion.Stop();
+        gameObject.SetActive(false);
         GameManager.Instance.ThePlayerDied();
-        //gameObject.SetActive(false);
+
     }
     public void Move(float _Dir)
     {

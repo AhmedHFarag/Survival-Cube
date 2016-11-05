@@ -153,6 +153,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void StartGame()
     {
         SceneManager.LoadScene(1);
@@ -160,7 +164,6 @@ public class GameManager : MonoBehaviour
     public void ThePlayerDied()
     {
         OnPlayerDies();
-        SceneManager.LoadScene(0);
     }
     public ObjectPool CreatePool(GameObject poolObject, int size, int maxSize)
     {
