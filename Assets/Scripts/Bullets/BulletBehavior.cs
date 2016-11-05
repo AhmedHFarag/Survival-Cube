@@ -4,7 +4,9 @@ using System.Collections;
 public class BulletBehavior : MonoBehaviour
 {
     public int Damage;
-    Rigidbody MyRigid;
+    public float Speed = 2;
+    public Rigidbody MyRigid;
+    private TrailRenderer tr;
 
     [SerializeField]
     private float timeForSelfDestory = 1;
@@ -12,10 +14,13 @@ public class BulletBehavior : MonoBehaviour
     // Use this for initialization
     void OnEnable()
     {
+        tr = GetComponent<TrailRenderer>();
+        tr.Clear();
         StartCoroutine(SelfDestory());
     }
     void Start()
     {
+        
         if (MyRigid == null)
         {
             MyRigid = gameObject.GetComponent<Rigidbody>();
