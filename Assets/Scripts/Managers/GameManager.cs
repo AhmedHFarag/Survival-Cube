@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         //StartCoroutine(Delay());
     }
 
-    private void ResetAll()
+    public void ResetAll()
     {
         score = 0;
     }

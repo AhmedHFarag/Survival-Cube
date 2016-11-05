@@ -6,7 +6,8 @@ public class UI : MonoBehaviour
     public static UI Instance;
 
     public GameObject GameEnded;
-    public Text txtscore;
+    public Text txtScore;
+    public Text txtEndScore;
 
     void Awake()
     {
@@ -18,12 +19,13 @@ public class UI : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         Enemy.OnEnemyDie += EnemyDeath;
+        GameManager.Instance.ResetAll();
     }
     void Start()
     {
         GameManager.PlayerDied += ShowGameEnded;
-        Enemy.OnEnemyDie += EnemyDeath;
     }
 
     void Update()
@@ -32,11 +34,15 @@ public class UI : MonoBehaviour
     }
     public void ReStartGame()
     {
+        Debug.Log("is working");
+        Time.timeScale = 1;
         GameManager.Instance.ReloadSameScene();
+
     }
     public void ShowGameEnded()
     {
         Time.timeScale = 0;
+        txtEndScore.text = GameManager.Instance.score.ToString();
         GameEnded.SetActive(true);
     }
     void OnDisable()
@@ -47,6 +53,6 @@ public class UI : MonoBehaviour
 
     void EnemyDeath()
     {
-        txtscore.text = GameManager.Instance.score.ToString();
+        txtScore.text = GameManager.Instance.score.ToString();
     }
 }
