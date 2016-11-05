@@ -20,12 +20,12 @@ public class PoolManager
         {
             ObjectPool nPool;
             objectPools.TryGetValue(objToPool.name,out nPool);
-            objectPools.Remove(objToPool.name);
-            nPool.Clear();
+            //objectPools.Remove(objToPool.name);
+            //nPool.Clear();
 
-            nPool = new ObjectPool(objToPool, initialPoolSize, maxPoolSize);
+            //nPool = new ObjectPool(objToPool, initialPoolSize, maxPoolSize);
 
-            objectPools.Add(objToPool.name, nPool);
+            //objectPools.Add(objToPool.name, nPool);
             return nPool;
         }
         else

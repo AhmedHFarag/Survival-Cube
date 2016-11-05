@@ -10,7 +10,7 @@ public class Enemies_Manager : MonoBehaviour {
 
     float EllapsedTime =0;
     #region PoolManager
-    List<ObjectPool> Enemies_Pool = new List<ObjectPool>();
+    List<List<ObjectPool>> Enemies_Pool = new List<List<ObjectPool>>();
     #endregion
 
     #region SawnPoints
@@ -21,8 +21,9 @@ public class Enemies_Manager : MonoBehaviour {
 
     #region EnemiesWaves
     int WaveNumber = 0;
+    int EnemieNumber = 0;
     int Enemiescount=0;
-    public List<MobWave> Waves = new List<MobWave>();
+    public List<Wave> WavesData = new List<Wave>();
 
     [HideInInspector]
     public List<GameObject> activeEnemies = new List<GameObject>();
@@ -44,9 +45,15 @@ public class Enemies_Manager : MonoBehaviour {
         {
             spawnPoints.Add(item);
         }
-        foreach (var item in Waves)
+        int i = 0;
+        foreach (Wave wave in WavesData)
         {
-            Enemies_Pool.Add(GameManager.Instance.Pool_Manager.CreatePool(item.Prefab, item.Count, item.Count));
+            Enemies_Pool.Add(new List<ObjectPool>());
+            foreach (WaveEnemies item in wave.Enemies)
+            {
+                Enemies_Pool[i].Add(GameManager.Instance.Pool_Manager.CreatePool(item.Prefab, item.Count, item.Count));
+            }
+            i++;
         }
 	}
     void Update()
@@ -57,15 +64,15 @@ public class Enemies_Manager : MonoBehaviour {
     void FixedUpdate()
     {
         EllapsedTime += Time.deltaTime;
-        if (WaveNumber < Waves.Count)
+        if (WaveNumber < WavesData.Count)
         {
-            if (EllapsedTime > Waves[WaveNumber].Intensity)
+            if (EllapsedTime > WavesData[WaveNumber].Intensity)
             {
                 EllapsedTime = 0;
 
-                Spawn(WaveNumber, Random.Range(0, spawnPoints.Count));
+                Spawn(WaveNumber, EnemieNumber);
                 Enemiescount++;
-                if (Enemiescount >= Waves[WaveNumber].Count)
+                if (Enemiescount >= WavesData[WaveNumber].Enemies[EnemieNumber].Count)
                 {
                     WaveNumber++;
                     Enemiescount = 0;
@@ -77,14 +84,14 @@ public class Enemies_Manager : MonoBehaviour {
             Debug.Log("Spawn Ended");
         }
     }
-    public bool Spawn(int spawnPrefabIndex, int spawnPointIndex)
+    public bool Spawn(int Wavenumber,int EnemyNumber)
     {
-        GameObject obj= Enemies_Pool[spawnPrefabIndex].GetObject();
+        GameObject obj= Enemies_Pool[Wavenumber][EnemyNumber].GetObject();
         if (obj==null)
         {
             return false;
         }
-        obj.transform.position=spawnPoints[spawnPointIndex].position;
+        obj.transform.position=spawnPoints[Random.Range(0, spawnPoints.Count)].position;
         activeEnemies.Add(obj);
         return true;
     }
