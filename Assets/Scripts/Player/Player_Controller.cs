@@ -10,6 +10,7 @@ public class Player_Controller : MonoBehaviour
     
     public Transform WeaponPos;
     public GameObject[] Weapons;
+    public GameObject WaveClear;
     DefaultWeapon Weapon;
     GameObject BaiscWeapon;
     bool Upgraded = false;
@@ -145,6 +146,11 @@ public class Player_Controller : MonoBehaviour
             Upgraded = true;
 
         }
+    }
+    public void ActivateWaveClear()
+    {
+        GameObject.Instantiate(WaveClear, transform.position, WaveClear.transform.rotation);
+        
     }
     public void UpgradeBuffs(UpgradeBuffs _Data)
     {
