@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Enemies_Manager : MonoBehaviour {
+public class Enemies_Manager : MonoBehaviour
+{
     public static Enemies_Manager Instance;
     public bool Show_FPS = false;
     float deltaTime = 0.0f;
 
-    float EllapsedTime =0;
+    float EllapsedTime = 0;
     #region PoolManager
     List<List<ObjectPool>> Enemies_Pool = new List<List<ObjectPool>>();
     #endregion
@@ -22,7 +23,7 @@ public class Enemies_Manager : MonoBehaviour {
     #region EnemiesWaves
     int CurrentWaveNumber = 0;
     int CurrentEnemieNumber = 0;
-    int Enemiescount=0;
+    int Enemiescount = 0;
     bool SpawnEnabled = false;
     public List<Wave> WavesData = new List<Wave>();
 
@@ -41,7 +42,8 @@ public class Enemies_Manager : MonoBehaviour {
             DestroyImmediate(gameObject);
         }
     }
-	void Start () {
+    void Start()
+    {
         foreach (var item in _SpawnPoints.GetComponentsInChildren<Transform>().Skip(1))
         {
             spawnPoints.Add(item);
@@ -77,7 +79,8 @@ public class Enemies_Manager : MonoBehaviour {
                 if (Spawn())
                 {
                     Enemiescount++;
-                }else
+                }
+                else
                 //if (Enemiescount >= WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count)
                 {
                     CurrentWaveNumber++;
@@ -93,10 +96,10 @@ public class Enemies_Manager : MonoBehaviour {
             Debug.Log("Spawn Ended");
         }
     }
-    
+
     public bool Spawn()
     {
-        if (WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count>0)
+        if (WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count > 0)
         {
             WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count--;
             GameObject obj = Enemies_Pool[CurrentWaveNumber][CurrentEnemieNumber].GetObject();
@@ -111,7 +114,7 @@ public class Enemies_Manager : MonoBehaviour {
         }
         else
         {
-            if (CurrentEnemieNumber< WavesData[CurrentWaveNumber].Enemies.Length-1)
+            if (CurrentEnemieNumber < WavesData[CurrentWaveNumber].Enemies.Length - 1)
             {
                 CurrentEnemieNumber++;
                 return Spawn();
@@ -148,9 +151,11 @@ public class Enemies_Manager : MonoBehaviour {
             GUI.Label(rect, text, style);
         }
     }
-    void EnemyDeath(GameObject Enemy, int Score)
+    void EnemyDeath(GameObject Enemy, int Score, bool collideWithPlayer)
     {
-        GameManager.Instance.score += Score;
+        if (!collideWithPlayer)
+            GameManager.Instance.score += Score;
+
         EnemyKilled(Enemy);
     }
 }

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public delegate void EnemyBehaviour( GameObject Sender,int AddedScore);
+    public delegate void EnemyBehaviour(GameObject Sender, int AddedScore, bool isCollidedWithPlayer);
     public static event EnemyBehaviour OnEnemyDie;
 
     public Transform Target;
@@ -80,11 +80,13 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    public void Die()
+    public void Die(bool isCollidedWithEnemy = false)
     {
-
-        //update score
-        GameManager.Instance.score += 10;
+        //if (isCollidedWithEnemy)
+        //{
+        //    //update score
+        //    GameManager.Instance.score += 10;
+        //}
         StartCoroutine("death");
         gameObject.GetComponent<BoxCollider>().enabled = false;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -94,7 +96,7 @@ public class Enemy : MonoBehaviour
         }
         Explosion.Play();
         //raise event
-        if (OnEnemyDie != null) { OnEnemyDie(this.gameObject,AddedScore); }
+        if (OnEnemyDie != null) { OnEnemyDie(this.gameObject, AddedScore, isCollidedWithEnemy); }
     }
     public void OnCollisionEnter(Collision col)
     {
@@ -102,7 +104,7 @@ public class Enemy : MonoBehaviour
         {
             HP = 0;
             col.gameObject.GetComponent<Player_Controller>().TakeDamage(attackDamage);
-            Die();
+            Die(true);
         }
 
     }
