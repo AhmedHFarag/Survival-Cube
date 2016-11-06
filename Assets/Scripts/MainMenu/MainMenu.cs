@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
     public Text Score;
-	void Start () {
+    public Text Coins;
+    void Start () {
         if (PlayerPrefs.HasKey("BestScore"))
         {
             Score.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
@@ -13,6 +14,14 @@ public class MainMenu : MonoBehaviour {
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.SetInt("BestScore", 0);
+        }
+        if (PlayerPrefs.HasKey("Coins"))
+        {
+            Coins.text = PlayerPrefs.GetInt("Coins", 0).ToString();
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Coins", 0);
         }
 
     }
