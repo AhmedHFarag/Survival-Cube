@@ -12,7 +12,8 @@ public class UI : MonoBehaviour
     public Text txtEndScore;
     public Text txtHightScore;
     public RawImage Background;
-
+    public GameObject CountDown;
+    Animator _anim;
     void Awake()
     {
         if (Instance == null)
@@ -23,13 +24,14 @@ public class UI : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
+        GameManager.PlayerDied += ShowGameEnded;
+        GameManager.NewWave += StartCountDown;
+        _anim = this.GetComponent<Animator>();
     }
     void Start()
     {
         GameManager.Instance.ResetAll();
-        GameManager.PlayerDied += ShowGameEnded;
+        
     }
 
     void FixedUpdate()
@@ -48,9 +50,20 @@ public class UI : MonoBehaviour
         StartCoroutine("EndGame");
         
     }
+    public void StartCountDown()
+    {
+        CountDown.SetActive(true);
+        _anim.SetTrigger("CountDown");
+    }
+    public void EndCountDown()
+    {
+        CountDown.SetActive(false);
+    }
     void OnDisable()
     {
         GameManager.PlayerDied -= ShowGameEnded;
+        GameManager.NewWave -= StartCountDown;
+
     }
 
     IEnumerator ScoreRoll()
