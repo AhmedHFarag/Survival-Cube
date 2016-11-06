@@ -5,15 +5,24 @@ using System.Collections;
 public class Player_Controller : MonoBehaviour
 {
     public static Player_Controller Instance;
-    public DefaultWeapon Weapon;
+
     public LayerMask Plane;
-    GameObject BaiscWeapon;
-    bool Upgraded = false;
+    
     public Transform WeaponPos;
     public GameObject[] Weapons;
+    DefaultWeapon Weapon;
+    GameObject BaiscWeapon;
+    bool Upgraded = false;
+
     public int HitPoints = 100;
     public int Damage = 10;
-    public float speed = 2f;
+
+    public float Defaultspeed = 2f;
+    public float DefaultFirRate = 0.05f;
+    float Speed;
+    float FirRate;
+    [HideInInspector]
+    public bool Buffed=false;
     Rigidbody _MyRig;
     int Dir = 0;
     float EllapsedTime = 0;
@@ -34,6 +43,8 @@ public class Player_Controller : MonoBehaviour
     }
     void Start()
     {
+        Speed = Defaultspeed;
+        FirRate = DefaultFirRate;
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
         InputManager.attack += Fire;
@@ -63,7 +74,7 @@ public class Player_Controller : MonoBehaviour
             }
             
         }
-        if (EllapsedTime > 0.05f)
+        if (EllapsedTime > FirRate)
         {
             EllapsedTime = 0;
             Weapon.Fire();
@@ -103,37 +114,11 @@ public class Player_Controller : MonoBehaviour
         
         if (_Dir > 0.1f)
         {
-            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * speed);
-            if (EllapsedTime > 0.1f)
-            {
-                EllapsedTime = 0;
-#if UNITY_EDITOR
-
-                Weapon.Fire();
-#else
-                //if(InputManager.Instance.ControlScheme0)
-                //{
-                //    Weapon.Fire();
-                //}
-#endif
-            }
+            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed);
         }
         else if (_Dir < -0.1)
         {
-            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * speed);
-            if (EllapsedTime > 0.1f)
-            {
-                EllapsedTime = 0;
-#if UNITY_EDITOR
-                Weapon.Fire();
-#else
-                //if(InputManager.Instance.ControlScheme0)
-                //{
-                //    Weapon.Fire();
-                //}
-                
-#endif
-            }
+            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed);
         }
     }
     void Fire(bool attacking)
@@ -159,6 +144,28 @@ public class Player_Controller : MonoBehaviour
 
         }
     }
+    public void UpgradeBuffs(UpgradeBuffs _Data)
+    {
+        if (_Data._Speed)
+        {
+            Debug.Log("Speed");
+            Speed = _Data.Speed;
+        }
+        if (_Data._FireRate)
+        {
+            Debug.Log("FireRate");
+            FirRate = _Data.FireRate;
+        }
+        Buffed = true;
+        StartCoroutine("DeBuff");
+    }
+    public void DeBuffs()
+    {
+        Debug.Log("Debuff");
+        Speed = Defaultspeed;
+        FirRate = DefaultFirRate;
+        Buffed = false;
+    }
     IEnumerator NewWeapon()
     {
         yield return new WaitForSeconds(5);
@@ -166,6 +173,11 @@ public class Player_Controller : MonoBehaviour
         BaiscWeapon.SetActive(true);
         Weapon = BaiscWeapon.GetComponent<DefaultWeapon>();
         Upgraded = false;
+    }
+    IEnumerator DeBuff()
+    {
+        yield return new WaitForSeconds(5);
+        DeBuffs();
     }
     void OnDisable()
     {

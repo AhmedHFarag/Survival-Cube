@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public enum GameStates
 {
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public PoolManager Pool_Manager;
 
-    public GameObject Item;
+    public List<GameObject> Items=new List<GameObject>();
     [HideInInspector]
     public GameStates currentGameStates;
 
@@ -143,10 +144,13 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnItem(Vector3 _pos)
     {
-        if (Random.Range(0, 4) == 2)
+        if (!Player_Controller.Instance.Buffed)
         {
-            GameObject obj = Instantiate(Item);
-            obj.transform.position = _pos + new Vector3(0, 5, 0);
+            if (Random.Range(0, 4) == 2)
+            {
+                GameObject obj = Instantiate(Items[Random.Range(0, Items.Count)]);
+                obj.transform.position = _pos + new Vector3(0, 5, 0);
+            }
         }
     }
     public void ReloadSameScene()

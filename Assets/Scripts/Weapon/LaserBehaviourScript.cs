@@ -80,7 +80,7 @@ public class LaserBehaviourScript : MonoBehaviour
                 }
                 if (hit[i].collider.tag == "Item")
                 {
-                    hit[i].collider.gameObject.GetComponent<UpgradeWeapon>().Hit();
+                    hit[i].collider.gameObject.GetComponent<UpgradeBuffs>().Hit();
                 }
                 return;
             }
