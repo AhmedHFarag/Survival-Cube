@@ -10,9 +10,9 @@ public class Weapon2Laser : DefaultWeapon
     }
     public override void Fire()
     {
-        foreach (var item in lasers)
-        {
+        //foreach (var item in lasers)
+        //{
 
-        }
+        //}
     }
 }
