@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+
+
 public class UI : MonoBehaviour
 {
     public static UI Instance;
@@ -9,6 +11,7 @@ public class UI : MonoBehaviour
     public Text txtScore;
     public Text txtEndScore;
     public Text txtHightScore;
+    public RawImage Background;
 
     void Awake()
     {
@@ -41,9 +44,8 @@ public class UI : MonoBehaviour
     public void ShowGameEnded()
     {
         Time.timeScale = 0;
-        txtEndScore.text = GameManager.Instance.score.ToString();
-        CalculateScore();
-        GameEnded.SetActive(true);
+        StartCoroutine("EndGame");
+        
     }
     void OnDisable()
     {
@@ -62,5 +64,54 @@ public class UI : MonoBehaviour
             PlayerPrefs.SetInt("BestScore", GMscore);
         }
         txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+    }
+    IEnumerator ScoreRoll()
+    {
+        int score = 0;
+        while(score!=GameManager.Instance.score)
+        {
+            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.01f));
+
+            score += 1;
+            txtEndScore.text = (score).ToString();
+            
+        }
+        int intBestScore = PlayerPrefs.GetInt("BestScore", 0);
+
+        if (intBestScore < score)
+        {
+            //bestScore.text = lastScore.text;
+            PlayerPrefs.SetInt("BestScore", score);
+        }
+        txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+        yield return null;
+    }
+    IEnumerator EndGame()
+    {
+        Background.gameObject.SetActive(true);
+        while(Background.color.a<1)
+        {
+            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.01f));
+            Background.color = new Vector4(0, 0, 0, Background.color.a + 0.01f);
+        }
+        GameEnded.SetActive(true);
+        StartCoroutine("ScoreRoll");
+        yield return null;
+    }
+}
+
+public static class CoroutineUtilities
+{
+    public static IEnumerator WaitForRealTime(float delay)
+    {
+        while (true)
+        {
+            float pauseEndTime = Time.realtimeSinceStartup + delay;
+            while (Time.realtimeSinceStartup < pauseEndTime)
+            {
+                yield return 0;
+            }
+            break;
+        }
     }
 }
