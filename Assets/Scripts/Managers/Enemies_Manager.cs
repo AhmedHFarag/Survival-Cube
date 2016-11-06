@@ -131,6 +131,7 @@ public class Enemies_Manager : MonoBehaviour
     IEnumerator New_Wave()
     {
         Debug.Log("NewWave"+CurrentWaveNumber);
+        GameManager.Instance.NewWavStarted();
         yield return new WaitForSeconds(5);
         SpawnEnabled = true;
     }
