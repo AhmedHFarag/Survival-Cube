@@ -58,7 +58,7 @@ public class UI : MonoBehaviour
         int score = 0;
         while(score!=GameManager.Instance.score)
         {
-            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.01f));
+            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.005f));
 
             score += 1;
             txtEndScore.text = (score).ToString();
