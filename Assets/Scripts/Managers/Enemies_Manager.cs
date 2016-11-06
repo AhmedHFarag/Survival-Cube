@@ -20,9 +20,10 @@ public class Enemies_Manager : MonoBehaviour {
     #endregion
 
     #region EnemiesWaves
-    int WaveNumber = 0;
-    int EnemieNumber = 0;
+    int CurrentWaveNumber = 0;
+    int CurrentEnemieNumber = 0;
     int Enemiescount=0;
+    bool SpawnEnabled = false;
     public List<Wave> WavesData = new List<Wave>();
 
     [HideInInspector]
@@ -55,7 +56,8 @@ public class Enemies_Manager : MonoBehaviour {
             }
             i++;
         }
-	}
+        StartCoroutine("New_Wave");
+    }
     void Update()
     {
         deltaTime += (Time.deltaTime - deltaTime);
@@ -64,17 +66,22 @@ public class Enemies_Manager : MonoBehaviour {
     void FixedUpdate()
     {
         EllapsedTime += Time.deltaTime;
-        if (WaveNumber < WavesData.Count)
+        if (CurrentWaveNumber < WavesData.Count)
         {
-            if (EllapsedTime > WavesData[WaveNumber].Intensity)
+            if (EllapsedTime > WavesData[CurrentWaveNumber].Intensity && SpawnEnabled)
             {
                 EllapsedTime = 0;
 
-                Spawn(WaveNumber, EnemieNumber);
-                Enemiescount++;
-                if (Enemiescount >= WavesData[WaveNumber].Enemies[EnemieNumber].Count)
+                if (Spawn())
                 {
-                    WaveNumber++;
+                    Enemiescount++;
+                }else
+                //if (Enemiescount >= WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count)
+                {
+                    CurrentWaveNumber++;
+                    CurrentEnemieNumber = 0;
+                    SpawnEnabled = false;
+                    StartCoroutine("New_Wave");
                     Enemiescount = 0;
                 }
             }
@@ -84,21 +91,44 @@ public class Enemies_Manager : MonoBehaviour {
             Debug.Log("Spawn Ended");
         }
     }
-    public bool Spawn(int Wavenumber,int EnemyNumber)
+    
+    public bool Spawn()
     {
-        GameObject obj= Enemies_Pool[Wavenumber][EnemyNumber].GetObject();
-        if (obj==null)
+        if (WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count>0)
         {
-            return false;
+            WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count--;
+            GameObject obj = Enemies_Pool[CurrentWaveNumber][CurrentEnemieNumber].GetObject();
+            if (obj == null)
+            {
+                Debug.Log("Spawn Error");
+                return false;
+            }
+            obj.transform.position = spawnPoints[Random.Range(0, spawnPoints.Count)].position;
+            activeEnemies.Add(obj);
+            return true;
         }
-        obj.transform.position=spawnPoints[Random.Range(0, spawnPoints.Count)].position;
-        activeEnemies.Add(obj);
-        return true;
+        else
+        {
+            if (CurrentEnemieNumber< WavesData[CurrentWaveNumber].Enemies.Length-1)
+            {
+                CurrentEnemieNumber++;
+                return Spawn();
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    IEnumerator New_Wave()
+    {
+        Debug.Log("New Wave" + CurrentWaveNumber);
+        yield return new WaitForSeconds(4);
+        SpawnEnabled = true;
     }
     public void EnemyKilled(GameObject _obj)
     {
         activeEnemies.Remove(_obj);
-        _obj.SetActive(false);
     }
     void OnGUI()
     {

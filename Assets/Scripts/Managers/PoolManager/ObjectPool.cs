@@ -106,4 +106,26 @@ public class ObjectPool
         }
         return false;
     }
+    public void UpdateSize(int _initialPoolSize, int _maxPoolSize)
+    {
+        if (_maxPoolSize>this.maxPoolSize)
+        {
+            this.maxPoolSize = _maxPoolSize;
+        }
+        if (_initialPoolSize > this.pooledObjects.Count)
+        {
+            for (int i = this.pooledObjects.Count-1; i < _initialPoolSize; i++)
+            {
+                //instantiate and create a game object with useless attributes.
+                //these should be reset anyways.
+                GameObject nObj = GameObject.Instantiate(this.pooledObjects[0]);
+
+                //make sure the object isn't active.
+                nObj.SetActive(false);
+
+                //add the object too our list.
+                pooledObjects.Add(nObj);
+            }
+        }
+    }
 }

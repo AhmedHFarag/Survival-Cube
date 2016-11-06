@@ -26,6 +26,7 @@ public class PoolManager
             //nPool = new ObjectPool(objToPool, initialPoolSize, maxPoolSize);
 
             //objectPools.Add(objToPool.name, nPool);
+            nPool.UpdateSize(initialPoolSize, maxPoolSize);
             return nPool;
         }
         else
