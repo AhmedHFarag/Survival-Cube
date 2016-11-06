@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public delegate void EnemyBehaviour();
+    public delegate void EnemyBehaviour( GameObject Sender,int AddedScore);
     public static event EnemyBehaviour OnEnemyDie;
 
     public Transform Target;
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     public Material materialColor2;
     public ParticleSystem Explosion;
     public float duration = 2.0F;
-
+    public int AddedScore = 10;
     public Slider healthBar;
 
     private Rigidbody myRigid;
@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
         }
         Explosion.Play();
         //raise event
-        if (OnEnemyDie != null) { OnEnemyDie(); }
+        if (OnEnemyDie != null) { OnEnemyDie(this.gameObject,AddedScore); }
     }
     public void OnCollisionEnter(Collision col)
     {

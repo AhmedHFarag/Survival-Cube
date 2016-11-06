@@ -21,7 +21,6 @@ public class UI : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Enemy.OnEnemyDie += EnemyDeath;
         GameManager.Instance.ResetAll();
     }
     void Start()
@@ -29,9 +28,9 @@ public class UI : MonoBehaviour
         GameManager.PlayerDied += ShowGameEnded;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
+        txtScore.text = GameManager.Instance.score.ToString();
     }
     public void ReStartGame()
     {
@@ -49,14 +48,7 @@ public class UI : MonoBehaviour
     void OnDisable()
     {
         GameManager.PlayerDied -= ShowGameEnded;
-        Enemy.OnEnemyDie -= EnemyDeath;
     }
-
-    void EnemyDeath()
-    {
-        txtScore.text = GameManager.Instance.score.ToString();
-    }
-
      void CalculateScore()
     {
         int GMscore = GameManager.Instance.score;

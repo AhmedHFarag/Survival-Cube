@@ -57,6 +57,8 @@ public class Enemies_Manager : MonoBehaviour {
             i++;
         }
         StartCoroutine("New_Wave");
+        Enemy.OnEnemyDie += EnemyDeath;
+
     }
     void Update()
     {
@@ -146,5 +148,9 @@ public class Enemies_Manager : MonoBehaviour {
             GUI.Label(rect, text, style);
         }
     }
-
+    void EnemyDeath(GameObject Enemy, int Score)
+    {
+        GameManager.Instance.score += Score;
+        EnemyKilled(Enemy);
+    }
 }
