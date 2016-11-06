@@ -150,12 +150,10 @@ public class Player_Controller : MonoBehaviour
     {
         if (_Data._Speed)
         {
-            Debug.Log("Speed");
             Speed = _Data.Speed;
         }
         if (_Data._FireRate)
         {
-            Debug.Log("FireRate");
             FirRate = _Data.FireRate;
         }
         Buffed = true;
@@ -163,7 +161,6 @@ public class Player_Controller : MonoBehaviour
     }
     public void DeBuffs()
     {
-        Debug.Log("Debuff");
         Speed = Defaultspeed;
         FirRate = DefaultFirRate;
         Buffed = false;
