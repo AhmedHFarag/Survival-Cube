@@ -152,7 +152,8 @@ public class Player_Controller : MonoBehaviour
     }
     public void ActivateWaveClear()
     {
-        GameObject.Instantiate(WaveClear, transform.position, WaveClear.transform.rotation);
+        if (GameManager.Instance.InGameCoins >= WaveClear.GetComponent<WaveClear>().cost)
+            GameObject.Instantiate(WaveClear, transform.position, WaveClear.transform.rotation);
         
     }
     public void UpgradeBuffs(UpgradeBuffs _Data)

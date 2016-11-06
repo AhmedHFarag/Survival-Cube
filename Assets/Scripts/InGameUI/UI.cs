@@ -12,6 +12,8 @@ public class UI : MonoBehaviour
     public Text txtEndScore;
     public Text txtHightScore;
     public Text Coins;
+    public Text CoinsEnd;
+    public Text TotalCoins;
     public RawImage Background;
     public GameObject CountDown;
     Animator _anim;
@@ -32,7 +34,7 @@ public class UI : MonoBehaviour
     void Start()
     {
         GameManager.Instance.ResetAll();
-        
+        TotalCoins.text = PlayerPrefs.GetInt("Coins").ToString();
     }
 
     void FixedUpdate()
@@ -72,11 +74,13 @@ public class UI : MonoBehaviour
     IEnumerator ScoreRoll()
     {
         int score = 0;
+        
         while(score!=GameManager.Instance.score)
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.005f));
 
             score += 1;
+
             txtEndScore.text = (score).ToString();
             
         }
@@ -90,6 +94,20 @@ public class UI : MonoBehaviour
         txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
         yield return null;
     }
+    IEnumerator CoinRoll()
+    {
+        int coins = 0;
+        while(coins!=GameManager.Instance.InGameCoins)
+        {
+            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.005f));
+            coins += 1;
+            CoinsEnd.text = coins.ToString();
+        }
+        GameManager.Instance.Coins += coins;
+        PlayerPrefs.SetInt("Coins", GameManager.Instance.Coins);
+        TotalCoins.text = GameManager.Instance.Coins.ToString();
+
+    }
     IEnumerator EndGame()
     {
         Background.gameObject.SetActive(true);
@@ -100,6 +118,7 @@ public class UI : MonoBehaviour
         }
         GameEnded.SetActive(true);
         StartCoroutine("ScoreRoll");
+        StartCoroutine("CoinRoll");
         yield return null;
     }
 }

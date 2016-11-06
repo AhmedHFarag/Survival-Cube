@@ -3,6 +3,7 @@ using System.Collections;
 
 public class WaveClear : MonoBehaviour {
     public int Damage = 1000;
+    public int cost = 300;
 	// Use this for initialization
 	void Start () {
 	
