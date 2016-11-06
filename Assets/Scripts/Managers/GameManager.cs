@@ -59,18 +59,6 @@ public class GameManager : MonoBehaviour
         }
         Pool_Manager = new PoolManager();
     }
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     private static void OnPlayerDies()
     {
         var handler = PlayerDied;
@@ -140,6 +128,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetAll()
     {
+        Pool_Manager = new PoolManager();
         score = 0;
     }
     public void SpawnItem(Vector3 _pos)

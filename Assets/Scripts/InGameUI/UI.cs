@@ -24,10 +24,11 @@ public class UI : MonoBehaviour
             Destroy(gameObject);
         }
 
-        GameManager.Instance.ResetAll();
+
     }
     void Start()
     {
+        GameManager.Instance.ResetAll();
         GameManager.PlayerDied += ShowGameEnded;
     }
 
