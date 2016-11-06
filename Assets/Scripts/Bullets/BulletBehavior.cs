@@ -31,7 +31,9 @@ public class BulletBehavior : MonoBehaviour
         if (other.collider.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<Enemy>().TakeDamage(Damage);
-            Debug.Log("enemy");
+            StopCoroutine("SelfDestory");
+            gameObject.SetActive(false);
+
         }
     }
 
