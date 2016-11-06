@@ -135,16 +135,19 @@ public class Player_Controller : MonoBehaviour
     {
         if (!Upgraded)
         {
-            Weapon = null;
-            BaiscWeapon.SetActive(false);
-            StartCoroutine("NewWeapon");
-            GameObject obj = Instantiate(Weapons[index]);
-            obj.transform.rotation = transform.rotation;
-            obj.transform.position = WeaponPos.position;
-            obj.transform.parent = transform;
-            Weapon = obj.GetComponent<DefaultWeapon>();
-            Upgraded = true;
-
+            if (GameManager.Instance.InGameCoins >= Weapons[index].GetComponent<DefaultWeapon>().Cost)
+            {
+                GameManager.Instance.InGameCoins -= Weapons[index].GetComponent<DefaultWeapon>().Cost;
+                Weapon = null;
+                BaiscWeapon.SetActive(false);
+                StartCoroutine("NewWeapon");
+                GameObject obj = Instantiate(Weapons[index]);
+                obj.transform.rotation = transform.rotation;
+                obj.transform.position = WeaponPos.position;
+                obj.transform.parent = transform;
+                Weapon = obj.GetComponent<DefaultWeapon>();
+                Upgraded = true;
+            }
         }
     }
     public void ActivateWaveClear()

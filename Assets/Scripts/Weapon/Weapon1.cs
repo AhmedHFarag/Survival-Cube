@@ -5,7 +5,7 @@ public class Weapon1 : DefaultWeapon
 {
     public Transform FirePos2;
     public Transform FirePos3;
-
+    public int price = 100;
     private ObjectPool bulletPool;
 
     GameObject currentbulletObj1;

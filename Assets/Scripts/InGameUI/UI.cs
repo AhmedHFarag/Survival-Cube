@@ -11,6 +11,7 @@ public class UI : MonoBehaviour
     public Text txtScore;
     public Text txtEndScore;
     public Text txtHightScore;
+    public Text Coins;
     public RawImage Background;
     public GameObject CountDown;
     Animator _anim;
@@ -37,6 +38,7 @@ public class UI : MonoBehaviour
     void FixedUpdate()
     {
         txtScore.text = GameManager.Instance.score.ToString();
+        Coins.text = GameManager.Instance.InGameCoins.ToString();
     }
     public void ReStartGame()
     {
@@ -47,6 +49,7 @@ public class UI : MonoBehaviour
     public void ShowGameEnded()
     {
         Time.timeScale = 0;
+        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + GameManager.Instance.InGameCoins);
         StartCoroutine("EndGame");
         
     }

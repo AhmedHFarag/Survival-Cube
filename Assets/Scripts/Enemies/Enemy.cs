@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public int attackDamage = 0;
     public float lookatDisace = 1;
     public float DefaultHP = 200;
+    public int Value = 20;
     float HP;
     public float attackRange = 0;
     public Material materialColor1;
@@ -77,6 +78,7 @@ public class Enemy : MonoBehaviour
         if (HP <= 0)
         {
             GameManager.Instance.SpawnItem(transform.position);
+            GameManager.Instance.InGameCoins += Value;
             Die();
         }
     }

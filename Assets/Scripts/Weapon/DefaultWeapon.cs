@@ -5,6 +5,7 @@ public class DefaultWeapon : MonoBehaviour
 {
     public GameObject Bullet;
     public Transform FirePos1;
+    public int Cost = 200;
 
     public int BullectNumberInUse;
 

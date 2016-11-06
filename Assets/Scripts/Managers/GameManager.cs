@@ -45,8 +45,9 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public int score;
-
-
+    [HideInInspector]
+    public int Coins;
+    public int InGameCoins = 0;
     void Awake()
     {
         if (Instance == null)
@@ -136,6 +137,7 @@ public class GameManager : MonoBehaviour
     {
         Pool_Manager = new PoolManager();
         score = 0;
+        InGameCoins = 0;
     }
     public void SpawnItem(Vector3 _pos)
     {
