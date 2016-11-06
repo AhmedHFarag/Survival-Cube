@@ -97,14 +97,15 @@ public class UI : MonoBehaviour
     IEnumerator CoinRoll()
     {
         int coins = 0;
-        while(coins!=GameManager.Instance.InGameCoins)
+        GameManager.Instance.Coins += GameManager.Instance.InGameCoins;
+        PlayerPrefs.SetInt("Coins", GameManager.Instance.Coins);
+        while (coins!=GameManager.Instance.InGameCoins)
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.005f));
             coins += 1;
             CoinsEnd.text = coins.ToString();
         }
-        GameManager.Instance.Coins += coins;
-        PlayerPrefs.SetInt("Coins", GameManager.Instance.Coins);
+        
         TotalCoins.text = GameManager.Instance.Coins.ToString();
 
     }
