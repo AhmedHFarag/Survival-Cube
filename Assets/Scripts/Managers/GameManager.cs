@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int Coins;
     public int InGameCoins = 0;
+
+    public int weaponCoolDown = 20;
     void Awake()
     {
         if (Instance == null)
