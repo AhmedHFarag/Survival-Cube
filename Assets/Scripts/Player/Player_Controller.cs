@@ -95,15 +95,17 @@ public class Player_Controller : MonoBehaviour
     {
         //gameManager event where the player dies
         StartCoroutine("death");
-        //gameObject.GetComponent<BoxCollider>().enabled = false;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        foreach (var item in gameObject.GetComponentsInChildren<MeshRenderer>())
+        {
+            item.enabled = false;
+        }
         Explosion.Play();
     }
     IEnumerator death()
     {
         yield return new WaitForSeconds(1f);
-        gameObject.GetComponent<BoxCollider>().enabled = true;
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        //gameObject.GetComponent<BoxCollider>().enabled = true;
+        //gameObject.GetComponent<MeshRenderer>().enabled = true;
         Explosion.Stop();
         gameObject.SetActive(false);
         GameManager.Instance.ThePlayerDied();

@@ -158,4 +158,8 @@ public class Enemies_Manager : MonoBehaviour
 
         EnemyKilled(Enemy);
     }
+    void OnDestroy()
+    {
+        Enemy.OnEnemyDie -= EnemyDeath;
+    }
 }
