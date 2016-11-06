@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class CoolDown : MonoBehaviour
 {
     public Slider coolDownSlider;
+    public Text weaponCost;
 
     float coolDownCounter = 0;
     float coolDownMaxValue;
@@ -27,9 +28,13 @@ public class CoolDown : MonoBehaviour
     public void WeaponCoolDownMethod()
     {
         Debug.Log("Hi");
-        GetComponent<EventTrigger>().enabled = false;
-        coolDownSlider.value = 0;
-        StartCoroutine(WeaponCoolDown());
+        if (int.Parse( weaponCost.text) < GameManager.Instance.InGameCoins)
+        {
+            GetComponent<EventTrigger>().enabled = false;
+            coolDownSlider.value = 0;
+            StartCoroutine(WeaponCoolDown());
+        }
+        
     }
 
 
