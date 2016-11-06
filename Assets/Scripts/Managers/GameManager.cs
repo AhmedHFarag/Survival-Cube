@@ -25,6 +25,7 @@ public delegate void PlayerDied();//Declaring Die event delegate
 public class GameManager : MonoBehaviour
 {
     public static event PlayerDied PlayerDied;
+    public static event PlayerDied NewWave;
 
     public static GameManager Instance;
     public PoolManager Pool_Manager;
@@ -62,6 +63,11 @@ public class GameManager : MonoBehaviour
     private static void OnPlayerDies()
     {
         var handler = PlayerDied;
+        if (handler != null) handler();
+    }
+    private static void OnNewWave()
+    {
+        var handler = NewWave;
         if (handler != null) handler();
     }
     public void SwitchGameStates()
@@ -157,6 +163,10 @@ public class GameManager : MonoBehaviour
     public void ThePlayerDied()
     {
         OnPlayerDies();
+    }
+    public void NewWavStarted()
+    {
+        OnNewWave();
     }
     public ObjectPool CreatePool(GameObject poolObject, int size, int maxSize)
     {

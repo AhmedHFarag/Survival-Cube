@@ -75,26 +75,28 @@ public class Enemies_Manager : MonoBehaviour
             if (EllapsedTime > WavesData[CurrentWaveNumber].Intensity && SpawnEnabled)
             {
                 EllapsedTime = 0;
-
                 if (Spawn())
                 {
                     Enemiescount++;
                 }
                 else
-                //if (Enemiescount >= WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count)
                 {
-                    CurrentWaveNumber++;
-                    CurrentEnemieNumber = 0;
-                    SpawnEnabled = false;
-                    StartCoroutine("New_Wave");
-                    Enemiescount = 0;
+                    
+                    if (activeEnemies.Count<=0)
+                    {
+                        CurrentWaveNumber++;
+                        CurrentEnemieNumber = 0;
+                        SpawnEnabled = false;
+                        StartCoroutine("New_Wave");
+                        Enemiescount = 0;
+                    }
                 }
             }
         }
         else
         {
             Debug.Log("Spawn Ended");
-            CurrentWaveNumber = 0;/////Just For Test Remove this
+            //CurrentWaveNumber = 0;/////Just For Test Remove this
         }
     }
 
@@ -102,13 +104,13 @@ public class Enemies_Manager : MonoBehaviour
     {
         if (WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count > 0)
         {
-            WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count--;
             GameObject obj = Enemies_Pool[CurrentWaveNumber][CurrentEnemieNumber].GetObject();
             if (obj == null)
             {
-                Debug.Log("Spawn Error");
+                Debug.Log("Enemies 5elso Min EL Pool");
                 return false;
             }
+            WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count--;
             obj.transform.position = spawnPoints[Random.Range(0, spawnPoints.Count)].position;
             activeEnemies.Add(obj);
             return true;
@@ -128,7 +130,8 @@ public class Enemies_Manager : MonoBehaviour
     }
     IEnumerator New_Wave()
     {
-        yield return new WaitForSeconds(4);
+        Debug.Log("NewWave"+CurrentWaveNumber);
+        yield return new WaitForSeconds(5);
         SpawnEnabled = true;
     }
     public void EnemyKilled(GameObject _obj)
