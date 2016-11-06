@@ -94,6 +94,7 @@ public class Enemies_Manager : MonoBehaviour
         else
         {
             Debug.Log("Spawn Ended");
+            CurrentWaveNumber = 0;/////Just For Test Remove this
         }
     }
 

@@ -1,14 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
-
-	// Use this for initialization
+    public Text Score;
 	void Start () {
+        if (PlayerPrefs.HasKey("BestScore"))
+        {
+            Score.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+        }
+        else
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt("BestScore", 0);
+        }
+
+    }
 	
-	}
-	
-	// Update is called once per frame
 	void Update () {
 	
 	}

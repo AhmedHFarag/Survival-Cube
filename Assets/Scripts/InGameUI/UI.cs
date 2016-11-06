@@ -52,20 +52,7 @@ public class UI : MonoBehaviour
     {
         GameManager.PlayerDied -= ShowGameEnded;
     }
-     void CalculateScore()
-    {
-        int GMscore = GameManager.Instance.score;
-        txtScore.text = GMscore.ToString();
 
-        int intBestScore = PlayerPrefs.GetInt("BestScore", 0);
-
-        if (intBestScore < GMscore)
-        {
-            //bestScore.text = lastScore.text;
-            PlayerPrefs.SetInt("BestScore", GMscore);
-        }
-        txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
-    }
     IEnumerator ScoreRoll()
     {
         int score = 0;
