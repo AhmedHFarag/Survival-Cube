@@ -51,7 +51,6 @@ public class UI : MonoBehaviour
     public void ShowGameEnded()
     {
         Time.timeScale = 0;
-        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + GameManager.Instance.InGameCoins);
         StartCoroutine("EndGame");
         
     }
