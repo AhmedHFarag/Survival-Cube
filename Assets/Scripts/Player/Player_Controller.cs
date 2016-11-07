@@ -32,6 +32,7 @@ public class Player_Controller : MonoBehaviour
     public Slider healthBar;
     public ParticleSystem Explosion;
     float Ellapsed_Time =0;
+    bool ReversedControls = false;
     void Awake()
     {
         if (Instance == null)
@@ -113,7 +114,10 @@ public class Player_Controller : MonoBehaviour
     }
     public void Move(float _Dir)
     {
-        
+        if(ReversedControls)
+        {
+            _Dir *= -1;
+        }
         if (_Dir > 0.1f)
         {
             Ellapsed_Time += Time.deltaTime;
@@ -188,11 +192,16 @@ public class Player_Controller : MonoBehaviour
             HitPoints = 100;
         }
     }
-    public void DeBuffs()
+    public void ReverseControls()
     {
-        Speed = Defaultspeed;
-        FirRate = DefaultFirRate;
-        Buffed = false;
+        ReversedControls = true;
+        StartCoroutine("NormalControls");
+    }
+    IEnumerator NormalControls()
+    {
+        yield return new WaitForSeconds(5);
+        ReversedControls = false;
+
     }
     IEnumerator NewWeapon()
     {
@@ -205,7 +214,10 @@ public class Player_Controller : MonoBehaviour
     IEnumerator DeBuff()
     {
         yield return new WaitForSeconds(5);
-        DeBuffs();
+
+        Speed = Defaultspeed;
+        FirRate = DefaultFirRate;
+        Buffed = false;
     }
     void OnDisable()
     {

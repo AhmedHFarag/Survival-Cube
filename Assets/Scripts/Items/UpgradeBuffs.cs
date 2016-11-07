@@ -3,11 +3,13 @@ using System.Collections;
 
 public class UpgradeBuffs : MonoBehaviour {
     public bool _Speed;
-    public int Speed;
+    public float Speed;
     public bool _FireRate;
     public float FireRate;
     public bool _Shield;
-    public bool _DeBuff=false;
+    public bool _ReverseControl = false;
+    public bool _ReduceSpeed = false;
+    public bool _ReduceFireRate = false;
     public bool Heal = false;
     public int HealAmount = 10;
 
@@ -22,9 +24,9 @@ public class UpgradeBuffs : MonoBehaviour {
     }
     public void Hit()
     {
-        if (_DeBuff)
+        if (_ReverseControl)
         {
-            Player_Controller.Instance.DeBuffs();
+            Player_Controller.Instance.ReverseControls();
 
         }
         else if(Heal)
