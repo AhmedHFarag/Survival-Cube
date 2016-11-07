@@ -7,7 +7,7 @@ public class Player_Controller : MonoBehaviour
     public static Player_Controller Instance;
 
     public LayerMask Plane;
-    
+
     public Transform WeaponPos;
     public GameObject[] Weapons;
     public GameObject WaveClear;
@@ -24,15 +24,25 @@ public class Player_Controller : MonoBehaviour
     float Speed;
     float FirRate;
     [HideInInspector]
-    public bool Buffed=false;
+    public bool Buffed = false;
     Rigidbody _MyRig;
     int Dir = 0;
     float EllapsedTime = 0;
 
     public Slider healthBar;
     public ParticleSystem Explosion;
-    float Ellapsed_Time =0;
+    float Ellapsed_Time = 0;
     bool ReversedControls = false;
+
+
+    //popupBuffs
+    public GameObject popupBuffs;
+
+    public float popupDouration = 2;
+    public float raiseSpeed = 2;
+
+
+
     void Awake()
     {
         if (Instance == null)
@@ -76,7 +86,7 @@ public class Player_Controller : MonoBehaviour
             {
                 transform.LookAt(Hit.point);
             }
-            
+
         }
         if (EllapsedTime > FirRate)
         {
@@ -114,7 +124,7 @@ public class Player_Controller : MonoBehaviour
     }
     public void Move(float _Dir)
     {
-        if(ReversedControls)
+        if (ReversedControls)
         {
             _Dir *= -1;
         }
@@ -122,13 +132,13 @@ public class Player_Controller : MonoBehaviour
         {
             Ellapsed_Time += Time.deltaTime;
             float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
-            _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed* curvedValue);
+            _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed * curvedValue);
         }
         else if (_Dir < -0.1)
         {
             Ellapsed_Time += Time.deltaTime;
             float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
-            _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed* curvedValue);
+            _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed * curvedValue);
         }
         else
         {
@@ -175,14 +185,39 @@ public class Player_Controller : MonoBehaviour
         if (_Data._Speed)
         {
             Speed = _Data.Speed;
+            if (popupBuffs)
+            {
+                GameObject popupText = GameObject.Instantiate(popupBuffs);
+                popupText.transform.parent = this.transform;
+                //popupText.transform.position = info.transform.position;
+
+                popupText.GetComponent<PopUpBuffs>().setup("Speed", popupDouration, raiseSpeed);
+            }
+
         }
         if (_Data._FireRate)
         {
             FirRate = _Data.FireRate;
+            if (popupBuffs)
+            {
+                GameObject popupText = GameObject.Instantiate(popupBuffs);
+                popupText.transform.parent = this.transform;
+                //popupText.transform.position = info.transform.position;
+
+                popupText.GetComponent<PopUpBuffs>().setup("FireRate", popupDouration, raiseSpeed);
+            }
         }
-        if(_Data._Damage)
+        if (_Data._Damage)
         {
             DamageMultiplier = _Data.DamageMultiplier;
+            if (popupBuffs)
+            {
+                GameObject popupText = GameObject.Instantiate(popupBuffs);
+                popupText.transform.parent = this.transform;
+                //popupText.transform.position = info.transform.position;
+
+                popupText.GetComponent<PopUpBuffs>().setup("Damage", popupDouration, raiseSpeed);
+            }
         }
         Buffed = true;
         StartCoroutine("DeBuff");
