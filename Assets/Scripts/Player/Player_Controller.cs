@@ -18,6 +18,7 @@ public class Player_Controller : MonoBehaviour
     public int HitPoints = 100;
     public int Damage = 10;
 
+    public AnimationCurve motionCurve = AnimationCurve.Linear(0, 0, 1, 1);
     public float Defaultspeed = 2f;
     public float DefaultFirRate = 0.05f;
     float Speed;
@@ -30,6 +31,7 @@ public class Player_Controller : MonoBehaviour
 
     public Slider healthBar;
     public ParticleSystem Explosion;
+    float Ellapsed_Time =0;
     void Awake()
     {
         if (Instance == null)
@@ -105,23 +107,28 @@ public class Player_Controller : MonoBehaviour
     IEnumerator death()
     {
         yield return new WaitForSeconds(1f);
-        //gameObject.GetComponent<BoxCollider>().enabled = true;
-        //gameObject.GetComponent<MeshRenderer>().enabled = true;
         Explosion.Stop();
         gameObject.SetActive(false);
         GameManager.Instance.ThePlayerDied();
-
     }
     public void Move(float _Dir)
     {
         
         if (_Dir > 0.1f)
         {
-            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed);
+            Ellapsed_Time += Time.deltaTime;
+            float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
+            _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed* curvedValue);
         }
         else if (_Dir < -0.1)
         {
-            _MyRig.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed);
+            Ellapsed_Time += Time.deltaTime;
+            float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
+            _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed* curvedValue);
+        }
+        else
+        {
+            Ellapsed_Time = 0;
         }
     }
     void Fire(bool attacking)

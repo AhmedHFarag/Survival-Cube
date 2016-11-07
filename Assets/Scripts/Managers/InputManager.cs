@@ -125,7 +125,7 @@ else if(LeftButton && !RightButton)
 
         }
 #endif
-        if (Mathf.Abs(m_xAxis)>0)
+        if (Mathf.Abs(m_xAxis)>=0)
         {
             OnMovementChanged(m_xAxis);
         }
