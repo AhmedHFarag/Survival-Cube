@@ -183,7 +183,7 @@ public class Player_Controller : MonoBehaviour
     {
         if (_Data._Speed)
         {
-            Speed = _Data.Speed;
+            Speed *= _Data.Speed;
             if (popupBuffs)
             {
                 GameObject popupText = GameObject.Instantiate(popupBuffs);
@@ -202,7 +202,7 @@ public class Player_Controller : MonoBehaviour
         }
         if (_Data._FireRate)
         {
-            FirRate = _Data.FireRate;
+            FirRate *= _Data.FireRate;
             if (popupBuffs)
             {
                 GameObject popupText = GameObject.Instantiate(popupBuffs);
