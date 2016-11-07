@@ -95,7 +95,7 @@ public class Enemies_Manager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Spawn Ended");
+           // Debug.Log("Spawn Ended");
             //CurrentWaveNumber = 0;/////Just For Test Remove this
         }
     }
@@ -107,7 +107,7 @@ public class Enemies_Manager : MonoBehaviour
             GameObject obj = Enemies_Pool[CurrentWaveNumber][CurrentEnemieNumber].GetObject();
             if (obj == null)
             {
-                Debug.Log("Enemies 5elso Min EL Pool");
+                //Debug.Log("Enemies 5elso Min EL Pool");
                 return false;
             }
             WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count--;
@@ -130,7 +130,7 @@ public class Enemies_Manager : MonoBehaviour
     }
     IEnumerator New_Wave()
     {
-        Debug.Log("NewWave"+CurrentWaveNumber);
+        //Debug.Log("NewWave"+CurrentWaveNumber);
         GameManager.Instance.NewWavStarted();
         yield return new WaitForSeconds(5);
         SpawnEnabled = true;
