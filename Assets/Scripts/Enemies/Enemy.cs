@@ -27,8 +27,10 @@ public class Enemy : MonoBehaviour
 
     private Canvas health;
 
-
-
+    float MyArea = 5;
+    float Sep_Force =2;
+    float Coh_Force = 1;
+    float AlignForce = 1;
     void OnEnable()
     {
         HP = DefaultHP;
@@ -61,15 +63,83 @@ public class Enemy : MonoBehaviour
 
         Attack();
     }
+    
     public virtual void Patrol()
     {
 
     }
     public virtual void Attack()
     {
-        myRigid.transform.LookAt(Target);
+        //myRigid.transform.LookAt(Target);
         //myRigid.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        myRigid.transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        //myRigid.transform.Translate((Vector3.forward+ Separation()) * moveSpeed * Time.deltaTime);
+        myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion(), moveSpeed);
+    }
+    Vector3 Separation()
+    {
+        Vector3 SteeringForce = Vector3.zero;
+        Vector3 PushForce = Vector3.zero;
+        foreach (GameObject Boid in Enemies_Manager.Instance.activeEnemies)
+        {
+            if (Boid != this)
+            {
+                if (Vector3.Distance(myRigid.position, Boid.GetComponent<Rigidbody>().position) < MyArea)
+                {
+                    //SetUp Push Force
+                    PushForce = myRigid.position - Boid.GetComponent<Rigidbody>().position;
+                    SteeringForce += PushForce;
+
+                }
+            }
+        }
+        SteeringForce = SteeringForce.normalized * Sep_Force;
+        return SteeringForce;
+    }
+    Vector3 Cohesion()
+    {
+        Vector3 CM = Vector3.zero;
+        Vector3 SteeringForce = Vector3.zero;
+        int Counter = 0;
+        foreach (GameObject Boid in Enemies_Manager.Instance.activeEnemies)
+        {
+            if (Boid != this)
+            {
+                CM += Boid.GetComponent<Rigidbody>().position;
+                Counter++;
+            }
+        }
+        SteeringForce = (CM / Counter) - myRigid.position;
+        SteeringForce = SteeringForce.normalized * Coh_Force;
+        return SteeringForce;
+    }
+    Vector3 Alignment()
+    {
+        Vector3 CM = Vector3.zero;
+        Vector3 SteeringForce = Vector3.zero;
+        int Counter = 0;
+        foreach (GameObject Boid in Enemies_Manager.Instance.activeEnemies)
+        {
+            if (Boid != this)
+            {
+                CM += Boid.GetComponent<Rigidbody>().velocity;
+                Counter++;
+            }
+        }
+        SteeringForce = (CM / Counter) - myRigid.velocity;
+        SteeringForce = SteeringForce.normalized * AlignForce;
+        return SteeringForce;
+    }
+    Vector3 ToPlayer()
+    {
+        Vector3 V_Des = (Target.GetComponent<Rigidbody>().position - myRigid.position).normalized * moveSpeed;
+        Vector3 SteeringForce = (V_Des - myRigid.velocity);
+        return SteeringForce;
+    }
+    Vector3 Truncate(Vector3 val, float Max)
+    {
+        if (val.magnitude > Max)
+            return val.normalized * Max;
+        return val;
     }
     public virtual void TakeDamage(int damage)
     {
