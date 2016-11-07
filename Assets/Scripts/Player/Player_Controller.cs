@@ -176,8 +176,17 @@ public class Player_Controller : MonoBehaviour
         {
             FirRate = _Data.FireRate;
         }
+        
         Buffed = true;
         StartCoroutine("DeBuff");
+    }
+    public void Heal(int healAmount)
+    {
+        HitPoints += healAmount;
+        if (HitPoints > 100)
+        {
+            HitPoints = 100;
+        }
     }
     public void DeBuffs()
     {

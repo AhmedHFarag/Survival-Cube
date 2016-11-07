@@ -8,6 +8,8 @@ public class UpgradeBuffs : MonoBehaviour {
     public float FireRate;
     public bool _Shield;
     public bool _DeBuff=false;
+    public bool Heal = false;
+    public int HealAmount = 10;
 
     public void OnCollisionEnter(Collision col)
     {
@@ -24,6 +26,10 @@ public class UpgradeBuffs : MonoBehaviour {
         {
             Player_Controller.Instance.DeBuffs();
 
+        }
+        else if(Heal)
+        {
+            Player_Controller.Instance.Heal(HealAmount);
         }
         else
         {

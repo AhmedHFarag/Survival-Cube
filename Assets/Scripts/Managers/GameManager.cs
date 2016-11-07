@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
     {
         if (!Player_Controller.Instance.Buffed)
         {
-            if (Random.Range(0, 4) == 2)
+            if (Random.Range(0, 10) == 2)
             {
                 GameObject obj = Instantiate(Items[Random.Range(0, Items.Count)]);
                 obj.transform.position = _pos + new Vector3(0, 5, 0);
