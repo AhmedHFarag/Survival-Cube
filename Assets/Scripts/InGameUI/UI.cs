@@ -73,10 +73,10 @@ public class UI : MonoBehaviour
     IEnumerator ScoreRoll()
     {
         int score = 0;
-        
-        while(score!=GameManager.Instance.score)
+        txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+        while (score!=GameManager.Instance.score)
         {
-            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.005f));
+            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.0001f));
 
             score += 1;
 
@@ -90,7 +90,6 @@ public class UI : MonoBehaviour
             //bestScore.text = lastScore.text;
             PlayerPrefs.SetInt("BestScore", score);
         }
-        txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
         yield return null;
     }
     IEnumerator CoinRoll()
@@ -100,7 +99,7 @@ public class UI : MonoBehaviour
         PlayerPrefs.SetInt("Coins", GameManager.Instance.Coins);
         while (coins!=GameManager.Instance.InGameCoins)
         {
-            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.005f));
+            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.0001f));
             coins += 1;
             CoinsEnd.text = coins.ToString();
         }

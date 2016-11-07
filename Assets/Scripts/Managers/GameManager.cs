@@ -140,6 +140,7 @@ public class GameManager : MonoBehaviour
         Pool_Manager = new PoolManager();
         score = 0;
         InGameCoins = 0;
+        Coins = PlayerPrefs.GetInt("Coins", 0);
     }
     public void SpawnItem(Vector3 _pos)
     {
