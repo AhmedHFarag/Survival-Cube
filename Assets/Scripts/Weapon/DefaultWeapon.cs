@@ -25,6 +25,7 @@ public class DefaultWeapon : MonoBehaviour
         if (currentbulletObj)
         {
             currentbulletObj.transform.position = FirePos1.position;
+            currentbulletObj.transform.forward = FirePos1.forward;
             currentbulletObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
             currentbulletObj.SetActive(true);
             currentbulletObj.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);
