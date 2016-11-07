@@ -42,7 +42,6 @@ public class Player_Controller : MonoBehaviour
     public float raiseSpeed = 2;
 
 
-
     void Awake()
     {
         if (Instance == null)
@@ -190,8 +189,14 @@ public class Player_Controller : MonoBehaviour
                 GameObject popupText = GameObject.Instantiate(popupBuffs);
                 popupText.transform.parent = this.transform;
                 //popupText.transform.position = info.transform.position;
-
-                popupText.GetComponent<PopUpBuffs>().setup("Speed", popupDouration, raiseSpeed);
+                if (_Data.Speed > 1)
+                {
+                    popupText.GetComponent<PopUpBuffs>().setup("Speed++", popupDouration, raiseSpeed);
+                }
+                else
+                {
+                    popupText.GetComponent<PopUpBuffs>().setup("Speed--", popupDouration, raiseSpeed);
+                }
             }
 
         }
@@ -203,8 +208,14 @@ public class Player_Controller : MonoBehaviour
                 GameObject popupText = GameObject.Instantiate(popupBuffs);
                 popupText.transform.parent = this.transform;
                 //popupText.transform.position = info.transform.position;
-
-                popupText.GetComponent<PopUpBuffs>().setup("FireRate", popupDouration, raiseSpeed);
+                if (_Data.FireRate > 1)
+                {
+                    popupText.GetComponent<PopUpBuffs>().setup("FireRate--", popupDouration, raiseSpeed);
+                }
+                else
+                {
+                    popupText.GetComponent<PopUpBuffs>().setup("FireRate++", popupDouration, raiseSpeed);
+                }
             }
         }
         if (_Data._Damage)
@@ -215,8 +226,15 @@ public class Player_Controller : MonoBehaviour
                 GameObject popupText = GameObject.Instantiate(popupBuffs);
                 popupText.transform.parent = this.transform;
                 //popupText.transform.position = info.transform.position;
+                if (_Data.DamageMultiplier > 1)
+                {
+                    popupText.GetComponent<PopUpBuffs>().setup("Damage++", popupDouration, raiseSpeed);
+                }
+                else
+                {
+                    popupText.GetComponent<PopUpBuffs>().setup("Damage--", popupDouration, raiseSpeed);
+                }
 
-                popupText.GetComponent<PopUpBuffs>().setup("Damage", popupDouration, raiseSpeed);
             }
         }
         Buffed = true;
@@ -229,9 +247,24 @@ public class Player_Controller : MonoBehaviour
         {
             HitPoints = 100;
         }
+        if (popupBuffs)
+        {
+            GameObject popupText = GameObject.Instantiate(popupBuffs);
+            popupText.transform.parent = this.transform;
+            //popupText.transform.position = info.transform.position;
+            popupText.GetComponent<PopUpBuffs>().setup("Health +" + healAmount.ToString(), popupDouration, raiseSpeed);
+        }
     }
     public void ReverseControls()
     {
+        if (popupBuffs)
+        {
+            GameObject popupText = GameObject.Instantiate(popupBuffs);
+            popupText.transform.parent = this.transform;
+            //popupText.transform.position = info.transform.position;
+
+            popupText.GetComponent<PopUpBuffs>().setup("Control Reversed", popupDouration, raiseSpeed);
+        }
         ReversedControls = true;
         StartCoroutine("NormalControls");
     }
