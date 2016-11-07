@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class UpgradeBuffs : MonoBehaviour {
+    public bool _Damage;
+    public float DamageMultiplier;
     public bool _Speed;
     public float Speed;
     public bool _FireRate;
     public float FireRate;
     public bool _Shield;
     public bool _ReverseControl = false;
-    public bool _ReduceSpeed = false;
-    public bool _ReduceFireRate = false;
     public bool Heal = false;
     public int HealAmount = 10;
 

@@ -30,7 +30,7 @@ public class BulletBehavior : MonoBehaviour
     {
         if (other.collider.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage(Damage);
+            other.gameObject.GetComponent<Enemy>().TakeDamage((int)Mathf.Floor(Damage*Player_Controller.Instance.DamageMultiplier));
             StopCoroutine("SelfDestory");
             gameObject.SetActive(false);
 

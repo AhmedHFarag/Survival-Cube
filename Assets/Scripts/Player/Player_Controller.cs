@@ -16,7 +16,7 @@ public class Player_Controller : MonoBehaviour
     bool Upgraded = false;
 
     public int HitPoints = 100;
-    public int Damage = 10;
+    public float DamageMultiplier = 1;
 
     public AnimationCurve motionCurve = AnimationCurve.Linear(0, 0, 1, 1);
     public float Defaultspeed = 2f;
@@ -180,7 +180,10 @@ public class Player_Controller : MonoBehaviour
         {
             FirRate = _Data.FireRate;
         }
-        
+        if(_Data._Damage)
+        {
+            DamageMultiplier = _Data.DamageMultiplier;
+        }
         Buffed = true;
         StartCoroutine("DeBuff");
     }
@@ -217,6 +220,7 @@ public class Player_Controller : MonoBehaviour
 
         Speed = Defaultspeed;
         FirRate = DefaultFirRate;
+        DamageMultiplier = 1;
         Buffed = false;
     }
     void OnDisable()
