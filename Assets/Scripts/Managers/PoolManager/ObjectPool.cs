@@ -6,8 +6,9 @@ using System.Linq;
 
 public class ObjectPool
 {
+    [HideInInspector]
     //the list of objects.
-    private List<GameObject> pooledObjects;
+    public List<GameObject> pooledObjects;
 
     //private GameObject pooledObj;
 

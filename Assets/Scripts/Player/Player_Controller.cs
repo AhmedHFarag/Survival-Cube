@@ -11,7 +11,8 @@ public class Player_Controller : MonoBehaviour
     public Transform WeaponPos;
     public GameObject[] Weapons;
     public GameObject WaveClear;
-    DefaultWeapon Weapon;
+    [HideInInspector]
+    public DefaultWeapon Weapon;
     GameObject BaiscWeapon;
     bool Upgraded = false;
 

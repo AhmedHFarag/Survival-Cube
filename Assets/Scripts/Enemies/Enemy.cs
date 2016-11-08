@@ -15,19 +15,18 @@ public class Enemy : MonoBehaviour
     public int Value = 20;
     float HP;
     public float attackRange = 0;
-    public Material materialColor1;
-    public Material materialColor2;
     public ParticleSystem Explosion;
-    public float duration = 2.0F;
     public int AddedScore = 10;
     public Slider healthBar;
-
+    public bool AvBullets = false;
     private Rigidbody myRigid;
     private float Distance;
 
     private Canvas health;
 
     float MyArea = 5;
+    float MyBulletsArea = 10;
+    float AVBullet_Force = 100;
     float Sep_Force =2;
     float Coh_Force = 1;
     float AlignForce = 1;
@@ -55,7 +54,6 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         Distance = Vector3.Distance(myRigid.transform.position, Target.transform.position);
-        float lerp = Mathf.PingPong(Time.time, duration) / duration;
         if (healthBar)
         {
             healthBar.value = HP;
@@ -73,7 +71,7 @@ public class Enemy : MonoBehaviour
         //myRigid.transform.LookAt(Target);
         //myRigid.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         //myRigid.transform.Translate((Vector3.forward+ Separation()) * moveSpeed * Time.deltaTime);
-        myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion(), moveSpeed);
+        myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion()+ AvoidBullets(), moveSpeed);
     }
     Vector3 Separation()
     {
@@ -140,6 +138,37 @@ public class Enemy : MonoBehaviour
         if (val.magnitude > Max)
             return val.normalized * Max;
         return val;
+    }
+    Vector3 AvoidBullets()
+    {
+        if (AvBullets)
+        {
+            Vector3 SteeringForce = Vector3.zero;
+            Vector3 PushForce = Vector3.zero;
+            foreach (GameObject bullet in Player_Controller.Instance.Weapon.bulletPool.pooledObjects)
+            {
+                if (bullet.activeSelf == true)
+                {
+                    if (Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) < MyBulletsArea)
+                    {
+                        //SetUp Push Force
+                        Vector3 up =new Vector3(0.0f, 1.0f, 0.0f);
+                        // find right vector:
+                        
+                        PushForce = (myRigid.position - bullet.GetComponent<Rigidbody>().position);
+                        Vector3 right = Vector3.Cross(PushForce.normalized, up.normalized);
+                        SteeringForce += right * Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) / MyBulletsArea;
+
+                    }
+                }
+            }
+            SteeringForce = SteeringForce.normalized * AVBullet_Force;
+            return SteeringForce;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
     public virtual void TakeDamage(int damage)
     {

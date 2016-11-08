@@ -10,8 +10,8 @@ public class DefaultWeapon : MonoBehaviour
     public int BullectNumberInUse;
 
     public int maxBullectNumber;
-
-    private ObjectPool bulletPool;
+    [HideInInspector]
+    public ObjectPool bulletPool;
     private GameObject currentbulletObj;
 
     public virtual void Start()
