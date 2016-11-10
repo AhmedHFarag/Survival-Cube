@@ -15,7 +15,8 @@ public class UI : MonoBehaviour
     public Text CoinsEnd;
     public Text TotalCoins;
     public RawImage Background;
-    public GameObject CountDown;
+    public GameObject WaveText;
+    public int WaveNumber=1;
     Animator _anim;
     void Awake()
     {
@@ -56,12 +57,17 @@ public class UI : MonoBehaviour
     }
     public void StartCountDown()
     {
-        CountDown.SetActive(true);
+
+        WaveText.SetActive(true);
+        WaveText.GetComponent<Text>().text = "Wave " + WaveNumber;
+        WaveNumber += 1;
+       
         _anim.SetTrigger("CountDown");
+
     }
     public void EndCountDown()
     {
-        CountDown.SetActive(false);
+        WaveText.SetActive(false);
     }
     void OnDisable()
     {
