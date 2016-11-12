@@ -45,8 +45,10 @@ public class UI : MonoBehaviour
 
     void FixedUpdate()
     {
-        txtScore.text = GameManager.Instance.score.ToString();
-        Coins.text = GameManager.Instance.InGameCoins.ToString();
+        //  txtScore.text = GameManager.Instance.score.ToString();
+        txtScore.text = DataHandler.Instance.AcivementScore.ToString();
+        //  Coins.text = GameManager.Instance.InGameCoins.ToString();
+        Coins.text = DataHandler.Instance.inGameCoins.ToString();
     }
     public void ReStartGame()
     {
@@ -85,7 +87,8 @@ public class UI : MonoBehaviour
     {
         int score = 0;
         txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
-        while (score!=GameManager.Instance.score)
+     //   while (score!=GameManager.Instance.score)
+     while(score!=DataHandler.Instance.AcivementScore)
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.0001f));
 
@@ -106,16 +109,20 @@ public class UI : MonoBehaviour
     IEnumerator CoinRoll()
     {
         int coins = 0;
-        GameManager.Instance.Coins += GameManager.Instance.InGameCoins;
-        PlayerPrefs.SetInt("Coins", GameManager.Instance.Coins);
-        while (coins!=GameManager.Instance.InGameCoins)
+        //   GameManager.Instance.Coins += GameManager.Instance.InGameCoins;
+        DataHandler.Instance.playerCoins += DataHandler.Instance.inGameCoins;
+        //  PlayerPrefs.SetInt("Coins", GameManager.Instance.Coins);
+        PlayerPrefs.SetInt("PlayerCoins", DataHandler.Instance.playerCoins);
+    //    while (coins!=GameManager.Instance.InGameCoins)
+    while(coins!=DataHandler.Instance.inGameCoins)
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.0001f));
             coins += 1;
             CoinsEnd.text = coins.ToString();
         }
-        
-        TotalCoins.text = GameManager.Instance.Coins.ToString();
+
+        //  TotalCoins.text = GameManager.Instance.Coins.ToString();
+        TotalCoins.text = DataHandler.Instance.playerCoins.ToString();
 
     }
     IEnumerator EndGame()

@@ -180,9 +180,11 @@ public class Player_Controller : MonoBehaviour
     {
         if (!Upgraded)
         {
-            if (GameManager.Instance.InGameCoins >= Weapons[index].GetComponent<DefaultWeapon>().Cost)
+            // if (GameManager.Instance.InGameCoins >= Weapons[index].GetComponent<DefaultWeapon>().Cost)
+            if(DataHandler.Instance.inGameCoins >= Weapons[index].GetComponent<DefaultWeapon>().Cost)
             {
-                GameManager.Instance.InGameCoins -= Weapons[index].GetComponent<DefaultWeapon>().Cost;
+                //   GameManager.Instance.InGameCoins -= Weapons[index].GetComponent<DefaultWeapon>().Cost;
+                DataHandler.Instance.inGameCoins -= Weapons[index].GetComponent<DefaultWeapon>().Cost;
                 Weapon = null;
                 BaiscWeapon.SetActive(false);
                 StartCoroutine("NewWeapon");
@@ -197,9 +199,11 @@ public class Player_Controller : MonoBehaviour
     }
     public void ActivateWaveClear()
     {
-        if (GameManager.Instance.InGameCoins >= WaveClear.GetComponent<WaveClear>().cost)
-        {
-            GameManager.Instance.InGameCoins -= WaveClear.GetComponent<WaveClear>().cost;
+     //   if (GameManager.Instance.InGameCoins >= WaveClear.GetComponent<WaveClear>().cost)
+            if (DataHandler.Instance.inGameCoins >= WaveClear.GetComponent<WaveClear>().cost)
+            {
+          //  GameManager.Instance.InGameCoins -= WaveClear.GetComponent<WaveClear>().cost;
+            DataHandler.Instance.inGameCoins -= WaveClear.GetComponent<WaveClear>().cost;
 
             GameObject.Instantiate(WaveClear, transform.position, WaveClear.transform.rotation);
         }

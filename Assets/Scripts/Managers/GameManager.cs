@@ -43,11 +43,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int currentState;
 
-    [HideInInspector]
-    public int score;
-    [HideInInspector]
-    public int Coins;
-    public int InGameCoins = 0;
+        //[HideInInspector]
+        //public int score;
+        //[HideInInspector]
+        //public int Coins;
+        //public int InGameCoins = 0;
 
     public int weaponCoolDown = 20;
     void Awake()
@@ -138,9 +138,9 @@ public class GameManager : MonoBehaviour
     public void ResetAll()
     {
         Pool_Manager = new PoolManager();
-        score = 0;
+     //   score = 0;
         //InGameCoins = 0;
-        Coins = PlayerPrefs.GetInt("Coins", 0);
+      //  Coins = PlayerPrefs.GetInt("Coins", 0);
     }
     public void SpawnItem(Vector3 _pos)
     {
