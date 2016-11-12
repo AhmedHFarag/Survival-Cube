@@ -145,7 +145,7 @@ public class Player_Controller : MonoBehaviour
         if (InputManager.Instance.ControlScheme3==true)
         {
             float heading = Mathf.Atan2(_Xdir, _Ydir);
-            _MyRig.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg, 0f);
+            _MyRig.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg+45, 0f);
         }
         else
         {

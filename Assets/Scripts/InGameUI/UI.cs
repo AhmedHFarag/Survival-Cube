@@ -16,6 +16,10 @@ public class UI : MonoBehaviour
     public Text TotalCoins;
     public RawImage Background;
     public GameObject WaveText;
+    public Toggle _Controls0;
+    public GameObject Controls0;
+    public Toggle _ControlsJoyStick;
+    public GameObject ControlsJoyStick;
     public int WaveNumber=1;
     Animator _anim;
     void Awake()
@@ -36,6 +40,7 @@ public class UI : MonoBehaviour
     {
         GameManager.Instance.ResetAll();
         TotalCoins.text = PlayerPrefs.GetInt("Coins").ToString();
+        UpdateControls();
     }
 
     void FixedUpdate()
@@ -125,6 +130,27 @@ public class UI : MonoBehaviour
         StartCoroutine("ScoreRoll");
         StartCoroutine("CoinRoll");
         yield return null;
+    }
+    public void UpdateControls()
+    {
+        if (_Controls0.isOn)
+        {
+            Controls0.SetActive(true);
+            ControlsJoyStick.SetActive(false);
+            InputManager.Instance.ControlScheme0 = true;
+            InputManager.Instance.ControlScheme1 = false;
+            InputManager.Instance.ControlScheme2 = false;
+            InputManager.Instance.ControlScheme3 = false;
+        }
+        else if (_ControlsJoyStick.isOn)
+        {
+            Controls0.SetActive(false);
+            ControlsJoyStick.SetActive(true);
+            InputManager.Instance.ControlScheme0 = false;
+            InputManager.Instance.ControlScheme1 = false;
+            InputManager.Instance.ControlScheme2 = false;
+            InputManager.Instance.ControlScheme3 = true;
+        }
     }
 }
 

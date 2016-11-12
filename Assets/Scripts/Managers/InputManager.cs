@@ -48,10 +48,7 @@ public class InputManager : MonoBehaviour {
         }
         if (ControlScheme0 || ControlScheme1)
         {
-            HorizontalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
-            CrossPlatformInputManager.RegisterVirtualAxis(HorizontalAxis);
-            Fire = new CrossPlatformInputManager.VirtualButton(FireButtonName);
-            CrossPlatformInputManager.RegisterVirtualButton(Fire);
+            InitialiseControls();
         }
         if(ControlScheme0)
         {
@@ -61,6 +58,24 @@ public class InputManager : MonoBehaviour {
         {
             m_lastDirection = 1;
         }
+    }
+    public void InitialiseControls()
+    {
+        HorizontalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
+        CrossPlatformInputManager.RegisterVirtualAxis(HorizontalAxis);
+        VerticalAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
+        CrossPlatformInputManager.RegisterVirtualAxis(VerticalAxis);
+        Fire = new CrossPlatformInputManager.VirtualButton(FireButtonName);
+        CrossPlatformInputManager.RegisterVirtualButton(Fire);
+    }
+    public void UnsubscripeControls()
+    {
+        if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
+            CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
+        if (CrossPlatformInputManager.AxisExists(verticalAxisName))
+            CrossPlatformInputManager.UnRegisterVirtualAxis(verticalAxisName);
+        if (CrossPlatformInputManager.ButtonExists(FireButtonName))
+            CrossPlatformInputManager.UnRegisterVirtualButton(FireButtonName);
     }
     public void UpdateHorizontalRight(float v)
     {
@@ -135,18 +150,20 @@ else if(LeftButton && !RightButton)
 
         }
 #endif
-        m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
-        m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
+        //m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
+        //m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
         if (Mathf.Abs(m_xAxis)>=0 || Mathf.Abs(m_yAxis) >= 0)
         {
             OnMovementChanged(m_xAxis, m_yAxis);
         }
     }
+    public void UpdateAxis(float x,float y)
+    {
+        HorizontalAxis.Update(x);
+        VerticalAxis.Update(y);
+    }
     void OnDisable()
     {
-        if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
-            CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
-        if (CrossPlatformInputManager.ButtonExists(FireButtonName))
-            CrossPlatformInputManager.UnRegisterVirtualButton(FireButtonName);
+        UnsubscripeControls();
     }
 }
