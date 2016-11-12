@@ -22,6 +22,7 @@ public class Player_Controller : MonoBehaviour
     public AnimationCurve motionCurve = AnimationCurve.Linear(0, 0, 1, 1);
     public float Defaultspeed = 2f;
     public float DefaultFirRate = 0.05f;
+    public float AutoAimThreshold = 5f;
     float Speed;
     float FirRate;
     [HideInInspector]
@@ -34,7 +35,7 @@ public class Player_Controller : MonoBehaviour
     public ParticleSystem Explosion;
     float Ellapsed_Time = 0;
     bool ReversedControls = false;
-
+    bool IsMoving = false;
 
     //popupBuffs
     public GameObject popupBuffs;
@@ -93,7 +94,20 @@ public class Player_Controller : MonoBehaviour
             EllapsedTime = 0;
             Weapon.Fire();
         }
-
+        if (Enemies_Manager.Instance.activeEnemies.Count > 0)
+        {
+            if (!IsMoving)
+            {
+                foreach (GameObject enemy in Enemies_Manager.Instance.activeEnemies)
+                {
+                    if (Mathf.Abs(Vector3.Angle(transform.forward, enemy.transform.position)) < AutoAimThreshold)
+                    {
+                        transform.LookAt(enemy.transform.position);
+                    }
+                }
+            }
+        }
+        IsMoving = false;
     }
     public void TakeDamage(int damage)
     {
@@ -130,12 +144,14 @@ public class Player_Controller : MonoBehaviour
         }
         if (_Dir > 0.1f)
         {
+            IsMoving = true;
             Ellapsed_Time += Time.deltaTime;
             float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
             _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed * curvedValue);
         }
         else if (_Dir < -0.1)
         {
+            IsMoving = false;
             Ellapsed_Time += Time.deltaTime;
             float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
             _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed * curvedValue);
