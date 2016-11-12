@@ -136,29 +136,37 @@ public class Player_Controller : MonoBehaviour
         gameObject.SetActive(false);
         GameManager.Instance.ThePlayerDied();
     }
-    public void Move(float _Dir)
+    public void Move(float _Xdir, float _Ydir)
     {
         if (ReversedControls)
         {
-            _Dir *= -1;
+            _Xdir *= -1;
         }
-        if (_Dir > 0.1f)
+        if (InputManager.Instance.ControlScheme3==true)
         {
-            IsMoving = true;
-            Ellapsed_Time += Time.deltaTime;
-            float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
-            _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed * curvedValue);
-        }
-        else if (_Dir < -0.1)
-        {
-            IsMoving = false;
-            Ellapsed_Time += Time.deltaTime;
-            float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
-            _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed * curvedValue);
+            float heading = Mathf.Atan2(_Xdir, _Ydir);
+            _MyRig.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg, 0f);
         }
         else
         {
-            Ellapsed_Time = 0;
+            if (_Xdir > 0.1f)
+            {
+                IsMoving = true;
+                Ellapsed_Time += Time.deltaTime;
+                float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
+                _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed * curvedValue);
+            }
+            else if (_Xdir < -0.1)
+            {
+                IsMoving = false;
+                Ellapsed_Time += Time.deltaTime;
+                float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
+                _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed * curvedValue);
+            }
+            else
+            {
+                Ellapsed_Time = 0;
+            }
         }
     }
     void Fire(bool attacking)

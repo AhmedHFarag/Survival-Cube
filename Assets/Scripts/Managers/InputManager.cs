@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using System.Collections;
-public delegate void MovementChanged(float x);
+public delegate void MovementChanged(float x,float y);
 public delegate void Attack(bool atk);
 
 public class InputManager : MonoBehaviour {
@@ -9,23 +9,27 @@ public class InputManager : MonoBehaviour {
     public static event Attack attack;
     public static InputManager Instance;
     CrossPlatformInputManager.VirtualAxis HorizontalAxis;
+    CrossPlatformInputManager.VirtualAxis VerticalAxis;
     CrossPlatformInputManager.VirtualButton Fire;
     public string horizontalAxisName = "Horizontal"; // The name given to the horizontal axis for the cross platform input
+    public string verticalAxisName = "Vertical";
     public string FireButtonName = "Fire";
     private float m_xAxis;
+    private float m_yAxis;
     private float m_lastDirection;
     private bool updateHorizontal = true;
     public bool ControlScheme0 = true;
     public bool ControlScheme1 = false;
     public bool ControlScheme2 = false;
+    public bool ControlScheme3 = false;
     bool RightButton = false;
     bool LeftButton = false;
     bool pressed = false;
     
-    private static void OnMovementChanged(float xmovement)// Invoking the movement event
+    private static void OnMovementChanged(float xmovement , float ymovement)// Invoking the movement event
     {
         var handler = movementChanged;
-        if (handler != null) handler(xmovement);
+        if (handler != null) handler(xmovement, ymovement);
     }
     private static void OnAttack(bool atk)// Invoking the movement event
     {
@@ -42,10 +46,13 @@ public class InputManager : MonoBehaviour {
         {
             DestroyImmediate(gameObject);
         }
-        HorizontalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
-        CrossPlatformInputManager.RegisterVirtualAxis(HorizontalAxis);
-        Fire = new CrossPlatformInputManager.VirtualButton(FireButtonName);
-        CrossPlatformInputManager.RegisterVirtualButton(Fire);
+        if (ControlScheme0 || ControlScheme1)
+        {
+            HorizontalAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
+            CrossPlatformInputManager.RegisterVirtualAxis(HorizontalAxis);
+            Fire = new CrossPlatformInputManager.VirtualButton(FireButtonName);
+            CrossPlatformInputManager.RegisterVirtualButton(Fire);
+        }
         if(ControlScheme0)
         {
             m_lastDirection = 0;
@@ -84,6 +91,7 @@ public class InputManager : MonoBehaviour {
 #if UNITY_EDITOR  //platform defines Run In Unity Only
 
         m_xAxis = Input.GetAxis("Horizontal");
+        m_yAxis = Input.GetAxis("Vertical");
 #else
         if(ControlScheme0)
         {
@@ -120,14 +128,18 @@ else if(LeftButton && !RightButton)
             OnAttack(LeftButton);
         }
         m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
+        m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
+
         if(ControlScheme2)
         {
 
         }
 #endif
-        if (Mathf.Abs(m_xAxis)>=0)
+        m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
+        m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
+        if (Mathf.Abs(m_xAxis)>=0 || Mathf.Abs(m_yAxis) >= 0)
         {
-            OnMovementChanged(m_xAxis);
+            OnMovementChanged(m_xAxis, m_yAxis);
         }
     }
     void OnDisable()
