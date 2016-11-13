@@ -18,7 +18,8 @@ public class MainMenu : MonoBehaviour {
         if (PlayerPrefs.HasKey("Coins"))
         {
             Coins.text = PlayerPrefs.GetInt("Coins", 0).ToString();
-            GameManager.Instance.Coins = PlayerPrefs.GetInt("Coins", 0);
+            //GameManager.Instance.Coins = PlayerPrefs.GetInt("Coins", 0);
+            DataHandler.Instance.playerCoins = PlayerPrefs.GetInt("playerCoins", 0);
         }
         else
         {

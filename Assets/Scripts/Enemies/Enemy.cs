@@ -177,7 +177,8 @@ public class Enemy : MonoBehaviour
         if (HP <= 0)
         {
             GameManager.Instance.SpawnItem(transform.position);
-            GameManager.Instance.InGameCoins += Value;
+          //  GameManager.Instance.InGameCoins += Value;
+            DataHandler.Instance.inGameCoins += Value;
             Die();
         }
     }

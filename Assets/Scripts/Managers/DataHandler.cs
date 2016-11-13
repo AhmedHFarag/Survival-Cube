@@ -7,20 +7,34 @@ public class DataHandler : MonoBehaviour
 
     public static DataHandler Instance;
 
+    [HideInInspector]
     public string PlayerName;
+    [HideInInspector]
     public int BG_Volume;
+    [HideInInspector]
     public int SFX_Volume;
+    [HideInInspector]
     public int playerCoins;
+    [HideInInspector]
+    public int inGameCoins;
+    [HideInInspector]
     public int AcivementScore;
+    [HideInInspector]
     public int BestScore;
+    [HideInInspector]
     public int WaveNo = 0;
- //   Dictionary<int,int> wapeonsSlotIdAndStatus = new Dictionary<int, int>();
+    //   Dictionary<int,int> wapeonsSlotIdAndStatus = new Dictionary<int, int>();
+    [HideInInspector]
     public int weapon1ID;
+    [HideInInspector]
     public int weapon2ID;
+    [HideInInspector]
     public int weapon3ID;
-
+    [HideInInspector]
     public int weapon1upgradestatus;
+    [HideInInspector]
     public int weapon2upgradestatus;
+    [HideInInspector]
     public int weapon3upgradestatus;
 
 
@@ -43,7 +57,7 @@ public class DataHandler : MonoBehaviour
         initializeData();
     }
 
-    void initializeData()
+   public void initializeData()
     {
         if (PlayerPrefs.HasKey("BetaRelease"))
         {
@@ -64,7 +78,15 @@ public class DataHandler : MonoBehaviour
             PlayerPrefs.SetInt("playerCoins", 0);
             playerCoins = 0;
         }
-
+        if (PlayerPrefs.HasKey("inGameCoins"))
+        {
+            inGameCoins = PlayerPrefs.GetInt("inGameCoins");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("inGameCoins", 0);
+            inGameCoins = 0;
+        }
         //Player Name
         if (PlayerPrefs.HasKey("playerName"))
         {
@@ -98,12 +120,12 @@ public class DataHandler : MonoBehaviour
 
         if (PlayerPrefs.HasKey("weapon1ID"))
         {
-            weapon2ID = PlayerPrefs.GetInt("weapon1ID");
+            weapon1ID = PlayerPrefs.GetInt("weapon1ID");
         }
         else
         {
-            PlayerPrefs.SetInt("weapon1ID", 0);
-            weapon1ID = 0;
+            PlayerPrefs.SetInt("weapon1ID", 1);
+            weapon1ID = 1;
         }
         if (PlayerPrefs.HasKey("weapon2ID"))
         {
@@ -111,8 +133,8 @@ public class DataHandler : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("weapon2ID", 0);
-            weapon2ID = 0;
+            PlayerPrefs.SetInt("weapon2ID", 2);
+            weapon2ID = 2;
         }
         if (PlayerPrefs.HasKey("weapon3ID"))
         {
@@ -120,8 +142,8 @@ public class DataHandler : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("weapon3ID", 0);
-            weapon3ID = 0;
+            PlayerPrefs.SetInt("weapon3ID", 3);
+            weapon3ID = 3;
         }
 
         if (PlayerPrefs.HasKey("weapon1upgradestatus"))
@@ -191,9 +213,16 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.Save();
 
     }
+    public void ResetPlayerPtrefData()
+    {
+        PlayerPrefs.SetInt("AcivementScore", 0);
+      //  PlayerPrefs.SetInt("WaveNo", 1);
+        PlayerPrefs.SetInt("playerCoins", 0);
+    }
     public void SavePlayerPrefsData()
     {
         PlayerPrefs.SetInt("playerCoins", playerCoins);
+        PlayerPrefs.SetInt("inGameCoins", inGameCoins);
         PlayerPrefs.SetString("playerName", PlayerName);
         PlayerPrefs.SetInt("bgVolume", BG_Volume);
         PlayerPrefs.SetInt("sfxVolume", SFX_Volume);
@@ -208,6 +237,7 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetInt("weapon3upgradestatus", weapon3upgradestatus);
         PlayerPrefs.Save();
     }
+    #region Getters
     public void GetPlayerCoins()
     {
         PlayerPrefs.GetInt("playerCoins", playerCoins);
@@ -230,8 +260,9 @@ public class DataHandler : MonoBehaviour
     {
         PlayerPrefs.GetInt("AcivementScore", AcivementScore);
     }
-    
-    void AddCoins(int amountToBeAdded)
+    #endregion
+
+   public void AddCoins(int amountToBeAdded)
     {
         playerCoins += amountToBeAdded;
         PlayerPrefs.SetInt("playerCoins", playerCoins);

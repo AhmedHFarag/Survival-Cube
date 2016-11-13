@@ -158,7 +158,8 @@ public class Enemies_Manager : MonoBehaviour
     void EnemyDeath(GameObject Enemy, int Score, bool collideWithPlayer)
     {
         if (!collideWithPlayer)
-            GameManager.Instance.score += Score;
+            //   GameManager.Instance.score += Score;
+            DataHandler.Instance.AcivementScore += Score;
 
         EnemyKilled(Enemy);
     }
