@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour
             case GameStates.GameEnded:
                 {
                     //calculate the score :)
+
                     Time.timeScale = 0;
                     break;
                 }
