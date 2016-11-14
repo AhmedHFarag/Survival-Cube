@@ -40,7 +40,8 @@ public class UI : MonoBehaviour
     void Start()
     {
         GameManager.Instance.ResetAll();
-        TotalCoins.text = PlayerPrefs.GetInt("Coins").ToString();
+       // TotalCoins.text = PlayerPrefs.GetInt("Coins").ToString();
+        TotalCoins.text = DataHandler.Instance.GetPlayerCoins();
         UpdateControls();
     }
 
@@ -53,9 +54,11 @@ public class UI : MonoBehaviour
     }
     public void ReStartGame()
     {
+        
+      //  PlayerPrefs.SetInt("AcivementScore", 0);
         Time.timeScale = 1;
         GameManager.Instance.ReloadSameScene();
-
+      //  DataHandler.Instance.ResetPlayerPtrefData();
     }
     public void ShowGameEnded()
     {
@@ -87,9 +90,10 @@ public class UI : MonoBehaviour
     IEnumerator ScoreRoll()
     {
         int score = 0;
-        txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
-     //   while (score!=GameManager.Instance.score)
-     while(score!=DataHandler.Instance.AcivementScore)
+   //     txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+        txtHightScore.text = DataHandler.Instance.GetBestScoreStr();
+
+        while (score!=DataHandler.Instance.AcivementScore)
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.0001f));
 
@@ -98,12 +102,14 @@ public class UI : MonoBehaviour
             txtEndScore.text = (score).ToString();
             
         }
-        int intBestScore = PlayerPrefs.GetInt("BestScore", 0);
+        //int intBestScore = PlayerPrefs.GetInt("BestScore", 0);
+        int intBestScore =DataHandler.Instance.GetBestScore();
 
         if (intBestScore < score)
         {
             //bestScore.text = lastScore.text;
-            PlayerPrefs.SetInt("BestScore", score);
+            // PlayerPrefs.SetInt("BestScore", score);
+            DataHandler.Instance.SetBestScore(score);
         }
         yield return null;
     }
@@ -113,7 +119,8 @@ public class UI : MonoBehaviour
         //   GameManager.Instance.Coins += GameManager.Instance.InGameCoins;
         DataHandler.Instance.playerCoins += DataHandler.Instance.inGameCoins;
         //  PlayerPrefs.SetInt("Coins", GameManager.Instance.Coins);
-        PlayerPrefs.SetInt("PlayerCoins", DataHandler.Instance.playerCoins);
+        //  PlayerPrefs.SetInt("PlayerCoins", DataHandler.Instance.playerCoins);
+        DataHandler.Instance.SetPlayerCoins(DataHandler.Instance.playerCoins);
     //    while (coins!=GameManager.Instance.InGameCoins)
     while(coins!=DataHandler.Instance.inGameCoins)
         {
@@ -124,6 +131,7 @@ public class UI : MonoBehaviour
 
         //  TotalCoins.text = GameManager.Instance.Coins.ToString();
         TotalCoins.text = DataHandler.Instance.playerCoins.ToString();
+      //  TotalCoins.text = DataHandler.Instance.inGameCoins.ToString();
 
     }
     IEnumerator EndGame()

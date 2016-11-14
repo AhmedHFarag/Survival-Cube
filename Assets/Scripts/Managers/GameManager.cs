@@ -100,7 +100,10 @@ public class GameManager : MonoBehaviour
             case GameStates.GameEnded:
                 {
                     //calculate the score :)
-
+                  //  PlayerPrefs.SetInt("AcivementScore", DataHandler.Instance.AcivementScore);
+                 //   PlayerPrefs.SetInt("playerCoins", DataHandler.Instance.playerCoins);
+                 //   PlayerPrefs.SetInt("inGameCoins", DataHandler.Instance.inGameCoins);
+                 //   PlayerPrefs.Save();
                     Time.timeScale = 0;
                     break;
                 }
@@ -157,6 +160,7 @@ public class GameManager : MonoBehaviour
     public void ReloadSameScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        DataHandler.Instance.ResetPlayerPtrefData();
     }
     public void ReturnToMainMenu()
     {

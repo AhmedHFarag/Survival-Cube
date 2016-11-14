@@ -7,6 +7,9 @@ public class DataHandler : MonoBehaviour
 
     public static DataHandler Instance;
 
+
+
+
     [HideInInspector]
     public string PlayerName;
     [HideInInspector]
@@ -38,6 +41,7 @@ public class DataHandler : MonoBehaviour
     public int weapon3upgradestatus;
 
 
+
     void Awake()
     {
         if (Instance == null)
@@ -54,6 +58,26 @@ public class DataHandler : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (PlayerPrefs.HasKey("BestScore"))
+        {
+            MainMenu.instance.Score.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+        }
+        else
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt("BestScore", 0);
+        }
+        if (PlayerPrefs.HasKey("playerCoins"))
+        {
+            MainMenu.instance.Coins.text = PlayerPrefs.GetInt("playerCoins", 0).ToString();
+            //GameManager.Instance.Coins = PlayerPrefs.GetInt("Coins", 0);
+          playerCoins = PlayerPrefs.GetInt("playerCoins", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("playerCoins", 0);
+        }
+
         initializeData();
     }
 
@@ -215,9 +239,15 @@ public class DataHandler : MonoBehaviour
     }
     public void ResetPlayerPtrefData()
     {
-        PlayerPrefs.SetInt("AcivementScore", 0);
-      //  PlayerPrefs.SetInt("WaveNo", 1);
-        PlayerPrefs.SetInt("playerCoins", 0);
+        Debug.Log("Esnat");
+        inGameCoins = 0;
+        AcivementScore = 0;
+     //  PlayerPrefs.SetInt("AcivementScore", 0);
+     //   PlayerPrefs.SetInt("playerCoins", 0);
+     //   PlayerPrefs.DeleteKey("AcivementScore");
+     //   PlayerPrefs.DeleteKey("playerCoins");
+        PlayerPrefs.Save();
+
     }
     public void SavePlayerPrefsData()
     {
@@ -238,31 +268,74 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.Save();
     }
     #region Getters
-    public void GetPlayerCoins()
+    public string GetPlayerCoins()
     {
-        PlayerPrefs.GetInt("playerCoins", playerCoins);
+        //return PlayerPrefs.GetInt("playerCoins", playerCoins).ToString();
+        return playerCoins.ToString();
     }
 
-    public void GetPlayerName()
+    public string GetPlayerName()
     {
-        PlayerPrefs.SetString("PlayerName", PlayerName);
+      // return PlayerPrefs.GetString("PlayerName", PlayerName);
+        return PlayerName;
     }
 
-    public void GetWaveNumber()
+    public int  GetWaveNumber()
     {
-        PlayerPrefs.GetInt("WaveNo", WaveNo);
+        //return PlayerPrefs.GetInt("WaveNo", WaveNo);
+        return WaveNo;
     }
-    public void GetBestScore()
+    public int GetBestScore()
     {
-        PlayerPrefs.GetInt("BestScore", BestScore);
+        // return PlayerPrefs.GetInt("BestScore", BestScore);
+        return BestScore;
     }
-    public void GetAcivementScore()
+    public string GetBestScoreStr()
     {
-        PlayerPrefs.GetInt("AcivementScore", AcivementScore);
+        //  return PlayerPrefs.GetInt("BestScore", BestScore).ToString();
+        return BestScore.ToString();
+    }
+    public int GetAcivementScore()
+    {
+        // return PlayerPrefs.GetInt("AcivementScore", AcivementScore);
+        return AcivementScore;
     }
     #endregion
+    #region Setters
+    public void SetPlayerCoins(int _PlayerCoins)
+    {
+      //  PlayerPrefs.SetInt("playerCoins", _PlayerCoins);
+       // PlayerPrefs.Save();
+        playerCoins = _PlayerCoins;
+    }
 
-   public void AddCoins(int amountToBeAdded)
+    public void SetPlayerName(string _PlayerName)
+    {
+      //  PlayerPrefs.SetString("PlayerName", _PlayerName);
+      //  PlayerPrefs.Save();
+        PlayerName = _PlayerName;
+    }
+
+    public void SetWaveNumber(int _WaveNo)
+    {
+        // PlayerPrefs.SetInt("WaveNo", _WaveNo);
+        //PlayerPrefs.Save();
+        WaveNo = _WaveNo;
+    }
+    public void SetBestScore(int _BestScore)
+    {
+        //  PlayerPrefs.SetInt("BestScore", _BestScore);
+        //PlayerPrefs.Save();
+        BestScore = _BestScore;
+    }
+    public void SetAcivementScore(int _AchivementScore)
+    {
+        // PlayerPrefs.SetInt("AcivementScore", _AchivementScore);
+        // PlayerPrefs.Save();
+        AcivementScore = _AchivementScore;
+    }
+    #endregion
+    public void AddCoins(int amountToBeAdded)
     {
         playerCoins += amountToBeAdded;
         PlayerPrefs.SetInt("playerCoins", playerCoins);
