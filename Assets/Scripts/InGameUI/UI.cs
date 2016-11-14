@@ -58,7 +58,7 @@ public class UI : MonoBehaviour
       //  PlayerPrefs.SetInt("AcivementScore", 0);
         Time.timeScale = 1;
         GameManager.Instance.ReloadSameScene();
-      //  DataHandler.Instance.ResetPlayerPtrefData();
+        DataHandler.Instance.ResetPlayerPtrefData();
     }
     public void ShowGameEnded()
     {

@@ -58,25 +58,7 @@ public class DataHandler : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (PlayerPrefs.HasKey("BestScore"))
-        {
-            MainMenu.instance.Score.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
-        }
-        else
-        {
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.SetInt("BestScore", 0);
-        }
-        if (PlayerPrefs.HasKey("playerCoins"))
-        {
-            MainMenu.instance.Coins.text = PlayerPrefs.GetInt("playerCoins", 0).ToString();
-            //GameManager.Instance.Coins = PlayerPrefs.GetInt("Coins", 0);
-          playerCoins = PlayerPrefs.GetInt("playerCoins", 0);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("playerCoins", 0);
-        }
+       
 
         initializeData();
     }
@@ -112,15 +94,15 @@ public class DataHandler : MonoBehaviour
             inGameCoins = 0;
         }
         //Player Name
-        if (PlayerPrefs.HasKey("playerName"))
-        {
-            PlayerName = PlayerPrefs.GetString("playerName");
-        }
-        else
-        {
-            PlayerPrefs.SetString("playerName", "New Player");
-            PlayerName = "New Player";
-        }
+        //if (PlayerPrefs.HasKey("playerName"))
+        //{
+        //    PlayerName = PlayerPrefs.GetString("playerName");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetString("playerName", "New Player");
+        //    PlayerName = "New Player";
+        //}
 
         if (PlayerPrefs.HasKey("BestScore"))
         {
@@ -142,95 +124,95 @@ public class DataHandler : MonoBehaviour
             AcivementScore = 0;
         }
 
-        if (PlayerPrefs.HasKey("weapon1ID"))
-        {
-            weapon1ID = PlayerPrefs.GetInt("weapon1ID");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("weapon1ID", 1);
-            weapon1ID = 1;
-        }
-        if (PlayerPrefs.HasKey("weapon2ID"))
-        {
-            weapon2ID = PlayerPrefs.GetInt("weapon2ID");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("weapon2ID", 2);
-            weapon2ID = 2;
-        }
-        if (PlayerPrefs.HasKey("weapon3ID"))
-        {
-            weapon3ID = PlayerPrefs.GetInt("weapon3ID");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("weapon3ID", 3);
-            weapon3ID = 3;
-        }
+        //if (PlayerPrefs.HasKey("weapon1ID"))
+        //{
+        //    weapon1ID = PlayerPrefs.GetInt("weapon1ID");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("weapon1ID", 1);
+        //    weapon1ID = 1;
+        //}
+        //if (PlayerPrefs.HasKey("weapon2ID"))
+        //{
+        //    weapon2ID = PlayerPrefs.GetInt("weapon2ID");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("weapon2ID", 2);
+        //    weapon2ID = 2;
+        //}
+        //if (PlayerPrefs.HasKey("weapon3ID"))
+        //{
+        //    weapon3ID = PlayerPrefs.GetInt("weapon3ID");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("weapon3ID", 3);
+        //    weapon3ID = 3;
+        //}
 
-        if (PlayerPrefs.HasKey("weapon1upgradestatus"))
-        {
-            weapon1upgradestatus = PlayerPrefs.GetInt("weapon1upgradestatus");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("weapon1upgradestatus", 5);
-            weapon1upgradestatus = 5;
-        }
-        if (PlayerPrefs.HasKey("weapon2upgradestatus"))
-        {
-            weapon2upgradestatus = PlayerPrefs.GetInt("weapon2upgradestatus");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("weapon2upgradestatus", 5);
-            weapon2upgradestatus = 5;
-        }
-        if (PlayerPrefs.HasKey("weapon3upgradestatus"))
-        {
-            weapon3upgradestatus = PlayerPrefs.GetInt("weapon3upgradestatus");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("weapon3upgradestatus", 5);
-            weapon3upgradestatus = 5;
-        }
+        //if (PlayerPrefs.HasKey("weapon1upgradestatus"))
+        //{
+        //    weapon1upgradestatus = PlayerPrefs.GetInt("weapon1upgradestatus");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("weapon1upgradestatus", 5);
+        //    weapon1upgradestatus = 5;
+        //}
+        //if (PlayerPrefs.HasKey("weapon2upgradestatus"))
+        //{
+        //    weapon2upgradestatus = PlayerPrefs.GetInt("weapon2upgradestatus");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("weapon2upgradestatus", 5);
+        //    weapon2upgradestatus = 5;
+        //}
+        //if (PlayerPrefs.HasKey("weapon3upgradestatus"))
+        //{
+        //    weapon3upgradestatus = PlayerPrefs.GetInt("weapon3upgradestatus");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("weapon3upgradestatus", 5);
+        //    weapon3upgradestatus = 5;
+        //}
 
-        //Master Volume
-        if (PlayerPrefs.HasKey("bgVolume"))
-        {
-            BG_Volume = PlayerPrefs.GetInt("bgVolume");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("bgVolume", 100);
-            BG_Volume = 100;
-        }
+        ////Master Volume
+        //if (PlayerPrefs.HasKey("bgVolume"))
+        //{
+        //    BG_Volume = PlayerPrefs.GetInt("bgVolume");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("bgVolume", 100);
+        //    BG_Volume = 100;
+        //}
 
-        //Music Volume
-        if (PlayerPrefs.HasKey("sfxVolume"))
-        {
-            SFX_Volume = PlayerPrefs.GetInt("sfxVolume");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("sfxVolume", 50);
-            SFX_Volume = 50;
-        }
+        ////Music Volume
+        //if (PlayerPrefs.HasKey("sfxVolume"))
+        //{
+        //    SFX_Volume = PlayerPrefs.GetInt("sfxVolume");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("sfxVolume", 50);
+        //    SFX_Volume = 50;
+        //}
 
 
-        //No Of waves Unlocked
-        if (PlayerPrefs.HasKey("WaveNo"))
-        {
-            WaveNo = PlayerPrefs.GetInt("WaveNo");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("WaveNo", WaveNo);
-            WaveNo = 1;
-        }
+        ////No Of waves Unlocked
+        //if (PlayerPrefs.HasKey("WaveNo"))
+        //{
+        //    WaveNo = PlayerPrefs.GetInt("WaveNo");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("WaveNo", WaveNo);
+        //    WaveNo = 1;
+        //}
 
 
         //Saving 
@@ -242,11 +224,12 @@ public class DataHandler : MonoBehaviour
         Debug.Log("Esnat");
         inGameCoins = 0;
         AcivementScore = 0;
-     //  PlayerPrefs.SetInt("AcivementScore", 0);
-     //   PlayerPrefs.SetInt("playerCoins", 0);
-     //   PlayerPrefs.DeleteKey("AcivementScore");
-     //   PlayerPrefs.DeleteKey("playerCoins");
-        PlayerPrefs.Save();
+        //  PlayerPrefs.SetInt("AcivementScore", 0);
+        //   PlayerPrefs.SetInt("playerCoins", 0);
+        //   PlayerPrefs.DeleteKey("AcivementScore");
+        //   PlayerPrefs.DeleteKey("playerCoins");
+        //   PlayerPrefs.Save();
+        SavePlayerPrefsData();
 
     }
     public void SavePlayerPrefsData()
@@ -305,40 +288,51 @@ public class DataHandler : MonoBehaviour
     public void SetPlayerCoins(int _PlayerCoins)
     {
       //  PlayerPrefs.SetInt("playerCoins", _PlayerCoins);
-       // PlayerPrefs.Save();
+      
         playerCoins = _PlayerCoins;
+        //PlayerPrefs.Save();
+        SavePlayerPrefsData();
     }
 
     public void SetPlayerName(string _PlayerName)
     {
       //  PlayerPrefs.SetString("PlayerName", _PlayerName);
-      //  PlayerPrefs.Save();
+     
         PlayerName = _PlayerName;
+        //PlayerPrefs.Save();
+        SavePlayerPrefsData();
     }
 
     public void SetWaveNumber(int _WaveNo)
     {
         // PlayerPrefs.SetInt("WaveNo", _WaveNo);
-        //PlayerPrefs.Save();
+      
         WaveNo = _WaveNo;
+        //PlayerPrefs.Save();
+        SavePlayerPrefsData();
     }
     public void SetBestScore(int _BestScore)
     {
         //  PlayerPrefs.SetInt("BestScore", _BestScore);
-        //PlayerPrefs.Save();
+        
         BestScore = _BestScore;
+        //PlayerPrefs.Save();
+        SavePlayerPrefsData();
     }
     public void SetAcivementScore(int _AchivementScore)
     {
         // PlayerPrefs.SetInt("AcivementScore", _AchivementScore);
-        // PlayerPrefs.Save();
+       
         AcivementScore = _AchivementScore;
+        //PlayerPrefs.Save();
+        SavePlayerPrefsData();
     }
     #endregion
     public void AddCoins(int amountToBeAdded)
     {
         playerCoins += amountToBeAdded;
         PlayerPrefs.SetInt("playerCoins", playerCoins);
+
         PlayerPrefs.Save();
     }
 
