@@ -12,7 +12,11 @@ public class UpgradeBuffs : MonoBehaviour {
     public bool _ReverseControl = false;
     public bool Heal = false;
     public int HealAmount = 10;
+    void Start()
+    {
+        StartCoroutine("Disappear");
 
+    }
     public void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Bullet")
@@ -37,6 +41,11 @@ public class UpgradeBuffs : MonoBehaviour {
         {
             Player_Controller.Instance.UpgradeBuffs(this);
         }
+        Destroy(gameObject);
+    }
+    IEnumerator Disappear()
+    {
+        yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
 }
