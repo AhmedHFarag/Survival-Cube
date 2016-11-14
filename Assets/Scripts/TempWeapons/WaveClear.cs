@@ -6,12 +6,11 @@ public class WaveClear : MonoBehaviour {
     public int cost = 300;
 	// Use this for initialization
 	void Start () {
-        StartCoroutine("Disappear");
-
-    }
-
-    // Update is called once per frame
-    void Update () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
 	
 	}
     void OnParticleCollision(GameObject other)
@@ -20,10 +19,5 @@ public class WaveClear : MonoBehaviour {
         {
             other.GetComponent<Enemy>().TakeDamage(Damage);
         }
-    }
-    IEnumerator Disappear()
-    {
-        yield return new WaitForSeconds(5);
-        Destroy(gameObject);
     }
 }
