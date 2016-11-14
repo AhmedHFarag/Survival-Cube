@@ -18,10 +18,10 @@ public class InputManager : MonoBehaviour {
     private float m_yAxis;
     private float m_lastDirection;
     private bool updateHorizontal = true;
-    public bool ControlScheme0 = true;
-    public bool ControlScheme1 = false;
-    public bool ControlScheme2 = false;
-    public bool ControlScheme3 = false;
+    public bool ControlSchemeArrows = true;
+    public bool ControlSchemeSingleButton = false;
+    public bool ControlSchemeTouch = false;
+    public bool ControlSchemeJoyStick = false;
     bool RightButton = false;
     bool LeftButton = false;
     bool pressed = false;
@@ -46,15 +46,15 @@ public class InputManager : MonoBehaviour {
         {
             DestroyImmediate(gameObject);
         }
-        if (ControlScheme0 || ControlScheme1)
+        if (ControlSchemeArrows || ControlSchemeSingleButton)
         {
             InitialiseControls();
         }
-        if(ControlScheme0)
+        if(ControlSchemeArrows)
         {
             m_lastDirection = 0;
         }
-        else if(ControlScheme1)
+        else if(ControlSchemeSingleButton)
         {
             m_lastDirection = 1;
         }
@@ -108,7 +108,7 @@ public class InputManager : MonoBehaviour {
         m_xAxis = Input.GetAxis("Horizontal");
         m_yAxis = Input.GetAxis("Vertical");
 #else
-        if(ControlScheme0)
+        if(ControlSchemeArrows)
         {
 if(RightButton && !LeftButton)
         {
@@ -126,7 +126,7 @@ else if(LeftButton && !RightButton)
         }
         
         }
-        if(ControlScheme1)
+        if(ControlSchemeSingleButton)
         {
             if(RightButton && !pressed)
             {
@@ -145,7 +145,7 @@ else if(LeftButton && !RightButton)
         m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
         m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
 
-        if(ControlScheme2)
+        if(ControlSchemeTouch)
         {
 
         }

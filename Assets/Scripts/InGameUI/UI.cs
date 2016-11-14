@@ -20,6 +20,7 @@ public class UI : MonoBehaviour
     public GameObject Controls0;
     public Toggle _ControlsJoyStick;
     public GameObject ControlsJoyStick;
+    public Toggle _ControlsTouch;
     public int WaveNumber=1;
     Animator _anim;
     void Awake()
@@ -144,19 +145,28 @@ public class UI : MonoBehaviour
         {
             Controls0.SetActive(true);
             ControlsJoyStick.SetActive(false);
-            InputManager.Instance.ControlScheme0 = true;
-            InputManager.Instance.ControlScheme1 = false;
-            InputManager.Instance.ControlScheme2 = false;
-            InputManager.Instance.ControlScheme3 = false;
+            InputManager.Instance.ControlSchemeArrows = true;
+            InputManager.Instance.ControlSchemeSingleButton = false;
+            InputManager.Instance.ControlSchemeTouch = false;
+            InputManager.Instance.ControlSchemeJoyStick = false;
         }
         else if (_ControlsJoyStick.isOn)
         {
             Controls0.SetActive(false);
             ControlsJoyStick.SetActive(true);
-            InputManager.Instance.ControlScheme0 = false;
-            InputManager.Instance.ControlScheme1 = false;
-            InputManager.Instance.ControlScheme2 = false;
-            InputManager.Instance.ControlScheme3 = true;
+            InputManager.Instance.ControlSchemeArrows = false;
+            InputManager.Instance.ControlSchemeSingleButton = false;
+            InputManager.Instance.ControlSchemeTouch = false;
+            InputManager.Instance.ControlSchemeJoyStick = true;
+        }
+        else if (_ControlsTouch)
+        {
+            Controls0.SetActive(false);
+            ControlsJoyStick.SetActive(false);
+            InputManager.Instance.ControlSchemeArrows = false;
+            InputManager.Instance.ControlSchemeSingleButton = false;
+            InputManager.Instance.ControlSchemeTouch = true;
+            InputManager.Instance.ControlSchemeJoyStick = false;
         }
     }
 }

@@ -69,19 +69,14 @@ public class Player_Controller : MonoBehaviour
         BaiscWeapon.transform.parent = transform;
         Weapon = BaiscWeapon.GetComponent<DefaultWeapon>();
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         EllapsedTime += Time.deltaTime;
 
-    }
-    void Update()
-    {
-        if (InputManager.Instance.ControlScheme2)
+        if (InputManager.Instance.ControlSchemeTouch && Input.GetMouseButtonDown(0))
         {
-            Touch touch = Input.GetTouch(0);
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            //Touch touch = Input.GetTouch(0);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit Hit;
             if (Physics.Raycast(ray, out Hit, 200, Plane))
             {
@@ -89,11 +84,13 @@ public class Player_Controller : MonoBehaviour
             }
 
         }
+        //Fire Rate To be Deleted Need to be added in weapon class
         if (EllapsedTime > FirRate)
         {
             EllapsedTime = 0;
             Weapon.Fire();
         }
+        ////Auto Aim 
         if (Enemies_Manager.Instance.activeEnemies.Count > 0)
         {
             if (!IsMoving)
@@ -142,7 +139,7 @@ public class Player_Controller : MonoBehaviour
         {
             _Xdir *= -1;
         }
-        if (InputManager.Instance.ControlScheme3==true)
+        if (InputManager.Instance.ControlSchemeJoyStick==true)
         {
             float heading = Mathf.Atan2(_Xdir, _Ydir);
             _MyRig.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg+45, 0f);
@@ -180,10 +177,8 @@ public class Player_Controller : MonoBehaviour
     {
         if (!Upgraded)
         {
-            // if (GameManager.Instance.InGameCoins >= Weapons[index].GetComponent<DefaultWeapon>().Cost)
             if(DataHandler.Instance.inGameCoins >= Weapons[index].GetComponent<DefaultWeapon>().Cost)
             {
-                //   GameManager.Instance.InGameCoins -= Weapons[index].GetComponent<DefaultWeapon>().Cost;
                 DataHandler.Instance.inGameCoins -= Weapons[index].GetComponent<DefaultWeapon>().Cost;
                 Weapon = null;
                 BaiscWeapon.SetActive(false);
