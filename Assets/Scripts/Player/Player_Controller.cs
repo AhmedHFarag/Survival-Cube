@@ -135,6 +135,7 @@ public class Player_Controller : MonoBehaviour
     }
     public void Move(float _Xdir, float _Ydir)
     {
+        IsMoving = true;
         if (ReversedControls)
         {
             _Xdir *= -1;
@@ -155,7 +156,7 @@ public class Player_Controller : MonoBehaviour
             }
             else if (_Xdir < -0.1)
             {
-                IsMoving = false;
+                IsMoving = true;
                 Ellapsed_Time += Time.deltaTime;
                 float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
                 _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed * curvedValue);
