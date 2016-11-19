@@ -22,8 +22,8 @@ public class Weapon1 : DefaultWeapon
         if (currentbulletObj1)
         {
             currentbulletObj1.SetActive(true);
-            currentbulletObj1.transform.position = FirePos1.position;
-            currentbulletObj1.GetComponent<Rigidbody>().AddForce(FirePos1.forward * 5000);
+            currentbulletObj1.transform.position = FirePositions.position;
+            currentbulletObj1.GetComponent<Rigidbody>().AddForce(FirePositions.forward * 5000);
         }
 
         currentbulletObj2 = bulletPool.GetObject();

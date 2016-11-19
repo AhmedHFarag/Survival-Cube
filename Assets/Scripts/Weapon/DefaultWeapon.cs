@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class DefaultWeapon : MonoBehaviour
 {
     public GameObject Bullet;
-    public Transform FirePos1;
+    public List<Transform> FirePositions;
     public int Cost = 200;
 
     public int BullectNumberInUse=20;
@@ -14,21 +14,21 @@ public class DefaultWeapon : MonoBehaviour
     public ObjectPool bulletPool;
     private GameObject currentbulletObj;
     float EllapsedTime = 0;
-    public float _DefaultFirRate = 2;
+    public float _DefaultFireRate = 2;
     [HideInInspector]
-    public float FirRate;
+    public float FireRate;
 
     public virtual void Start()
     {
         bulletPool = GameManager.Instance.CreatePool(Bullet, BullectNumberInUse, maxBullectNumber);
-        FirRate = _DefaultFirRate;
+        FireRate = _DefaultFireRate;
 
     }
     void Update()
     {
         EllapsedTime += Time.deltaTime;
         //Fire Rate To be Deleted Need to be added in weapon class
-        if (EllapsedTime > 1/FirRate)
+        if (EllapsedTime > 1/FireRate)
         {
             EllapsedTime = 0;
             Fire();
@@ -37,15 +37,20 @@ public class DefaultWeapon : MonoBehaviour
 
     public virtual void Fire()
     {
-        currentbulletObj = bulletPool.GetObject();
-        if (currentbulletObj)
-        {
-            currentbulletObj.transform.position = FirePos1.position;
-            currentbulletObj.transform.forward = FirePos1.forward;
-            currentbulletObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            currentbulletObj.SetActive(true);
-            currentbulletObj.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);
-        }
+        
+            foreach (Transform FirePos in FirePositions)
+            {
+                currentbulletObj = bulletPool.GetObject();
+                if (currentbulletObj)
+                    {
+                        currentbulletObj.transform.position = FirePos.position;
+                        currentbulletObj.transform.forward = FirePos.forward;
+                        currentbulletObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        currentbulletObj.SetActive(true);
+                        currentbulletObj.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);
+                    }
+            
+            }
         //GameObject Shot = Instantiate(Bullet) as GameObject;
         //Shot.transform.position = FirePos1.position;
         //Shot.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);

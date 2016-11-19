@@ -214,7 +214,7 @@ public class Player_Controller : MonoBehaviour
         }
         if (_Data._FireRate)
         {
-            BasicWeapon.FirRate *= _Data.FireRate;
+            BasicWeapon.FireRate *= _Data.FireRate;
             if (popupBuffs)
             {
                 GameObject popupText = GameObject.Instantiate(popupBuffs);
@@ -300,7 +300,7 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         Speed = Defaultspeed;
-        BasicWeapon.FirRate = BasicWeapon._DefaultFirRate;
+        BasicWeapon.FireRate = BasicWeapon._DefaultFireRate;
         DamageMultiplier = 1;
         Buffed = false;
     }
