@@ -7,9 +7,9 @@ public class DefaultWeapon : MonoBehaviour
     public Transform FirePos1;
     public int Cost = 200;
 
-    public int BullectNumberInUse;
+    public int BullectNumberInUse=20;
 
-    public int maxBullectNumber;
+    public int maxBullectNumber=100;
     [HideInInspector]
     public ObjectPool bulletPool;
     private GameObject currentbulletObj;
