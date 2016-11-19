@@ -13,7 +13,7 @@ public class Player_Controller : MonoBehaviour
     public GameObject WaveClear;
     [HideInInspector]
     public DefaultWeapon BasicWeapon;
-    GameObject BaiscWeapon;
+    GameObject m_BaiscWeapon;
     bool Upgraded = false;
 
     public int HitPoints = 100;
@@ -21,15 +21,12 @@ public class Player_Controller : MonoBehaviour
 
     public AnimationCurve motionCurve = AnimationCurve.Linear(0, 0, 1, 1);
     public float Defaultspeed = 2f;
-    public float DefaultFirRate = 0.05f;
     public float AutoAimThreshold = 5f;
     float Speed;
-    float FirRate;
     [HideInInspector]
     public bool Buffed = false;
     Rigidbody _MyRig;
     int Dir = 0;
-    float EllapsedTime = 0;
 
     public Slider healthBar;
     public ParticleSystem Explosion;
@@ -59,20 +56,17 @@ public class Player_Controller : MonoBehaviour
     void Start()
     {
         Speed = Defaultspeed;
-        FirRate = DefaultFirRate;
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
         InputManager.attack += Fire;
-        BaiscWeapon = Instantiate(Weapons[0]);
-        BaiscWeapon.transform.rotation = transform.rotation;
-        BaiscWeapon.transform.position = WeaponPos.position;
-        BaiscWeapon.transform.parent = transform;
-        BasicWeapon = BaiscWeapon.GetComponent<DefaultWeapon>();
+        m_BaiscWeapon = Instantiate(Weapons[0]);
+        m_BaiscWeapon.transform.rotation = transform.rotation;
+        m_BaiscWeapon.transform.position = WeaponPos.position;
+        m_BaiscWeapon.transform.parent = transform;
+        BasicWeapon = m_BaiscWeapon.GetComponent<DefaultWeapon>();
     }
     void Update()
     {
-        EllapsedTime += Time.deltaTime;
-
         if (InputManager.Instance.ControlSchemeTouch && Input.GetMouseButtonDown(0))
         {
             //Touch touch = Input.GetTouch(0);
@@ -84,12 +78,7 @@ public class Player_Controller : MonoBehaviour
             }
 
         }
-        //Fire Rate To be Deleted Need to be added in weapon class
-        if (EllapsedTime > FirRate)
-        {
-            EllapsedTime = 0;
-            BasicWeapon.Fire();
-        }
+        
         ////Auto Aim 
         if (Enemies_Manager.Instance.activeEnemies.Count > 0)
         {
@@ -181,7 +170,7 @@ public class Player_Controller : MonoBehaviour
             if(DataHandler.Instance.inGameCoins >= Weapons[index].GetComponent<TempWeapon>().Cost)
             {
                 DataHandler.Instance.inGameCoins -= Weapons[index].GetComponent<TempWeapon>().Cost;
-                BaiscWeapon.SetActive(false);
+                m_BaiscWeapon.SetActive(false);
                 
                 GameObject obj = Instantiate(Weapons[index]);
                 obj.transform.rotation = transform.rotation;
@@ -225,7 +214,7 @@ public class Player_Controller : MonoBehaviour
         }
         if (_Data._FireRate)
         {
-            FirRate *= _Data.FireRate;
+            BasicWeapon.FirRate *= _Data.FireRate;
             if (popupBuffs)
             {
                 GameObject popupText = GameObject.Instantiate(popupBuffs);
@@ -301,7 +290,7 @@ public class Player_Controller : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         //Destroy(BasicWeapon.gameObject);
-        BaiscWeapon.SetActive(true);
+        m_BaiscWeapon.SetActive(true);
         Destroy(_obj);
         //BasicWeapon = BaiscWeapon.GetComponent<DefaultWeapon>();
         Upgraded = false;
@@ -311,7 +300,7 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         Speed = Defaultspeed;
-        FirRate = DefaultFirRate;
+        BasicWeapon.FirRate = BasicWeapon._DefaultFirRate;
         DamageMultiplier = 1;
         Buffed = false;
     }

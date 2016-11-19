@@ -13,10 +13,26 @@ public class DefaultWeapon : MonoBehaviour
     [HideInInspector]
     public ObjectPool bulletPool;
     private GameObject currentbulletObj;
+    float EllapsedTime = 0;
+    public float _DefaultFirRate = 2;
+    [HideInInspector]
+    public float FirRate;
 
     public virtual void Start()
     {
         bulletPool = GameManager.Instance.CreatePool(Bullet, BullectNumberInUse, maxBullectNumber);
+        FirRate = _DefaultFirRate;
+
+    }
+    void Update()
+    {
+        EllapsedTime += Time.deltaTime;
+        //Fire Rate To be Deleted Need to be added in weapon class
+        if (EllapsedTime > 1/FirRate)
+        {
+            EllapsedTime = 0;
+            Fire();
+        }
     }
 
     public virtual void Fire()
