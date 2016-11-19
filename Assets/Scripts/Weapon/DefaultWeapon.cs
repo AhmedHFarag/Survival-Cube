@@ -12,7 +12,7 @@ public class DefaultWeapon : MonoBehaviour
     public int maxBullectNumber=100;
     [HideInInspector]
     public ObjectPool bulletPool;
-    private GameObject currentbulletObj;
+    protected GameObject currentbulletObj;
     float EllapsedTime = 0;
     public float _DefaultFireRate = 2;
     [HideInInspector]
