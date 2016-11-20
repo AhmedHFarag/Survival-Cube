@@ -40,8 +40,7 @@ public class UI : MonoBehaviour
     void Start()
     {
         GameManager.Instance.ResetAll();
-       // TotalCoins.text = PlayerPrefs.GetInt("Coins").ToString();
-        TotalCoins.text = DataHandler.Instance.GetPlayerCoins();
+        TotalCoins.text = DataHandler.Instance.GetPlayerCoinsstr();
         UpdateControls();
     }
 
