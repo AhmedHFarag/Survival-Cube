@@ -12,7 +12,8 @@ public class Player_Controller : MonoBehaviour
     [HideInInspector]
     DefaultWeapon BasicWeapon;
     GameObject m_BaiscWeapon;
-    bool Upgraded = false;
+    [HideInInspector]
+    public bool TempInUse = false;
 
     public int HitPoints = 100;
     public float DamageMultiplier = 1;
@@ -163,21 +164,16 @@ public class Player_Controller : MonoBehaviour
     }
     public void ActiveTempWeapon(int index)
     {
-        if (!Upgraded)
+        if (!TempInUse)
         {
             if(DataHandler.Instance.inGameCoins >=GameManager.Instance.TempWeapons[index].GetComponent<TempWeapon>().Cost)
             {
                 DataHandler.Instance.inGameCoins -= GameManager.Instance.TempWeapons[index].GetComponent<TempWeapon>().Cost;
-                m_BaiscWeapon.SetActive(false);
+                //m_BaiscWeapon.SetActive(false);
                 
                 GameObject obj = Instantiate(GameManager.Instance.TempWeapons[index]);
-                obj.transform.rotation = transform.rotation;
-                obj.transform.position = WeaponPos.position;
-                obj.transform.parent = transform;
-                obj.SetActive(true);
-                //BasicWeapon = obj.GetComponent<DefaultWeapon>();
-                StartCoroutine(NewWeapon(obj));
-                Upgraded = true;
+                obj.GetComponent<TempWeapon>().SelfInitialize(gameObject);
+                TempInUse = true;
             }
         }
     }
@@ -275,15 +271,6 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(5);
         ReversedControls = false;
 
-    }
-    IEnumerator NewWeapon(GameObject _obj)
-    {
-        yield return new WaitForSeconds(5);
-        //Destroy(BasicWeapon.gameObject);
-        m_BaiscWeapon.SetActive(true);
-        Destroy(_obj);
-        //BasicWeapon = BaiscWeapon.GetComponent<DefaultWeapon>();
-        Upgraded = false;
     }
     IEnumerator DeBuff()
     {

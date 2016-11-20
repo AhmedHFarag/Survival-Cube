@@ -3,9 +3,11 @@ using System.Collections;
 
 public class LMine : BulletBehavior {
     public ParticleSystem Explosion;
-    public float explosionRadius=5.0f;
-    public float explosionForce = 500.0f;
-    // Use this for initialization
+    public float explosionRadius=10;
+    public float explosionForce = 10000.0f;
+    void OnEnable()
+    {
+    }
     void Start () {
         MyRigid = GetComponent<Rigidbody>();
 	}
@@ -14,26 +16,34 @@ public class LMine : BulletBehavior {
 	void Update () {
 	
 	}
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.tag != "Enemy")
-            return;
-        if (sound)
-            AudioSource.PlayClipAtPoint(sound, transform.position, soundVolume);
-
-        Destroy(gameObject);
-
-        if (Explosion)
-            Instantiate(Explosion, transform.position, transform.rotation);
-
-        Collider[] objects = UnityEngine.Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach (Collider h in objects)
+        if (other.collider.CompareTag("Enemy"))
         {
-            Rigidbody r = h.GetComponent<Rigidbody>();
-            if (r != null)
+            StartCoroutine(SelfDestory());
+            if (sound)
+                AudioSource.PlayClipAtPoint(sound, transform.position, soundVolume);
+            if (Explosion)
+                Explosion.Play();
+
+            
+            Collider[] objects = UnityEngine.Physics.OverlapSphere(transform.position, explosionRadius);
+            foreach (Collider h in objects)
             {
-                r.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                Rigidbody r = h.GetComponent<Rigidbody>();
+                if (r != null && h.CompareTag("Enemy"))
+                {
+                    r.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                    h.gameObject.GetComponent<Enemy>().TakeDamage((int)Mathf.Floor(Damage * Player_Controller.Instance.DamageMultiplier));
+                }
+
             }
         }
+    }
+    IEnumerator SelfDestory()
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        yield return new WaitForSeconds(timeForSelfDestory);
+        Destroy(gameObject);
     }
 }

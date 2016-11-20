@@ -10,7 +10,7 @@ public class BulletBehavior : MonoBehaviour
     public AudioClip sound;
     protected float soundVolume = 1.0f;
     [SerializeField]
-    private float timeForSelfDestory = 1;
+    public float timeForSelfDestory = 1;
 
     // Use this for initialization
     void OnEnable()
