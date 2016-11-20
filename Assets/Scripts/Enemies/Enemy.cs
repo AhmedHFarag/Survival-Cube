@@ -145,7 +145,7 @@ public class Enemy : MonoBehaviour
         {
             Vector3 SteeringForce = Vector3.zero;
             Vector3 PushForce = Vector3.zero;
-            foreach (GameObject bullet in Player_Controller.Instance.Weapon.bulletPool.pooledObjects)
+            foreach (GameObject bullet in Player_Controller.Instance.BasicWeapon.bulletPool.pooledObjects)
             {
                 if (bullet.activeSelf == true)
                 {

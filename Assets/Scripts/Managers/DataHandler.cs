@@ -39,9 +39,26 @@ public class DataHandler : MonoBehaviour
     public int weapon2upgradestatus;
     [HideInInspector]
     public int weapon3upgradestatus;
-
-
-
+    public int  IsWeapon1Unlocked = 1;
+    public int IsWeapon2Unlocked = 0;
+    public int IsWeapon3Unlocked = 0;
+    public int Weapon1Damage = 20;
+    public int Weapon2Damage = 10;
+    public int Weapon3Damage = 50;
+    public int Weapon3SplashDamage = 10;
+    public int Weapon1UpgradeCost = 10;
+    public int Weapon2UpgradeCost = 10;
+    public int Weapon3UpgradeCost = 10;
+    string Weapon1UnlockStatusRef = "Weapon1Unlocked";
+    string Weapon2UnlockStatusRef = "Weapon2Unlocked";
+    string Weapon3UnlockStatusRef = "Weapon3Unlocked";
+    string Weapon1UpgradeCostRef = "Weapon1UpgradeCost";
+    string Weapon2UpgradeCostRef = "Weapon2UpgradeCost";
+    string Weapon3UpgradeCostRef = "Weapon3UpgradeCost";
+    string Weapon1DamageRef = "Weapon1Damage";
+    string Weapon2DamageRef = "Weapon2Damage";
+    string Weapon3DamageRef = "Weapon3Damage";
+    
     void Awake()
     {
         if (Instance == null)
@@ -107,6 +124,7 @@ public class DataHandler : MonoBehaviour
         if (PlayerPrefs.HasKey("BestScore"))
         {
             BestScore = PlayerPrefs.GetInt("BestScore");
+            
         }
         else
         {
@@ -123,7 +141,45 @@ public class DataHandler : MonoBehaviour
             PlayerPrefs.SetInt("AcivementScore", 0);
             AcivementScore = 0;
         }
-
+        #region Weapons data
+        if (!PlayerPrefs.HasKey(Weapon1DamageRef))
+        {
+            PlayerPrefs.SetInt(Weapon1DamageRef, Weapon1Damage);
+        }
+        if (!PlayerPrefs.HasKey(Weapon2DamageRef))
+        {
+            PlayerPrefs.SetInt(Weapon2DamageRef, Weapon2Damage);
+        }
+        if (!PlayerPrefs.HasKey(Weapon3DamageRef))
+        {
+            PlayerPrefs.SetInt(Weapon3DamageRef, Weapon3Damage);
+        }
+        
+        if (!PlayerPrefs.HasKey(Weapon1UnlockStatusRef))
+        {
+            PlayerPrefs.SetInt(Weapon1UnlockStatusRef, IsWeapon1Unlocked);
+        }
+        if (!PlayerPrefs.HasKey(Weapon2UnlockStatusRef))
+        {
+            PlayerPrefs.SetInt(Weapon2UnlockStatusRef, IsWeapon2Unlocked);
+        }
+        if (!PlayerPrefs.HasKey(Weapon3UnlockStatusRef))
+        {
+            PlayerPrefs.SetInt(Weapon3UnlockStatusRef, IsWeapon3Unlocked);
+        }
+        if (!PlayerPrefs.HasKey(Weapon1UpgradeCostRef))
+        {
+            PlayerPrefs.SetInt(Weapon1UpgradeCostRef, Weapon1UpgradeCost);
+        }
+        if (!PlayerPrefs.HasKey(Weapon2UpgradeCostRef))
+        {
+            PlayerPrefs.SetInt(Weapon2UpgradeCostRef, Weapon2UpgradeCost);
+        }
+        if (!PlayerPrefs.HasKey(Weapon3UpgradeCostRef))
+        {
+            PlayerPrefs.SetInt(Weapon3UpgradeCostRef, Weapon3UpgradeCost);
+        }
+        #endregion
         //if (PlayerPrefs.HasKey("weapon1ID"))
         //{
         //    weapon1ID = PlayerPrefs.GetInt("weapon1ID");
@@ -283,6 +339,42 @@ public class DataHandler : MonoBehaviour
         // return PlayerPrefs.GetInt("AcivementScore", AcivementScore);
         return AcivementScore;
     }
+    public int GetWeapon1UpgradeCost()
+    {
+        return PlayerPrefs.GetInt(Weapon1UpgradeCostRef);
+    }
+    public int GetWeapon2UpgradeCost()
+    {
+        return PlayerPrefs.GetInt(Weapon2UpgradeCostRef);
+    }
+    public int GetWeapon3UpgradeCost()
+    {
+        return PlayerPrefs.GetInt(Weapon3UpgradeCostRef);
+    }
+    public int GetWeapon1Damage()
+    {
+        return PlayerPrefs.GetInt(Weapon1DamageRef);
+    }
+    public int GetWeapon2Damage()
+    {
+        return PlayerPrefs.GetInt(Weapon2DamageRef);
+    }
+    public int GetWeapon3Damage()
+    {
+        return PlayerPrefs.GetInt(Weapon3DamageRef);
+    }
+    public int GetWeapon1UnlockStatus()
+    {
+        return PlayerPrefs.GetInt(Weapon1UnlockStatusRef);
+    }
+    public int GetWeapon2UnlockStatus()
+    {
+        return PlayerPrefs.GetInt(Weapon2UnlockStatusRef);
+    }
+    public int GetWeapon3UnlockStatus()
+    {
+        return PlayerPrefs.GetInt(Weapon3UnlockStatusRef);
+    }
     #endregion
     #region Setters
     public void SetPlayerCoins(int _PlayerCoins)
@@ -341,5 +433,25 @@ public class DataHandler : MonoBehaviour
         playerCoins -= amountToBeRemoved;
         PlayerPrefs.SetInt("playerCoins", playerCoins);
         PlayerPrefs.Save();
+    }
+    public void UnlockWeapon2()
+    {
+        PlayerPrefs.SetInt(Weapon2UnlockStatusRef, 1);
+    }
+    public void UnlockWeapon3()
+    {
+        PlayerPrefs.SetInt(Weapon3UnlockStatusRef, 1);
+    }
+    public void UpgradeWeapon1()
+    {
+        PlayerPrefs.SetInt(Weapon1DamageRef, GetWeapon1Damage() + 5);//requires discussion on upgrades
+    }
+    public void UpgradeWeapon2()
+    {
+        PlayerPrefs.SetInt(Weapon2DamageRef, GetWeapon2Damage() + 5);//requires discussion on upgrades
+    }
+    public void UpgradeWeapon3()
+    {
+        PlayerPrefs.SetInt(Weapon3DamageRef, GetWeapon3Damage() + 5);//requires discussion on upgrades
     }
 }
