@@ -18,7 +18,7 @@ public class SlowTime : TempWeapon {
     }
     IEnumerator RestoreSpeed()
     {
-        yield return new WaitForSeconds(Duration);
+        yield return new WaitForSeconds(LifeTime);
         foreach (GameObject enemy in Enemies_Manager.Instance.activeEnemies)
         {
             enemy.GetComponent<Enemy>().ChangeSpeed(1/SlowAmount);
