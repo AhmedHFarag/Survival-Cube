@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     public static event EnemyBehaviour OnEnemyDie;
 
     public Transform Target;
-    public float moveSpeed = 5;
+    public float DefaultMoveSpeed=5;
+    float moveSpeed;    
     public int attackDamage = 0;
     public float lookatDisace = 1;
     public float DefaultHP = 200;
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour
         healthBar.maxValue = DefaultHP;
         healthBar.value = DefaultHP;
         health.enabled = true;
+        moveSpeed = DefaultMoveSpeed;
     }
 
     // Use this for initialization
@@ -72,6 +74,11 @@ public class Enemy : MonoBehaviour
         //myRigid.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         //myRigid.transform.Translate((Vector3.forward+ Separation()) * moveSpeed * Time.deltaTime);
         myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion()+ AvoidBullets(), moveSpeed);
+    }
+    internal void ChangeSpeed(float percentage)
+    {
+        if(moveSpeed==DefaultMoveSpeed)
+            moveSpeed *= percentage;
     }
     Vector3 Separation()
     {
