@@ -110,7 +110,7 @@ public class DataHandler : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("BestSCore", 0);
+            PlayerPrefs.SetInt("BestScore", 0);
             BestScore = 0;
         }
 

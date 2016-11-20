@@ -136,6 +136,7 @@ public class UI : MonoBehaviour
     }
     IEnumerator EndGame()
     {
+        
         Background.gameObject.SetActive(true);
         while(Background.color.a<1)
         {
@@ -145,6 +146,7 @@ public class UI : MonoBehaviour
         GameEnded.SetActive(true);
         StartCoroutine("ScoreRoll");
         StartCoroutine("CoinRoll");
+        
         yield return null;
     }
     public void UpdateControls()
