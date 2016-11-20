@@ -141,34 +141,35 @@ public class Enemy : MonoBehaviour
     }
     Vector3 AvoidBullets()
     {
-        if (AvBullets)
-        {
-            Vector3 SteeringForce = Vector3.zero;
-            Vector3 PushForce = Vector3.zero;
-            foreach (GameObject bullet in Player_Controller.Instance.BasicWeapon.bulletPool.pooledObjects)
-            {
-                if (bullet.activeSelf == true)
-                {
-                    if (Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) < MyBulletsArea)
-                    {
-                        //SetUp Push Force
-                        Vector3 up =new Vector3(0.0f, 1.0f, 0.0f);
-                        // find right vector:
-                        
-                        PushForce = (myRigid.position - bullet.GetComponent<Rigidbody>().position);
-                        Vector3 right = Vector3.Cross(PushForce.normalized, up.normalized);
-                        SteeringForce += right * Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) / MyBulletsArea;
+        //if (AvBullets)
+        //{
+        //    Vector3 SteeringForce = Vector3.zero;
+        //    Vector3 PushForce = Vector3.zero;
+        //    foreach (GameObject bullet in Player_Controller.Instance.BasicWeapon.bulletPool.pooledObjects)
+        //    {
+        //        if (bullet.activeSelf == true)
+        //        {
+        //            if (Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) < MyBulletsArea)
+        //            {
+        //                //SetUp Push Force
+        //                Vector3 up =new Vector3(0.0f, 1.0f, 0.0f);
+        //                // find right vector:
 
-                    }
-                }
-            }
-            SteeringForce = SteeringForce.normalized * AVBullet_Force;
-            return SteeringForce;
-        }
-        else
-        {
-            return Vector3.zero;
-        }
+        //                PushForce = (myRigid.position - bullet.GetComponent<Rigidbody>().position);
+        //                Vector3 right = Vector3.Cross(PushForce.normalized, up.normalized);
+        //                SteeringForce += right * Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) / MyBulletsArea;
+
+        //            }
+        //        }
+        //    }
+        //    SteeringForce = SteeringForce.normalized * AVBullet_Force;
+        //    return SteeringForce;
+        //}
+        //else
+        //{
+        //    return Vector3.zero;
+        //}
+        return Vector3.zero;
     }
     public virtual void TakeDamage(int damage)
     {

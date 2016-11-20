@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public PoolManager Pool_Manager;
 
     public List<GameObject> Items=new List<GameObject>();
+    public List<GameObject> Weapons = new List<GameObject>();
+    public List<GameObject> TempWeapons = new List<GameObject>();
     [HideInInspector]
     public GameStates currentGameStates;
 
@@ -42,12 +44,6 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public int currentState;
-
-        //[HideInInspector]
-        //public int score;
-        //[HideInInspector]
-        //public int Coins;
-        //public int InGameCoins = 0;
 
     public int weaponCoolDown = 20;
     void Awake()

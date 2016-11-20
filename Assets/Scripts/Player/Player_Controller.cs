@@ -9,10 +9,8 @@ public class Player_Controller : MonoBehaviour
     public LayerMask Plane;
 
     public Transform WeaponPos;
-    public GameObject[] Weapons;
-    public GameObject WaveClear;
     [HideInInspector]
-    public DefaultWeapon BasicWeapon;
+    DefaultWeapon BasicWeapon;
     GameObject m_BaiscWeapon;
     bool Upgraded = false;
 
@@ -59,7 +57,7 @@ public class Player_Controller : MonoBehaviour
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
         InputManager.attack += Fire;
-        m_BaiscWeapon = Instantiate(Weapons[0]);
+        m_BaiscWeapon = Instantiate(GameManager.Instance.Weapons[0]);
         m_BaiscWeapon.transform.rotation = transform.rotation;
         m_BaiscWeapon.transform.position = WeaponPos.position;
         m_BaiscWeapon.transform.parent = transform;
@@ -167,12 +165,12 @@ public class Player_Controller : MonoBehaviour
     {
         if (!Upgraded)
         {
-            if(DataHandler.Instance.inGameCoins >= Weapons[index].GetComponent<TempWeapon>().Cost)
+            if(DataHandler.Instance.inGameCoins >=GameManager.Instance.TempWeapons[index].GetComponent<TempWeapon>().Cost)
             {
-                DataHandler.Instance.inGameCoins -= Weapons[index].GetComponent<TempWeapon>().Cost;
+                DataHandler.Instance.inGameCoins -= GameManager.Instance.TempWeapons[index].GetComponent<TempWeapon>().Cost;
                 m_BaiscWeapon.SetActive(false);
                 
-                GameObject obj = Instantiate(Weapons[index]);
+                GameObject obj = Instantiate(GameManager.Instance.TempWeapons[index]);
                 obj.transform.rotation = transform.rotation;
                 obj.transform.position = WeaponPos.position;
                 obj.transform.parent = transform;
@@ -181,14 +179,6 @@ public class Player_Controller : MonoBehaviour
                 StartCoroutine(NewWeapon(obj));
                 Upgraded = true;
             }
-        }
-    }
-    public void ActivateWaveClear()
-    {
-        if (DataHandler.Instance.inGameCoins >= WaveClear.GetComponent<WaveClear>().Cost)
-        {
-            DataHandler.Instance.inGameCoins -= WaveClear.GetComponent<WaveClear>().Cost;
-            GameObject.Instantiate(WaveClear, transform.position, WaveClear.transform.rotation);
         }
     }
     public void UpgradeBuffs(UpgradeBuffs _Data)
