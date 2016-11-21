@@ -77,8 +77,15 @@ public class Enemy : MonoBehaviour
     }
     internal void ChangeSpeed(float percentage)
     {
-        if(moveSpeed==DefaultMoveSpeed)
+        if (percentage!=-1)
+        {
             moveSpeed *= percentage;
+        }
+        else
+        {
+            moveSpeed = DefaultMoveSpeed;
+        }
+            
     }
     Vector3 Separation()
     {

@@ -3,14 +3,12 @@ using System.Collections;
 
 public class SlowTime : TempWeapon {
     public float SlowAmount=0.8f;
-    
-	// Use this for initialization
-	void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void OnEnable()
+    {
+        StartCoroutine(RestoreSpeed());
+    }
+	void FixedUpdate () {
         foreach (GameObject enemy in Enemies_Manager.Instance.activeEnemies)
         {
             enemy.GetComponent<Enemy>().ChangeSpeed(SlowAmount);
@@ -21,8 +19,9 @@ public class SlowTime : TempWeapon {
         yield return new WaitForSeconds(LifeTime);
         foreach (GameObject enemy in Enemies_Manager.Instance.activeEnemies)
         {
-            enemy.GetComponent<Enemy>().ChangeSpeed(1/SlowAmount);
+            enemy.GetComponent<Enemy>().ChangeSpeed(-1);
         }
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+        Debug.Log("Slow time destroued");
     }
 }
