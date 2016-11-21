@@ -2,9 +2,11 @@
 using System.Collections;
 
 public class LMine : BulletBehavior {
+    public Light LED;
     public ParticleSystem Explosion;
     public float explosionRadius=10;
     public float explosionForce = 10000.0f;
+    float Ellapsedtime = 0;
     void OnEnable()
     {
     }
@@ -13,8 +15,13 @@ public class LMine : BulletBehavior {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void FixedUpdate () {
+        if (Ellapsedtime>=1)
+        {
+            Ellapsedtime = 0;
+            LED.enabled = !LED.enabled;
+        }
+        Ellapsedtime += Time.deltaTime;
 	}
     void OnCollisionEnter(Collision other)
     {
