@@ -12,9 +12,8 @@ public class DefaultWeapon : MonoBehaviour
     public int maxBullectNumber=100;
     [HideInInspector]
     public ObjectPool bulletPool;
-    [HideInInspector]
-    public  GameObject currentbulletObj;
-     protected float EllapsedTime = 0;
+    private GameObject currentbulletObj;
+    float EllapsedTime = 0;
     public float _DefaultFireRate = 2;
     [HideInInspector]
     public float FireRate;
@@ -33,7 +32,6 @@ public class DefaultWeapon : MonoBehaviour
         {
             EllapsedTime = 0;
             Fire();
-
         }
     }
 
