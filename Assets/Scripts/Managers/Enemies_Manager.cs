@@ -159,7 +159,7 @@ public class Enemies_Manager : MonoBehaviour
     {
         if (!collideWithPlayer)
             //   GameManager.Instance.score += Score;
-            DataHandler.Instance.AcivementScore += Score;
+            DataHandler.Instance.AchievementScore += Score;
 
         EnemyKilled(Enemy);
     }

@@ -47,7 +47,7 @@ public class UI : MonoBehaviour
     void FixedUpdate()
     {
         //  txtScore.text = GameManager.Instance.score.ToString();
-        txtScore.text = DataHandler.Instance.AcivementScore.ToString();
+        txtScore.text = DataHandler.Instance.AchievementScore.ToString();
         //  Coins.text = GameManager.Instance.InGameCoins.ToString();
         Coins.text = DataHandler.Instance.inGameCoins.ToString();
     }
@@ -92,7 +92,7 @@ public class UI : MonoBehaviour
    //     txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
         txtHightScore.text = DataHandler.Instance.GetBestScoreStr();
 
-        while (score!=DataHandler.Instance.AcivementScore)
+        while (score!=DataHandler.Instance.AchievementScore)
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.0001f));
 

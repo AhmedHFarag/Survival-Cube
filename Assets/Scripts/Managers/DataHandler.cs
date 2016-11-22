@@ -8,10 +8,27 @@ public class DataHandler : MonoBehaviour
     struct WeaponsData
     {
       public int WeaponID;
-      public float WeaponStatus;
-      public float WeaponCost;
-      public float WeaponDamage;
+      public int WeaponStatus;
+      public int WeaponCost;
+      public int WeaponDamage;
     }
+    struct WaveData
+    {
+        public int WaveNumber;
+
+    }
+    struct PlayerData
+    {
+        public string Name;
+        public int Coins;
+        public int HighScore;
+        public int MaxWaveReached;
+        public int HighestWaveStreak;
+    }
+    PlayerData Player;
+    WaveData Wave;
+    string MaxWaveReachedRef = "MaxWaveReached";
+    string HighestWaveStreakRef = "HighestWaveStreak";
     WeaponsData weapon1;
     WeaponsData weapon2;
     WeaponsData weapon3;
@@ -28,11 +45,12 @@ public class DataHandler : MonoBehaviour
     [HideInInspector]
     public int inGameCoins;
     [HideInInspector]
-    public int AcivementScore;
+    public int AchievementScore;
     [HideInInspector]
     public int BestScore;
     [HideInInspector]
-    public int WaveNo = 0;
+    
+    
 
     void Awake()
     {
@@ -67,52 +85,44 @@ public class DataHandler : MonoBehaviour
         //Coins
         if (PlayerPrefs.HasKey("playerCoins"))
         {
-            playerCoins = PlayerPrefs.GetInt("playerCoins");
+            Player.Coins = PlayerPrefs.GetInt("playerCoins");
         }
         else
         {
             PlayerPrefs.SetInt("playerCoins", 0);
-            playerCoins = 0;
+            Player.Coins = 0;
         }
-        if (PlayerPrefs.HasKey("inGameCoins"))
-        {
-            inGameCoins = PlayerPrefs.GetInt("inGameCoins");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("inGameCoins", 0);
-            inGameCoins = 0;
-        }
+        
         //Player Name
         if (PlayerPrefs.HasKey("playerName"))
         {
-            PlayerName = PlayerPrefs.GetString("playerName");
+            Player.Name = PlayerPrefs.GetString("playerName");
         }
         else
         {
             PlayerPrefs.SetString("playerName", "New Player");
-            PlayerName = "New Player";
+            Player.Name = "New Player";
         }
 
         if (PlayerPrefs.HasKey("BestScore"))
         {
-            BestScore = PlayerPrefs.GetInt("BestScore");
+            Player.HighScore = PlayerPrefs.GetInt("BestScore");
             
         }
         else
         {
             PlayerPrefs.SetInt("BestSCore", 0);
-            BestScore = 0;
+            Player.HighScore = 0;
         }
 
         if (PlayerPrefs.HasKey("AcivementScore"))
         {
-            AcivementScore = PlayerPrefs.GetInt("AcivementScore");
+            AchievementScore = PlayerPrefs.GetInt("AcivementScore");
         }
         else
         {
             PlayerPrefs.SetInt("AcivementScore", 0);
-            AcivementScore = 0;
+            AchievementScore = 0;
         }
 
         if (PlayerPrefs.HasKey("weapon1.WeaponID"))
@@ -126,7 +136,7 @@ public class DataHandler : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("weapon1.WeaponStatus"))
         {
-            weapon1.WeaponStatus = PlayerPrefs.GetFloat("weapon1.WeaponStatus");
+            weapon1.WeaponStatus = PlayerPrefs.GetInt("weapon1.WeaponStatus");
         }
         else
         {
@@ -135,7 +145,7 @@ public class DataHandler : MonoBehaviour
         }
         if(PlayerPrefs.HasKey("weapon1.WeaponCost"))
         {
-            weapon1.WeaponCost = PlayerPrefs.GetFloat("weapon1.WeaponCost");
+            weapon1.WeaponCost = PlayerPrefs.GetInt("weapon1.WeaponCost");
         }
         else
         {
@@ -144,7 +154,7 @@ public class DataHandler : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("weapon1.WeaponDamage"))
         {
-            weapon1.WeaponDamage = PlayerPrefs.GetFloat("weapon1.WeaponDamage");
+            weapon1.WeaponDamage = PlayerPrefs.GetInt("weapon1.WeaponDamage");
         }
         else
         {
@@ -162,7 +172,7 @@ public class DataHandler : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("weapon2.WeaponStatus"))
         {
-            weapon2.WeaponStatus = PlayerPrefs.GetFloat("weapon2.WeaponStatus");
+            weapon2.WeaponStatus = PlayerPrefs.GetInt("weapon2.WeaponStatus");
         }
         else
         {
@@ -171,7 +181,7 @@ public class DataHandler : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("weapon2.WeaponCost"))
         {
-            weapon2.WeaponCost = PlayerPrefs.GetFloat("weapon2.WeaponCost");
+            weapon2.WeaponCost = PlayerPrefs.GetInt("weapon2.WeaponCost");
         }
         else
         {
@@ -180,7 +190,7 @@ public class DataHandler : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("weapon2.WeaponDamage"))
         {
-            weapon2.WeaponDamage = PlayerPrefs.GetFloat("weapon2.WeaponDamage");
+            weapon2.WeaponDamage = PlayerPrefs.GetInt("weapon2.WeaponDamage");
         }
         else
         {
@@ -199,7 +209,7 @@ public class DataHandler : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("weapon3.WeaponStatus"))
         {
-            weapon3.WeaponStatus = PlayerPrefs.GetFloat("weapon3.WeaponStatus");
+            weapon3.WeaponStatus = PlayerPrefs.GetInt("weapon3.WeaponStatus");
         }
         else
         {
@@ -208,7 +218,7 @@ public class DataHandler : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("weapon3.WeaponCost"))
         {
-            weapon3.WeaponCost = PlayerPrefs.GetFloat("weapon3.WeaponCost");
+            weapon3.WeaponCost = PlayerPrefs.GetInt("weapon3.WeaponCost");
         }
         else
         {
@@ -217,7 +227,7 @@ public class DataHandler : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("weapon3.WeaponDamage"))
         {
-            weapon3.WeaponDamage = PlayerPrefs.GetFloat("weapon3.WeaponDamage");
+            weapon3.WeaponDamage = PlayerPrefs.GetInt("weapon3.WeaponDamage");
         }
         else
         {
@@ -250,14 +260,30 @@ public class DataHandler : MonoBehaviour
         //No Of waves Unlocked
         if (PlayerPrefs.HasKey("WaveNo"))
         {
-            WaveNo = PlayerPrefs.GetInt("WaveNo");
+            Wave.WaveNumber = PlayerPrefs.GetInt("WaveNo");
         }
         else
         {
-            PlayerPrefs.SetInt("WaveNo", WaveNo);
-            WaveNo = 1;
+            Wave.WaveNumber = 1;
+            PlayerPrefs.SetInt("WaveNo", Wave.WaveNumber);
+            
         }
-
+        if (PlayerPrefs.HasKey(MaxWaveReachedRef))
+        {
+            Player.MaxWaveReached = PlayerPrefs.GetInt(MaxWaveReachedRef);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(MaxWaveReachedRef, Player.MaxWaveReached);
+        }
+        if(PlayerPrefs.HasKey(HighestWaveStreakRef))
+        {
+            Player.HighestWaveStreak = PlayerPrefs.GetInt(HighestWaveStreakRef);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(HighestWaveStreakRef, Player.HighestWaveStreak);
+        }
 
         //Saving 
         PlayerPrefs.Save();
@@ -266,8 +292,13 @@ public class DataHandler : MonoBehaviour
     public void ResetPlayerPtrefData()
     {
         inGameCoins = 0;
-        AcivementScore = 0;
-        SavePlayerPrefsData();
+        AchievementScore = 0;
+        Player.MaxWaveReached = 0;
+        Player.HighestWaveStreak = 0;
+        playerCoins = 0;
+        PlayerName = "";
+        PlayerPrefs.DeleteAll();
+        initializeData();
 
     }
     public void SavePlayerPrefsData()
@@ -277,71 +308,79 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetString("playerName", PlayerName);
         PlayerPrefs.SetInt("bgVolume", BG_Volume);
         PlayerPrefs.SetInt("sfxVolume", SFX_Volume);
-        PlayerPrefs.SetInt("WaveNo", WaveNo);
-        PlayerPrefs.SetInt("AcivementScore", AcivementScore);
+        PlayerPrefs.SetInt("WaveNo", Wave.WaveNumber);
+        PlayerPrefs.SetInt("AcivementScore", AchievementScore);
         PlayerPrefs.SetInt("BestScore", BestScore);
 
         PlayerPrefs.SetInt("weapon1.WeaponID", weapon1.WeaponID);
-        PlayerPrefs.SetFloat("weapon1.WeaponStatus", weapon1.WeaponStatus);
-        PlayerPrefs.SetFloat("weapon1.WeaponCost", weapon1.WeaponCost);
-        PlayerPrefs.SetFloat("weapon1.WeaponDamage", weapon1.WeaponDamage);
+        PlayerPrefs.SetInt("weapon1.WeaponStatus", weapon1.WeaponStatus);
+        PlayerPrefs.SetInt("weapon1.WeaponCost", weapon1.WeaponCost);
+        PlayerPrefs.SetInt("weapon1.WeaponDamage", weapon1.WeaponDamage);
 
         PlayerPrefs.SetInt("weapon2.WeaponID", weapon2.WeaponID);
-        PlayerPrefs.SetFloat("weapon2.WeaponStatus", weapon2.WeaponStatus);
-        PlayerPrefs.SetFloat("weapon2.WeaponCost", weapon2.WeaponCost);
-        PlayerPrefs.SetFloat("weapon2.WeaponDamage", weapon2.WeaponDamage);
+        PlayerPrefs.SetInt("weapon2.WeaponStatus", weapon2.WeaponStatus);
+        PlayerPrefs.SetInt("weapon2.WeaponCost", weapon2.WeaponCost);
+        PlayerPrefs.SetInt("weapon2.WeaponDamage", weapon2.WeaponDamage);
 
         PlayerPrefs.SetInt("weapon3.WeaponID", weapon3.WeaponID);
-        PlayerPrefs.SetFloat("weapon3.WeaponStatus", weapon3.WeaponStatus);
-        PlayerPrefs.SetFloat("weapon3.WeaponCost", weapon3.WeaponCost);
-        PlayerPrefs.SetFloat("weapon3.WeaponDamage", weapon3.WeaponDamage);
+        PlayerPrefs.SetInt("weapon3.WeaponStatus", weapon3.WeaponStatus);
+        PlayerPrefs.SetInt("weapon3.WeaponCost", weapon3.WeaponCost);
+        PlayerPrefs.SetInt("weapon3.WeaponDamage", weapon3.WeaponDamage);
 
         PlayerPrefs.Save();
     }
     #region Getters
     public int GetPlayerCoins()
     {
-        return playerCoins;
+        return Player.Coins;
     }
     public string GetPlayerCoinsstr()
     {
-        return playerCoins.ToString();
+        return Player.Coins.ToString();
     }
 
     public string GetPlayerName()
     {
-        return PlayerName;
+        return Player.Name;
     }
 
     public int  GetWaveNumber()
     {
-        return WaveNo;
+        return Wave.WaveNumber;
+    }
+    public int GetMaxWaveReached()
+    {
+        return Player.MaxWaveReached;
+    }
+    public int GetHighestWaveStreak()
+    {
+        return Player.HighestWaveStreak;
     }
     public int GetBestScore()
     {
-        return BestScore;
+        return Player.HighScore;
     }
     public string GetBestScoreStr()
     {
-        return BestScore.ToString();
+        return Player.HighScore.ToString();
     }
     public int GetAcivementScore()
     {
-        return AcivementScore;
+        return AchievementScore;
     }
     public int GetWeapon1ID()
     {
         return weapon1.WeaponID;
     }
-    public float GetWeapon1Status()
+    public int GetWeapon1Status()
     {
         return weapon1.WeaponStatus;
     }
-    public float GetWeapon1Cost()
+    public int GetWeapon1Cost()
     {
         return weapon1.WeaponCost;
     }
-    public float GetWeapon1Damage()
+    public int GetWeapon1Damage()
     {
         return weapon1.WeaponDamage;
     }
@@ -350,15 +389,15 @@ public class DataHandler : MonoBehaviour
     {
         return weapon2.WeaponID;
     }
-    public float GetWeapon2Status()
+    public int GetWeapon2Status()
     {
         return weapon2.WeaponStatus;
     }
-    public float GetWeapon2Cost()
+    public int GetWeapon2Cost()
     {
         return weapon2.WeaponCost;
     }
-    public float GetWeapon2Damage()
+    public int GetWeapon2Damage()
     {
         return weapon2.WeaponDamage;
     }
@@ -366,15 +405,15 @@ public class DataHandler : MonoBehaviour
     {
         return weapon3.WeaponID;
     }
-    public float GetWeapon3Status()
+    public int GetWeapon3Status()
     {
         return weapon3.WeaponStatus;
     }
-    public float GetWeapon3Cost()
+    public int GetWeapon3Cost()
     {
         return weapon3.WeaponCost;
     }
-    public float GetWeapon3Damage()
+    public int GetWeapon3Damage()
     {
         return weapon3.WeaponDamage;
     }
@@ -383,29 +422,49 @@ public class DataHandler : MonoBehaviour
     public void SetPlayerCoins(int _PlayerCoins)
     {
         playerCoins = _PlayerCoins;
-        SavePlayerPrefsData();
+        PlayerPrefs.SetInt("playerCoins", playerCoins);
+        PlayerPrefs.Save();
     }
-
+    public void SetInGameCoins(int _InGameCoins)
+    {
+        inGameCoins = _InGameCoins;
+    }
     public void SetPlayerName(string _PlayerName)
     {
-        PlayerName = _PlayerName;
-        SavePlayerPrefsData();
+        Player.Name = _PlayerName;
+        PlayerPrefs.SetString("playerName", _PlayerName);
+
+        PlayerPrefs.Save();
     }
 
     public void SetWaveNumber(int _WaveNo)
     {   
-        WaveNo = _WaveNo;
-        SavePlayerPrefsData();
+        Wave.WaveNumber = _WaveNo;
+        
+    }
+    public void SetMaxWaveReached(int _WaveNumber)
+    {
+        Player.MaxWaveReached = _WaveNumber;
+        PlayerPrefs.SetInt(MaxWaveReachedRef, _WaveNumber);
+        PlayerPrefs.Save();
+    }
+    public void SetHighestWaveStreak(int _Waves)
+    {
+        Player.HighestWaveStreak = _Waves;
+        PlayerPrefs.SetInt(HighestWaveStreakRef, _Waves);
+        PlayerPrefs.Save();
     }
     public void SetBestScore(int _BestScore)
     {
-        BestScore = _BestScore;
-        SavePlayerPrefsData();
+        Player.HighScore = _BestScore;
+        PlayerPrefs.SetInt("BestScore", _BestScore);
+        PlayerPrefs.Save();
     }
-    public void SetAcivementScore(int _AchivementScore)
+    public void SetAcivementScore(int _AchievementScore)
     {
-        AcivementScore = _AchivementScore;
-        SavePlayerPrefsData();
+        AchievementScore = _AchievementScore;
+        PlayerPrefs.SetInt("AcivementScore", _AchievementScore);
+        PlayerPrefs.Save();
     }
 
 
@@ -415,17 +474,17 @@ public class DataHandler : MonoBehaviour
         weapon1.WeaponID = _weaponID;
         SavePlayerPrefsData();
     }
-    public void SetWeapon1Status(float _weaponStatus)
+    public void SetWeapon1Status(int _weaponStatus)
     {
         weapon1.WeaponStatus = _weaponStatus;
         SavePlayerPrefsData();
     }
-    public void SetWeapon1Cost(float _weaponCost)
+    public void SetWeapon1Cost(int _weaponCost)
     {
         weapon1.WeaponCost = _weaponCost;
         SavePlayerPrefsData();
     }
-    public void SetWeapon1Damage(float _weaponDamage)
+    public void SetWeapon1Damage(int _weaponDamage)
     {
         weapon1.WeaponDamage = _weaponDamage;
         SavePlayerPrefsData();
@@ -436,40 +495,38 @@ public class DataHandler : MonoBehaviour
         weapon2.WeaponID = _weaponID;
         SavePlayerPrefsData();
     }
-    public void SetWeapon2Status(float _weaponStatus)
+    public void SetWeapon2Status(int _weaponStatus)
     {
         weapon2.WeaponStatus = _weaponStatus;
         SavePlayerPrefsData();
     }
-    public void SetWeapon2Cost(float _weaponCost)
+    public void SetWeapon2Cost(int _weaponCost)
     {
         weapon2.WeaponCost = _weaponCost;
         SavePlayerPrefsData();
     }
-    public void SetWeapon2Damage(float _weaponDamage)
+    public void SetWeapon2Damage(int _weaponDamage)
     {
         weapon2.WeaponDamage = _weaponDamage;
         SavePlayerPrefsData();
     }
-
-
 
     public void SetWeapon3ID(int _weaponID)
     {
         weapon3.WeaponID = _weaponID;
         SavePlayerPrefsData();
     }
-    public void SetWeapon3Status(float _weaponStatus)
+    public void SetWeapon3Status(int _weaponStatus)
     {
         weapon3.WeaponStatus = _weaponStatus;
         SavePlayerPrefsData();
     }
-    public void SetWeapon3Cost(float _weaponCost)
+    public void SetWeapon3Cost(int _weaponCost)
     {
         weapon3.WeaponCost = _weaponCost;
         SavePlayerPrefsData();
     }
-    public void SetWeapon3Damage(float _weaponDamage)
+    public void SetWeapon3Damage(int _weaponDamage)
     {
         weapon3.WeaponDamage = _weaponDamage;
         SavePlayerPrefsData();
