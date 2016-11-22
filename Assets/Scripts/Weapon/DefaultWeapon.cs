@@ -13,7 +13,7 @@ public class DefaultWeapon : MonoBehaviour
     [HideInInspector]
     public ObjectPool bulletPool;
     protected GameObject currentbulletObj;
-    float EllapsedTime = 0;
+    protected float EllapsedTime = 0;
     public float _DefaultFireRate = 2;
     [HideInInspector]
     public float FireRate;
