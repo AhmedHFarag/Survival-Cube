@@ -9,12 +9,11 @@ public class Player_Controller : MonoBehaviour
     public LayerMask Plane;
 
     public Transform WeaponPos;
-    public GameObject[] Weapons;
-    public GameObject WaveClear;
     [HideInInspector]
-    public DefaultWeapon BasicWeapon;
+    DefaultWeapon BasicWeapon;
     GameObject m_BaiscWeapon;
-    bool Upgraded = false;
+    [HideInInspector]
+    public bool TempInUse = false;
 
     public int HitPoints = 100;
     public float DamageMultiplier = 1;
@@ -59,7 +58,7 @@ public class Player_Controller : MonoBehaviour
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
         InputManager.attack += Fire;
-        m_BaiscWeapon = Instantiate(Weapons[0]);
+        m_BaiscWeapon = Instantiate(GameManager.Instance.Weapons[0]);
         m_BaiscWeapon.transform.rotation = transform.rotation;
         m_BaiscWeapon.transform.position = WeaponPos.position;
         m_BaiscWeapon.transform.parent = transform;
@@ -165,30 +164,17 @@ public class Player_Controller : MonoBehaviour
     }
     public void ActiveTempWeapon(int index)
     {
-        if (!Upgraded)
+        if (!TempInUse)
         {
-            if(DataHandler.Instance.inGameCoins >= Weapons[index].GetComponent<TempWeapon>().Cost)
+            if(DataHandler.Instance.inGameCoins >=GameManager.Instance.TempWeapons[index].GetComponent<TempWeapon>().Cost)
             {
-                DataHandler.Instance.inGameCoins -= Weapons[index].GetComponent<TempWeapon>().Cost;
-                m_BaiscWeapon.SetActive(false);
+                DataHandler.Instance.inGameCoins -= GameManager.Instance.TempWeapons[index].GetComponent<TempWeapon>().Cost;
+                //m_BaiscWeapon.SetActive(false);
                 
-                GameObject obj = Instantiate(Weapons[index]);
-                obj.transform.rotation = transform.rotation;
-                obj.transform.position = WeaponPos.position;
-                obj.transform.parent = transform;
-                obj.SetActive(true);
-                //BasicWeapon = obj.GetComponent<DefaultWeapon>();
-                StartCoroutine(NewWeapon(obj));
-                Upgraded = true;
+                GameObject obj = Instantiate(GameManager.Instance.TempWeapons[index]);
+                obj.GetComponent<TempWeapon>().SelfInitialize(gameObject);
+                TempInUse = true;
             }
-        }
-    }
-    public void ActivateWaveClear()
-    {
-        if (DataHandler.Instance.inGameCoins >= WaveClear.GetComponent<WaveClear>().Cost)
-        {
-            DataHandler.Instance.inGameCoins -= WaveClear.GetComponent<WaveClear>().Cost;
-            GameObject.Instantiate(WaveClear, transform.position, WaveClear.transform.rotation);
         }
     }
     public void UpgradeBuffs(UpgradeBuffs _Data)
@@ -285,15 +271,6 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(5);
         ReversedControls = false;
 
-    }
-    IEnumerator NewWeapon(GameObject _obj)
-    {
-        yield return new WaitForSeconds(5);
-        //Destroy(BasicWeapon.gameObject);
-        m_BaiscWeapon.SetActive(true);
-        Destroy(_obj);
-        //BasicWeapon = BaiscWeapon.GetComponent<DefaultWeapon>();
-        Upgraded = false;
     }
     IEnumerator DeBuff()
     {

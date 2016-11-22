@@ -10,4 +10,9 @@ public class WaveClear : TempWeapon
             other.GetComponent<Enemy>().TakeDamage(Damage);
         }
     }
+    public override void SelfInitialize(GameObject _obj)
+    {
+        transform.position = _obj.transform.position;
+        gameObject.SetActive(true);
+    }
 }

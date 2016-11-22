@@ -66,7 +66,7 @@ public class LaserBehaviourScript : MonoBehaviour
         while (i < hit.Length)
         {
             //Check to make sure we aren't hitting triggers but colliders
-            if (!hit[i].collider.isTrigger)
+            if (!hit[i].collider.isTrigger && hit[i].collider.tag != "Bullet")
             {
                 length = (int)Mathf.Round(hit[i].distance * 2) + 2;
                 positions = new Vector3[length];

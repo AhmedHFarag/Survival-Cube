@@ -6,16 +6,17 @@ public class BulletBehavior : MonoBehaviour
     public int Damage;
     public float Speed = 2;
     public Rigidbody MyRigid;
-    private TrailRenderer tr;
-
+    //private TrailRenderer tr;
+    public AudioClip sound;
+    protected float soundVolume = 1.0f;
     [SerializeField]
-    private float timeForSelfDestory = 1;
+    public float timeForSelfDestory = 1;
 
     // Use this for initialization
     void OnEnable()
     {
-        tr = GetComponent<TrailRenderer>();
-        tr.Clear();
+        //tr = GetComponent<TrailRenderer>();
+        //tr.Clear();
         StartCoroutine(SelfDestory());
     }
     void Start()
