@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 
 public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public int WeaponID;
     public static GameObject itemBeingDragged;
     Vector3 startPosition;
     Transform startParent;

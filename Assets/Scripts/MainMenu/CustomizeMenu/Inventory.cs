@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour, IHasChanged
 {
     [SerializeField]
-    Transform slots;
+    protected Transform slots;
     [SerializeField]
     Text inventoryText;
 
@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour, IHasChanged
     }
 
     #region IHasChanged implementation
-    public void HasChanged()
+    virtual public void HasChanged()
     {
         System.Text.StringBuilder builder = new System.Text.StringBuilder();
         builder.Append(" - ");

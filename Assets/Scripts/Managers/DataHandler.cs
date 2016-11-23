@@ -5,12 +5,19 @@ using System.Collections.Generic;
 public class DataHandler : MonoBehaviour
 {
 
-    struct WeaponsData
+    struct TempWeaponsData
     {
       public int WeaponID;
       public int WeaponStatus;
       public int WeaponCost;
       public int WeaponDamage;
+    }
+    public struct MainWeaponData
+    {
+       public int ID;
+       public int Damage;
+       public int Range;
+       public int FireRate;
     }
     struct WaveData
     {
@@ -29,9 +36,11 @@ public class DataHandler : MonoBehaviour
     WaveData Wave;
     string MaxWaveReachedRef = "MaxWaveReached";
     string HighestWaveStreakRef = "HighestWaveStreak";
-    WeaponsData weapon1;
-    WeaponsData weapon2;
-    WeaponsData weapon3;
+
+    MainWeaponData MainWeapon;
+    TempWeaponsData tempweapon1;
+    TempWeaponsData tempweapon2;
+    TempWeaponsData tempweapon3;
 
     public static DataHandler Instance;
     [HideInInspector]
@@ -59,7 +68,7 @@ public class DataHandler : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
-        else if (Instance != this)
+        else 
         {
             Destroy(gameObject);
         }
@@ -125,114 +134,126 @@ public class DataHandler : MonoBehaviour
             AchievementScore = 0;
         }
 
-        if (PlayerPrefs.HasKey("weapon1.WeaponID"))
+        //Palyer Main Weapon
+        if (PlayerPrefs.HasKey("MainWeapon.ID"))
         {
-            weapon1.WeaponID = PlayerPrefs.GetInt("weapon1.WeaponID");
+            MainWeapon.ID = PlayerPrefs.GetInt("MainWeapon.ID");
+
         }
         else
         {
-            PlayerPrefs.SetInt("weapon1.WeaponID", 1);
-            weapon1.WeaponID = 1;
-        }
-        if (PlayerPrefs.HasKey("weapon1.WeaponStatus"))
-        {
-            weapon1.WeaponStatus = PlayerPrefs.GetInt("weapon1.WeaponStatus");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("weapon1.WeaponStatus", 5);
-            weapon1.WeaponStatus = 5;
-        }
-        if(PlayerPrefs.HasKey("weapon1.WeaponCost"))
-        {
-            weapon1.WeaponCost = PlayerPrefs.GetInt("weapon1.WeaponCost");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("weapon1.WeaponCost", 30);
-            weapon1.WeaponCost = 30;
-        }
-        if (PlayerPrefs.HasKey("weapon1.WeaponDamage"))
-        {
-            weapon1.WeaponDamage = PlayerPrefs.GetInt("weapon1.WeaponDamage");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("weapon1.WeaponDamage", 2);
-            weapon1.WeaponDamage = 2;
-        }
-        if (PlayerPrefs.HasKey("weapon2.WeaponID"))
-        {
-            weapon2.WeaponID = PlayerPrefs.GetInt("weapon2.WeaponID");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("weapon2.WeaponID", 2);
-            weapon2.WeaponID = 2;
-        }
-        if (PlayerPrefs.HasKey("weapon2.WeaponStatus"))
-        {
-            weapon2.WeaponStatus = PlayerPrefs.GetInt("weapon2.WeaponStatus");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("weapon2.WeaponStatus", 5);
-            weapon2.WeaponStatus = 5;
-        }
-        if (PlayerPrefs.HasKey("weapon2.WeaponCost"))
-        {
-            weapon2.WeaponCost = PlayerPrefs.GetInt("weapon2.WeaponCost");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("weapon2.WeaponCost", 30);
-            weapon2.WeaponCost = 30;
-        }
-        if (PlayerPrefs.HasKey("weapon2.WeaponDamage"))
-        {
-            weapon2.WeaponDamage = PlayerPrefs.GetInt("weapon2.WeaponDamage");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("weapon2.WeaponDamage", 3);
-            weapon2.WeaponDamage = 3;
+            PlayerPrefs.SetInt("MainWeapon.ID",0);
+            MainWeapon.ID = 0;
         }
 
-        if (PlayerPrefs.HasKey("weapon3.WeaponID"))
+        if (PlayerPrefs.HasKey("tempweapon1.WeaponID"))
         {
-            weapon3.WeaponID = PlayerPrefs.GetInt("weapon3.WeaponID");
+            tempweapon1.WeaponID = PlayerPrefs.GetInt("tempweapon1.WeaponID");
         }
         else
         {
-            PlayerPrefs.SetInt("weapon3.WeaponID", 3);
-            weapon3.WeaponID = 3;
+            PlayerPrefs.SetInt("tempweapon1.WeaponID", 1);
+            tempweapon1.WeaponID = 1;
         }
-        if (PlayerPrefs.HasKey("weapon3.WeaponStatus"))
+        if (PlayerPrefs.HasKey("tempweapon1.WeaponStatus"))
         {
-            weapon3.WeaponStatus = PlayerPrefs.GetInt("weapon3.WeaponStatus");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("weapon3.WeaponStatus", 5);    
-            weapon3.WeaponStatus = 5;
-        }
-        if (PlayerPrefs.HasKey("weapon3.WeaponCost"))
-        {
-            weapon3.WeaponCost = PlayerPrefs.GetInt("weapon3.WeaponCost");
+            tempweapon1.WeaponStatus = PlayerPrefs.GetInt("tempweapon1.WeaponStatus");
         }
         else
         {
-            PlayerPrefs.SetFloat("weapon3.WeaponCost", 30);
-            weapon3.WeaponCost = 30;
+            PlayerPrefs.SetFloat("tempweapon1.WeaponStatus", 5);
+            tempweapon1.WeaponStatus = 5;
         }
-        if (PlayerPrefs.HasKey("weapon3.WeaponDamage"))
+        if(PlayerPrefs.HasKey("tempweapon1.WeaponCost"))
         {
-            weapon3.WeaponDamage = PlayerPrefs.GetInt("weapon3.WeaponDamage");
+            tempweapon1.WeaponCost = PlayerPrefs.GetInt("tempweapon1.WeaponCost");
         }
         else
         {
-            PlayerPrefs.SetFloat("weapon3.WeaponDamage", 4);
-            weapon1.WeaponDamage = 4;
+            PlayerPrefs.SetFloat("tempweapon1.WeaponCost", 30);
+            tempweapon1.WeaponCost = 30;
+        }
+        if (PlayerPrefs.HasKey("tempweapon1.WeaponDamage"))
+        {
+            tempweapon1.WeaponDamage = PlayerPrefs.GetInt("tempweapon1.WeaponDamage");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("tempweapon1.WeaponDamage", 2);
+            tempweapon1.WeaponDamage = 2;
+        }
+        if (PlayerPrefs.HasKey("tempweapon2.WeaponID"))
+        {
+            tempweapon2.WeaponID = PlayerPrefs.GetInt("tempweapon2.WeaponID");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("tempweapon2.WeaponID", 2);
+            tempweapon2.WeaponID = 2;
+        }
+        if (PlayerPrefs.HasKey("tempweapon2.WeaponStatus"))
+        {
+            tempweapon2.WeaponStatus = PlayerPrefs.GetInt("tempweapon2.WeaponStatus");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("tempweapon2.WeaponStatus", 5);
+            tempweapon2.WeaponStatus = 5;
+        }
+        if (PlayerPrefs.HasKey("tempweapon2.WeaponCost"))
+        {
+            tempweapon2.WeaponCost = PlayerPrefs.GetInt("tempweapon2.WeaponCost");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("tempweapon2.WeaponCost", 30);
+            tempweapon2.WeaponCost = 30;
+        }
+        if (PlayerPrefs.HasKey("tempweapon2.WeaponDamage"))
+        {
+            tempweapon2.WeaponDamage = PlayerPrefs.GetInt("tempweapon2.WeaponDamage");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("tempweapon2.WeaponDamage", 3);
+            tempweapon2.WeaponDamage = 3;
+        }
+
+        if (PlayerPrefs.HasKey("tempweapon3.WeaponID"))
+        {
+            tempweapon3.WeaponID = PlayerPrefs.GetInt("tempweapon3.WeaponID");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("tempweapon3.WeaponID", 3);
+            tempweapon3.WeaponID = 3;
+        }
+        if (PlayerPrefs.HasKey("tempweapon3.WeaponStatus"))
+        {
+            tempweapon3.WeaponStatus = PlayerPrefs.GetInt("tempweapon3.WeaponStatus");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("tempweapon3.WeaponStatus", 5);    
+            tempweapon3.WeaponStatus = 5;
+        }
+        if (PlayerPrefs.HasKey("tempweapon3.WeaponCost"))
+        {
+            tempweapon3.WeaponCost = PlayerPrefs.GetInt("tempweapon3.WeaponCost");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("tempweapon3.WeaponCost", 30);
+            tempweapon3.WeaponCost = 30;
+        }
+        if (PlayerPrefs.HasKey("tempweapon3.WeaponDamage"))
+        {
+            tempweapon3.WeaponDamage = PlayerPrefs.GetInt("tempweapon3.WeaponDamage");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("tempweapon3.WeaponDamage", 4);
+            tempweapon1.WeaponDamage = 4;
         }
         //Master Volume
         if (PlayerPrefs.HasKey("bgVolume"))
@@ -292,13 +313,13 @@ public class DataHandler : MonoBehaviour
     public void ResetPlayerPtrefData()
     {
         inGameCoins = 0;
-        AchievementScore = 0;
-        Player.MaxWaveReached = 0;
-        Player.HighestWaveStreak = 0;
-        playerCoins = 0;
-        PlayerName = "";
-        PlayerPrefs.DeleteAll();
-        initializeData();
+        //AchievementScore = 0;
+        //Player.MaxWaveReached = 0;
+        //Player.HighestWaveStreak = 0;
+        //playerCoins = 0;
+        //PlayerName = "";
+        //PlayerPrefs.DeleteAll();
+        //initializeData();
 
     }
     public void SavePlayerPrefsData()
@@ -312,20 +333,22 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetInt("AcivementScore", AchievementScore);
         PlayerPrefs.SetInt("BestScore", BestScore);
 
-        PlayerPrefs.SetInt("weapon1.WeaponID", weapon1.WeaponID);
-        PlayerPrefs.SetInt("weapon1.WeaponStatus", weapon1.WeaponStatus);
-        PlayerPrefs.SetInt("weapon1.WeaponCost", weapon1.WeaponCost);
-        PlayerPrefs.SetInt("weapon1.WeaponDamage", weapon1.WeaponDamage);
+        PlayerPrefs.SetInt("MainWeapon.ID", MainWeapon.ID);
 
-        PlayerPrefs.SetInt("weapon2.WeaponID", weapon2.WeaponID);
-        PlayerPrefs.SetInt("weapon2.WeaponStatus", weapon2.WeaponStatus);
-        PlayerPrefs.SetInt("weapon2.WeaponCost", weapon2.WeaponCost);
-        PlayerPrefs.SetInt("weapon2.WeaponDamage", weapon2.WeaponDamage);
+        PlayerPrefs.SetInt("weapon1.WeaponID", tempweapon1.WeaponID);
+        PlayerPrefs.SetInt("weapon1.WeaponStatus", tempweapon1.WeaponStatus);
+        PlayerPrefs.SetInt("weapon1.WeaponCost", tempweapon1.WeaponCost);
+        PlayerPrefs.SetInt("weapon1.WeaponDamage", tempweapon1.WeaponDamage);
 
-        PlayerPrefs.SetInt("weapon3.WeaponID", weapon3.WeaponID);
-        PlayerPrefs.SetInt("weapon3.WeaponStatus", weapon3.WeaponStatus);
-        PlayerPrefs.SetInt("weapon3.WeaponCost", weapon3.WeaponCost);
-        PlayerPrefs.SetInt("weapon3.WeaponDamage", weapon3.WeaponDamage);
+        PlayerPrefs.SetInt("weapon2.WeaponID", tempweapon2.WeaponID);
+        PlayerPrefs.SetInt("weapon2.WeaponStatus", tempweapon2.WeaponStatus);
+        PlayerPrefs.SetInt("weapon2.WeaponCost", tempweapon2.WeaponCost);
+        PlayerPrefs.SetInt("weapon2.WeaponDamage", tempweapon2.WeaponDamage);
+
+        PlayerPrefs.SetInt("weapon3.WeaponID", tempweapon3.WeaponID);
+        PlayerPrefs.SetInt("weapon3.WeaponStatus", tempweapon3.WeaponStatus);
+        PlayerPrefs.SetInt("weapon3.WeaponCost", tempweapon3.WeaponCost);
+        PlayerPrefs.SetInt("weapon3.WeaponDamage", tempweapon3.WeaponDamage);
 
         PlayerPrefs.Save();
     }
@@ -368,54 +391,58 @@ public class DataHandler : MonoBehaviour
     {
         return AchievementScore;
     }
-    public int GetWeapon1ID()
+    public int GetMainWeaponID()
     {
-        return weapon1.WeaponID;
+        return MainWeapon.ID;
     }
-    public int GetWeapon1Status()
+    public int GetTempWeapon1ID()
     {
-        return weapon1.WeaponStatus;
+        return tempweapon1.WeaponID;
     }
-    public int GetWeapon1Cost()
+    public int GetTempWeapon1Status()
     {
-        return weapon1.WeaponCost;
+        return tempweapon1.WeaponStatus;
     }
-    public int GetWeapon1Damage()
+    public int GetTempWeapon1Cost()
     {
-        return weapon1.WeaponDamage;
+        return tempweapon1.WeaponCost;
+    }
+    public int GetTempWeapon1Damage()
+    {
+        return tempweapon1.WeaponDamage;
     }
 
-    public int GetWeapon2ID()
+    public int GetTempWeapon2ID()
     {
-        return weapon2.WeaponID;
+        return tempweapon2.WeaponID;
     }
-    public int GetWeapon2Status()
+    public int GetTempWeapon2Status()
     {
-        return weapon2.WeaponStatus;
+        return tempweapon2.WeaponStatus;
     }
-    public int GetWeapon2Cost()
+    public int GetTempWeapon2Cost()
     {
-        return weapon2.WeaponCost;
+        return tempweapon2.WeaponCost;
     }
-    public int GetWeapon2Damage()
+    public int GetTempWeapon2Damage()
     {
-        return weapon2.WeaponDamage;
+        return tempweapon2.WeaponDamage;
     }
-    public int GetWeapon3ID()
+    public int GetTempWeapon3ID()
     {
-        return weapon3.WeaponID;
+        return tempweapon3.WeaponID;
     }
-    public int GetWeapon3Status()
+    public int GetTempWeapon3Status()
     {
-        return weapon3.WeaponStatus;
+        return tempweapon3.WeaponStatus;
     }
-    public int GetWeapon3Cost()
+    public int GetTempWeapon3Cost()
     {
-        return weapon3.WeaponCost;
+        return tempweapon3.WeaponCost;
     }
-    public int GetWeapon3Damage()
+    public int GetTempWeapon3Damage()
     {
-        return weapon3.WeaponDamage;
+        return tempweapon3.WeaponDamage;
     }
     #endregion
     #region Setters
@@ -467,68 +494,72 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-
-
-    public void SetWeapon1ID(int _weaponID)
+    public void SteMainWeaponID(int _weaponID)
     {
-        weapon1.WeaponID = _weaponID;
-        SavePlayerPrefsData();
-    }
-    public void SetWeapon1Status(int _weaponStatus)
-    {
-        weapon1.WeaponStatus = _weaponStatus;
-        SavePlayerPrefsData();
-    }
-    public void SetWeapon1Cost(int _weaponCost)
-    {
-        weapon1.WeaponCost = _weaponCost;
-        SavePlayerPrefsData();
-    }
-    public void SetWeapon1Damage(int _weaponDamage)
-    {
-        weapon1.WeaponDamage = _weaponDamage;
+        MainWeapon.ID = _weaponID;
         SavePlayerPrefsData();
     }
 
-    public void SetWeapon2ID(int _weaponID)
+    public void SetTempWeapon1ID(int _weaponID)
     {
-        weapon2.WeaponID = _weaponID;
+        tempweapon1.WeaponID = _weaponID;
         SavePlayerPrefsData();
     }
-    public void SetWeapon2Status(int _weaponStatus)
+    public void SetTempWeapon1Status(int _weaponStatus)
     {
-        weapon2.WeaponStatus = _weaponStatus;
+        tempweapon1.WeaponStatus = _weaponStatus;
         SavePlayerPrefsData();
     }
-    public void SetWeapon2Cost(int _weaponCost)
+    public void SeTemptWeapon1Cost(int _weaponCost)
     {
-        weapon2.WeaponCost = _weaponCost;
+        tempweapon1.WeaponCost = _weaponCost;
         SavePlayerPrefsData();
     }
-    public void SetWeapon2Damage(int _weaponDamage)
+    public void SetTempWeapon1Damage(int _weaponDamage)
     {
-        weapon2.WeaponDamage = _weaponDamage;
+        tempweapon1.WeaponDamage = _weaponDamage;
         SavePlayerPrefsData();
     }
 
-    public void SetWeapon3ID(int _weaponID)
+    public void SetTempWeapon2ID(int _weaponID)
     {
-        weapon3.WeaponID = _weaponID;
+        tempweapon2.WeaponID = _weaponID;
         SavePlayerPrefsData();
     }
-    public void SetWeapon3Status(int _weaponStatus)
+    public void SetTempWeapon2Status(int _weaponStatus)
     {
-        weapon3.WeaponStatus = _weaponStatus;
+        tempweapon2.WeaponStatus = _weaponStatus;
         SavePlayerPrefsData();
     }
-    public void SetWeapon3Cost(int _weaponCost)
+    public void SetTempWeapon2Cost(int _weaponCost)
     {
-        weapon3.WeaponCost = _weaponCost;
+        tempweapon2.WeaponCost = _weaponCost;
         SavePlayerPrefsData();
     }
-    public void SetWeapon3Damage(int _weaponDamage)
+    public void SetTempWeapon2Damage(int _weaponDamage)
     {
-        weapon3.WeaponDamage = _weaponDamage;
+        tempweapon2.WeaponDamage = _weaponDamage;
+        SavePlayerPrefsData();
+    }
+
+    public void SetTempWeapon3ID(int _weaponID)
+    {
+        tempweapon3.WeaponID = _weaponID;
+        SavePlayerPrefsData();
+    }
+    public void SetTempWeapon3Status(int _weaponStatus)
+    {
+        tempweapon3.WeaponStatus = _weaponStatus;
+        SavePlayerPrefsData();
+    }
+    public void SetTempWeapon3Cost(int _weaponCost)
+    {
+        tempweapon3.WeaponCost = _weaponCost;
+        SavePlayerPrefsData();
+    }
+    public void SetTempWeapon3Damage(int _weaponDamage)
+    {
+        tempweapon3.WeaponDamage = _weaponDamage;
         SavePlayerPrefsData();
     }
 

@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Items=new List<GameObject>();
     public List<GameObject> Weapons = new List<GameObject>();
     public List<GameObject> TempWeapons = new List<GameObject>();
+
     [HideInInspector]
     public GameStates currentGameStates;
 
@@ -68,6 +69,10 @@ public class GameManager : MonoBehaviour
     {
         var handler = NewWave;
         if (handler != null) handler();
+    }
+    public GameObject GetMainWeapon()
+    {
+        return Weapons[DataHandler.Instance.GetMainWeaponID()];
     }
     public void SwitchGameStates()
     {
