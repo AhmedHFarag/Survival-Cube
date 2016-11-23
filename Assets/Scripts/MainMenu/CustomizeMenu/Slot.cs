@@ -4,6 +4,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class Slot : MonoBehaviour, IDropHandler
 {
+    Inventory MyInventory;
+    void OnEnable()
+    {
+        MyInventory = GetComponentInParent<Inventory>();
+    }
     public GameObject item
     {
         get
@@ -19,7 +24,7 @@ public class Slot : MonoBehaviour, IDropHandler
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item)
+        if (!item && DragHandeler.itemBeingDragged.GetComponent<DragHandeler>().MyInventory==MyInventory)
         {
             DragHandeler.itemBeingDragged.transform.SetParent(transform);
             GetComponent<Image>().sprite = null;

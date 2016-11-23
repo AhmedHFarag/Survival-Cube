@@ -7,7 +7,12 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public static GameObject itemBeingDragged;
     Vector3 startPosition;
     Transform startParent;
-
+    [HideInInspector]
+    public Inventory MyInventory;
+    void OnEnable()
+    {
+        MyInventory = GetComponentInParent<Inventory>();
+    }
     #region IBeginDragHandler implementation
 
     public void OnBeginDrag(PointerEventData eventData)

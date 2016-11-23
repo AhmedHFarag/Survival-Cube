@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour, IHasChanged
                 builder.Append(" - ");
             }
         }
+        if(inventoryText)
         inventoryText.text = builder.ToString();
     }
     #endregion
