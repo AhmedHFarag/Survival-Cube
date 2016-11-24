@@ -162,16 +162,16 @@ public class Player_Controller : MonoBehaviour
             BasicWeapon.Fire();
         }
     }
-    public void ActiveTempWeapon(int index)
+    public void ActiveTempWeapon(int index)//Button Index
     {
         if (!TempInUse)
         {
-            if(DataHandler.Instance.inGameCoins >=GameManager.Instance.TempWeapons[index].GetComponent<TempWeapon>().Cost)
+            TempWeapon weap = GameManager.Instance.TempWeapons[DataHandler.Instance.GetTempWeapon(index)].GetComponent<TempWeapon>();
+            if (DataHandler.Instance.inGameCoins >= weap.Cost)
             {
-                DataHandler.Instance.inGameCoins -= GameManager.Instance.TempWeapons[index].GetComponent<TempWeapon>().Cost;
+                DataHandler.Instance.inGameCoins -= weap.Cost;
                 //m_BaiscWeapon.SetActive(false);
-                
-                GameObject obj = Instantiate(GameManager.Instance.TempWeapons[index]);
+                GameObject obj = Instantiate(weap.gameObject);
                 obj.GetComponent<TempWeapon>().SelfInitialize(gameObject);
                 TempInUse = true;
             }

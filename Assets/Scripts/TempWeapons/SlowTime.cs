@@ -22,6 +22,5 @@ public class SlowTime : TempWeapon {
             enemy.GetComponent<Enemy>().ChangeSpeed(-1);
         }
         Destroy(gameObject);
-        Debug.Log("Slow time destroued");
     }
 }
