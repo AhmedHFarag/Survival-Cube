@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour, IHasChanged
     [SerializeField]
     protected Transform slots;
     [SerializeField]
-    Text inventoryText;
+    protected Text inventoryText;
 
     // Use this for initialization
     void Start()
