@@ -45,8 +45,10 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public int currentState;
-
+    public bool Show_FPS = true;
+    float deltaTime = 0.0f;
     public int weaponCoolDown = 20;
+
     void Awake()
     {
         if (Instance == null)
@@ -59,6 +61,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         Pool_Manager = new PoolManager();
+    }
+    void Update()
+    {
+        deltaTime += (Time.deltaTime - deltaTime);
+
     }
     private static void OnPlayerDies()
     {
@@ -143,9 +150,6 @@ public class GameManager : MonoBehaviour
     public void ResetAll()
     {
         Pool_Manager = new PoolManager();
-     //   score = 0;
-        //InGameCoins = 0;
-      //  Coins = PlayerPrefs.GetInt("Coins", 0);
     }
     public void SpawnItem(Vector3 _pos)
     {
@@ -183,5 +187,21 @@ public class GameManager : MonoBehaviour
     public ObjectPool CreatePool(GameObject poolObject, int size, int maxSize)
     {
         return Pool_Manager.CreatePool(poolObject, size, maxSize);
+    }
+    void OnGUI()
+    {
+        if (Show_FPS)
+        {
+            int w = Screen.width, h = Screen.height;
+            GUIStyle style = new GUIStyle();
+            Rect rect = new Rect(0, 0, w, h * 2 / 100);
+            style.alignment = TextAnchor.UpperLeft;
+            style.fontSize = h * 4 / 100;
+            style.normal.textColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            float msec = deltaTime * 1000.0f;
+            float fps = 1.0f / deltaTime;
+            string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+            GUI.Label(rect, text, style);
+        }
     }
 }
