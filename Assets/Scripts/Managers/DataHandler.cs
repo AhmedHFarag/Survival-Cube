@@ -52,11 +52,13 @@ public class DataHandler : MonoBehaviour
     [HideInInspector]
     int inGameScore;
 
+    bool DataLoaded = false;
     
     
 
     void Awake()
     {
+        DataLoaded = false;
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -72,6 +74,7 @@ public class DataHandler : MonoBehaviour
     void Start()
     {
         initializeData();
+        DataLoaded = true;
     }
 
    public void initializeData()
