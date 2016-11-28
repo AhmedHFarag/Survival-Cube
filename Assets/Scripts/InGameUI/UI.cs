@@ -87,20 +87,20 @@ public class UI : MonoBehaviour
     IEnumerator ScoreRoll()
     {
         int score = 0;
-   //     txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
+        //     txtHightScore.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
         txtHightScore.text = DataHandler.Instance.GetBestScoreStr();
 
-        while (score!=DataHandler.Instance.GetInGameScore())
+        while (score < DataHandler.Instance.GetInGameScore())
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.0001f));
 
             score += 10;
 
             txtEndScore.text = (score).ToString();
-            
+
         }
         //int intBestScore = PlayerPrefs.GetInt("BestScore", 0);
-        int intBestScore =DataHandler.Instance.GetBestScore();
+        int intBestScore = DataHandler.Instance.GetBestScore();
 
         if (intBestScore < score)
         {
@@ -113,7 +113,7 @@ public class UI : MonoBehaviour
     {
         int coins = 0;
         DataHandler.Instance.AddCoins(DataHandler.Instance.GetInGameCoins());
-        while (coins != DataHandler.Instance.GetInGameCoins())
+        while (coins < DataHandler.Instance.GetInGameCoins())
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.0001f));
             coins += 10;
