@@ -42,20 +42,16 @@ public class DataHandler : MonoBehaviour
 
     public static DataHandler Instance;
     [HideInInspector]
-    public string PlayerName;
+    string PlayerName;
     [HideInInspector]
-    public int BG_Volume;
+    int BG_Volume;
     [HideInInspector]
-    public int SFX_Volume;
+    int SFX_Volume;
     [HideInInspector]
-    public int playerCoins;
+    int inGameCoins;
     [HideInInspector]
-    public int inGameCoins;
-    [HideInInspector]
-    public int AchievementScore;
-    [HideInInspector]
-    public int BestScore;
-    [HideInInspector]
+    int inGameScore;
+
     
     
 
@@ -122,15 +118,15 @@ public class DataHandler : MonoBehaviour
             Player.HighScore = 0;
         }
 
-        if (PlayerPrefs.HasKey("AcivementScore"))
-        {
-            AchievementScore = PlayerPrefs.GetInt("AcivementScore");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("AcivementScore", 0);
-            AchievementScore = 0;
-        }
+        //if (PlayerPrefs.HasKey("InGameScore"))
+        //{
+        //    inGameScore = PlayerPrefs.GetInt("InGameScore");
+        //}
+        //else
+        //{
+        //    PlayerPrefs.SetInt("InGameScore", 0);
+        //    inGameScore = 0;
+        //}
 
         //Palyer Main Weapon
         if (PlayerPrefs.HasKey("MainWeapon.ID"))
@@ -311,7 +307,7 @@ public class DataHandler : MonoBehaviour
     public void ResetPlayerPtrefData()
     {
         inGameCoins = 0;
-        //AchievementScore = 0;
+        inGameScore = 0;
         //Player.MaxWaveReached = 0;
         //Player.HighestWaveStreak = 0;
         //playerCoins = 0;
@@ -322,14 +318,14 @@ public class DataHandler : MonoBehaviour
     }
     public void SavePlayerPrefsData()
     {
-        PlayerPrefs.SetInt("playerCoins", playerCoins);
+        PlayerPrefs.SetInt("playerCoins", Player.Coins);
         PlayerPrefs.SetInt("inGameCoins", inGameCoins);
         PlayerPrefs.SetString("playerName", PlayerName);
         PlayerPrefs.SetInt("bgVolume", BG_Volume);
         PlayerPrefs.SetInt("sfxVolume", SFX_Volume);
         PlayerPrefs.SetInt("WaveNo", Wave.WaveNumber);
-        PlayerPrefs.SetInt("AcivementScore", AchievementScore);
-        PlayerPrefs.SetInt("BestScore", BestScore);
+        //PlayerPrefs.SetInt("InGameScore", inGameScore);
+        PlayerPrefs.SetInt("BestScore", Player.HighScore);
 
         PlayerPrefs.SetInt("MainWeapon.ID", MainWeapon.ID);
 
@@ -359,6 +355,10 @@ public class DataHandler : MonoBehaviour
     {
         return Player.Coins.ToString();
     }
+    public int GetInGameCoins()
+    {
+        return inGameCoins;
+    }
 
     public string GetPlayerName()
     {
@@ -385,9 +385,9 @@ public class DataHandler : MonoBehaviour
     {
         return Player.HighScore.ToString();
     }
-    public int GetAcivementScore()
+    public int GetInGameScore()
     {
-        return AchievementScore;
+        return inGameScore;
     }
     public int GetMainWeaponID()
     {
@@ -450,8 +450,8 @@ public class DataHandler : MonoBehaviour
     #region Setters
     public void SetPlayerCoins(int _PlayerCoins)
     {
-        playerCoins = _PlayerCoins;
-        PlayerPrefs.SetInt("playerCoins", playerCoins);
+        Player.Coins = _PlayerCoins;
+        PlayerPrefs.SetInt("playerCoins", Player.Coins);
         PlayerPrefs.Save();
     }
     public void SetInGameCoins(int _InGameCoins)
@@ -489,12 +489,12 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetInt("BestScore", _BestScore);
         PlayerPrefs.Save();
     }
-    public void SetAcivementScore(int _AchievementScore)
-    {
-        AchievementScore = _AchievementScore;
-        PlayerPrefs.SetInt("AcivementScore", _AchievementScore);
-        PlayerPrefs.Save();
-    }
+    //public void SetInGameScore(int _AchievementScore)
+    //{
+    //    inGameScore = _AchievementScore;
+    //    PlayerPrefs.SetInt("InGameScore", _AchievementScore);
+    //    PlayerPrefs.Save();
+    //}
 
     public void SteMainWeaponID(int _weaponID)
     {
@@ -573,16 +573,24 @@ public class DataHandler : MonoBehaviour
     #endregion
     public void AddCoins(int amountToBeAdded)
     {
-        playerCoins += amountToBeAdded;
-        PlayerPrefs.SetInt("playerCoins", playerCoins);
+        Player.Coins += amountToBeAdded;
+        PlayerPrefs.SetInt("playerCoins", Player.Coins);
 
         PlayerPrefs.Save();
+    }
+    public void AddInGameCoins(int amountToBeAdded)
+    {
+        inGameCoins += amountToBeAdded;
     }
 
     void RemoveCoins(int amountToBeRemoved)
     {
-        playerCoins -= amountToBeRemoved;
-        PlayerPrefs.SetInt("playerCoins", playerCoins);
+        Player.Coins -= amountToBeRemoved;
+        PlayerPrefs.SetInt("playerCoins", Player.Coins);
         PlayerPrefs.Save();
+    }
+    public void AddInGameScore(int amountToBeAdded)
+    {
+        inGameScore += amountToBeAdded;
     }
 }

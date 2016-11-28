@@ -155,12 +155,15 @@ public class Enemies_Manager : MonoBehaviour
             GUI.Label(rect, text, style);
         }
     }
-    void EnemyDeath(GameObject Enemy, int Score, bool collideWithPlayer)
+    void EnemyDeath(GameObject Enemy, int Score, int Coins, bool collideWithPlayer)
     {
         if (!collideWithPlayer)
-            //   GameManager.Instance.score += Score;
-            DataHandler.Instance.AchievementScore += Score;
-
+        {
+            DataHandler.Instance.AddInGameScore(Score);
+            DataHandler.Instance.AddInGameCoins(Coins);
+            //Spawn Reward Item
+            GameManager.Instance.SpawnItem(Enemy.transform.position);
+        }
         EnemyKilled(Enemy);
     }
     void OnDestroy()

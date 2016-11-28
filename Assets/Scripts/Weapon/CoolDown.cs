@@ -28,7 +28,7 @@ public class CoolDown : MonoBehaviour
     public void WeaponCoolDownMethod()
     {
         //  if (int.Parse( weaponCost.text) <= GameManager.Instance.InGameCoins)
-        if (int.Parse(weaponCost.text) <= DataHandler.Instance.inGameCoins)
+        //if (int.Parse(weaponCost.text) <= DataHandler.Instance.GetInGameCoins())
         {
             GetComponent<EventTrigger>().enabled = false;
             coolDownSlider.value = 0;

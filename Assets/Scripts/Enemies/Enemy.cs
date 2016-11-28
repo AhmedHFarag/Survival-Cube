@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    public delegate void EnemyBehaviour(GameObject Sender, int AddedScore, bool isCollidedWithPlayer);
+    public delegate void EnemyBehaviour(GameObject Sender, int AddedScore,int AddedCoins, bool isCollidedWithPlayer);
     public static event EnemyBehaviour OnEnemyDie;
 
     public Transform Target;
@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public int attackDamage = 0;
     public float lookatDisace = 1;
     public float DefaultHP = 200;
-    public int Value = 20;
+    public int AddedCoins = 20;
     float HP;
     public float attackRange = 0;
     public ParticleSystem Explosion;
@@ -190,10 +190,7 @@ public class Enemy : MonoBehaviour
 
         HP -= damage;
         if (HP <= 0)
-        {
-            GameManager.Instance.SpawnItem(transform.position);
-          //  GameManager.Instance.InGameCoins += Value;
-            DataHandler.Instance.inGameCoins += Value;
+        {          
             Die();
         }
     }
@@ -213,7 +210,7 @@ public class Enemy : MonoBehaviour
         }
         Explosion.Play();
         //raise event
-        if (OnEnemyDie != null) { OnEnemyDie(this.gameObject, AddedScore, isCollidedWithEnemy); }
+        if (OnEnemyDie != null) { OnEnemyDie(this.gameObject, AddedScore, AddedCoins, isCollidedWithEnemy); }
     }
     public void OnCollisionEnter(Collision col)
     {

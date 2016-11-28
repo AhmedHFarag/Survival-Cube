@@ -18,32 +18,16 @@ public class MainMenu : MonoBehaviour {
     public Text Coins;
     Button BackButton;
     bool InputEnabled = true;
+
     void Awake()
     {
         UIs[(int)CurrentUI].gameObject.SetActive(true);
         _FadeIn(UIs[(int)CurrentUI].gameObject);
         BackButton = UIs[(int)CurrentUI].GetChild(0).GetComponent<Button>();
     }
-    void Start () {
-        if (PlayerPrefs.HasKey("BestScore"))
-        {
-            Score.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
-        }
-        else
-        {
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.SetInt("BestScore", 0);
-        }
-        if (PlayerPrefs.HasKey("playerCoins"))
-        {
-            Coins.text = PlayerPrefs.GetInt("playerCoins", 0).ToString();
-            //GameManager.Instance.Coins = PlayerPrefs.GetInt("Coins", 0);
-            DataHandler.Instance.playerCoins = PlayerPrefs.GetInt("playerCoins", 0);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("playerCoins", 0);
-        }
+    void Start()
+    {
+        
     }
 	
 	void Update () {
@@ -51,6 +35,8 @@ public class MainMenu : MonoBehaviour {
         {
             _GoBack();
         }
+        Score.text = DataHandler.Instance.GetBestScoreStr();
+        Coins.text = DataHandler.Instance.GetPlayerCoinsstr();
     }
     public void StartGame()
     {
