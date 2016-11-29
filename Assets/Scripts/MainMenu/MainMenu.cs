@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using GooglePlayGames;
 
 public enum UIsPanels
 {
@@ -192,7 +193,10 @@ public class MainMenu : MonoBehaviour {
     {
         if (Social.localUser.authenticated)
         {
-            Social.ShowLeaderboardUI();
+            //Show All LeaderBoards
+            //Social.ShowLeaderboardUI();
+            //Show only top player
+            PlayGamesPlatform.Instance.ShowLeaderboardUI(SurvivalCubeResources.leaderboard_topplayers);
         }
         else
         {

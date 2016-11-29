@@ -23,6 +23,7 @@ public class UI : MonoBehaviour
     public Toggle _ControlsTouch;
     public int WaveNumber=1;
     Animator _anim;
+    bool GameOver = false;
     void Awake()
     {
         if (Instance == null)
@@ -39,6 +40,7 @@ public class UI : MonoBehaviour
     }
     void Start()
     {
+        GameOver = false;
         GameManager.Instance.ResetAll();
         TotalCoins.text = DataHandler.Instance.GetPlayerCoinsstr();
         UpdateControls();
@@ -49,10 +51,19 @@ public class UI : MonoBehaviour
         txtScore.text = DataHandler.Instance.GetInGameScore().ToString();
         Coins.text = DataHandler.Instance.GetInGameCoins().ToString();
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && GameOver)
+        {
+            Time.timeScale = 1;
+            GameManager.Instance.ReturnToMainMenu();
+        }
+    }
     public void ReStartGame()
     {
-        
-      //  PlayerPrefs.SetInt("AcivementScore", 0);
+
+        //  PlayerPrefs.SetInt("AcivementScore", 0);
+        GameOver = false;
         Time.timeScale = 1;
         GameManager.Instance.ReloadSameScene();
         DataHandler.Instance.ResetPlayerPtrefData();
@@ -60,6 +71,7 @@ public class UI : MonoBehaviour
     public void ShowGameEnded()
     {
         Time.timeScale = 0;
+        GameOver = true;
         StartCoroutine("EndGame");
         
     }
