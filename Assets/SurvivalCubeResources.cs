@@ -25,6 +25,7 @@
 public static class SurvivalCubeResources
 {
         public const string achievement_test5 = "CgkI2M_Y7rYQEAIQBQ"; // <GPGSID>
+        public const string leaderboard_topplayers = "CgkI2M_Y7rYQEAIQBg"; // <GPGSID>
         public const string achievement_test1 = "CgkI2M_Y7rYQEAIQAQ"; // <GPGSID>
         public const string achievement_test2 = "CgkI2M_Y7rYQEAIQAg"; // <GPGSID>
         public const string achievement_test3 = "CgkI2M_Y7rYQEAIQAw"; // <GPGSID>

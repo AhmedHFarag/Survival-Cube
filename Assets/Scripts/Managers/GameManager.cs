@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 using System.Collections.Generic;
+using GooglePlayGames;
 
 public enum GameStates
 {
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
     public bool Show_FPS = true;
     float deltaTime = 0.0f;
     public int weaponCoolDown = 20;
-
+    public bool IsconnectedToGoogleServices = false;
     void Awake()
     {
         if (Instance == null)
@@ -61,6 +63,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         Pool_Manager = new PoolManager();
+    }
+    void Start()
+    {
+        PlayGamesPlatform.Activate();
+        ConnectToGooglePlayServices();
     }
     void Update()
     {
@@ -175,6 +182,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         DataHandler.Instance.ResetPlayerPtrefData();
+        UnlockAchievement1();
     }
     public void ThePlayerDied()
     {
@@ -203,5 +211,35 @@ public class GameManager : MonoBehaviour
             string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
             GUI.Label(rect, text, style);
         }
+    }
+    public bool ConnectToGooglePlayServices()
+    {
+        if (!IsconnectedToGoogleServices)
+        {
+            Social.localUser.Authenticate((bool Success) => {
+                IsconnectedToGoogleServices = Success;
+            });
+        }
+        return IsconnectedToGoogleServices;
+    }
+    public bool UnlockAchievement1()
+    {
+        bool _success=false;
+        Social.ReportProgress(SurvivalCubeResources.achievement_test1, 100.0f, (bool success) => {
+
+            _success = success;
+            // handle success or failure
+        });
+        return _success;
+    }
+    public bool ReportScoreToLeaderBoard(int Score)
+    {
+        bool _success = false;
+        // post score 12345 to leaderboard ID "Cfji293fjsie_QA")
+        Social.ReportScore(Score, SurvivalCubeResources.leaderboard_topplayers, (bool success) => {
+            _success = success;
+            // handle success or failure
+        });
+        return _success;
     }
 }

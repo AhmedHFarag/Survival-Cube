@@ -102,10 +102,13 @@ public class UI : MonoBehaviour
         //int intBestScore = PlayerPrefs.GetInt("BestScore", 0);
         int intBestScore = DataHandler.Instance.GetBestScore();
 
+        //Save Best Score
         if (intBestScore < score)
         {
             txtHightScore.text = score.ToString();
             DataHandler.Instance.SetBestScore(score);
+            //Add To Leader Board //This Is For Test Delete from here
+            GameManager.Instance.ReportScoreToLeaderBoard(score);
         }
         yield return null;
     }

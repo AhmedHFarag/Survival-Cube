@@ -177,6 +177,28 @@ public class MainMenu : MonoBehaviour {
     {
         Application.Quit();
     }
+    public void ToAchievementUI()
+    {
+        if (Social.localUser.authenticated)
+        {
+            Social.ShowAchievementsUI();
+        }
+        else
+        {
+            //Log Connection Error
+        }
+    }
+    public void ToLeaderBoardUI()
+    {
+        if (Social.localUser.authenticated)
+        {
+            Social.ShowLeaderboardUI();
+        }
+        else
+        {
+            //Log Connection Error
+        }
+    }
     #endregion
 
 }
