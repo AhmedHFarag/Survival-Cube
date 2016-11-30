@@ -191,6 +191,7 @@ GameObject:
   m_Component:
   - 224: {fileID: 224000011305940368}
   - 114: {fileID: 114000012183608748}
+  - 114: {fileID: 114000012319494488}
   m_Layer: 5
   m_Name: ContolsToggle
   m_TagString: Untagged
@@ -1093,7 +1094,7 @@ GameObject:
   - 114: {fileID: 114000013141741842}
   - 114: {fileID: 114000013443448742}
   m_Layer: 5
-  m_Name: ResetScene
+  m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2824,6 +2825,29 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
+--- !u!114 &114000012319494488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010614068982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2095666955, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 80, y: 80}
+  m_Spacing: {x: 20, y: 20}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!114 &114000012326255080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3437,7 +3461,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 1d792f8acad793a498707438b43870f1, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3558,7 +3582,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114000011912413658}
-        m_MethodName: ReStartGame
+        m_MethodName: PauseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4262,8 +4286,8 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -39.2, y: -34}
-  m_SizeDelta: {x: 78.4, y: 68.1}
+  m_AnchoredPosition: {x: -77, y: -80}
+  m_SizeDelta: {x: 153, y: 158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000010279761044
 RectTransform:
@@ -4298,10 +4322,10 @@ RectTransform:
   - {fileID: 224000011915215692}
   m_Father: {fileID: 224000011305940368}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20.1}
-  m_SizeDelta: {x: 44, y: 44}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000010610858614
 RectTransform:
@@ -4644,8 +4668,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -243}
-  m_SizeDelta: {x: 100, y: 334}
+  m_AnchoredPosition: {x: -57, y: -350}
+  m_SizeDelta: {x: 114, y: 346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011402551382
 RectTransform:
@@ -5057,10 +5081,10 @@ RectTransform:
   - {fileID: 224000012989407144}
   m_Father: {fileID: 224000011305940368}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 113.1}
-  m_SizeDelta: {x: 44, y: 44}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012475428514
 RectTransform:
@@ -5461,10 +5485,10 @@ RectTransform:
   - {fileID: 224000013058761638}
   m_Father: {fileID: 224000011305940368}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -81.9}
-  m_SizeDelta: {x: 44, y: 44}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014165307860
 RectTransform:

@@ -23,7 +23,7 @@ public class UI : MonoBehaviour
     public Toggle _ControlsTouch;
     public int WaveNumber=1;
     Animator _anim;
-    bool GameOver = false;
+    bool paused = false;
     void Awake()
     {
         if (Instance == null)
@@ -40,7 +40,7 @@ public class UI : MonoBehaviour
     }
     void Start()
     {
-        GameOver = false;
+        paused = false;
         GameManager.Instance.ResetAll();
         TotalCoins.text = DataHandler.Instance.GetPlayerCoinsstr();
         UpdateControls();
@@ -53,7 +53,7 @@ public class UI : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GameOver)
+        if (Input.GetKeyDown(KeyCode.Escape) && paused)
         {
             Time.timeScale = 1;
             GameManager.Instance.ReturnToMainMenu();
@@ -63,7 +63,7 @@ public class UI : MonoBehaviour
     {
 
         //  PlayerPrefs.SetInt("AcivementScore", 0);
-        GameOver = false;
+        paused = false;
         Time.timeScale = 1;
         GameManager.Instance.ReloadSameScene();
         DataHandler.Instance.ResetPlayerPtrefData();
@@ -71,7 +71,7 @@ public class UI : MonoBehaviour
     public void ShowGameEnded()
     {
         Time.timeScale = 0;
-        GameOver = true;
+        paused = true;
         StartCoroutine("EndGame");
         
     }
@@ -181,6 +181,27 @@ public class UI : MonoBehaviour
             InputManager.Instance.ControlSchemeTouch = true;
             InputManager.Instance.ControlSchemeJoyStick = false;
         }
+    }
+    public void PauseButton()
+    {
+        if (paused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        paused = true;
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
+        paused = false;
     }
 }
 
