@@ -54,4 +54,5 @@ MonoBehaviour:
   Damage: 100
   Cost: 1
   LifeTime: 5
+  UISprite: {fileID: 21300000, guid: 951c27b1e3a110b43b7d55230ab97e2e, type: 3}
   Mine: {fileID: 1000011732958740, guid: 929e8b52901b5b6499f005703d7a64b7, type: 2}

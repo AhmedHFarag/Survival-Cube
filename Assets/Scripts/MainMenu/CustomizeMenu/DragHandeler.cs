@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -10,9 +11,26 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     Transform startParent;
     [HideInInspector]
     public Inventory MyInventory;
+    public enum Weapontype
+    {
+        Main,Temp
+    }
+    public Weapontype Type = Weapontype.Temp;
     void OnEnable()
     {
         MyInventory = GetComponentInParent<Inventory>();
+    }
+    void Start()
+    {
+        if (Type==Weapontype.Temp)
+        {
+            GetComponent<Image>().sprite = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().UISprite;
+        }
+        else
+        {
+            GetComponent<Image>().sprite = GameManager.Instance.Weapons[WeaponID].GetComponent<DefaultWeapon>().UISprite;
+        }
+
     }
     #region IBeginDragHandler implementation
 

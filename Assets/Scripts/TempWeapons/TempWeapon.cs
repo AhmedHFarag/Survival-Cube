@@ -1,20 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TempWeapon : MonoBehaviour {
+public class TempWeapon : MonoBehaviour
+{
     public int Damage;
     public int Cost;
     public int LifeTime = 5;
+    public Sprite UISprite;
     void OnEnable()
     {
         StartCoroutine(DistroyAfter(LifeTime));
     }
-    void Start () {
-	
-	}
-	void Update () {
-	
-	}
     public virtual void SelfInitialize(GameObject _obj)
     {
         transform.rotation = _obj.transform.rotation;
@@ -25,8 +21,10 @@ public class TempWeapon : MonoBehaviour {
     IEnumerator DistroyAfter(int LifeTime)
     {
         yield return new WaitForSeconds(LifeTime);
-        Player_Controller.Instance.TempInUse = false;
         Destroy(gameObject);
-
+    }
+    void OnDestroy()
+    {
+        Player_Controller.Instance.TempInUse = false;
     }
 }

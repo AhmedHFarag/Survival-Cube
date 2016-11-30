@@ -162,7 +162,7 @@ public class Player_Controller : MonoBehaviour
             BasicWeapon.Fire();
         }
     }
-    public void ActiveTempWeapon(int index)//Button Index
+    public bool ActiveTempWeapon(int index)//Button Index
     {
         if (!TempInUse)
         {
@@ -174,8 +174,10 @@ public class Player_Controller : MonoBehaviour
                 GameObject obj = Instantiate(weap.gameObject);
                 obj.GetComponent<TempWeapon>().SelfInitialize(gameObject);
                 TempInUse = true;
+                return true;
             }
         }
+        return false;
     }
     public void UpgradeBuffs(UpgradeBuffs _Data)
     {

@@ -659,7 +659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000013185395374
 GameObject:
   m_ObjectHideFlags: 1
@@ -838,6 +838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 3
   MyInventory: {fileID: 0}
+  Type: 1
 --- !u!114 &114000010053659908
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -951,6 +952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 0
   MyInventory: {fileID: 0}
+  Type: 0
 --- !u!114 &114000010322900478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -990,7 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1018,6 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 1
   MyInventory: {fileID: 0}
+  Type: 1
 --- !u!114 &114000010429801504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1221,6 +1224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 0
   MyInventory: {fileID: 0}
+  Type: 1
 --- !u!114 &114000010732940148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1260,7 +1264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1491,6 +1495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 2
   MyInventory: {fileID: 0}
+  Type: 1
 --- !u!114 &114000011373701264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1770,7 +1775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1853,7 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2028,7 +2033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2169,7 +2174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2223,7 +2228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2250,7 +2255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2277,7 +2282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2343,6 +2348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 2
   MyInventory: {fileID: 0}
+  Type: 0
 --- !u!114 &114000013130477152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2379,6 +2385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 1
   MyInventory: {fileID: 0}
+  Type: 0
 --- !u!114 &114000013179023208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2552,7 +2559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2667,7 +2674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2773,7 +2780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2801,6 +2808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 4
   MyInventory: {fileID: 0}
+  Type: 1
 --- !u!114 &114000014015493818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2863,7 +2871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5514706, g: 0.16219722, b: 0.16219722, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2943,6 +2951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponID: 0
   MyInventory: {fileID: 0}
+  Type: 1
 --- !u!222 &222000010079736128
 CanvasRenderer:
   m_ObjectHideFlags: 1

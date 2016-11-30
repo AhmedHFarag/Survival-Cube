@@ -54,4 +54,5 @@ MonoBehaviour:
   Damage: 100
   Cost: 1
   LifeTime: 10
+  UISprite: {fileID: 21300000, guid: aecc51f856d3de541a8219915ff4b457, type: 3}
   turret: {fileID: 1000014077669724, guid: 61abb298b6d00fc45866d51f27b45fdb, type: 2}

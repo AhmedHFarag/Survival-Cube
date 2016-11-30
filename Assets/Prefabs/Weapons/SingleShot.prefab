@@ -68,7 +68,7 @@ GameObject:
   - 4: {fileID: 4000010812591630}
   - 114: {fileID: 114000012937286718}
   m_Layer: 0
-  m_Name: DefaultWeapon
+  m_Name: SingleShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   Bullet: {fileID: 1000012812826238, guid: b76cfce374b874f4c8ff85046e9e5112, type: 2}
   FirePositions:
   - {fileID: 4000013627359562}
+  UISprite: {fileID: 21300000, guid: e25730f5adbead34089027fd0c9fe5e6, type: 3}
   Cost: 200
   BullectNumberInUse: 20
   maxBullectNumber: 100
