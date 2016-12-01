@@ -191,6 +191,10 @@ public class MainMenu : MonoBehaviour {
     }
     public void ToLeaderBoardUI()
     {
+#if UNITY_EDITOR
+
+#else
+
         if (Social.localUser.authenticated)
         {
             //Show All LeaderBoards
@@ -202,7 +206,8 @@ public class MainMenu : MonoBehaviour {
         {
             //Log Connection Error
         }
+#endif
     }
-    #endregion
+#endregion
 
 }

@@ -66,9 +66,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+#if UNITY_EDITOR
+#else
         PlayGamesPlatform.Activate();
         ConnectToGooglePlayServices();
-    }
+#endif
+        }
     void Update()
     {
         deltaTime += (Time.deltaTime - deltaTime);
