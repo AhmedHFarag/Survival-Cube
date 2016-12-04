@@ -38,7 +38,7 @@ public class BulletBehavior : MonoBehaviour
         }
     }
 
-    IEnumerator SelfDestory()
+    protected IEnumerator SelfDestory()
     {
         yield return new WaitForSeconds(timeForSelfDestory);
         MyRigid.velocity = Vector3.zero;

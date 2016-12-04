@@ -38,20 +38,21 @@ public class DefaultWeapon : MonoBehaviour
 
     public virtual void Fire()
     {
-        
-            foreach (Transform FirePos in FirePositions)
+
+        foreach (Transform FirePos in FirePositions)
+        {
+            currentbulletObj = bulletPool.GetObject();
+            if (currentbulletObj)
             {
-                currentbulletObj = bulletPool.GetObject();
-                if (currentbulletObj)
-                    {
-                        currentbulletObj.transform.position = FirePos.position;
-                        currentbulletObj.transform.forward = FirePos.forward;
-                        currentbulletObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                        currentbulletObj.SetActive(true);
-                        currentbulletObj.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);
-                    }
-            
+                currentbulletObj.transform.position = FirePos.position;
+                currentbulletObj.transform.forward = FirePos.forward;
+                currentbulletObj.transform.rotation = FirePos.rotation;
+                currentbulletObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                currentbulletObj.SetActive(true);
+                currentbulletObj.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);
             }
+
+        }
         //GameObject Shot = Instantiate(Bullet) as GameObject;
         //Shot.transform.position = FirePos1.position;
         //Shot.GetComponent<Rigidbody>().AddForce(transform.forward * 2000);

@@ -228,11 +228,14 @@ public class GameManager : MonoBehaviour
     public bool UnlockAchievement1()
     {
         bool _success=false;
-        Social.ReportProgress(SurvivalCubeResources.achievement_test1, 100.0f, (bool success) => {
+        if (IsconnectedToGoogleServices)
+        {
+            Social.ReportProgress(SurvivalCubeResources.achievement_test1, 100.0f, (bool success) => {
 
-            _success = success;
-            // handle success or failure
-        });
+                _success = success;
+                // handle success or failure
+            });
+        }
         return _success;
     }
     public bool ReportScoreToLeaderBoard(int Score)
