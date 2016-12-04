@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013457020636}
-  - 114: {fileID: 114000013386031308}
+  - component: {fileID: 4000013457020636}
+  - component: {fileID: 114000013386031308}
   m_Layer: 0
   m_Name: Multiplayturrets
   m_TagString: Untagged
@@ -34,12 +34,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013749124272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.45002, y: 180.08333, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013386031308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,4 +55,3 @@ MonoBehaviour:
   Cost: 1
   LifeTime: 10
   UISprite: {fileID: 21300000, guid: aecc51f856d3de541a8219915ff4b457, type: 3}
-  turret: {fileID: 1000014077669724, guid: 61abb298b6d00fc45866d51f27b45fdb, type: 2}
