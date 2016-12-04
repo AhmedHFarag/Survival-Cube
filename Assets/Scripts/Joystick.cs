@@ -43,7 +43,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         int delta = (int)Vector2.Distance(data.position, m_StartPos);
         delta = Mathf.Clamp(delta, 0, MovementRange);
         Vector2 dir = (data.position - new Vector2(m_StartPos.x, m_StartPos.y)).normalized;
-        newPos = dir * MovementRange;
+        newPos = dir * delta;
         transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
         UpdateVirtualAxes(transform.position);
     }

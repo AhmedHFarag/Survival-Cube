@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 5400000}
   - component: {fileID: 136464157880047560}
   - component: {fileID: 114932091131208216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rocket
-  m_TagString: Missile
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ GameObject:
   - component: {fileID: 442452}
   - component: {fileID: 19840496}
   - component: {fileID: 19967780}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!198 &19840496
 ParticleSystem:
@@ -2852,7 +2852,7 @@ GameObject:
   - component: {fileID: 199454014384001280}
   - component: {fileID: 108704419287709916}
   - component: {fileID: 114094823145890528}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2960,7 +2960,7 @@ ParticleSystem:
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0

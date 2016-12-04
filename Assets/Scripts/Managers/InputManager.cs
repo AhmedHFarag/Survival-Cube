@@ -145,11 +145,13 @@ else if(LeftButton && !RightButton)
         m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
         m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
 
-        if(ControlSchemeTouch)
-        {
-
-        }
+        
 #endif
+        if (ControlSchemeTouch)
+        {
+            m_xAxis = 0;
+            m_yAxis = 0;
+        }
         //m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
         //m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
         if (Mathf.Abs(m_xAxis)>=0 || Mathf.Abs(m_yAxis) >= 0)

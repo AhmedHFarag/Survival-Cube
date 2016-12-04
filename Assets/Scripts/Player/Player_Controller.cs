@@ -31,7 +31,7 @@ public class Player_Controller : MonoBehaviour
     public ParticleSystem Explosion;
     float Ellapsed_Time = 0;
     bool ReversedControls = false;
-    bool IsMoving = false;
+    //bool IsMoving = false;
 
     //popupBuffs
     public GameObject popupBuffs;
@@ -81,18 +81,18 @@ public class Player_Controller : MonoBehaviour
         ////Auto Aim 
         if (Enemies_Manager.Instance.activeEnemies.Count > 0)
         {
-            if (!IsMoving)
+            //if (!IsMoving)
             {
                 foreach (GameObject enemy in Enemies_Manager.Instance.activeEnemies)
                 {
                     if (Mathf.Abs(Vector3.Angle(transform.forward, enemy.transform.position)) < AutoAimThreshold)
                     {
-                        transform.LookAt(enemy.transform.position);
+                        transform.LookAt(enemy.transform.position + new Vector3(0, transform.position.y, 0));
                     }
                 }
             }
         }
-        IsMoving = false;
+        //IsMoving = false;
     }
     public void TakeDamage(int damage)
     {
@@ -123,7 +123,7 @@ public class Player_Controller : MonoBehaviour
     }
     public void Move(float _Xdir, float _Ydir)
     {
-        IsMoving = true;
+        //IsMoving = true;
         if (ReversedControls)
         {
             _Xdir *= -1;
@@ -137,14 +137,14 @@ public class Player_Controller : MonoBehaviour
         {
             if (_Xdir > 0.1f)
             {
-                IsMoving = true;
+                //IsMoving = true;
                 Ellapsed_Time += Time.deltaTime;
                 float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
                 _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(transform.right), Time.deltaTime * Speed * curvedValue);
             }
             else if (_Xdir < -0.1)
             {
-                IsMoving = true;
+                //IsMoving = true;
                 Ellapsed_Time += Time.deltaTime;
                 float curvedValue = motionCurve.Evaluate(Ellapsed_Time);
                 _MyRig.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(-transform.right), Time.deltaTime * Speed * curvedValue);
