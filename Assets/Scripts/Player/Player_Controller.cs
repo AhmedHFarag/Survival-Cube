@@ -66,14 +66,14 @@ public class Player_Controller : MonoBehaviour
     }
     void Update()
     {
-        if (InputManager.Instance.ControlSchemeTouch && Input.GetMouseButtonDown(0))
+        if (InputManager.Instance.ControlSchemeTouch && Input.GetMouseButton(0))
         {
             //Touch touch = Input.GetTouch(0);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit Hit;
             if (Physics.Raycast(ray, out Hit, 200, Plane))
             {
-                transform.LookAt(Hit.point);
+                transform.LookAt(Hit.point+new Vector3(0,transform.position.y,0));
             }
 
         }
@@ -210,11 +210,11 @@ public class Player_Controller : MonoBehaviour
                 //popupText.transform.position = info.transform.position;
                 if (_Data.FireRate > 1)
                 {
-                    popupText.GetComponent<PopUpBuffs>().setup("FireRate--", popupDouration, raiseSpeed);
+                    popupText.GetComponent<PopUpBuffs>().setup("FireRate++", popupDouration, raiseSpeed);
                 }
                 else
                 {
-                    popupText.GetComponent<PopUpBuffs>().setup("FireRate++", popupDouration, raiseSpeed);
+                    popupText.GetComponent<PopUpBuffs>().setup("FireRate--", popupDouration, raiseSpeed);
                 }
             }
         }

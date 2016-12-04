@@ -208,7 +208,10 @@ public class Enemy : MonoBehaviour
         {
             health.enabled = false;
         }
-        Explosion.Play();
+        if (Explosion)
+        {
+            Explosion.Play();
+        }
         //raise event
         if (OnEnemyDie != null) { OnEnemyDie(this.gameObject, AddedScore, AddedCoins, isCollidedWithEnemy); }
     }
