@@ -247,6 +247,10 @@ public class Player_Controller : MonoBehaviour
         {
             HitPoints = 100;
         }
+        if (healthBar)
+        {
+            healthBar.value = HitPoints;
+        }
         if (popupBuffs)
         {
             GameObject popupText = GameObject.Instantiate(popupBuffs);
@@ -267,6 +271,10 @@ public class Player_Controller : MonoBehaviour
         }
         ReversedControls = true;
         StartCoroutine("NormalControls");
+    }
+    public DefaultWeapon GetBasicWeapon()
+    {
+        return BasicWeapon;
     }
     IEnumerator NormalControls()
     {

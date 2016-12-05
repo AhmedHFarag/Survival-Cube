@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public delegate void EnemyBehaviour(GameObject Sender, int AddedScore,int AddedCoins, bool isCollidedWithPlayer);
     public static event EnemyBehaviour OnEnemyDie;
 
-    public Transform Target;
+    Transform Target;
     public float DefaultMoveSpeed=5;
     float moveSpeed;    
     public int attackDamage = 0;
@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     float Sep_Force =2;
     float Coh_Force = 1;
     float AlignForce = 1;
+    float EllapsedTime = 0;
     void OnEnable()
     {
         HP = DefaultHP;
@@ -61,7 +62,8 @@ public class Enemy : MonoBehaviour
             healthBar.value = HP;
         }
 
-        Attack();
+            Attack();
+
     }
     
     public virtual void Patrol()
@@ -70,9 +72,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Attack()
     {
-        //myRigid.transform.LookAt(Target);
-        //myRigid.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        //myRigid.transform.Translate((Vector3.forward+ Separation()) * moveSpeed * Time.deltaTime);
+
         myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion()+ AvoidBullets(), moveSpeed);
     }
     internal void ChangeSpeed(float percentage)
@@ -155,35 +155,34 @@ public class Enemy : MonoBehaviour
     }
     Vector3 AvoidBullets()
     {
-        //if (AvBullets)
-        //{
-        //    Vector3 SteeringForce = Vector3.zero;
-        //    Vector3 PushForce = Vector3.zero;
-        //    foreach (GameObject bullet in Player_Controller.Instance.BasicWeapon.bulletPool.pooledObjects)
-        //    {
-        //        if (bullet.activeSelf == true)
-        //        {
-        //            if (Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) < MyBulletsArea)
-        //            {
-        //                //SetUp Push Force
-        //                Vector3 up =new Vector3(0.0f, 1.0f, 0.0f);
-        //                // find right vector:
+        if (AvBullets)
+        {
+            Vector3 SteeringForce = Vector3.zero;
+            Vector3 PushForce = Vector3.zero;
+            foreach (GameObject bullet in Player_Controller.Instance.GetBasicWeapon().bulletPool.pooledObjects)
+            {
+                if (bullet.activeSelf == true)
+                {
+                    if (Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) < MyBulletsArea)
+                    {
+                        //SetUp Push Force
+                        Vector3 up = new Vector3(0.0f, 1.0f, 0.0f);
+                        // find right vector:
 
-        //                PushForce = (myRigid.position - bullet.GetComponent<Rigidbody>().position);
-        //                Vector3 right = Vector3.Cross(PushForce.normalized, up.normalized);
-        //                SteeringForce += right * Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) / MyBulletsArea;
+                        PushForce = (myRigid.position - bullet.GetComponent<Rigidbody>().position);
+                        Vector3 right = Vector3.Cross(PushForce.normalized, up.normalized);
+                        SteeringForce += right * Vector3.Distance(myRigid.position, bullet.GetComponent<Rigidbody>().position) / MyBulletsArea;
 
-        //            }
-        //        }
-        //    }
-        //    SteeringForce = SteeringForce.normalized * AVBullet_Force;
-        //    return SteeringForce;
-        //}
-        //else
-        //{
-        //    return Vector3.zero;
-        //}
-        return Vector3.zero;
+                    }
+                }
+            }
+            SteeringForce = SteeringForce.normalized * AVBullet_Force;
+            return SteeringForce;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
     public virtual void TakeDamage(int damage)
     {
