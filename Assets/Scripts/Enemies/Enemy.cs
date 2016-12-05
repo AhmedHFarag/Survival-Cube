@@ -11,12 +11,10 @@ public class Enemy : MonoBehaviour
     public float DefaultMoveSpeed=5;
     float moveSpeed;    
     public int attackDamage = 0;
-    public float lookatDisace = 1;
     public float DefaultHP = 200;
     public int AddedCoins = 20;
     float HP;
-    public float attackRange = 0;
-    public ParticleSystem Explosion;
+    ParticleSystem Explosion;
     public int AddedScore = 10;
     public Slider healthBar;
     public bool AvBullets = false;
@@ -62,8 +60,7 @@ public class Enemy : MonoBehaviour
             healthBar.value = HP;
         }
 
-            Attack();
-
+        Attack();
     }
     
     public virtual void Patrol()
@@ -72,7 +69,6 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Attack()
     {
-
         myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion()+ AvoidBullets(), moveSpeed);
     }
     internal void ChangeSpeed(float percentage)
