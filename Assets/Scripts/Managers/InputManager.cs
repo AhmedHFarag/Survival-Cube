@@ -18,9 +18,13 @@ public class InputManager : MonoBehaviour {
     private float m_yAxis;
     private float m_lastDirection;
     private bool updateHorizontal = true;
+    [HideInInspector]
     public bool ControlSchemeArrows = true;
+    [HideInInspector]
     public bool ControlSchemeSingleButton = false;
+    [HideInInspector]
     public bool ControlSchemeTouch = false;
+    [HideInInspector]
     public bool ControlSchemeJoyStick = false;
     bool RightButton = false;
     bool LeftButton = false;
@@ -107,6 +111,11 @@ public class InputManager : MonoBehaviour {
 
         m_xAxis = Input.GetAxis("Horizontal");
         m_yAxis = Input.GetAxis("Vertical");
+        if (ControlSchemeJoyStick)
+        {
+            m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
+            m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
+        }
 #else
         if(ControlSchemeArrows)
         {
@@ -152,8 +161,7 @@ else if(LeftButton && !RightButton)
             m_xAxis = 0;
             m_yAxis = 0;
         }
-        //m_xAxis = CrossPlatformInputManager.GetAxis("Horizontal");
-        //m_yAxis = CrossPlatformInputManager.GetAxis("Vertical");
+        
         if (Mathf.Abs(m_xAxis)>=0 || Mathf.Abs(m_yAxis) >= 0)
         {
             OnMovementChanged(m_xAxis, m_yAxis);
