@@ -27,6 +27,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         
         if (Type==Weapontype.Temp)
         {
+            Unlocked = true;
+            Locked.enabled = false;
             GetComponent<Image>().sprite = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().UISprite;
         }
         else
