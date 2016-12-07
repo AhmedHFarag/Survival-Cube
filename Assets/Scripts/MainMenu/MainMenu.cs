@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour {
     public UIsPanels CurrentUI = UIsPanels.MainMenu;
     public int CurrentPanel;
     public Text Score;
-    public Text Coins;
+    public List<Text> Coins;
     Button BackButton;
     bool InputEnabled = true;
 
@@ -37,7 +37,11 @@ public class MainMenu : MonoBehaviour {
             _GoBack();
         }
         Score.text = DataHandler.Instance.GetBestScoreStr();
-        Coins.text = DataHandler.Instance.GetPlayerCoinsstr();
+        foreach (var item in Coins)
+        {
+            item.text = DataHandler.Instance.GetPlayerCoinsstr();
+        }
+        
     }
     public void StartGame()
     {

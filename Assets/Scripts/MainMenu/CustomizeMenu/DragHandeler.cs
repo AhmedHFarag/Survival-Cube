@@ -16,18 +16,26 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         Main,Temp
     }
     public Weapontype Type = Weapontype.Temp;
+    public Image Locked;
+    bool Unlocked = false;
     void OnEnable()
     {
         MyInventory = GetComponentInParent<Inventory>();
     }
     void Start()
     {
+        
         if (Type==Weapontype.Temp)
         {
             GetComponent<Image>().sprite = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().UISprite;
         }
         else
         {
+            if (DataHandler.Instance.GetWeaponSlotStatus(WeaponID))
+            {
+                Unlocked = true;
+                Locked.enabled = false;
+            }
             GetComponent<Image>().sprite = GameManager.Instance.Weapons[WeaponID].GetComponent<DefaultWeapon>().UISprite;
         }
 
@@ -36,10 +44,14 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        itemBeingDragged = gameObject;
-        startPosition = transform.position;
-        startParent = transform.parent;
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        if (Unlocked)
+        {
+            itemBeingDragged = gameObject;
+            startPosition = transform.position;
+            startParent = transform.parent;
+            GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+        
     }
 
     #endregion
@@ -48,7 +60,11 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        if (Unlocked)
+        {
+            transform.position = eventData.position;
+        }
+        
     }
 
     #endregion
@@ -57,12 +73,16 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        itemBeingDragged = null;
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
-        if (transform.parent == startParent)
+        if (Unlocked)
         {
-            transform.position = startPosition;
+            itemBeingDragged = null;
+            GetComponent<CanvasGroup>().blocksRaycasts = true;
+            if (transform.parent == startParent)
+            {
+                transform.position = startPosition;
+            }
         }
+        
     }
 
     #endregion
