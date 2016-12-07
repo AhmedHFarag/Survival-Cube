@@ -24,12 +24,16 @@ public class Slot : MonoBehaviour, IDropHandler
     #region IDropHandler implementation
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item && DragHandeler.itemBeingDragged.GetComponent<DragHandeler>().MyInventory==MyInventory)
+        if (DragHandeler.itemBeingDragged)
         {
-            DragHandeler.itemBeingDragged.transform.SetParent(transform);
-            GetComponent<Image>().sprite = null;
-            ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+            if (!item && DragHandeler.itemBeingDragged.GetComponent<DragHandeler>().MyInventory == MyInventory)
+            {
+                DragHandeler.itemBeingDragged.transform.SetParent(transform);
+                GetComponent<Image>().sprite = null;
+                ExecuteEvents.ExecuteHierarchy<IHasChanged>(gameObject, null, (x, y) => x.HasChanged());
+            }
         }
+        
     }
     #endregion
 }
