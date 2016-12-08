@@ -220,7 +220,10 @@ public class DataHandler : MonoBehaviour
             }
         }
 
-
+        for (int i = 0; i < m_InGameTempweapons.Length; i++)
+        {
+            m_InGameTempweapons[i].WeaponID = -1;
+        }
         //Master Volume
         if (PlayerPrefs.HasKey("bgVolume"))
         {
