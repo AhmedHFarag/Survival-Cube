@@ -2,8 +2,9 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
-public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerClickHandler
 {
     public int WeaponID;
     public static GameObject itemBeingDragged;
@@ -17,6 +18,8 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     }
     public Weapontype Type = Weapontype.Temp;
     public Image Locked;
+    public Text Cost;
+    int _Cost = 0;
     bool Unlocked = false;
     void OnEnable()
     {
@@ -27,18 +30,25 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         
         if (Type==Weapontype.Temp)
         {
-            Unlocked = true;
-            Locked.enabled = false;
+            if (DataHandler.Instance.GetTempWeaponSlotStatus(WeaponID))
+            {
+                Unlocked = true;
+                Locked.gameObject.SetActive(false);
+            }
             GetComponent<Image>().sprite = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().UISprite;
+            _Cost = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().Cost;
+            Cost.text = _Cost.ToString()+" $";
         }
         else
         {
-            if (DataHandler.Instance.GetWeaponSlotStatus(WeaponID))
+            if (DataHandler.Instance.GetMainWeaponSlotStatus(WeaponID))
             {
                 Unlocked = true;
-                Locked.enabled = false;
+                Locked.gameObject.SetActive(false);
             }
             GetComponent<Image>().sprite = GameManager.Instance.Weapons[WeaponID].GetComponent<DefaultWeapon>().UISprite;
+            _Cost = GameManager.Instance.Weapons[WeaponID].GetComponent<DefaultWeapon>().Cost;
+            Cost.text = _Cost.ToString() + " $";
         }
 
     }
@@ -46,14 +56,13 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (Unlocked)
+        if (Unlocked)//Item Is not unlocked yet
         {
             itemBeingDragged = gameObject;
             startPosition = transform.position;
             startParent = transform.parent;
             GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
-        
     }
 
     #endregion
@@ -87,8 +96,37 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         
     }
 
+
+
     #endregion
 
+    #region IPointerClickHandler implementation
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (!Unlocked)// unlock Item if there is enogh coins
+        {
+            if (DataHandler.Instance.GetPlayerCoins() >= _Cost)
+            {
+                DataHandler.Instance.AddCoins(-_Cost);
+                Unlocked = true;
+                Locked.gameObject.SetActive(false);
+                if (Type == Weapontype.Temp)
+                {
+                    DataHandler.Instance.UnlockTempWeapon(WeaponID);
+                    //Save unlocked temp weapon 
+                }
+                else
+                {
+                    //Save unlocked Main weapon 
+                    DataHandler.Instance.UnlockMainWeapon(WeaponID);
+                }
+            }
+        }
+    }
+
+
+    #endregion
 
 
 }

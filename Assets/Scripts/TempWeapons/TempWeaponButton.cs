@@ -14,11 +14,14 @@ public class TempWeaponButton : MonoBehaviour
         coolDownSlider.maxValue = GameManager.Instance.weaponCoolDown;
         coolDownSlider.value = coolDownSlider.maxValue;
         ButtonImage = GetComponent<Image>();
-        ButtonImage.sprite = GameManager.Instance.TempWeapons[DataHandler.Instance.GetTempWeapon(WeaponIndex)].GetComponent<TempWeapon>().UISprite;
+        if (DataHandler.Instance.GetTempWeapon(WeaponIndex)>=0)
+        {
+            ButtonImage.sprite = GameManager.Instance.TempWeapons[DataHandler.Instance.GetTempWeapon(WeaponIndex)].GetComponent<TempWeapon>().UISprite;
+        }
     }
     public void TempWeaponPressed()
     {
-        if (Player_Controller.Instance.ActiveTempWeapon(WeaponIndex) && coolDownSlider.maxValue <= coolDownSlider.value)
+        if (DataHandler.Instance.GetTempWeapon(WeaponIndex) >= 0 && Player_Controller.Instance.ActiveTempWeapon(WeaponIndex) && coolDownSlider.maxValue <= coolDownSlider.value)
         {
             coolDownSlider.value = 0;
             StartCoroutine(WeaponCoolDown());
