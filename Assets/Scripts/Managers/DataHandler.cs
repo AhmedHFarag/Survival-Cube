@@ -41,13 +41,14 @@ public class DataHandler : MonoBehaviour
     PlayerData Player;
     WaveData Wave;
 
-    WeaponSlotData[] MainWeaponSlots=new WeaponSlotData[3];
+    WeaponSlotData[] m_MainMenu_MainWeaponSlots=new WeaponSlotData[3];
+    WeaponSlotData[] m_MainMenu_TempWeaponSlots = new WeaponSlotData[5];
 
     string MaxWaveReachedRef = "MaxWaveReached";
     string HighestWaveStreakRef = "HighestWaveStreak";
 
-    MainWeaponData MainWeapon;
-    TempWeaponsData[] Tempweapon=new TempWeaponsData[3];
+    MainWeaponData m_InGameMainWeapon;
+    TempWeaponsData[] m_InGameTempweapons=new TempWeaponsData[3];
 
     public static DataHandler Instance;
     [HideInInspector]
@@ -143,47 +144,82 @@ public class DataHandler : MonoBehaviour
         //Palyer Main Weapon
         if (PlayerPrefs.HasKey("MainWeapon.ID"))
         {
-            MainWeapon.ID = PlayerPrefs.GetInt("MainWeapon.ID");
+            m_InGameMainWeapon.ID = PlayerPrefs.GetInt("MainWeapon.ID");
 
         }
         else
         {
             PlayerPrefs.SetInt("MainWeapon.ID",0);
-            MainWeapon.ID = 0;
+            m_InGameMainWeapon.ID = 0;
         }
 
-        //Main Weapons Slots 
-        for (int i = 0; i < MainWeaponSlots.Length; i++)
+        //Main menu Main Weapons Slots 
+        for (int i = 0; i < m_MainMenu_MainWeaponSlots.Length; i++)
         {
             if (PlayerPrefs.HasKey("MainWeaponSlots"+i+".ID"))
             {
-                MainWeaponSlots[i].ID = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".ID");
+                m_MainMenu_MainWeaponSlots[i].ID = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".ID");
             }
             else
             {
                 PlayerPrefs.SetInt("MainWeaponSlots" + i + ".ID", i);
-                MainWeaponSlots[i].ID = i;
+                m_MainMenu_MainWeaponSlots[i].ID = i;
             }
 
             if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".Unlocked"))
             {
                 if (PlayerPrefs.GetInt("MainWeaponSlots" + i + ".Unlocked")==0)
                 {
-                    MainWeaponSlots[i].Unlocked =false ;
+                    m_MainMenu_MainWeaponSlots[i].Unlocked =false ;
                 }
                 else
                 {
-                    MainWeaponSlots[i].Unlocked = true;
+                    m_MainMenu_MainWeaponSlots[i].Unlocked = true;
                 }
                 
             }
             else
             {
                 PlayerPrefs.SetInt("MainWeaponSlots" + i + ".Unlocked", 0);
-                MainWeaponSlots[i].Unlocked = false;
+                m_MainMenu_MainWeaponSlots[i].Unlocked = false;
             }
         }
-        MainWeaponSlots[0].Unlocked = true;
+        //Satrt With First Single Shot 
+        UnlockMainWeapon(0);
+
+
+        //Main menu Temp Weapons Slots 
+        for (int i = 0; i < m_MainMenu_TempWeaponSlots.Length; i++)
+        {
+            if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".ID"))
+            {
+                m_MainMenu_TempWeaponSlots[i].ID = PlayerPrefs.GetInt("TempWeaponSlots" + i + ".ID");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("TempWeaponSlots" + i + ".ID", i);
+                m_MainMenu_TempWeaponSlots[i].ID = i;
+            }
+
+            if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".Unlocked"))
+            {
+                if (PlayerPrefs.GetInt("TempWeaponSlots" + i + ".Unlocked") == 0)
+                {
+                    m_MainMenu_TempWeaponSlots[i].Unlocked = false;
+                }
+                else
+                {
+                    m_MainMenu_TempWeaponSlots[i].Unlocked = true;
+                }
+
+            }
+            else
+            {
+                PlayerPrefs.SetInt("TempWeaponSlots" + i + ".Unlocked", 0);
+                m_MainMenu_TempWeaponSlots[i].Unlocked = false;
+            }
+        }
+
 
         //Master Volume
         if (PlayerPrefs.HasKey("bgVolume"))
@@ -262,7 +298,7 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetInt("WaveNo", Wave.WaveNumber);
         //PlayerPrefs.SetInt("InGameScore", inGameScore);
         PlayerPrefs.SetInt("BestScore", Player.HighScore);
-        PlayerPrefs.SetInt("MainWeapon.ID", MainWeapon.ID);
+        PlayerPrefs.SetInt("MainWeapon.ID", m_InGameMainWeapon.ID);
         PlayerPrefs.Save();
     }
     #region Getters
@@ -310,15 +346,19 @@ public class DataHandler : MonoBehaviour
     }
     public int GetMainWeaponID()
     {
-        return MainWeapon.ID;
+        return m_InGameMainWeapon.ID;
     }
     public int GetTempWeapon(int index)
     {
-        return Tempweapon[index].WeaponID;
+        return m_InGameTempweapons[index].WeaponID;
     }
-    public bool GetWeaponSlotStatus(int index)
+    public bool GetMainWeaponSlotStatus(int index)
     {
-        return MainWeaponSlots[index].Unlocked;
+        return m_MainMenu_MainWeaponSlots[index].Unlocked;
+    }
+    public bool GetTempWeaponSlotStatus(int index)
+    {
+        return m_MainMenu_TempWeaponSlots[index].Unlocked;
     }
     #endregion
     #region Setters
@@ -372,13 +412,40 @@ public class DataHandler : MonoBehaviour
 
     public void SteMainWeaponID(int _weaponID)
     {
-        MainWeapon.ID = _weaponID;
+        m_InGameMainWeapon.ID = _weaponID;
         SavePlayerPrefsData();
     }
 
     public void SetTempWeapon(int index,int _weaponID)
     {
-        Tempweapon[index].WeaponID = _weaponID;
+        m_InGameTempweapons[index].WeaponID = _weaponID;
+    }
+
+    public bool UnlockMainWeapon(int index)
+    {
+        if (m_MainMenu_MainWeaponSlots[index].Unlocked == false)
+        {
+            PlayerPrefs.SetInt("MainWeaponSlots" + index + ".Unlocked", 1);
+            m_MainMenu_MainWeaponSlots[index].Unlocked = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool UnlockTempWeapon(int index)
+    {
+        if (m_MainMenu_TempWeaponSlots[index].Unlocked == false)
+        {
+            PlayerPrefs.SetInt("TempWeaponSlots" + index + ".Unlocked", 1);
+            m_MainMenu_TempWeaponSlots[index].Unlocked = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     #endregion
     public void AddCoins(int amountToBeAdded)
