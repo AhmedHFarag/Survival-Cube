@@ -2,8 +2,9 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
-public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerClickHandler
 {
     public int WeaponID;
     public static GameObject itemBeingDragged;
@@ -36,7 +37,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             }
             GetComponent<Image>().sprite = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().UISprite;
             _Cost = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().Cost;
-            Cost.text = _Cost.ToString();
+            Cost.text = _Cost.ToString()+" $";
         }
         else
         {
@@ -47,7 +48,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             }
             GetComponent<Image>().sprite = GameManager.Instance.Weapons[WeaponID].GetComponent<DefaultWeapon>().UISprite;
             _Cost = GameManager.Instance.Weapons[WeaponID].GetComponent<DefaultWeapon>().Cost;
-            Cost.text = _Cost.ToString();
+            Cost.text = _Cost.ToString() + " $";
         }
 
     }
@@ -62,26 +63,6 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             startParent = transform.parent;
             GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
-        else// unlock Item if there is enogh coins
-        {
-            if (DataHandler.Instance.GetPlayerCoins() >= _Cost)
-            {
-                DataHandler.Instance.AddCoins(-_Cost);
-                Unlocked = true;
-                Locked.gameObject.SetActive(false);
-                if (Type == Weapontype.Temp)
-                {
-                    DataHandler.Instance.UnlockTempWeapon(WeaponID);
-                    //Save unlocked temp weapon 
-                }
-                else
-                {
-                    //Save unlocked Main weapon 
-                    DataHandler.Instance.UnlockMainWeapon(WeaponID);
-                }
-            }
-        }
-
     }
 
     #endregion
@@ -115,8 +96,37 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         
     }
 
+
+
     #endregion
 
+    #region IPointerClickHandler implementation
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (!Unlocked)// unlock Item if there is enogh coins
+        {
+            if (DataHandler.Instance.GetPlayerCoins() >= _Cost)
+            {
+                DataHandler.Instance.AddCoins(-_Cost);
+                Unlocked = true;
+                Locked.gameObject.SetActive(false);
+                if (Type == Weapontype.Temp)
+                {
+                    DataHandler.Instance.UnlockTempWeapon(WeaponID);
+                    //Save unlocked temp weapon 
+                }
+                else
+                {
+                    //Save unlocked Main weapon 
+                    DataHandler.Instance.UnlockMainWeapon(WeaponID);
+                }
+            }
+        }
+    }
+
+
+    #endregion
 
 
 }
