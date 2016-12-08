@@ -2929,12 +2929,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 200
-  Speed: 2
+  Speed: 1
   MyRigid: {fileID: 0}
   sound: {fileID: 0}
   timeForSelfDestory: 1
   Explosion: {fileID: 198509488366549676}
-  explosionRadius: 10
+  explosionRadius: 5
   explosionForce: 10000
 --- !u!136 &136464157880047560
 CapsuleCollider:

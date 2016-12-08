@@ -377,11 +377,9 @@ MonoBehaviour:
   Bullet: {fileID: 100000, guid: c8d6e697234edc5479af0b4aadb2d79f, type: 2}
   FirePositions:
   - {fileID: 4128882544915102}
-  - {fileID: 4834912386305070}
-  - {fileID: 4105796508561342}
   UISprite: {fileID: 21300000, guid: 82245c5c6c15ed146b8e834935c43683, type: 3}
   Cost: 200
   BullectNumberInUse: 10
   maxBullectNumber: 20
-  _DefaultFireRate: 1
+  _DefaultFireRate: 0.8
   FireRate: 0
