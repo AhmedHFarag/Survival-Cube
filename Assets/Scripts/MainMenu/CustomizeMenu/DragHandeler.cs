@@ -17,6 +17,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     }
     public Weapontype Type = Weapontype.Temp;
     public Image Locked;
+    public Text Cost;
     bool Unlocked = false;
     void OnEnable()
     {
@@ -28,17 +29,19 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (Type==Weapontype.Temp)
         {
             Unlocked = true;
-            Locked.enabled = false;
+            Locked.gameObject.SetActive( false);
             GetComponent<Image>().sprite = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().UISprite;
+            Cost.text = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().Cost.ToString();
         }
         else
         {
             if (DataHandler.Instance.GetWeaponSlotStatus(WeaponID))
             {
                 Unlocked = true;
-                Locked.enabled = false;
+                Locked.gameObject.SetActive(false);
             }
             GetComponent<Image>().sprite = GameManager.Instance.Weapons[WeaponID].GetComponent<DefaultWeapon>().UISprite;
+            Cost.text = GameManager.Instance.Weapons[WeaponID].GetComponent<DefaultWeapon>().Cost.ToString();
         }
 
     }
