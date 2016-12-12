@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Events;
 
 public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerClickHandler
 {
@@ -108,18 +109,33 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             if (DataHandler.Instance.GetPlayerCoins() >= _Cost)
             {
-                DataHandler.Instance.AddCoins(-_Cost);
-                Unlocked = true;
-                Locked.gameObject.SetActive(false);
+                
                 if (Type == Weapontype.Temp)
                 {
-                    DataHandler.Instance.UnlockTempWeapon(WeaponID);
-                    //Save unlocked temp weapon 
+                    MainMenu.Instance.Msgbox.Choice("Would you like to buy??", ()=> 
+                    {
+                        DataHandler.Instance.AddCoins(-_Cost);
+                        Unlocked = true;
+                        Locked.gameObject.SetActive(false);
+                        //Save unlocked temp weapon 
+                        DataHandler.Instance.UnlockTempWeapon(WeaponID);
+                        
+                    }
+                    , () => { }, () => { });
+                    
                 }
                 else
                 {
-                    //Save unlocked Main weapon 
-                    DataHandler.Instance.UnlockMainWeapon(WeaponID);
+                    MSGScript.Instance.Choice("Would you like to buy??",new UnityAction( () =>
+                    {
+                        DataHandler.Instance.AddCoins(-_Cost);
+                        Unlocked = true;
+                        Locked.gameObject.SetActive(false);
+                        //Save unlocked Main weapon 
+                        DataHandler.Instance.UnlockMainWeapon(WeaponID);
+                    })
+                   , new UnityAction(() => { }), new UnityAction(() => { }));
+                   
                 }
             }
         }

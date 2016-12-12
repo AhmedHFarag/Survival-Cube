@@ -11,7 +11,7 @@ public enum UIsPanels
     Credits = 2
 }
 public class MainMenu : MonoBehaviour {
-    public static MainMenu instance;
+    public static MainMenu Instance;
     public List<RectTransform> UIs;
     public UIsPanels CurrentUI = UIsPanels.MainMenu;
     public int CurrentPanel;
@@ -20,15 +20,24 @@ public class MainMenu : MonoBehaviour {
     Button BackButton;
     bool InputEnabled = true;
 
+    public MSGScript Msgbox;
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
         UIs[(int)CurrentUI].gameObject.SetActive(true);
         _FadeIn(UIs[(int)CurrentUI].gameObject);
         BackButton = UIs[(int)CurrentUI].GetChild(0).GetComponent<Button>();
     }
     void Start()
     {
-        
+        Msgbox = MSGScript.Instance;
     }
 	
 	void Update () {
