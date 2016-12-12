@@ -62,6 +62,7 @@ public class MSGScript : MonoBehaviour {
 
         this.question.text = question;
 
+        okButton.gameObject.SetActive(false);
         this.iconImage.gameObject.SetActive(false);
         yesButton.gameObject.SetActive(true);
         noButton.gameObject.SetActive(true);

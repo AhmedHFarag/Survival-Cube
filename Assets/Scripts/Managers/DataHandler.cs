@@ -36,6 +36,8 @@ public class DataHandler : MonoBehaviour
     {
         public int ID;
         public bool Unlocked;
+        public int FireRate;
+        public int Damage;
     }
 
     PlayerData Player;
@@ -165,7 +167,7 @@ public class DataHandler : MonoBehaviour
                 PlayerPrefs.SetInt("MainWeaponSlots" + i + ".ID", i);
                 m_MainMenu_MainWeaponSlots[i].ID = i;
             }
-
+            //Unlocked
             if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".Unlocked"))
             {
                 if (PlayerPrefs.GetInt("MainWeaponSlots" + i + ".Unlocked")==0)
@@ -183,6 +185,29 @@ public class DataHandler : MonoBehaviour
                 PlayerPrefs.SetInt("MainWeaponSlots" + i + ".Unlocked", 0);
                 m_MainMenu_MainWeaponSlots[i].Unlocked = false;
             }
+
+            //Fire Rate
+            if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".FireRate"))
+            {
+                m_MainMenu_MainWeaponSlots[i].FireRate = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".FireRate");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("MainWeaponSlots" + i + ".FireRate", 1);
+                m_MainMenu_MainWeaponSlots[i].FireRate = 1;
+            }
+
+            //Damage
+            if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".Damage"))
+            {
+                m_MainMenu_MainWeaponSlots[i].Damage = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".Damage");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("MainWeaponSlots" + i + ".Damage", 10);
+                m_MainMenu_MainWeaponSlots[i].Damage = 10;
+            }
+
         }
         //Satrt With First Single Shot 
         UnlockMainWeapon(0);
