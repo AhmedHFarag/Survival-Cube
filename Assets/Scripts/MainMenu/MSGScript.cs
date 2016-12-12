@@ -9,6 +9,7 @@ public class MSGScript : MonoBehaviour {
 
     public Text question;
     public Image iconImage;
+    public Button okButton;
     public Button yesButton;
     public Button noButton;
     public Button cancelButton;
@@ -65,6 +66,22 @@ public class MSGScript : MonoBehaviour {
         yesButton.gameObject.SetActive(true);
         noButton.gameObject.SetActive(true);
         cancelButton.gameObject.SetActive(true);
+    }
+    // Ok: A string, a Ok event
+    public void OK(string question, UnityAction OkEvent)
+    {
+        gameObject.SetActive(true);
+        okButton.onClick.RemoveAllListeners();
+        okButton.onClick.AddListener(OkEvent);
+        okButton.onClick.AddListener(ClosePanel);
+
+        this.question.text = question;
+
+        this.iconImage.gameObject.SetActive(false);
+        okButton.gameObject.SetActive(true);
+        yesButton.gameObject.SetActive(false);
+        noButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
     }
 
     void ClosePanel()

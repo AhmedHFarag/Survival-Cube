@@ -112,7 +112,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 
                 if (Type == Weapontype.Temp)
                 {
-                    MainMenu.Instance.Msgbox.Choice("Would you like to buy??", ()=> 
+                    MSGScript.Instance.Choice("Would you like to buy??", ()=> 
                     {
                         DataHandler.Instance.AddCoins(-_Cost);
                         Unlocked = true;
@@ -137,6 +137,12 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                    , new UnityAction(() => { }), new UnityAction(() => { }));
                    
                 }
+            }
+            else
+            {
+                MSGScript.Instance.OK("You Do not have enogh Coins!!", () => {
+
+                });
             }
         }
     }

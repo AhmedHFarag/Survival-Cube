@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour {
     Button BackButton;
     bool InputEnabled = true;
 
-    public MSGScript Msgbox;
+    public GameObject Msgbox;
     void Awake()
     {
         if (Instance == null)
@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour {
     }
     void Start()
     {
-        Msgbox.Awake();
+        Msgbox.SetActive(true);
     }
 	
 	void Update () {
