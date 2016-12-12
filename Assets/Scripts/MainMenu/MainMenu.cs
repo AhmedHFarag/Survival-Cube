@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour {
     }
     void Start()
     {
-        Msgbox = MSGScript.Instance;
+        Msgbox.Awake();
     }
 	
 	void Update () {

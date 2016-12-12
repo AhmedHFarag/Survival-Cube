@@ -12,13 +12,24 @@ public class MSGScript : MonoBehaviour {
     public Button yesButton;
     public Button noButton;
     public Button cancelButton;
-
     public static MSGScript Instance;
+    //public static MSGScript Instance()
+    //{
+    //    if (!msgbox)
+    //    {
+    //        msgbox = GameObject.Find("MSGBox").GetComponent<MSGScript>();
+    //        if (!msgbox)
+    //            Debug.LogError("There needs to be one MSGBox script on a GameObject in your scene.");
+    //    }
+
+    //    return msgbox;
+    //}
 
     void OnEnable()
     {
         transform.SetAsLastSibling();
     }
+
     public void Awake()
     {
         if (Instance == null)
