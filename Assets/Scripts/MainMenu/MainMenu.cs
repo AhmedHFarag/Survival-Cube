@@ -110,20 +110,20 @@ public class MainMenu : MonoBehaviour {
         }
         Image[] ImageComponents = Parent.GetComponentsInChildren<Image>();
         Text[] TextComponents = Parent.GetComponentsInChildren<Text>();
-        Color Tmep = new Color(1, 1, 1, 0.8f);
+        float a = 0;
         do
         {
-            Tmep.a -= FadingRate;
+            a -= FadingRate;
             for (int i = 0; i < ImageComponents.Length; i++)
             {
-                ImageComponents[i].color = Tmep;
+                ImageComponents[i].color = new Color(ImageComponents[i].color.r, ImageComponents[i].color.g, ImageComponents[i].color.b, a);
             }
             for (int i = 0; i < TextComponents.Length; i++)
             {
-                TextComponents[i].color = Tmep;
+                TextComponents[i].color = new Color(TextComponents[i].color.r, TextComponents[i].color.g, TextComponents[i].color.b, a);
             }
             yield return new WaitForSeconds(FadingTimeRate);
-        } while (Tmep.a > 0);
+        } while (a > 0);
         Parent.SetActive(false);
     }
 
