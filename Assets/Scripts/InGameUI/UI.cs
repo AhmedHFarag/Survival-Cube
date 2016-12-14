@@ -66,7 +66,7 @@ public class UI : MonoBehaviour
         paused = false;
         Time.timeScale = 1;
         GameManager.Instance.ReloadSameScene();
-        DataHandler.Instance.ResetPlayerPtrefData();
+        DataHandler.Instance.ResetPlayerInGameData();
     }
     public void ShowGameEnded()
     {

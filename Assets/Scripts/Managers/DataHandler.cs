@@ -304,7 +304,7 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.Save();
 
     }
-    public void ResetPlayerPtrefData()
+    public void ResetPlayerInGameData()
     {
         inGameCoins = 0;
         inGameScore = 0;
@@ -315,6 +315,11 @@ public class DataHandler : MonoBehaviour
         //PlayerPrefs.DeleteAll();
         //initializeData();
 
+    }
+    public void ResetAllPlayerSavedData()
+    {
+        PlayerPrefs.DeleteAll();
+        initializeData();
     }
     public void SavePlayerPrefsData()
     {
@@ -498,4 +503,5 @@ public class DataHandler : MonoBehaviour
     {
         inGameScore += amountToBeAdded;
     }
+    
 }

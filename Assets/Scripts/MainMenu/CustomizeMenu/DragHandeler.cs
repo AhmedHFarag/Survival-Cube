@@ -140,7 +140,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             }
             else
             {
-                MSGScript.Instance.OK("You Do not have enogh Coins!!", () => {
+                MSGScript.Instance.OK("You Do not have enough Coins!!", () => {
 
                 });
             }

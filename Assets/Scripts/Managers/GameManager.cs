@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(1);
-        DataHandler.Instance.ResetPlayerPtrefData();
+        DataHandler.Instance.ResetPlayerInGameData();
         UnlockAchievement1();
     }
     public void ThePlayerDied()
