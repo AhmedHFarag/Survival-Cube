@@ -29,6 +29,13 @@ public class AdManager : MonoBehaviour
             Advertisement.Show();
         }
     }
+    public void ShowVideo()
+    {
+        if (Advertisement.IsReady("video"))
+        {
+            Advertisement.Show("video");
+        }
+    }
     public void ShowRewardedAd()
     {
         if (Advertisement.IsReady("rewardedVideo"))

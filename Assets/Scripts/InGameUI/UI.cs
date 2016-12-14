@@ -147,7 +147,7 @@ public class UI : MonoBehaviour
             Background.color = new Vector4(0, 0, 0, Background.color.a + 0.01f);
         }
         GameEnded.SetActive(true);
-        AdManager.Instance.ShowAd();
+        AdManager.Instance.ShowVideo();
         StartCoroutine("ScoreRoll");
         StartCoroutine("CoinRoll");
         

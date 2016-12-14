@@ -589,21 +589,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012326255080, guid: d70ff2b03eff8de438b66a1ac62385bb,
+    - target: {fileID: 114833841362177434, guid: d70ff2b03eff8de438b66a1ac62385bb,
         type: 2}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2140957096}
-    - target: {fileID: 114000012326255080, guid: d70ff2b03eff8de438b66a1ac62385bb,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2140957096}
-    - target: {fileID: 114000012326255080, guid: d70ff2b03eff8de438b66a1ac62385bb,
-        type: 2}
-      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2140957096}
+      objectReference: {fileID: 1525030931}
     - target: {fileID: 114000010826881868, guid: d70ff2b03eff8de438b66a1ac62385bb,
         type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -619,6 +609,21 @@ Prefab:
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2140957096}
+    - target: {fileID: 114000012326255080, guid: d70ff2b03eff8de438b66a1ac62385bb,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140957096}
+    - target: {fileID: 114000012326255080, guid: d70ff2b03eff8de438b66a1ac62385bb,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140957096}
+    - target: {fileID: 114000012326255080, guid: d70ff2b03eff8de438b66a1ac62385bb,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140957096}
     - target: {fileID: 224000013413237142, guid: d70ff2b03eff8de438b66a1ac62385bb,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -629,22 +634,22 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224000012907124330, guid: d70ff2b03eff8de438b66a1ac62385bb,
+    - target: {fileID: 224000013695511948, guid: d70ff2b03eff8de438b66a1ac62385bb,
         type: 2}
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224000012907124330, guid: d70ff2b03eff8de438b66a1ac62385bb,
+    - target: {fileID: 224000013695511948, guid: d70ff2b03eff8de438b66a1ac62385bb,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224000013695511948, guid: d70ff2b03eff8de438b66a1ac62385bb,
+    - target: {fileID: 224000012907124330, guid: d70ff2b03eff8de438b66a1ac62385bb,
         type: 2}
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 224000013695511948, guid: d70ff2b03eff8de438b66a1ac62385bb,
+    - target: {fileID: 224000012907124330, guid: d70ff2b03eff8de438b66a1ac62385bb,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1160,6 +1165,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dfa87f67ec71aca44a263bdd0e341f6f, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1525030931 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010572914358, guid: dfa87f67ec71aca44a263bdd0e341f6f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1525030930}
+  m_Script: {fileID: 11500000, guid: 9747d8b83aee66541909c196c90a13e7, type: 3}
 --- !u!1001 &1536413271
 Prefab:
   m_ObjectHideFlags: 0
