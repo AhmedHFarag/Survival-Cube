@@ -37,7 +37,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 Locked.gameObject.SetActive(false);
             }
             GetComponent<Image>().sprite = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().UISprite;
-            _Cost = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().Cost;
+            _Cost = GameManager.Instance.TempWeapons[WeaponID].GetComponent<TempWeapon>().UnlockCost;
             Cost.text = _Cost.ToString()+" $";
         }
         else

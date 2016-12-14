@@ -4,7 +4,8 @@ using System.Collections;
 public class TempWeapon : MonoBehaviour
 {
     public int Damage;
-    public int Cost;
+    public int UnlockCost;
+    public int InGameUseCost;
     public int LifeTime = 5;
     public Sprite UISprite;
     void OnEnable()
