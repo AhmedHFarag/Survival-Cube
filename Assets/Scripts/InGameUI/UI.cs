@@ -23,6 +23,10 @@ public class UI : MonoBehaviour
     public Toggle _ControlsTouch;
     public int WaveNumber=1;
     Animator _anim;
+    private GameObject pauseMenu;
+    [SerializeField]
+    private Animator pauseMenuAnim;
+
     bool paused = false;
     void Awake()
     {
@@ -147,7 +151,7 @@ public class UI : MonoBehaviour
             Background.color = new Vector4(0, 0, 0, Background.color.a + 0.01f);
         }
         GameEnded.SetActive(true);
-        AdManager.Instance.ShowVideo();
+      //  AdManager.Instance.ShowVideo();
         StartCoroutine("ScoreRoll");
         StartCoroutine("CoinRoll");
         
@@ -183,6 +187,22 @@ public class UI : MonoBehaviour
             InputManager.Instance.ControlSchemeJoyStick = false;
         }
     }
+    public void ReloadSameScene()
+    {
+        Time.timeScale = 1;
+        paused = false;
+        GameManager.Instance.ReloadSameScene();
+
+    }
+    public void ReturnToMainmenu()
+    {
+
+
+        GameManager.Instance.ReturnToMainMenu();
+        //MainMenu.Instance.InputEnabled = true;
+
+    }
+
     public void PauseButton()
     {
         if (paused)
@@ -197,11 +217,13 @@ public class UI : MonoBehaviour
     void PauseGame()
     {
         Time.timeScale = 0;
+        pauseMenuAnim.SetTrigger("isMenuDown");
         paused = true;
     }
     void ResumeGame()
     {
         Time.timeScale = 1;
+        pauseMenuAnim.SetTrigger("isMenuUp");
         paused = false;
     }
 }

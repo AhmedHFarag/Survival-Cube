@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
     public void ReloadSameScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //DataHandler.Instance.ResetPlayerPtrefData();
+        DataHandler.Instance.ResetPlayerInGameData();
     }
     public void ReturnToMainMenu()
     {
