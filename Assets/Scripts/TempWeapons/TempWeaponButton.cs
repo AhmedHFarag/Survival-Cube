@@ -6,6 +6,7 @@ public class TempWeaponButton : MonoBehaviour
 {
     public int WeaponIndex;
     Slider coolDownSlider;
+    Text InGameCost;
     Image ButtonImage;
     // Use this for initialization
     void Start()
@@ -13,10 +14,12 @@ public class TempWeaponButton : MonoBehaviour
         coolDownSlider = GetComponentInChildren<Slider>();
         coolDownSlider.maxValue = GameManager.Instance.weaponCoolDown;
         coolDownSlider.value = coolDownSlider.maxValue;
+        InGameCost = GetComponentInChildren<Text>();
         ButtonImage = GetComponent<Image>();
         if (DataHandler.Instance.GetTempWeapon(WeaponIndex)>=0)
         {
             ButtonImage.sprite = GameManager.Instance.TempWeapons[DataHandler.Instance.GetTempWeapon(WeaponIndex)].GetComponent<TempWeapon>().UISprite;
+            InGameCost.text = GameManager.Instance.TempWeapons[DataHandler.Instance.GetTempWeapon(WeaponIndex)].GetComponent<TempWeapon>().InGameUseCost.ToString();
         }
     }
     public void TempWeaponPressed()

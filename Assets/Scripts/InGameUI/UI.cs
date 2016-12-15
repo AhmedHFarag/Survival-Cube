@@ -99,7 +99,6 @@ public class UI : MonoBehaviour
         GameManager.NewWave -= StartCountDown;
 
     }
-
     IEnumerator ScoreRoll()
     {
         int score = 0;
@@ -151,7 +150,7 @@ public class UI : MonoBehaviour
             Background.color = new Vector4(0, 0, 0, Background.color.a + 0.01f);
         }
         GameEnded.SetActive(true);
-      //  AdManager.Instance.ShowVideo();
+        AdManager.Instance.ShowVideo();
         StartCoroutine("ScoreRoll");
         StartCoroutine("CoinRoll");
         
@@ -197,7 +196,7 @@ public class UI : MonoBehaviour
     public void ReturnToMainmenu()
     {
 
-
+        Time.timeScale = 1;
         GameManager.Instance.ReturnToMainMenu();
         //MainMenu.Instance.InputEnabled = true;
 
@@ -211,18 +210,26 @@ public class UI : MonoBehaviour
         }
         else
         {
-            PauseGame();
+            StartCoroutine(PauseGame());
+            
         }
     }
-    void PauseGame()
+    IEnumerator PauseGame()
     {
         Time.timeScale = 0;
+        Background.gameObject.SetActive(true);
+        while (Background.color.a < 1)
+        {
+            yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.01f));
+            Background.color = new Vector4(0, 0, 0, Background.color.a + 0.1f);
+        }
         pauseMenuAnim.SetTrigger("isMenuDown");
         paused = true;
     }
     void ResumeGame()
     {
         Time.timeScale = 1;
+        Background.gameObject.SetActive(false);
         pauseMenuAnim.SetTrigger("isMenuUp");
         paused = false;
     }

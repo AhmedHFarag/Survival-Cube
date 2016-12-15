@@ -222,5 +222,9 @@ public class MainMenu : MonoBehaviour {
 #endif
     }
 #endregion
+    public void ShowADAndGetCoins()
+    {
+        AdManager.Instance.ShowRewardedAd();
+    }
 
 }
