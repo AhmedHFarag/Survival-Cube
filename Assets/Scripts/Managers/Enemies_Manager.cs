@@ -20,7 +20,7 @@ public class Enemies_Manager : MonoBehaviour
     #region EnemiesWaves
     int CurrentWaveNumber = 0;
     int CurrentEnemieNumber = 0;
-    int Currentlevel = 2;
+    int Currentlevel = 1;
     int Enemiescount = 0;
     bool SpawnEnabled = false;
     public List<Wave> WavesData = new List<Wave>();
