@@ -10,7 +10,8 @@ public class Enemy : MonoBehaviour
     Transform Target;
     public float DefaultMoveSpeed=5;
     float moveSpeed;    
-    public int attackDamage = 0;
+    public int DefaultAttackDamage = 50;
+    int AttackDamage;
     public float DefaultHP = 200;
     public int AddedCoins = 20;
     float HP;
@@ -32,12 +33,14 @@ public class Enemy : MonoBehaviour
     float EllapsedTime = 0;
     void OnEnable()
     {
-        HP = DefaultHP;
+        int CurrentLevel = Enemies_Manager.Instance.GetCurrentLevel();
+        AttackDamage = DefaultAttackDamage * CurrentLevel;
+        HP = DefaultHP * CurrentLevel;
         health = gameObject.GetComponentInChildren<Canvas>() ? gameObject.GetComponentInChildren<Canvas>() : null;
-        healthBar.maxValue = DefaultHP;
-        healthBar.value = DefaultHP;
+        healthBar.maxValue = HP;
+        healthBar.value = HP;
         health.enabled = true;
-        moveSpeed = DefaultMoveSpeed;
+        moveSpeed = DefaultMoveSpeed * CurrentLevel;
     }
 
     // Use this for initialization
@@ -215,7 +218,7 @@ public class Enemy : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             HP = 0;
-            col.gameObject.GetComponent<Player_Controller>().TakeDamage(attackDamage);
+            col.gameObject.GetComponent<Player_Controller>().TakeDamage(AttackDamage);
             Die(true);
         }
 

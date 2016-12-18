@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefaultMoveSpeed: 2
-  attackDamage: 25
+  DefaultAttackDamage: 25
   DefaultHP: 150
   AddedCoins: 10
   AddedScore: 20

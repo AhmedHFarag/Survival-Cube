@@ -152,6 +152,10 @@ public class Enemies_Manager : MonoBehaviour
         }
         EnemyKilled(Enemy);
     }
+    public int GetCurrentLevel()
+    {
+        return Currentlevel;
+    }
     void OnDestroy()
     {
         Enemy.OnEnemyDie -= EnemyDeath;
