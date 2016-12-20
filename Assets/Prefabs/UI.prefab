@@ -2135,7 +2135,6 @@ MonoBehaviour:
   _ControlsTouch: {fileID: 114000012646329428}
   WaveNumber: 1
   pauseMenuAnim: {fileID: 95032201636396466}
-  paused: 0
 --- !u!114 &114000011961730526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4623,10 +4622,10 @@ RectTransform:
   m_Father: {fileID: 224000012846467108}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -149, y: -404.52545}
-  m_SizeDelta: {x: -1252, y: -809}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -149, y: 135.47455}
+  m_SizeDelta: {x: 668, y: 271}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012833877852
 RectTransform:
@@ -5001,10 +5000,10 @@ RectTransform:
   m_Father: {fileID: 224000012846467108}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1134.25}
-  m_SizeDelta: {x: 874, y: -488.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1344.25}
+  m_SizeDelta: {x: 874, y: 591.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224238486077400698
 RectTransform:
