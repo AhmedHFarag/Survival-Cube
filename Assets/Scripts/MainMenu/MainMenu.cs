@@ -224,7 +224,7 @@ public class MainMenu : MonoBehaviour {
 #endregion
     public void ShowADAndGetCoins()
     {
-        AdManager.Instance.ShowRewardedAd();
+        AdManager.Instance.ShowUnityRewardedAd();
     }
 
 }

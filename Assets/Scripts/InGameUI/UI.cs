@@ -150,7 +150,7 @@ public class UI : MonoBehaviour
             Background.color = new Vector4(0, 0, 0, Background.color.a + 0.01f);
         }
         GameEnded.SetActive(true);
-        AdManager.Instance.ShowVideo();
+        AdManager.Instance.ShowUnityVideo();
         StartCoroutine("ScoreRoll");
         StartCoroutine("CoinRoll");
         
@@ -201,7 +201,10 @@ public class UI : MonoBehaviour
         //MainMenu.Instance.InputEnabled = true;
 
     }
-
+    public void ShowAd()
+    {
+        AdManager.Instance.ShowVungleRewardedAd();
+    }
     public void PauseButton()
     {
         if (paused)
