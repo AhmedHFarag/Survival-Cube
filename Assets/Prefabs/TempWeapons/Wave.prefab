@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653adfb88e2813145a8a799d0fe6d10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1000
-  UnlockCost: 1000
-  InGameUseCost: 500
+  Damage: 100
+  UnlockCost: 900
+  InGameUseCost: 300
   LifeTime: 5
   UISprite: {fileID: 21300000, guid: 366dfc4f715db30429dfecf0a0e31687, type: 3}
 --- !u!198 &198000010186526680
