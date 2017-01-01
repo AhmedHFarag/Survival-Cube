@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+public delegate void GamePaused();
 
-
+public delegate void GameResumed();
 public class UI : MonoBehaviour
 {
     public static UI Instance;
@@ -14,6 +15,8 @@ public class UI : MonoBehaviour
     public Text Coins;
     public Text CoinsEnd;
     public Text TotalCoins;
+    public Text Energy;
+    public Slider EnergyBar;
     public RawImage Background;
     public GameObject WaveText;
     public Toggle _Controls0;
@@ -26,7 +29,8 @@ public class UI : MonoBehaviour
     private GameObject pauseMenu;
     [SerializeField]
     private Animator pauseMenuAnim;
-
+    public static event GamePaused Pause;
+    public static event GameResumed Resume;
     bool paused = false;
     void Awake()
     {
@@ -54,6 +58,8 @@ public class UI : MonoBehaviour
     {
         txtScore.text = DataHandler.Instance.GetInGameScore().ToString();
         Coins.text = DataHandler.Instance.GetInGameCoins().ToString();
+        Energy.text = DataHandler.Instance.GetInGameEnergy().ToString() + "/" + DataHandler.Instance.GetMaxEnergy().ToString();
+        EnergyBar.value = (float)DataHandler.Instance.GetInGameEnergy() / (float)DataHandler.Instance.GetMaxEnergy();
     }
     void Update()
     {
@@ -62,6 +68,16 @@ public class UI : MonoBehaviour
             Time.timeScale = 1;
             GameManager.Instance.ReturnToMainMenu();
         }
+    }
+    private static void OnGamePaused()
+    {
+        var handler = Pause;
+        if (handler != null) handler();
+    }
+    private static void OnGameResumed()
+    {
+        var handler = Resume;
+        if (handler != null) handler();
     }
     public void ReStartGame()
     {
@@ -209,10 +225,13 @@ public class UI : MonoBehaviour
     {
         if (paused)
         {
+            OnGameResumed();
             ResumeGame();
         }
         else
         {
+            OnGamePaused();
+
             StartCoroutine(PauseGame());
             
         }

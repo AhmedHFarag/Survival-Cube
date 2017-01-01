@@ -167,9 +167,9 @@ public class Player_Controller : MonoBehaviour
         if (!TempInUse)
         {
             TempWeapon weap = GameManager.Instance.TempWeapons[DataHandler.Instance.GetTempWeapon(index)].GetComponent<TempWeapon>();
-            if (DataHandler.Instance.GetInGameCoins() >= weap.InGameUseCost)
+            if (DataHandler.Instance.GetInGameEnergy() >= weap.InGameUseCost)
             {
-                DataHandler.Instance.AddInGameCoins( -weap.InGameUseCost);
+                DataHandler.Instance.SubtractEnergy( weap.InGameUseCost);
                 //m_BaiscWeapon.SetActive(false);
                 GameObject obj = Instantiate(weap.gameObject);
                 obj.GetComponent<TempWeapon>().SelfInitialize(gameObject);

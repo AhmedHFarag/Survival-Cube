@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 public class DataHandler : MonoBehaviour
 {
 
@@ -11,6 +11,12 @@ public class DataHandler : MonoBehaviour
       public int WeaponStatus;
       public int WeaponCost;
       public int WeaponDamage;
+    }
+    struct RewardsData
+    {
+        public int Id;
+        public int DaysRequired;
+        public int RewardStatus;
     }
     public struct MainWeaponData
     {
@@ -31,6 +37,10 @@ public class DataHandler : MonoBehaviour
         public int HighScore;
         public int MaxWaveReached;
         public int HighestWaveStreak;
+        public int MaxEnergy;
+        public int ConsecutiveDays;
+        public string LastPlayTime;
+        
     }
     struct WeaponSlotData
     {
@@ -44,7 +54,7 @@ public class DataHandler : MonoBehaviour
     WaveData Wave;
 
     WeaponSlotData[] m_MainMenu_MainWeaponSlots=new WeaponSlotData[3];
-    WeaponSlotData[] m_MainMenu_TempWeaponSlots = new WeaponSlotData[5];
+    WeaponSlotData[] m_MainMenu_TempWeaponSlots = new WeaponSlotData[4];
 
     string MaxWaveReachedRef = "MaxWaveReached";
     string HighestWaveStreakRef = "HighestWaveStreak";
@@ -64,6 +74,8 @@ public class DataHandler : MonoBehaviour
     [HideInInspector]
     int inGameScore;
 
+    [HideInInspector]
+    int Energy;
     bool DataLoaded = false;
     
     
@@ -87,6 +99,7 @@ public class DataHandler : MonoBehaviour
     {
         initializeData();
         DataLoaded = true;
+        
     }
 
    public void initializeData()
@@ -110,7 +123,36 @@ public class DataHandler : MonoBehaviour
             PlayerPrefs.SetInt("playerCoins", 0);
             Player.Coins = 0;
         }
-        
+        if(PlayerPrefs.HasKey("ConsecutiveDays"))
+        {
+            Player.ConsecutiveDays = PlayerPrefs.GetInt("ConsecutiveDays");
+
+        }
+        else
+        {
+            PlayerPrefs.SetInt("ConsecutiveDays", 0);
+            Player.ConsecutiveDays = 0;
+        }
+        if(PlayerPrefs.HasKey("LastPlayTime"))
+        {
+            TimeSpan ts = DateTime.Now - Convert.ToDateTime(PlayerPrefs.GetString("LastPlayTime"));
+            if(ts.TotalHours>24 && ts.TotalHours<48)
+            {
+                Player.ConsecutiveDays += 1;
+                PlayerPrefs.SetString("LastPlayTime",Convert.ToString(DateTime.Now));
+            }
+            else if(ts.TotalHours>48)
+            {
+                Player.ConsecutiveDays = 0;
+                PlayerPrefs.SetString("LastPlayTime", Convert.ToString(DateTime.Now));
+            }
+            Player.LastPlayTime = PlayerPrefs.GetString("LastPlayTime");
+        }
+        else
+        {
+            Player.LastPlayTime = PlayerPrefs.GetString("LastPlayTime");
+
+        }
         //Player Name
         if (PlayerPrefs.HasKey("playerName"))
         {
@@ -132,7 +174,15 @@ public class DataHandler : MonoBehaviour
             PlayerPrefs.SetInt("BestSCore", 0);
             Player.HighScore = 0;
         }
-
+        if(PlayerPrefs.HasKey("MaxEnergy"))
+        {
+            Player.MaxEnergy = PlayerPrefs.GetInt("MaxEnergy");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("MaxEnergy", 100);
+            Player.MaxEnergy = 100;
+        }
         //if (PlayerPrefs.HasKey("InGameScore"))
         //{
         //    inGameScore = PlayerPrefs.GetInt("InGameScore");
@@ -308,6 +358,7 @@ public class DataHandler : MonoBehaviour
     {
         inGameCoins = 0;
         inGameScore = 0;
+        Energy = 0;
         //Player.MaxWaveReached = 0;
         //Player.HighestWaveStreak = 0;
         //playerCoins = 0;
@@ -329,6 +380,7 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetInt("bgVolume", BG_Volume);
         PlayerPrefs.SetInt("sfxVolume", SFX_Volume);
         PlayerPrefs.SetInt("WaveNo", Wave.WaveNumber);
+        PlayerPrefs.SetInt("MaxEnergy", Player.MaxEnergy);
         //PlayerPrefs.SetInt("InGameScore", inGameScore);
         PlayerPrefs.SetInt("BestScore", Player.HighScore);
         PlayerPrefs.SetInt("MainWeapon.ID", m_InGameMainWeapon.ID);
@@ -347,7 +399,10 @@ public class DataHandler : MonoBehaviour
     {
         return inGameCoins;
     }
-
+    public int GetInGameEnergy()
+    {
+        return Energy;
+    }
     public string GetPlayerName()
     {
         return Player.Name;
@@ -372,6 +427,10 @@ public class DataHandler : MonoBehaviour
     public string GetBestScoreStr()
     {
         return Player.HighScore.ToString();
+    }
+    public int GetMaxEnergy()
+    {
+        return Player.MaxEnergy;
     }
     public int GetInGameScore()
     {
@@ -412,7 +471,12 @@ public class DataHandler : MonoBehaviour
 
         PlayerPrefs.Save();
     }
-
+    public void SetPlayerMaxEnergy(int energy)
+    {
+        Player.MaxEnergy = energy;
+        PlayerPrefs.SetInt("MaxEnergy", energy);
+        PlayerPrefs.Save();
+    }
     public void SetWaveNumber(int _WaveNo)
     {   
         Wave.WaveNumber = _WaveNo;
@@ -436,6 +500,7 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetInt("BestScore", _BestScore);
         PlayerPrefs.Save();
     }
+    
     //public void SetInGameScore(int _AchievementScore)
     //{
     //    inGameScore = _AchievementScore;
@@ -492,7 +557,22 @@ public class DataHandler : MonoBehaviour
     {
         inGameCoins += amountToBeAdded;
     }
-
+    public void AddEnergy(int energy)
+    {
+        Energy += energy;
+        if(Energy>Player.MaxEnergy)
+        {
+            Energy = Player.MaxEnergy;
+        }
+    }
+    public void SubtractEnergy(int energy)
+    {
+        Energy -= energy;
+        if(Energy<0)
+        {
+            Energy = 0;
+        }
+    }
     void RemoveCoins(int amountToBeRemoved)
     {
         Player.Coins -= amountToBeRemoved;

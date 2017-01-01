@@ -22,12 +22,14 @@ public enum GameScenes
 }
 #region Declaring delegate events
 public delegate void PlayerDied();//Declaring Die event delegate
+public delegate void GameStarted();
 #endregion
 
 public class GameManager : MonoBehaviour
 {
     public static event PlayerDied PlayerDied;
     public static event PlayerDied NewWave;
+    public static event GameStarted NewGame;
 
     public static GameManager Instance;
     public PoolManager Pool_Manager;
@@ -63,6 +65,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         Pool_Manager = new PoolManager();
+        UI.Pause += PauseGame;
+        UI.Resume += ResumeGame;
     }
     void Start()
     {
@@ -80,6 +84,11 @@ public class GameManager : MonoBehaviour
     private static void OnPlayerDies()
     {
         var handler = PlayerDied;
+        if (handler != null) handler();
+    }
+    private static void OnGameStarted()
+    {
+        var handler = NewGame;
         if (handler != null) handler();
     }
     private static void OnNewWave()
@@ -151,6 +160,7 @@ public class GameManager : MonoBehaviour
                     ResetAll();
                     currentScene = (int)GameScenes.Tutorial;
                     SceneManager.LoadScene((int)GameScenes.Tutorial, LoadSceneMode.Single);
+
                     break;
                 }
         }
@@ -179,20 +189,33 @@ public class GameManager : MonoBehaviour
     }
     public void ReturnToMainMenu()
     {
+        StopCoroutine("IncreaseEnergy");
         SceneManager.LoadScene(0);
     }
     public void StartGame()
     {
         SceneManager.LoadScene(1);
         DataHandler.Instance.ResetPlayerInGameData();
+        StartCoroutine("IncreaseEnergy");
         UnlockAchievement1();
+    }
+    void PauseGame()
+    {
+        StopCoroutine("IncreaseEnergy");
+    }
+    void ResumeGame()
+    {
+        StartCoroutine("IncreaseEnergy");
     }
     public void ThePlayerDied()
     {
+        StopCoroutine("IncreaseEnergy");
+
         OnPlayerDies();
     }
     public void NewWavStarted()
     {
+        DataHandler.Instance.AddEnergy(10);   
         OnNewWave();
     }
     public ObjectPool CreatePool(GameObject poolObject, int size, int maxSize)
@@ -247,5 +270,14 @@ public class GameManager : MonoBehaviour
             // handle success or failure
         });
         return _success;
+    }
+    IEnumerator IncreaseEnergy()
+    {
+        while (true)
+        {
+            
+            yield return new WaitForSeconds(10);
+            DataHandler.Instance.AddEnergy(5);
+        }
     }
 }
