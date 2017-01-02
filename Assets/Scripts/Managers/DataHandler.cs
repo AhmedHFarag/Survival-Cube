@@ -12,7 +12,7 @@ public class DataHandler : MonoBehaviour
       public int WeaponCost;
       public int WeaponDamage;
     }
-    struct RewardsData
+    struct RewardData
     {
         public int Id;
         public int DaysRequired;
@@ -40,7 +40,8 @@ public class DataHandler : MonoBehaviour
         public int MaxEnergy;
         public int ConsecutiveDays;
         public string LastPlayTime;
-        
+        public int StartingEnergy;
+        public float EnergyRate;
     }
     struct WeaponSlotData
     {
@@ -55,6 +56,7 @@ public class DataHandler : MonoBehaviour
 
     WeaponSlotData[] m_MainMenu_MainWeaponSlots=new WeaponSlotData[3];
     WeaponSlotData[] m_MainMenu_TempWeaponSlots = new WeaponSlotData[4];
+    RewardData[] m_RewardMenu_Rewards = new RewardData[7];
 
     string MaxWaveReachedRef = "MaxWaveReached";
     string HighestWaveStreakRef = "HighestWaveStreak";
@@ -182,6 +184,24 @@ public class DataHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("MaxEnergy", 100);
             Player.MaxEnergy = 100;
+        }
+        if(PlayerPrefs.HasKey("StartingEnergy"))
+        {
+            Player.StartingEnergy = PlayerPrefs.GetInt("StartingEnergy");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("StartingEnergy", 0);
+            Player.StartingEnergy= PlayerPrefs.GetInt("StartingEnergy");
+        }
+        if(PlayerPrefs.HasKey("EnergyRate"))
+        {
+            Player.EnergyRate = PlayerPrefs.GetFloat("EnergyRate");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("EnergyRate", 5);
+            Player.EnergyRate = 5;
         }
         //if (PlayerPrefs.HasKey("InGameScore"))
         //{
@@ -403,6 +423,15 @@ public class DataHandler : MonoBehaviour
     {
         return Energy;
     }
+    
+    public int GetStartingEnergy()
+    {
+        return Player.StartingEnergy;
+    }
+    public float GetPlayerEnergyRate()
+    {
+        return Player.EnergyRate;
+    }
     public string GetPlayerName()
     {
         return Player.Name;
@@ -420,10 +449,23 @@ public class DataHandler : MonoBehaviour
     {
         return Player.HighestWaveStreak;
     }
+    public int GetConsecutiveDays()
+    {
+        return Player.ConsecutiveDays;
+    }
+    public string GetLastTimePlayed()
+    {
+        return Player.LastPlayTime;
+    }
+    public int GetRewardID(int index)
+    {
+        return m_RewardMenu_Rewards[index].Id;
+    }
     public int GetBestScore()
     {
         return Player.HighScore;
     }
+
     public string GetBestScoreStr()
     {
         return Player.HighScore.ToString();
@@ -471,10 +513,23 @@ public class DataHandler : MonoBehaviour
 
         PlayerPrefs.Save();
     }
+    
     public void SetPlayerMaxEnergy(int energy)
     {
         Player.MaxEnergy = energy;
         PlayerPrefs.SetInt("MaxEnergy", energy);
+        PlayerPrefs.Save();
+    }
+    public void SetPlayerStartingEnergy(int energy)
+    {
+        Player.StartingEnergy = energy;
+        PlayerPrefs.SetInt("StartingEnergy", energy);
+        PlayerPrefs.Save();
+    }
+    public void SetPlayerEnergyRate(float rate)
+    {
+        Player.EnergyRate = rate;
+        PlayerPrefs.SetFloat("EnergyRate", rate);
         PlayerPrefs.Save();
     }
     public void SetWaveNumber(int _WaveNo)

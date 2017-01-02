@@ -195,7 +195,10 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(1);
+
         DataHandler.Instance.ResetPlayerInGameData();
+        DataHandler.Instance.AddEnergy(DataHandler.Instance.GetStartingEnergy());
+
         StartCoroutine("IncreaseEnergy");
         UnlockAchievement1();
     }
@@ -276,7 +279,7 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(DataHandler.Instance.GetPlayerEnergyRate());
             DataHandler.Instance.AddEnergy(5);
         }
     }
