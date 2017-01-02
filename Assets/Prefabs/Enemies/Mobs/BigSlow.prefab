@@ -293,7 +293,7 @@ MonoBehaviour:
   DefaultMoveSpeed: 2
   DefaultAttackDamage: 25
   DefaultHP: 150
-  AddedCoins: 10
+  AddedCoins: 5
   AddedScore: 20
   healthBar: {fileID: 114000012900575432}
   AvBullets: 0
