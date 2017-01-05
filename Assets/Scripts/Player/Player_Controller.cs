@@ -35,7 +35,6 @@ public class Player_Controller : MonoBehaviour
 
     //popupBuffs
     public GameObject popupBuffs;
-
     public float popupDouration = 2;
     public float raiseSpeed = 2;
 

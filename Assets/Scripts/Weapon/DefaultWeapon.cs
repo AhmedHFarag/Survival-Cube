@@ -22,7 +22,7 @@ public class DefaultWeapon : MonoBehaviour
     public virtual void Start()
     {
         bulletPool = GameManager.Instance.CreatePool(Bullet, BullectNumberInUse, maxBullectNumber);
-        FireRate = _DefaultFireRate;
+        FireRate = _DefaultFireRate * DataHandler.Instance.GetFireRateMultiplyer();
 
     }
     void Update()

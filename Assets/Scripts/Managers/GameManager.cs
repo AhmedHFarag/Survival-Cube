@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Items=new List<GameObject>();
     public List<GameObject> Weapons = new List<GameObject>();
     public List<GameObject> TempWeapons = new List<GameObject>();
+    public List<EnergyBoost> EnergyBoosts = new List<EnergyBoost>();
+    public List<FireRateBoost> FireRateBoosts = new List<FireRateBoost>();
+    public List<DamageBoost> DamageBoosts = new List<DamageBoost>();
+    public List<ShieldBoost> ShieldBoosts = new List<ShieldBoost>();
+    List<Boost> ActiveBoosts = new List<Boost>();
 
     [HideInInspector]
     public GameStates currentGameStates;
@@ -197,8 +202,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
 
         DataHandler.Instance.ResetPlayerInGameData();
-        DataHandler.Instance.AddEnergy(DataHandler.Instance.GetStartingEnergy());
-
+        
         StartCoroutine("IncreaseEnergy");
         UnlockAchievement1();
     }
@@ -213,7 +217,7 @@ public class GameManager : MonoBehaviour
     public void ThePlayerDied()
     {
         StopCoroutine("IncreaseEnergy");
-
+        
         OnPlayerDies();
     }
     public void NewWavStarted()
@@ -240,6 +244,22 @@ public class GameManager : MonoBehaviour
             string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
             GUI.Label(rect, text, style);
         }
+    }
+    public void AddToActiveBoosts(Boost boost)
+    {
+        if (boost.CheckIfAllowed())
+        {
+            boost.Activate();
+            ActiveBoosts.Add(boost);
+        }
+    }
+    public void DeactivateAllBoosts()
+    {
+        foreach  (Boost boost in ActiveBoosts)
+        {
+            boost.Deactivate();
+        }
+        ActiveBoosts.Clear();
     }
     public bool ConnectToGooglePlayServices()
     {
