@@ -195,11 +195,11 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         StopCoroutine("IncreaseEnergy");
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
         DataHandler.Instance.ResetPlayerInGameData();
         
