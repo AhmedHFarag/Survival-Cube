@@ -8,6 +8,7 @@ public class ScrollRectSnap : MonoBehaviour
     float[] points;
     [Tooltip("how many screens or pages are there within the content (steps)")]
     public int screens = 1;
+    public int CurrentScreen = 0;
     float stepSize;
 
     ScrollRect scroll;
@@ -20,8 +21,9 @@ public class ScrollRectSnap : MonoBehaviour
     float targetV;
     [Tooltip("Snap vertically")]
     public bool snapInV = true;
-
-    // Use this for initialization
+    private Vector2 startPos;
+    private Vector2 endPos;
+    float minSwipeDist = 100;
     void Start()
     {
         scroll = gameObject.GetComponent<ScrollRect>();
@@ -42,6 +44,7 @@ public class ScrollRectSnap : MonoBehaviour
         {
             points[0] = 0;
         }
+        CurrentScreen = points.Length - 1;
     }
 
     void Update()
@@ -60,20 +63,60 @@ public class ScrollRectSnap : MonoBehaviour
 
     public void DragEnd()
     {
-        if (scroll.horizontal && snapInH)
+        endPos = Input.mousePosition;
+        if (scroll.horizontal && snapInH && Mathf.Abs(endPos.x - startPos.x) >minSwipeDist)
         {
-            targetH = points[FindNearest(scroll.horizontalNormalizedPosition, points)];
-            LerpH = true;
+            //targetH = points[FindNearest(scroll.horizontalNormalizedPosition, points)];
+            float swipeValue = Mathf.Sign(endPos.x - startPos.x);
+            //Debug.Log("x:" + swipeValue +"Start:"+ startPos + "End:"+ endPos);
+            if (swipeValue > 0)//right swipe
+            {
+                if (CurrentScreen > 0)
+                {
+                    CurrentScreen--;
+                }
+            }
+            else if (swipeValue < 0)//left swipe
+            {
+                if (CurrentScreen < points.Length - 1)
+                {
+                    CurrentScreen++;
+                }
+            }
+            targetH = points[CurrentScreen];
         }
-        if (scroll.vertical && snapInV)
+        if (scroll.vertical && snapInV && Mathf.Abs(endPos.y - startPos.y) > minSwipeDist)
         {
-            targetV = points[FindNearest(scroll.verticalNormalizedPosition, points)];
-            LerpV = true;
+            //targetV = points[FindNearest(scroll.verticalNormalizedPosition, points)];
+            // Get Direction
+            float swipeValue = Mathf.Sign(endPos.y - startPos.y);
+            //Debug.Log("y:"+swipeValue + "Start:" + startPos + "End:" + endPos);
+            if (swipeValue > 0)//up swipe
+            {
+                if (CurrentScreen>0)
+                {
+                    CurrentScreen--;
+                }
+            }
+            else if (swipeValue < 0)//down swipe
+            {
+                if (CurrentScreen < points.Length-1)
+                {
+                    CurrentScreen++;
+                }
+            }
+            targetV = points[CurrentScreen];
+
         }
+        if(snapInH)
+        LerpH = true;
+        if(snapInV)
+        LerpV = true;
     }
 
-    public void OnDrag()
+    public void BeginDrag()
     {
+        startPos = Input.mousePosition;
         LerpH = false;
         LerpV = false;
     }
@@ -94,6 +137,7 @@ public class ScrollRectSnap : MonoBehaviour
     }
     public void GoToScreen(int index)
     {
+        CurrentScreen = index;
         targetV = points[index];
         LerpV = true;
     }

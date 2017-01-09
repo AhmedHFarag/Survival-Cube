@@ -46,104 +46,12 @@ public class MainMenuSliders : MonoBehaviour {
     {
         GameManager.Instance.StartGame();
     }
-    #region Fading Animation Funxtionality
-
-    public float FadingRate = 0.1f;
-    public float FadingTimeRate = 0.1f;
-
-    public void _FadeIn(GameObject Parent)
-    {
-        StartCoroutine(FadeIn(Parent));
-    }
-
-    IEnumerator FadeIn(GameObject Parent)
-    {
-        Parent.SetActive(true);
-        Image[] ImageComponents = Parent.GetComponentsInChildren<Image>();
-        Text[] TextComponents = Parent.GetComponentsInChildren<Text>();
-        float a = 0;
-        do
-        {
-            a += FadingRate;
-            for (int i = 0; i < ImageComponents.Length; i++)
-            {
-                ImageComponents[i].color =new Color(ImageComponents[i].color.r, ImageComponents[i].color.g, ImageComponents[i].color.b, a);
-            }
-            for (int i = 0; i < TextComponents.Length; i++)
-            {
-                TextComponents[i].color = new Color(TextComponents[i].color.r, TextComponents[i].color.g, TextComponents[i].color.b, a);
-            }
-            yield return new WaitForSeconds(FadingTimeRate);
-        } while (a < 1);
-        Button[] ButtonComponents = Parent.GetComponentsInChildren<Button>();
-        for (int i = 0; i < ButtonComponents.Length; i++)
-        {
-            if (ButtonComponents[i].name[0] == 'D')
-            {
-                ButtonComponents[i].interactable = false;
-            }
-            ButtonComponents[i].interactable = true;
-        }
-    }
-
-    public void _FadeOut(GameObject Parent)
-    {
-        StartCoroutine(FadeOut(Parent));
-    }
-
-    IEnumerator FadeOut(GameObject Parent)
-    {
-        Button[] ButtonComponents = Parent.GetComponentsInChildren<Button>();
-        for (int i = 0; i < ButtonComponents.Length; i++)
-        {
-            ButtonComponents[i].interactable = false;
-        }
-        Image[] ImageComponents = Parent.GetComponentsInChildren<Image>();
-        Text[] TextComponents = Parent.GetComponentsInChildren<Text>();
-        float a = 0;
-        do
-        {
-            a -= FadingRate;
-            for (int i = 0; i < ImageComponents.Length; i++)
-            {
-                ImageComponents[i].color = new Color(ImageComponents[i].color.r, ImageComponents[i].color.g, ImageComponents[i].color.b, a);
-            }
-            for (int i = 0; i < TextComponents.Length; i++)
-            {
-                TextComponents[i].color = new Color(TextComponents[i].color.r, TextComponents[i].color.g, TextComponents[i].color.b, a);
-            }
-            yield return new WaitForSeconds(FadingTimeRate);
-        } while (a > 0);
-        Parent.SetActive(false);
-    }
-
-    #endregion
 
     #region Buttons Navigation Behaviour
-
-    public float InBetweenTime = 0.2f;
-    float AnimationTime = 0.5f;
 
     public void _GotToPanel(int _Destination)
     {
     }
-
-    public void StartLoading(int _Destination)
-    {
-        if (InputEnabled)
-        {
-            InputEnabled = false;
-            StartCoroutine(ExecuteAfterTime(3.5f, _Destination));
-        }
-    }
-    IEnumerator ExecuteAfterTime(float time, int _Destination)
-    {
-        yield return new WaitForSeconds(time);
-        _GotToPanel(_Destination);
-    }
-
-
-
     public void _GoBack()
     {
 

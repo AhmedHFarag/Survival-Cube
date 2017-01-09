@@ -158,10 +158,10 @@ RectTransform:
   m_Father: {fileID: 68258540}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 6767.75, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &10431068
 CanvasRenderer:
@@ -2250,10 +2250,10 @@ RectTransform:
   m_Father: {fileID: 784792533}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2894.75, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &185239634
 CanvasRenderer:
@@ -2738,10 +2738,10 @@ RectTransform:
   m_Father: {fileID: 400382207}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 958.25, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &245369870
 GameObject:
@@ -3548,10 +3548,10 @@ RectTransform:
   m_Father: {fileID: 68258540}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4831.25, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &371428049
 CanvasRenderer:
@@ -5788,10 +5788,10 @@ RectTransform:
   m_Father: {fileID: 784792533}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 6767.75, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &610373077
 CanvasRenderer:
@@ -7751,10 +7751,10 @@ RectTransform:
   m_Father: {fileID: 68258540}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 958.25, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &774349737
 GameObject:
@@ -9929,12 +9929,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1008806028}
+  - component: {fileID: 1008806034}
   - component: {fileID: 1008806031}
   - component: {fileID: 1008806030}
-  - component: {fileID: 1008806029}
   - component: {fileID: 1008806032}
+  - component: {fileID: 1008806029}
   - component: {fileID: 1008806033}
-  - component: {fileID: 1008806034}
   m_Layer: 5
   m_Name: MainMenuSlider
   m_TagString: Untagged
@@ -10038,6 +10038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screens: 4
+  CurrentScreen: 0
   snapInH: 0
   snapInV: 1
 --- !u!114 &1008806033
@@ -10052,12 +10053,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 5
+  - eventID: 14
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1008806032}
-          m_MethodName: OnDrag
+          m_MethodName: DragEnd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10069,12 +10070,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 14
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1008806032}
-          m_MethodName: DragEnd
+          m_MethodName: BeginDrag
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10101,9 +10102,6 @@ MonoBehaviour:
   Score: {fileID: 0}
   Coins: []
   Msgbox: {fileID: 1490363351}
-  FadingRate: 0.1
-  FadingTimeRate: 0.1
-  InBetweenTime: 0.2
 --- !u!1 &1012978257
 GameObject:
   m_ObjectHideFlags: 0
@@ -12127,12 +12125,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 5
+  - eventID: 14
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1197613923}
-          m_MethodName: OnDrag
+          m_MethodName: DragEnd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12144,12 +12142,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 14
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1197613923}
-          m_MethodName: DragEnd
+          m_MethodName: BeginDrag
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12174,6 +12172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screens: 4
+  CurrentScreen: 0
   snapInH: 1
   snapInV: 0
 --- !u!114 &1197613924
@@ -12270,10 +12269,10 @@ RectTransform:
   m_Father: {fileID: 400382207}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 6767.75, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1198393313
 CanvasRenderer:
@@ -13614,12 +13613,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 5
+  - eventID: 14
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1368545173}
-          m_MethodName: OnDrag
+          m_MethodName: DragEnd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13631,12 +13630,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 14
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1368545173}
-          m_MethodName: DragEnd
+          m_MethodName: BeginDrag
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13661,6 +13660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screens: 4
+  CurrentScreen: 0
   snapInH: 1
   snapInV: 0
 --- !u!114 &1368545174
@@ -15661,12 +15661,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 5
+  - eventID: 14
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1610099484}
-          m_MethodName: OnDrag
+          m_MethodName: DragEnd
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15678,12 +15678,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 14
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1610099484}
-          m_MethodName: DragEnd
+          m_MethodName: BeginDrag
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15708,6 +15708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screens: 4
+  CurrentScreen: 0
   snapInH: 1
   snapInV: 0
 --- !u!1 &1626232673
@@ -15819,10 +15820,10 @@ RectTransform:
   m_Father: {fileID: 784792533}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 958.25, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1637746968
 GameObject:
@@ -16484,10 +16485,10 @@ RectTransform:
   m_Father: {fileID: 400382207}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4831.25, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1732685494
 CanvasRenderer:
@@ -18113,10 +18114,10 @@ RectTransform:
   m_Father: {fileID: 68258540}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2894.75, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1973529846
 CanvasRenderer:
@@ -18154,10 +18155,10 @@ RectTransform:
   m_Father: {fileID: 400382207}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2894.75, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1978456731
 CanvasRenderer:
@@ -18599,10 +18600,10 @@ RectTransform:
   m_Father: {fileID: 784792533}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 4831.25, y: -535}
-  m_SizeDelta: {x: 1916.5, y: 1070}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2031094270
 CanvasRenderer:
