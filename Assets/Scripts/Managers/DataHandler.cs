@@ -78,6 +78,7 @@ public class DataHandler : MonoBehaviour
         public float FireRateMultiplyer;
         public float DamageMultiplyer;
         public int Shield;
+        
     }
     struct WeaponSlotData
     {
@@ -108,7 +109,7 @@ public class DataHandler : MonoBehaviour
     [HideInInspector]
     string PlayerName;
     [HideInInspector]
-    int BG_Volume;
+    float BG_Volume;
     [HideInInspector]
     int SFX_Volume;
     [HideInInspector]
@@ -626,12 +627,12 @@ public class DataHandler : MonoBehaviour
         //Master Volume
         if (PlayerPrefs.HasKey("bgVolume"))
         {
-            BG_Volume = PlayerPrefs.GetInt("bgVolume");
+            BG_Volume = PlayerPrefs.GetFloat("bgVolume");
         }
         else
         {
-            PlayerPrefs.SetInt("bgVolume", 100);
-            BG_Volume = 100;
+            PlayerPrefs.SetFloat("bgVolume", 1);
+            BG_Volume = 1;
         }
 
         //Music Volume
@@ -701,7 +702,7 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetInt("playerCoins", Player.Coins);
         PlayerPrefs.SetInt("inGameCoins", inGameCoins);
         PlayerPrefs.SetString("playerName", PlayerName);
-        PlayerPrefs.SetInt("bgVolume", BG_Volume);
+        PlayerPrefs.SetFloat("bgVolume", BG_Volume);
         PlayerPrefs.SetInt("sfxVolume", SFX_Volume);
         PlayerPrefs.SetInt("WaveNo", Wave.WaveNumber);
         PlayerPrefs.SetInt("MaxEnergy", Player.MaxEnergy);
@@ -727,7 +728,12 @@ public class DataHandler : MonoBehaviour
     {
         return Energy;
     }
-    
+    public float GetBgVolume()
+    {
+      
+        return BG_Volume;
+       
+    }
     public int GetStartingEnergy()
     {
         return Player.StartingEnergy;
@@ -920,7 +926,14 @@ public class DataHandler : MonoBehaviour
 
         PlayerPrefs.Save();
     }
-    
+    public void SetBgVolume(float _bgVolume)
+    {
+        BG_Volume = _bgVolume;
+        PlayerPrefs.SetFloat("bgVolume", _bgVolume);
+
+        PlayerPrefs.Save();
+        Debug.Log(_bgVolume);
+    }
     public void SetPlayerMaxEnergy(int energy)
     {
         Player.MaxEnergy = energy;
