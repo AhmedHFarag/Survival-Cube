@@ -303,4 +303,9 @@ public class GameManager : MonoBehaviour
             DataHandler.Instance.AddEnergy(5);
         }
     }
+    private void OnDestroy()
+    {
+        UI.Pause -= PauseGame;
+        UI.Resume -= ResumeGame;
+    }
 }
