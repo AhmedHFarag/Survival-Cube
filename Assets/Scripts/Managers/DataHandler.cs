@@ -932,7 +932,6 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetFloat("bgVolume", _bgVolume);
 
         PlayerPrefs.Save();
-        Debug.Log(_bgVolume);
     }
     public void SetPlayerMaxEnergy(int energy)
     {
