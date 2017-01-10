@@ -16,7 +16,8 @@ public class ScrollRectSnap : MonoBehaviour
     float targetH;
     [Tooltip("Snap horizontally")]
     public bool snapInH = true;
-
+    public Button Right;
+    public Button Left;
     bool LerpV;
     float targetV;
     [Tooltip("Snap vertically")]
@@ -44,7 +45,67 @@ public class ScrollRectSnap : MonoBehaviour
         {
             points[0] = 0;
         }
-        CurrentScreen = points.Length - 1;
+        if (snapInV)
+        {
+            CurrentScreen = points.Length - 1;
+            targetV = points[CurrentScreen];
+            LerpV = true;
+        }
+        if (snapInH)
+        {
+            CurrentScreen = 0;
+            targetH = points[CurrentScreen];
+            LerpH = true;
+            if (Right)
+            Right.gameObject.SetActive(true);
+            if(Left)
+            Left.gameObject.SetActive(false);
+            if (Right)
+            {
+                Right.onClick.AddListener(delegate 
+                {
+                    if (CurrentScreen < points.Length - 1)
+                    {
+                        CurrentScreen++;
+                        targetH = points[CurrentScreen];
+                        LerpH = true;
+                        if (CurrentScreen == points.Length - 1)
+                        {
+                            Right.gameObject.SetActive(false);
+                            Left.gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            Right.gameObject.SetActive(true);
+                            Left.gameObject.SetActive(true);
+                        }
+                    }
+                });
+            }
+            if (Left)
+            {
+                Left.onClick.AddListener(delegate
+                {
+                    if (CurrentScreen > 0)
+                    {
+                        CurrentScreen--;
+                        targetH = points[CurrentScreen];
+                        LerpH = true;
+                        if (CurrentScreen == 0)
+                        {
+                            Right.gameObject.SetActive(true);
+                            Left.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+                            Right.gameObject.SetActive(true);
+                            Left.gameObject.SetActive(true);
+                        }
+                    }
+                });
+            }
+        }
+        
     }
 
     void Update()
@@ -69,14 +130,14 @@ public class ScrollRectSnap : MonoBehaviour
             //targetH = points[FindNearest(scroll.horizontalNormalizedPosition, points)];
             float swipeValue = Mathf.Sign(endPos.x - startPos.x);
             //Debug.Log("x:" + swipeValue +"Start:"+ startPos + "End:"+ endPos);
-            if (swipeValue > 0)//right swipe
+            if (swipeValue > 0)//Left swipe
             {
                 if (CurrentScreen > 0)
                 {
                     CurrentScreen--;
                 }
             }
-            else if (swipeValue < 0)//left swipe
+            else if (swipeValue < 0)//Right swipe
             {
                 if (CurrentScreen < points.Length - 1)
                 {

@@ -1,26 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MainWeaponInventory : Inventory
 {
-
-    override public void HasChanged()
+    protected new void Start()
     {
-        System.Text.StringBuilder builder = new System.Text.StringBuilder();
-        builder.Append(" - ");
-        foreach (Transform slotTransform in slots)
+        base.Start();
+        //StartCoroutine(LoadWeapons());
+    }
+    IEnumerator LoadWeapons()
+    {
+        while (DataHandler.Instance.DataLoaded == false)
         {
-            GameObject item = slotTransform.GetComponent<Slot>().item;
-            if (item)
-            {
-                int x = item.GetComponent<DragHandeler>().WeaponID;
-                DataHandler.Instance.SteMainWeaponID(x);
-                builder.Append(item.name);
-                builder.Append(" - ");
-                
-            }
+            yield return null;
         }
-        if (inventoryText)
-            inventoryText.text = builder.ToString();
+        List<int> x = new List<int>(DataHandler.Instance.GetUnlockedMainWeaponsID());
+        foreach (var ID in x)
+        {
+            GameObject G = Instantiate(ItemSlot);
+            G.transform.parent = transform;
+            G.GetComponent<MainWeaponSlot>().ItemIndex = ID;
+        }
+    }
+    public override void ReloadData()
+    {
+        StartCoroutine(LoadWeapons());
     }
 }

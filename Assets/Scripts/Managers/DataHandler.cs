@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+public delegate void DataChanged();
 public class DataHandler : MonoBehaviour
 {
-
+    public static event DataChanged DataChanged;
     struct TempWeaponsData
     {
       public int WeaponID;
@@ -119,9 +120,13 @@ public class DataHandler : MonoBehaviour
 
     [HideInInspector]
     int Energy;
-    bool DataLoaded = false;
-    
-    
+    public bool DataLoaded = false;
+
+    private static void OnDataChange()
+    {
+        var handler = DataChanged;
+        if (handler != null) handler();
+    }
 
     void Awake()
     {
@@ -677,7 +682,7 @@ public class DataHandler : MonoBehaviour
 
         //Saving 
         PlayerPrefs.Save();
-
+        OnDataChange();
     }
     public void ResetPlayerInGameData()
     {
@@ -823,6 +828,19 @@ public class DataHandler : MonoBehaviour
     public bool GetTempWeaponSlotStatus(int index)
     {
         return m_MainMenu_TempWeaponSlots[index].Unlocked;
+    }
+    public List<int> GetUnlockedMainWeaponsID()
+    {
+        List<int> IDs = new List<int>();
+        foreach (var item in m_MainMenu_MainWeaponSlots)
+        {
+            if (item.Unlocked)
+            {
+                IDs.Add(item.ID);
+            }
+        }
+        return IDs;
+        
     }
     #region Boost Getters
     public int GetEnergyBoostID(int index)
@@ -1017,6 +1035,7 @@ public class DataHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("MainWeaponSlots" + index + ".Unlocked", 1);
             m_MainMenu_MainWeaponSlots[index].Unlocked = true;
+            OnDataChange();
             return true;
         }
         else
@@ -1030,6 +1049,7 @@ public class DataHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("TempWeaponSlots" + index + ".Unlocked", 1);
             m_MainMenu_TempWeaponSlots[index].Unlocked = true;
+            OnDataChange();
             return true;
         }
         else
