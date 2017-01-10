@@ -997,7 +997,7 @@ RectTransform:
   - {fileID: 472281}
   - {fileID: 257172869}
   m_Father: {fileID: 1964205867}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -2390,7 +2390,7 @@ GameObject:
   - component: {fileID: 669097276}
   - component: {fileID: 669097275}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Soundbutton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2408,7 +2408,7 @@ RectTransform:
   m_Children:
   - {fileID: 1955462110}
   m_Father: {fileID: 1964205867}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3694,7 +3694,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1964205867}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -5129,7 +5129,7 @@ RectTransform:
   - {fileID: 154451442}
   - {fileID: 2129677974}
   m_Father: {fileID: 1964205867}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -8296,10 +8296,10 @@ RectTransform:
   - {fileID: 1386434429}
   - {fileID: 763549767}
   - {fileID: 1262577240}
+  - {fileID: 669097274}
   - {fileID: 262360223}
   - {fileID: 890914874}
   - {fileID: 1239561079}
-  - {fileID: 669097274}
   m_Father: {fileID: 488809907}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
