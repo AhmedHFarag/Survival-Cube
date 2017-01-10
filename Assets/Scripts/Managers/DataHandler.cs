@@ -62,6 +62,14 @@ public class DataHandler : MonoBehaviour
     struct WaveData
     {
         public int WaveNumber;
+        public int Level;
+        public int Is_Unlocked;
+
+    }
+    struct LevelData
+    {
+        public int LevelNumber;
+        public int Is_Unlocked;
 
     }
     struct PlayerData
@@ -99,7 +107,8 @@ public class DataHandler : MonoBehaviour
     FireRateBoostData[] FireRateBoosts = new FireRateBoostData[3];
     DamageBoostData[] DamageBoosts = new DamageBoostData[1];
     ShieldBoostData[] ShieldBoosts = new ShieldBoostData[4];
-
+    LevelData[] Levels = new LevelData[10];
+    WaveData[] Waves = new WaveData[20];
     string MaxWaveReachedRef = "MaxWaveReached";
     string HighestWaveStreakRef = "HighestWaveStreak";
 
@@ -679,7 +688,50 @@ public class DataHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt(HighestWaveStreakRef, Player.HighestWaveStreak);
         }
-
+        #region Level Data
+        for (int i = 0; i < Levels.Length; i++)
+        {
+            if (PlayerPrefs.HasKey("Level" + i + "Number"))
+            {
+                Levels[i].LevelNumber = PlayerPrefs.GetInt("LevelNumber" + i);
+            }
+            else
+            {
+                Levels[i].LevelNumber = i + 1;
+                PlayerPrefs.SetInt("LevelNumber" + i, i + 1);
+            }
+            if (PlayerPrefs.HasKey("Level" + i + ".IsUnlocked"))
+            {
+                Levels[i].Is_Unlocked = PlayerPrefs.GetInt("Level" + i + ".IsUnlocked");
+            }
+            else
+            {
+                Levels[i].Is_Unlocked = (i == 0 ? 1 : 0);
+                PlayerPrefs.SetInt("Level" + i + ".IsUnlocked", Levels[i].Is_Unlocked);
+            }
+        }
+        #endregion
+        for (int i = 0; i < Waves.Length; i++)
+        {
+            if (PlayerPrefs.HasKey("Wave" + i + ".Number"))
+            {
+                Waves[i].WaveNumber = PlayerPrefs.GetInt("Wave" + i + ".Number");
+            }
+            else
+            {
+                Waves[i].WaveNumber = i + 1;
+                PlayerPrefs.SetInt("Wave" + i + ".Number", i + 1);
+            }
+            if (PlayerPrefs.HasKey("Wave" + i + ".IsUnlocked"))
+            {
+                Waves[i].Is_Unlocked = PlayerPrefs.GetInt("Wave" + i + ".IsUnlocked");
+            }
+            else
+            {
+                Waves[i].Is_Unlocked = (i == 0 ? 1 : 0);
+                PlayerPrefs.SetInt("Wave" + i + ".IsUnlocked", Waves[i].Is_Unlocked);
+            }
+        }
         //Saving 
         PlayerPrefs.Save();
         OnDataChange();
@@ -752,9 +804,14 @@ public class DataHandler : MonoBehaviour
         return Player.Name;
     }
 
-    public int  GetWaveNumber()
+    #region Wave & level getters
+    public int GetWaveNumber(int index)
     {
-        return Wave.WaveNumber;
+        return Waves[index].WaveNumber;
+    }
+    public int GetWaveUnlocked(int index)
+    {
+        return Waves[index].Is_Unlocked;
     }
     public int GetMaxWaveReached()
     {
@@ -764,6 +821,15 @@ public class DataHandler : MonoBehaviour
     {
         return Player.HighestWaveStreak;
     }
+    public int GetLevelNumber(int index)
+    {
+        return Levels[index].LevelNumber;
+    }
+    public int GetLevelUnlocked(int index)
+    {
+        return Levels[index].Is_Unlocked;
+    }
+    #endregion
     public int GetConsecutiveDays()
     {
         return Player.ConsecutiveDays;
@@ -969,11 +1035,34 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetFloat("EnergyRate", rate);
         PlayerPrefs.Save();
     }
-    public void SetWaveNumber(int _WaveNo)
-    {   
-        Wave.WaveNumber = _WaveNo;
-        
+    #region Wave & Level Setters
+    public void SetWaveNumber(int index, int _WaveNo)
+    {
+        Waves[index].WaveNumber = _WaveNo;
+        PlayerPrefs.SetInt("Wave" + index + ".Number", _WaveNo);
+        PlayerPrefs.Save();
+
     }
+    public void SetWaveUnlocked(int index)
+    {
+        Waves[index].Is_Unlocked = 1;
+        PlayerPrefs.SetInt("Wave" + index + ".IsUnlocked", 1);
+        PlayerPrefs.Save();
+    }
+    public void SetLevelNumber(int index, int _LvlNo)
+    {
+        Levels[index].LevelNumber = _LvlNo;
+        PlayerPrefs.SetInt("Level" + index + ".Number", _LvlNo);
+        PlayerPrefs.Save();
+
+    }
+    public void SetLevelUnlocked(int index)
+    {
+        Levels[index].Is_Unlocked = 1;
+        PlayerPrefs.SetInt("Level" + index + ".IsUnlocked", 1);
+        PlayerPrefs.Save();
+    }
+    #endregion
     public void SetMaxWaveReached(int _WaveNumber)
     {
         Player.MaxWaveReached = _WaveNumber;
