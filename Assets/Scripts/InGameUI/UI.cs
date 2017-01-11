@@ -99,7 +99,7 @@ public class UI : MonoBehaviour
     {
 
         WaveText.SetActive(true);
-        WaveText.GetComponent<Text>().text = "Wave " + WaveNumber;
+        WaveText.GetComponent<Text>().text = "Wave " + (Enemies_Manager.Instance.GetCurrentWave()+1);
         WaveNumber += 1;
        
         _anim.SetTrigger("CountDown");
@@ -220,6 +220,12 @@ public class UI : MonoBehaviour
     public void ShowAd()
     {
         AdManager.Instance.ShowVungleRewardedAd();
+    }
+       public void ShowAdToContinue()
+    {
+        AdManager.Instance.ShowVungleRewardedAd();
+        Time.timeScale = 1;
+        GameManager.Instance.StartGame(Enemies_Manager.Instance.GetCurrentWave(), Enemies_Manager.Instance.GetCurrentLevel());
     }
     public void PauseButton()
     {

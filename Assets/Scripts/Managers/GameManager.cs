@@ -58,6 +58,10 @@ public class GameManager : MonoBehaviour
     float deltaTime = 0.0f;
     public int weaponCoolDown = 20;
     public bool IsconnectedToGoogleServices = false;
+
+    public int CurrentWaveNumber = 0;//
+    public int Currentlevel = 1;//
+
     void Awake()
     {
         if (Instance == null)
@@ -197,14 +201,28 @@ public class GameManager : MonoBehaviour
         StopCoroutine("IncreaseEnergy");
         SceneManager.LoadScene(1);
     }
+    public void StartGame(int Wave,int Level)
+    {
+        Enemies_Manager.Instance.ResetWaveAndLevel();
+        CurrentWaveNumber = Wave;
+        Currentlevel = Level;
+      
+        SceneManager.LoadScene(2);
+       
+        //DataHandler.Instance.ResetPlayerInGameData();
+
+        StartCoroutine("IncreaseEnergy");
+        //UnlockAchievement1();
+    }
     public void StartGame()
     {
+        Enemies_Manager.Instance.ResetWaveAndLevel();
         SceneManager.LoadScene(2);
-
-        DataHandler.Instance.ResetPlayerInGameData();
         
+        DataHandler.Instance.ResetPlayerInGameData();
+
         StartCoroutine("IncreaseEnergy");
-        UnlockAchievement1();
+        //UnlockAchievement1();
     }
     void PauseGame()
     {

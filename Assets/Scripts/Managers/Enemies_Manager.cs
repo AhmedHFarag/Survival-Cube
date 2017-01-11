@@ -18,9 +18,9 @@ public class Enemies_Manager : MonoBehaviour
     #endregion
 
     #region EnemiesWaves
-    int CurrentWaveNumber = 0;
+    int CurrentWaveNumber = 0;//
     int CurrentEnemieNumber = 0;
-    int Currentlevel = 1;
+    int Currentlevel = 1;//
     int Enemiescount = 0;
     bool SpawnEnabled = false;
     public List<Wave> WavesData = new List<Wave>();
@@ -46,6 +46,8 @@ public class Enemies_Manager : MonoBehaviour
         {
             spawnPoints.Add(item);
         }
+        CurrentWaveNumber = GameManager.Instance.CurrentWaveNumber;//
+        Currentlevel = GameManager.Instance.Currentlevel;//
         int i = 0;
         foreach (Wave wave in WavesData)
         {
@@ -59,7 +61,7 @@ public class Enemies_Manager : MonoBehaviour
         StartCoroutine("New_Wave");
         Enemiescount = WavesData[CurrentWaveNumber].Enemies[CurrentEnemieNumber].Count;
         Enemy.OnEnemyDie += EnemyDeath;
-
+        
     }
 
     void FixedUpdate()
@@ -156,8 +158,17 @@ public class Enemies_Manager : MonoBehaviour
     {
         return Currentlevel;
     }
+    public int GetCurrentWave()
+    {
+        return CurrentWaveNumber;
+    }
     void OnDestroy()
     {
         Enemy.OnEnemyDie -= EnemyDeath;
+    }
+   public void ResetWaveAndLevel()
+    {
+        Currentlevel = 1;
+        CurrentWaveNumber = 0;
     }
 }
