@@ -12,6 +12,7 @@ public class MainMenuSliders : MonoBehaviour {
     bool InputEnabled = true;
 
     public GameObject Msgbox;
+    public GameObject EwaponInfoOverlap;
     void Awake()
     {
         if (Instance == null)
@@ -26,6 +27,7 @@ public class MainMenuSliders : MonoBehaviour {
     void Start()
     {
         Msgbox.SetActive(true);
+        EwaponInfoOverlap.SetActive(true);
     }
 	
 	void Update () {

@@ -155,6 +155,8 @@ public class DataHandler : MonoBehaviour
     void Start()
     {
         initializeData();
+        //Start With First Single Shot 
+        UnlockMainWeapon(0);
         DataLoaded = true;
         
     }
@@ -596,8 +598,6 @@ public class DataHandler : MonoBehaviour
             }
         }
         #endregion
-        //Start With First Single Shot 
-        UnlockMainWeapon(0);
 
         #region Temp Weapons Initialization
         //Main menu Temp Weapons Slots 
@@ -908,6 +908,19 @@ public class DataHandler : MonoBehaviour
         return IDs;
         
     }
+    public List<int> GetLockedMainWeaponsID()
+    {
+        List<int> IDs = new List<int>();
+        foreach (var item in m_MainMenu_MainWeaponSlots)
+        {
+            if (item.Unlocked==false)
+            {
+                IDs.Add(item.ID);
+            }
+        }
+        return IDs;
+
+    }
     #region Boost Getters
     public int GetEnergyBoostID(int index)
     {
@@ -1107,7 +1120,7 @@ public class DataHandler : MonoBehaviour
     //    PlayerPrefs.Save();
     //}
 
-    public void SteMainWeaponID(int _weaponID)
+    public void SetMainWeaponID(int _weaponID)
     {
         m_InGameMainWeapon.ID = _weaponID;
         SavePlayerPrefsData();

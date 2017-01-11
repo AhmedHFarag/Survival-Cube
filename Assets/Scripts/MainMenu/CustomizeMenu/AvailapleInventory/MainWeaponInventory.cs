@@ -20,7 +20,8 @@ public class MainWeaponInventory : Inventory
         {
             GameObject G = Instantiate(ItemSlot);
             G.transform.parent = transform;
-            G.GetComponent<MainWeaponSlot>().ItemIndex = ID;
+            G.GetComponent<ItemSlot>().ItemIndex = ID;
+            G.GetComponent<ItemSlot>().ItemImage.sprite= GameManager.Instance.Weapons[ID].GetComponent<DefaultWeapon>().UISprite;
         }
     }
     public override void ReloadData()

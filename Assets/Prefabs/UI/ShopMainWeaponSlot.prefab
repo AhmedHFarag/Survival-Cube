@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114745756712462234}
   - component: {fileID: 114085060288665858}
   m_Layer: 5
-  m_Name: Use
+  m_Name: Buy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,10 +56,10 @@ GameObject:
   - component: {fileID: 224220096928356292}
   - component: {fileID: 222411629984312496}
   - component: {fileID: 114629711158124894}
-  - component: {fileID: 114643776157279934}
+  - component: {fileID: 114922370546105818}
   - component: {fileID: 114065624009137814}
   m_Layer: 5
-  m_Name: MainWeaponSlot
+  m_Name: ShopMainWeaponSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 114643776157279934}
+        - m_Target: {fileID: 114922370546105818}
           m_MethodName: OnClick
           m_Mode: 1
           m_Arguments:
@@ -185,7 +185,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use
+  m_Text: Buy
 --- !u!114 &114629711158124894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,19 +213,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114643776157279934
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335658158585324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2f4a2fa5bf6df8438c5669783b294f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemImage: {fileID: 114707572689615654}
-  ItemIndex: 0
 --- !u!114 &114707572689615654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,6 +267,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114922370546105818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1335658158585324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a27770c7bc972d499011d5fc497dec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemImage: {fileID: 114707572689615654}
+  ItemIndex: 0
 --- !u!222 &222229747820954196
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -319,10 +319,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 957.25, y: -661}
-  m_SizeDelta: {x: 200, y: 304}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224271193490700716
 RectTransform:
