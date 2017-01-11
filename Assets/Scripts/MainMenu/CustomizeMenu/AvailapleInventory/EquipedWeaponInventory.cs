@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class EquipedWeaponInventory : Inventory {
 
-    protected new void Start()
+    protected new void Awake()
     {
-        base.Start();
+        base.Awake();
         //StartCoroutine(LoadWeapons());
     }
     IEnumerator LoadEquipedMainWeapon()
     {
-        foreach (Transform child in transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
+        
         while (DataHandler.Instance.DataLoaded == false)
         {
             yield return null;
@@ -26,6 +23,10 @@ public class EquipedWeaponInventory : Inventory {
     }
     public override void ReloadData()
     {
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
         StartCoroutine(LoadEquipedMainWeapon());
     }
 }

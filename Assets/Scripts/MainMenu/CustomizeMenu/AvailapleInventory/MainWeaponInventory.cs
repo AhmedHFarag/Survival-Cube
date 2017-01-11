@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class MainWeaponInventory : Inventory
 {
-    protected new void Start()
+    protected new void Awake()
     {
-        base.Start();
+        base.Awake();
         //StartCoroutine(LoadWeapons());
     }
     IEnumerator LoadWeapons()
@@ -26,6 +26,10 @@ public class MainWeaponInventory : Inventory
     }
     public override void ReloadData()
     {
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
         StartCoroutine(LoadWeapons());
     }
 }

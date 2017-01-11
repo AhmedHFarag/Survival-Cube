@@ -149,15 +149,17 @@ public class DataHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        initializeData();
+        //Start With First Single Shot 
+        UnlockMainWeapon(0);
+        //AddCoins(100000);
+        //OnDataChange();
+        DataLoaded = true;
     }
 
     // Use this for initialization
     void Start()
     {
-        initializeData();
-        //Start With First Single Shot 
-        UnlockMainWeapon(0);
-        DataLoaded = true;
         
     }
 
@@ -734,7 +736,6 @@ public class DataHandler : MonoBehaviour
         }
         //Saving 
         PlayerPrefs.Save();
-        OnDataChange();
     }
     public void ResetPlayerInGameData()
     {
@@ -753,6 +754,7 @@ public class DataHandler : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         initializeData();
+        OnDataChange();
     }
     public void SavePlayerPrefsData()
     {
@@ -767,6 +769,7 @@ public class DataHandler : MonoBehaviour
         PlayerPrefs.SetInt("BestScore", Player.HighScore);
         PlayerPrefs.SetInt("MainWeapon.ID", m_InGameMainWeapon.ID);
         PlayerPrefs.Save();
+        OnDataChange();
     }
     #region Getters
     public int GetPlayerCoins()
@@ -1304,5 +1307,8 @@ public class DataHandler : MonoBehaviour
         inGameScore += amountToBeAdded;
     }
 
-
+    public void MainMenuWasLoaded()
+    {
+        OnDataChange();
+    }
 }

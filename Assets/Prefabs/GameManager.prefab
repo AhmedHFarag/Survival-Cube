@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010942533628}
-  - 114: {fileID: 114000010572914358}
+  - component: {fileID: 4000010942533628}
+  - component: {fileID: 114000010572914358}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010572914358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,10 +68,15 @@ MonoBehaviour:
   - {fileID: 1000010880404766, guid: 87ee3be4dfc13b44b95a27112e740188, type: 2}
   - {fileID: 1000012197687638, guid: 2d37dc2bfa7f3e7439fe704acbd36fd7, type: 2}
   - {fileID: 1000012773356702, guid: dc955a41a41631047acc81ef0a322b80, type: 2}
-  - {fileID: 1000010475713106, guid: 0fcf4e585f9d2334f8be1d86a73fc0dc, type: 2}
   - {fileID: 1000013749124272, guid: 81ce093d8342b9241886484d13142a6f, type: 2}
+  EnergyBoosts: []
+  FireRateBoosts: []
+  DamageBoosts: []
+  ShieldBoosts: []
   currentGameStates: 0
   currentGameScene: 0
   currentScene: 0
   currentState: 0
+  Show_FPS: 0
   weaponCoolDown: 20
+  IsconnectedToGoogleServices: 0

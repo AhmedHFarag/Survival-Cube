@@ -7,10 +7,10 @@ public abstract class Inventory : MonoBehaviour
 {
     public GameObject ItemSlot;
     public abstract void ReloadData();
-
-    protected void Start()
+    protected void Awake()
     {
         DataHandler.DataChanged += ReloadData;
+        //ReloadData();
     }
     
     private void OnDestroy()

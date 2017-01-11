@@ -28,6 +28,7 @@ public class MainMenuSliders : MonoBehaviour {
     {
         Msgbox.SetActive(true);
         EwaponInfoOverlap.SetActive(true);
+        DataHandler.Instance.MainMenuWasLoaded();
     }
 	
 	void Update () {
@@ -97,6 +98,10 @@ public class MainMenuSliders : MonoBehaviour {
             //Log Connection Error
         }
 #endif
+    }
+    public void ResetAllData()
+    {
+        DataHandler.Instance.ResetAllPlayerSavedData();
     }
 #endregion
     public void ShowADAndGetCoins()
