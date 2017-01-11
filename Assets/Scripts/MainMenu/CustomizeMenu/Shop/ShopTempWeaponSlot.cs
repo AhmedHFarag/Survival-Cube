@@ -4,27 +4,27 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class ShopMainWeaponSlot : ItemSlot
+public class ShopTempWeaponSlot : ItemSlot
 {
     public new void OnClick()
     {
-        MainWeaponInfoOverlap.Instance.ShowBuy(ItemIndex, delegate ()
-         {
-             //DataHandler.Instance.SetMainWeaponID(this.ItemIndex);
-             Buy();
-        });
+        //MainWeaponInfoOverlap.Instance.ShowBuy(ItemIndex, delegate ()
+        // {
+        //     //DataHandler.Instance.SetMainWeaponID(this.ItemIndex);
+        //     Buy();
+        //});
     }
     public void Buy()
     {
         if (!DataHandler.Instance.GetMainWeaponSlotStatus(ItemIndex))// unlock Item if there is enogh coins
         {
-            if (DataHandler.Instance.GetPlayerCoins() >= GameManager.Instance.TempWeapons[ItemIndex].GetComponent<DefaultWeapon>().Cost)
+            if (DataHandler.Instance.GetPlayerCoins() >= GameManager.Instance.TempWeapons[ItemIndex].GetComponent<TempWeapon>().UnlockCost)
             {
 
 
                 MSGScript.Instance.Choice("Would you like to buy??", new UnityAction(() =>
                 {
-                    DataHandler.Instance.AddCoins(-GameManager.Instance.TempWeapons[ItemIndex].GetComponent<DefaultWeapon>().Cost);
+                    DataHandler.Instance.AddCoins(-GameManager.Instance.TempWeapons[ItemIndex].GetComponent<TempWeapon>().UnlockCost);
                         //Save unlocked Main weapon 
                         DataHandler.Instance.UnlockMainWeapon(ItemIndex);
                 })

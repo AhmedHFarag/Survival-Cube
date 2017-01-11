@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopMainWeaponsInventory : Inventory {
+public class ShopTempWeaponsInventory : Inventory {
     protected new void Awake()
     {
         base.Awake();
@@ -15,13 +15,13 @@ public class ShopMainWeaponsInventory : Inventory {
         {
             yield return null;
         }
-        List<int> x = new List<int>(DataHandler.Instance.GetLockedMainWeaponsIDs());
+        List<int> x = new List<int>(DataHandler.Instance.GetLockedTempWeaponsIDs());
         foreach (var ID in x)
         {
             GameObject G = Instantiate(ItemSlot);
             G.transform.parent = transform;
             G.GetComponent<ItemSlot>().ItemIndex = ID;
-            G.GetComponent<ItemSlot>().ItemImage.sprite = GameManager.Instance.Weapons[ID].GetComponent<DefaultWeapon>().UISprite;
+            G.GetComponent<ItemSlot>().ItemImage.sprite = GameManager.Instance.TempWeapons[ID].GetComponent<TempWeapon>().UISprite;
         }
     }
     public override void ReloadData()

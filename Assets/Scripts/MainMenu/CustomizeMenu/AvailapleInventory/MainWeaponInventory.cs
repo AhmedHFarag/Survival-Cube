@@ -15,7 +15,7 @@ public class MainWeaponInventory : Inventory
         {
             yield return null;
         }
-        List<int> x = new List<int>(DataHandler.Instance.GetUnlockedMainWeaponsID());
+        List<int> x = new List<int>(DataHandler.Instance.GetUnlockedMainWeaponsIDs());
         foreach (var ID in x)
         {
             GameObject G = Instantiate(ItemSlot);

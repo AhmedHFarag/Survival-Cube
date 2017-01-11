@@ -106,7 +106,8 @@ public class MainMenuSliders : MonoBehaviour {
 #endregion
     public void ShowADAndGetCoins()
     {
-        AdManager.Instance.ShowUnityRewardedAd();
+        DataHandler.Instance.AddCoins(10000);
+        //AdManager.Instance.ShowUnityRewardedAd();
     }
 
 }

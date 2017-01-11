@@ -898,7 +898,7 @@ public class DataHandler : MonoBehaviour
     {
         return m_MainMenu_TempWeaponSlots[index].Unlocked;
     }
-    public List<int> GetUnlockedMainWeaponsID()
+    public List<int> GetUnlockedMainWeaponsIDs()
     {
         List<int> IDs = new List<int>();
         foreach (var item in m_MainMenu_MainWeaponSlots)
@@ -909,14 +909,40 @@ public class DataHandler : MonoBehaviour
             }
         }
         return IDs;
-        
+
     }
-    public List<int> GetLockedMainWeaponsID()
+    public List<int> GetUnlockedTempWeaponsIDs()
+    {
+        List<int> IDs = new List<int>();
+        foreach (var item in m_MainMenu_TempWeaponSlots)
+        {
+            if (item.Unlocked)
+            {
+                IDs.Add(item.ID);
+            }
+        }
+        return IDs;
+
+    }
+    public List<int> GetLockedMainWeaponsIDs()
     {
         List<int> IDs = new List<int>();
         foreach (var item in m_MainMenu_MainWeaponSlots)
         {
             if (item.Unlocked==false)
+            {
+                IDs.Add(item.ID);
+            }
+        }
+        return IDs;
+
+    }
+    public List<int> GetLockedTempWeaponsIDs()
+    {
+        List<int> IDs = new List<int>();
+        foreach (var item in m_MainMenu_TempWeaponSlots)
+        {
+            if (item.Unlocked == false)
             {
                 IDs.Add(item.ID);
             }

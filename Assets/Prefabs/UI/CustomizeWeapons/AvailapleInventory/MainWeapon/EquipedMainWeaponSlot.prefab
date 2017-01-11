@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114095646302406406}
   - component: {fileID: 114065624009137814}
   m_Layer: 5
-  m_Name: EquipedWeaponSlot
+  m_Name: EquipedMainWeaponSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
