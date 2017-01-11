@@ -6,6 +6,6 @@ public class EquipedMainWeaponSlot : ItemSlot
 {
     public new void OnClick()
     {
-        MainWeaponInfoOverlap.Instance.ShowInfo(ItemIndex);
+        MainWeaponInfoOverlap.Instance.MainWeapon_ShowInfo(ItemIndex);
     }
 }

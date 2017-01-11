@@ -8,7 +8,7 @@ public class ShopMainWeaponSlot : ItemSlot
 {
     public new void OnClick()
     {
-        MainWeaponInfoOverlap.Instance.ShowBuy(ItemIndex, delegate ()
+        MainWeaponInfoOverlap.Instance.MainWeapon_ShowBuy(ItemIndex, delegate ()
          {
              //DataHandler.Instance.SetMainWeaponID(this.ItemIndex);
              Buy();

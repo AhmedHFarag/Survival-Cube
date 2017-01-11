@@ -8,15 +8,15 @@ public class ShopTempWeaponSlot : ItemSlot
 {
     public new void OnClick()
     {
-        //MainWeaponInfoOverlap.Instance.ShowBuy(ItemIndex, delegate ()
-        // {
-        //     //DataHandler.Instance.SetMainWeaponID(this.ItemIndex);
-        //     Buy();
-        //});
+        MainWeaponInfoOverlap.Instance.TempWeapon_ShowBuy(ItemIndex, delegate ()
+         {
+             //DataHandler.Instance.SetMainWeaponID(this.ItemIndex);
+             Buy();
+         });
     }
     public void Buy()
     {
-        if (!DataHandler.Instance.GetMainWeaponSlotStatus(ItemIndex))// unlock Item if there is enogh coins
+        if (!DataHandler.Instance.GetTempWeaponSlotStatus(ItemIndex))// unlock Item if there is enogh coins
         {
             if (DataHandler.Instance.GetPlayerCoins() >= GameManager.Instance.TempWeapons[ItemIndex].GetComponent<TempWeapon>().UnlockCost)
             {
@@ -26,7 +26,7 @@ public class ShopTempWeaponSlot : ItemSlot
                 {
                     DataHandler.Instance.AddCoins(-GameManager.Instance.TempWeapons[ItemIndex].GetComponent<TempWeapon>().UnlockCost);
                         //Save unlocked Main weapon 
-                        DataHandler.Instance.UnlockMainWeapon(ItemIndex);
+                        DataHandler.Instance.UnlockTempWeapon(ItemIndex);
                 })
                , new UnityAction(() => { }), new UnityAction(() => { }));
 
