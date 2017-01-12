@@ -720,8 +720,8 @@ public class DataHandler : MonoBehaviour
                 }
                 else
                 {
-                    Waves[j].WaveNumber = j + 1;
-                    PlayerPrefs.SetInt("Wave" + z + ".Number", j + 1);
+                    Waves[j].WaveNumber = z + 1;
+                    PlayerPrefs.SetInt("Wave" + z + ".Number", z + 1);
                 }
                 if (PlayerPrefs.HasKey("Wave" + z + ".IsUnlocked"))
                 {
