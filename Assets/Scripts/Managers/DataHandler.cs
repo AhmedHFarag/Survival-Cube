@@ -718,21 +718,21 @@ public class DataHandler : MonoBehaviour
                 int z = i * 10 + j;
                 if (PlayerPrefs.HasKey("Wave" + z + ".Number"))
                 {
-                    Waves[j].WaveNumber = PlayerPrefs.GetInt("Wave" + z + ".Number");
+                    Waves[z].WaveNumber = PlayerPrefs.GetInt("Wave" + z + ".Number");
                 }
                 else
                 {
-                    Waves[j].WaveNumber = z + 1;
-                    PlayerPrefs.SetInt("Wave" + z + ".Number", z + 1);
+                    Waves[z].WaveNumber = j + 1;
+                    PlayerPrefs.SetInt("Wave" + z + ".Number", j + 1);
                 }
                 if (PlayerPrefs.HasKey("Wave" + z + ".IsUnlocked"))
                 {
-                    Waves[j].Is_Unlocked = PlayerPrefs.GetInt("Wave" + z + ".IsUnlocked");
+                    Waves[z].Is_Unlocked = PlayerPrefs.GetInt("Wave" + z + ".IsUnlocked");
                 }
                 else
                 {
-                    Waves[j].Is_Unlocked = (z == 0 ? 1 : 0);
-                    PlayerPrefs.SetInt("Wave" + z + ".IsUnlocked", Waves[j].Is_Unlocked);
+                    Waves[z].Is_Unlocked = (z == 0 ? 1 : 0);
+                    PlayerPrefs.SetInt("Wave" + z + ".IsUnlocked", Waves[z].Is_Unlocked);
                 }
             }
         }
@@ -818,6 +818,7 @@ public class DataHandler : MonoBehaviour
     }
     public int GetWaveUnlocked(int index)
     {
+
         return Waves[index].Is_Unlocked;
     }
     public int GetMaxWaveReached()
