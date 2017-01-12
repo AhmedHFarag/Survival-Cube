@@ -216,7 +216,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
-        Enemies_Manager.Instance.ResetWaveAndLevel();
+        //Enemies_Manager.Instance.ResetWaveAndLevel();
         SceneManager.LoadScene(2);
         
         DataHandler.Instance.ResetPlayerInGameData();

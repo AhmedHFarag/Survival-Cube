@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 224220096928356292}
   - component: {fileID: 222411629984312496}
   - component: {fileID: 114629711158124894}
-  - component: {fileID: 114593399760177370}
+  - component: {fileID: 114793898283989510}
   - component: {fileID: 114065624009137814}
   m_Layer: 5
   m_Name: MainWeaponSlot
@@ -98,7 +98,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 114593399760177370}
+        - m_Target: {fileID: 114793898283989510}
           m_MethodName: OnClick
           m_Mode: 1
           m_Arguments:
@@ -186,19 +186,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Use
---- !u!114 &114593399760177370
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335658158585324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27dc01d815ea1d04a99441352addc1b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemImage: {fileID: 114707572689615654}
-  ItemIndex: 0
 --- !u!114 &114629711158124894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,6 +267,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114793898283989510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1335658158585324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f4a2fa5bf6df8438c5669783b294f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemImage: {fileID: 114707572689615654}
+  ItemIndex: 0
 --- !u!222 &222229747820954196
 CanvasRenderer:
   m_ObjectHideFlags: 1

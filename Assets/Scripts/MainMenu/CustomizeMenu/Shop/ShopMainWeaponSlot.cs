@@ -18,13 +18,13 @@ public class ShopMainWeaponSlot : ItemSlot
     {
         if (!DataHandler.Instance.GetMainWeaponSlotStatus(ItemIndex))// unlock Item if there is enogh coins
         {
-            if (DataHandler.Instance.GetPlayerCoins() >= GameManager.Instance.TempWeapons[ItemIndex].GetComponent<DefaultWeapon>().Cost)
+            if (DataHandler.Instance.GetPlayerCoins() >= GameManager.Instance.Weapons[ItemIndex].GetComponent<DefaultWeapon>().Cost)
             {
 
 
                 MSGScript.Instance.Choice("Would you like to buy??", new UnityAction(() =>
                 {
-                    DataHandler.Instance.AddCoins(-GameManager.Instance.TempWeapons[ItemIndex].GetComponent<DefaultWeapon>().Cost);
+                    DataHandler.Instance.AddCoins(-GameManager.Instance.Weapons[ItemIndex].GetComponent<DefaultWeapon>().Cost);
                         //Save unlocked Main weapon 
                         DataHandler.Instance.UnlockMainWeapon(ItemIndex);
                 })
