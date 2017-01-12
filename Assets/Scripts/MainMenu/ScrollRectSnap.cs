@@ -169,8 +169,25 @@ public class ScrollRectSnap : MonoBehaviour
             targetV = points[CurrentScreen];
 
         }
-        if(snapInH)
-        LerpH = true;
+        if (snapInH)
+        {
+            LerpH = true;
+            if (CurrentScreen == 0)
+            {
+                Right.gameObject.SetActive(true);
+                Left.gameObject.SetActive(false);
+            }
+            else if(CurrentScreen == points.Length - 1)
+            {
+                Right.gameObject.SetActive(false);
+                Left.gameObject.SetActive(true);
+            }
+            else
+            {
+                Right.gameObject.SetActive(true);
+                Left.gameObject.SetActive(true);
+            }
+        }
         if(snapInV)
         LerpV = true;
     }
