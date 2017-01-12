@@ -108,7 +108,7 @@ public class DataHandler : MonoBehaviour
     DamageBoostData[] DamageBoosts = new DamageBoostData[1];
     ShieldBoostData[] ShieldBoosts = new ShieldBoostData[4];
     LevelData[] Levels = new LevelData[10];
-    WaveData[] Waves = new WaveData[20];
+    WaveData[] Waves = new WaveData[200];
     string MaxWaveReachedRef = "MaxWaveReached";
     string HighestWaveStreakRef = "HighestWaveStreak";
 
@@ -711,29 +711,31 @@ public class DataHandler : MonoBehaviour
                 Levels[i].Is_Unlocked = (i == 0 ? 1 : 0);
                 PlayerPrefs.SetInt("Level" + i + ".IsUnlocked", Levels[i].Is_Unlocked);
             }
+            for (int j = 0; j < 20; j++)
+            {
+                int z = i * 10 + j;
+                if (PlayerPrefs.HasKey("Wave" + z + ".Number"))
+                {
+                    Waves[j].WaveNumber = PlayerPrefs.GetInt("Wave" + z + ".Number");
+                }
+                else
+                {
+                    Waves[j].WaveNumber = j + 1;
+                    PlayerPrefs.SetInt("Wave" + z + ".Number", j + 1);
+                }
+                if (PlayerPrefs.HasKey("Wave" + z + ".IsUnlocked"))
+                {
+                    Waves[j].Is_Unlocked = PlayerPrefs.GetInt("Wave" + z + ".IsUnlocked");
+                }
+                else
+                {
+                    Waves[j].Is_Unlocked = (z == 0 ? 1 : 0);
+                    PlayerPrefs.SetInt("Wave" + z + ".IsUnlocked", Waves[j].Is_Unlocked);
+                }
+            }
         }
         #endregion
-        for (int i = 0; i < Waves.Length; i++)
-        {
-            if (PlayerPrefs.HasKey("Wave" + i + ".Number"))
-            {
-                Waves[i].WaveNumber = PlayerPrefs.GetInt("Wave" + i + ".Number");
-            }
-            else
-            {
-                Waves[i].WaveNumber = i + 1;
-                PlayerPrefs.SetInt("Wave" + i + ".Number", i + 1);
-            }
-            if (PlayerPrefs.HasKey("Wave" + i + ".IsUnlocked"))
-            {
-                Waves[i].Is_Unlocked = PlayerPrefs.GetInt("Wave" + i + ".IsUnlocked");
-            }
-            else
-            {
-                Waves[i].Is_Unlocked = (i == 0 ? 1 : 0);
-                PlayerPrefs.SetInt("Wave" + i + ".IsUnlocked", Waves[i].Is_Unlocked);
-            }
-        }
+        
         //Saving 
         PlayerPrefs.Save();
     }
