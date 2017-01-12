@@ -9,7 +9,7 @@ public class DataHandler : MonoBehaviour
     struct TempWeaponsData
     {
       public int WeaponID;
-      public int WeaponStatus;
+      public bool UnlockStatus;
       public int WeaponCost;
       public int WeaponDamage;
     }
@@ -113,7 +113,7 @@ public class DataHandler : MonoBehaviour
     string HighestWaveStreakRef = "HighestWaveStreak";
 
     MainWeaponData m_InGameMainWeapon;
-    TempWeaponsData[] m_InGameTempweapons=new TempWeaponsData[3];
+    public TempWeaponsData[] m_InGameTempweapons=new TempWeaponsData[3];
 
     public static DataHandler Instance;
     [HideInInspector]
@@ -637,7 +637,9 @@ public class DataHandler : MonoBehaviour
         for (int i = 0; i < m_InGameTempweapons.Length; i++)
         {
             m_InGameTempweapons[i].WeaponID = -1;
+            m_InGameTempweapons[i].UnlockStatus = false;
         }
+        m_InGameTempweapons[0].UnlockStatus = true;
         #endregion
 
         //Master Volume
