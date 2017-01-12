@@ -6,7 +6,7 @@ public delegate void DataChanged();
 public class DataHandler : MonoBehaviour
 {
     public static event DataChanged DataChanged;
-    struct TempWeaponsData
+    public struct TempWeaponsData
     {
       public int WeaponID;
       public bool UnlockStatus;
@@ -113,7 +113,7 @@ public class DataHandler : MonoBehaviour
     string HighestWaveStreakRef = "HighestWaveStreak";
 
     MainWeaponData m_InGameMainWeapon;
-    public TempWeaponsData[] m_InGameTempweapons=new TempWeaponsData[3];
+    TempWeaponsData[] m_InGameTempweapons=new TempWeaponsData[3];
 
     public static DataHandler Instance;
     [HideInInspector]
@@ -953,6 +953,10 @@ public class DataHandler : MonoBehaviour
         }
         return IDs;
 
+    }
+    public List<TempWeaponsData> Get_InGameTempweaponsSlots()
+    {
+        return new List<TempWeaponsData>( m_InGameTempweapons);
     }
     #region Boost Getters
     public int GetEnergyBoostID(int index)
