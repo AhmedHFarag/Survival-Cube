@@ -97,7 +97,7 @@ public class MainWeaponInfoOverlap : MonoBehaviour
         cancelButton.onClick.AddListener(ClosePanel);
         gameObject.SetActive(true);
     }
-    public void ShowUse(int WeaponIndex, UnityAction UseEvent)
+    public void MainWeapon_ShowUse(int WeaponIndex, UnityAction UseEvent)
     {
         DefaultWeapon temp = GameManager.Instance.Weapons[WeaponIndex].GetComponent<DefaultWeapon>();
         WeaponName.text = temp.Cost.ToString();
@@ -109,6 +109,30 @@ public class MainWeaponInfoOverlap : MonoBehaviour
         cancelButton.onClick.RemoveAllListeners();
         UseButton.gameObject.SetActive(false);
         BuyButton.   gameObject.SetActive(false);
+        DeleteButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
+
+        UseButton.gameObject.SetActive(true);
+        cancelButton.gameObject.SetActive(true);
+
+        UseButton.onClick.AddListener(UseEvent);
+        UseButton.onClick.AddListener(ClosePanel);
+
+        cancelButton.onClick.AddListener(ClosePanel);
+        gameObject.SetActive(true);
+    }
+    public void TempWeapon_ShowUse(int WeaponIndex, UnityAction UseEvent)
+    {
+        TempWeapon temp = GameManager.Instance.TempWeapons[WeaponIndex].GetComponent<TempWeapon>();
+        WeaponName.text = temp.InGameUseCost.ToString();
+        WeaponImage.sprite = temp.UISprite;
+
+        UseButton.onClick.RemoveAllListeners();
+        BuyButton.onClick.RemoveAllListeners();
+        DeleteButton.onClick.RemoveAllListeners();
+        cancelButton.onClick.RemoveAllListeners();
+        UseButton.gameObject.SetActive(false);
+        BuyButton.gameObject.SetActive(false);
         DeleteButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
 

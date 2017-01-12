@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using GooglePlayGames;
+using UnityEngine.Events;
 
 public class MainMenuSliders : MonoBehaviour {
     public static MainMenuSliders Instance;
@@ -102,6 +103,32 @@ public class MainMenuSliders : MonoBehaviour {
     public void ResetAllData()
     {
         DataHandler.Instance.ResetAllPlayerSavedData();
+    }
+    public void UnlockNewInGameTempWeaponSlot()
+    {
+
+        if (DataHandler.Instance.GetPlayerCoins() >= 500)
+        {
+
+
+            MSGScript.Instance.Choice("Would you To Add New Slot??", new UnityAction(() =>
+            {
+                DataHandler.Instance.AddCoins(-500);
+                //Save unlocked Main weapon 
+                DataHandler.Instance.UnlockNewTempWeaponSlot();
+            })
+           , new UnityAction(() => { }), new UnityAction(() => { }));
+
+
+        }
+        else
+        {
+            MSGScript.Instance.OK("You Do not have enough Coins!!", () =>
+            {
+
+            });
+        }
+        
     }
 #endregion
     public void ShowADAndGetCoins()

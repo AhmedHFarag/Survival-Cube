@@ -1164,9 +1164,23 @@ public class DataHandler : MonoBehaviour
         SavePlayerPrefsData();
     }
 
-    public void SetTempWeapon(int index,int _weaponID)
+    public void SetTempWeaponToSlot(int index,int _weaponID)
     {
         m_InGameTempweapons[index].WeaponID = _weaponID;
+        OnDataChange();
+    }
+    public bool UnlockNewTempWeaponSlot()
+    {
+        for (int i = 0; i < m_InGameTempweapons.Length; i++)
+        {
+            if (m_InGameTempweapons[i].UnlockStatus == false)
+            {
+                m_InGameTempweapons[i].UnlockStatus = true;
+                OnDataChange();
+                return true;
+            }
+        }
+        return false;
     }
 
     public bool UnlockMainWeapon(int index)

@@ -6,9 +6,9 @@ public class TempWeaponSlot : ItemSlot
 {
     public new void OnClick()
     {
-        //MainWeaponInfoOverlap.Instance.ShowUse(ItemIndex,delegate() 
-        //{
-        //    DataHandler.Instance.SetMainWeaponID(this.ItemIndex);
-        //});
+        MainWeaponInfoOverlap.Instance.TempWeapon_ShowUse(ItemIndex, delegate ()
+         {
+             DataHandler.Instance.SetTempWeaponToSlot(0,this.ItemIndex);
+         });
     }
 }

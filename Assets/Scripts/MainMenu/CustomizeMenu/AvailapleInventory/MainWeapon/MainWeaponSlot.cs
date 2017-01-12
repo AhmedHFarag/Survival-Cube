@@ -6,7 +6,7 @@ public class MainWeaponSlot : ItemSlot
 {
     public new void OnClick()
     {
-        MainWeaponInfoOverlap.Instance.ShowUse(ItemIndex,delegate() 
+        MainWeaponInfoOverlap.Instance.MainWeapon_ShowUse(ItemIndex,delegate() 
         {
             DataHandler.Instance.SetMainWeaponID(this.ItemIndex);
         });
