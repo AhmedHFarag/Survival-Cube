@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWaves : MonoBehaviour {
-
+public class WaveData : MonoBehaviour {
+    public int WaveNumber;
+    public int Unlocked;
 	// Use this for initialization
 	void Start () {
 		
