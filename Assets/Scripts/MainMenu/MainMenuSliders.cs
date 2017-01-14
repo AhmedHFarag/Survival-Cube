@@ -14,6 +14,8 @@ public class MainMenuSliders : MonoBehaviour {
 
     public GameObject Msgbox;
     public GameObject EwaponInfoOverlap;
+    [HideInInspector]
+    public int TempWeaponSelectedToSlot = -1;
     void Awake()
     {
         if (Instance == null)
