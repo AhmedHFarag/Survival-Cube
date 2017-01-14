@@ -48,7 +48,7 @@ public class MainMenuSliders : MonoBehaviour {
     }
     public void StartGame()
     {
-        GameManager.Instance.StartGame();
+        GameManager.Instance.GoToLevelSelect();
     }
 
     #region Buttons Navigation Behaviour

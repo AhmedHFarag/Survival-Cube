@@ -201,6 +201,11 @@ public class GameManager : MonoBehaviour
         StopCoroutine("IncreaseEnergy");
         SceneManager.LoadScene("MainMenu");
     }
+    public void GoToLevelSelect()
+    {
+        StopCoroutine("IncreaseEnergy");
+        SceneManager.LoadScene("Level Select");
+    }
     public void StartGame(int Wave,int Level)
     {
         //Enemies_Manager.Instance.ResetWaveAndLevel();

@@ -75,7 +75,7 @@ public class LevelSelectBehavior : MonoBehaviour
     }
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.ReturnToMainMenu();
     }
     public void ReturnToLevels()
     {
