@@ -199,11 +199,11 @@ public class GameManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         StopCoroutine("IncreaseEnergy");
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MainMenu");
     }
     public void StartGame(int Wave,int Level)
     {
-        Enemies_Manager.Instance.ResetWaveAndLevel();
+        //Enemies_Manager.Instance.ResetWaveAndLevel();
         CurrentWaveNumber = Wave;
         Currentlevel = Level;
       
@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         //Enemies_Manager.Instance.ResetWaveAndLevel();
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Game");
         
         DataHandler.Instance.ResetPlayerInGameData();
 

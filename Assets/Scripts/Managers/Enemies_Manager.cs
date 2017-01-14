@@ -95,7 +95,7 @@ public class Enemies_Manager : MonoBehaviour
                             //increase defficulity
                             Currentlevel++;
                         }
-
+                        DataHandler.Instance.SetWaveUnlocked((Currentlevel - 1) * 10 + CurrentWaveNumber);
                     }
                 }
             }
@@ -161,6 +161,14 @@ public class Enemies_Manager : MonoBehaviour
     public int GetCurrentWave()
     {
         return CurrentWaveNumber;
+    }
+    public void SetCurrentLevel(int level)
+    {
+        Currentlevel = level;
+    }
+    public void SetCurrentWave(int wave)
+    {
+        CurrentWaveNumber = wave;
     }
     void OnDestroy()
     {
