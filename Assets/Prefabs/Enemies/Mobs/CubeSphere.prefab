@@ -311,7 +311,7 @@ MonoBehaviour:
   AddedScore: 30
   healthBar: {fileID: 114000013795904028}
   AvBullets: 0
-  EnemyArt: {fileID: 0}
+  EnemyArt: {fileID: 1000012790393358}
 --- !u!114 &114000010726825820
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,17 +16,21 @@ public class EquipedTempWeaponSlots : Inventory
         {
             yield return null;
         }
+        int x = 0;
         foreach (var item in DataHandler.Instance.Get_InGameTempweaponsSlots())
         {
+
             if (item.UnlockStatus)
             {
                 GameObject G = Instantiate(ItemSlot);
                 G.transform.parent = transform;
-                G.GetComponent<ItemSlot>().ItemIndex = item.WeaponID;
+                G.GetComponent<TempWeaponInGameSlot>().ItemIndex = item.WeaponID;
                 if (item.WeaponID>=0)
                 {
-                    G.GetComponent<ItemSlot>().ItemImage.sprite = GameManager.Instance.TempWeapons[item.WeaponID].GetComponent<TempWeapon>().UISprite;
-                }                
+                    G.GetComponent<TempWeaponInGameSlot>().ItemImage.sprite = GameManager.Instance.TempWeapons[item.WeaponID].GetComponent<TempWeapon>().UISprite;
+                }
+                G.GetComponent<TempWeaponInGameSlot>().SlotNumber = x;
+                x++;         
             }
         }
     }

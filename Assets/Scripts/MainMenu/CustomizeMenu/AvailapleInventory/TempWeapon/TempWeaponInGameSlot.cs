@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class TempWeaponInGameSlot : ItemSlot
 {
+    public int SlotNumber =0;
     public new void OnClick()
     {
         
-        DataHandler.Instance.SetTempWeaponToSlot(this.ItemIndex, MainMenuSliders.Instance.TempWeaponSelectedToSlot);
+        DataHandler.Instance.SetTempWeaponToSlot(SlotNumber, MainMenuSliders.Instance.TempWeaponSelectedToSlot);
         MainMenuSliders.Instance.TempWeaponSelectedToSlot = -1;
     }
     private void FixedUpdate()
