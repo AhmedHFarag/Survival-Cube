@@ -193,8 +193,11 @@ public class GameManager : MonoBehaviour
     }
     public void ReloadSameScene()
     {
+        Enemies_Manager.Instance.ResetWaveAndLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartGame(0, 1);
         DataHandler.Instance.ResetPlayerInGameData();
+       
     }
     public void ReturnToMainMenu()
     {
