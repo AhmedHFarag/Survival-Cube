@@ -152,8 +152,6 @@ public class DataHandler : MonoBehaviour
         initializeData();
         //Start With First Single Shot 
         UnlockMainWeapon(0);
-        //AddCoins(100000);
-        //OnDataChange();
         DataLoaded = true;
     }
 
@@ -633,15 +631,43 @@ public class DataHandler : MonoBehaviour
                 m_MainMenu_TempWeaponSlots[i].Unlocked = false;
             }
         }
-        
+        #endregion
+
+        #region Temp Weapons InGameSlots
+
         for (int i = 0; i < m_InGameTempweapons.Length; i++)
         {
-            m_InGameTempweapons[i].WeaponID = -1;
-            m_InGameTempweapons[i].UnlockStatus = false;
+            if (PlayerPrefs.HasKey("TempWeaponInGameSlots" + i + ".ID"))
+            {
+                m_InGameTempweapons[i].WeaponID = PlayerPrefs.GetInt("TempWeaponInGameSlots" + i + ".ID");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("TempWeaponInGameSlots" + i + ".ID", -1);
+                m_InGameTempweapons[i].WeaponID = -1;
+            }
+            if (PlayerPrefs.HasKey("TempWeaponInGameSlots" + i + ".Unlocked"))
+            {
+                if (PlayerPrefs.GetInt("TempWeaponInGameSlots" + i + ".Unlocked") == 0)
+                {
+                    m_InGameTempweapons[i].UnlockStatus = false;
+                }
+                else
+                {
+                    m_InGameTempweapons[i].UnlockStatus = true;
+                }
+
+            }
+            else
+            {
+                PlayerPrefs.SetInt("TempWeaponInGameSlots" + i + ".Unlocked", 0);
+                m_InGameTempweapons[i].UnlockStatus = false;
+            }
+            //m_InGameTempweapons[i].WeaponID = -1;
+            //m_InGameTempweapons[i].UnlockStatus = false;
         }
         m_InGameTempweapons[0].UnlockStatus = true;
         #endregion
-
         //Master Volume
         if (PlayerPrefs.HasKey("bgVolume"))
         {
@@ -1176,6 +1202,7 @@ public class DataHandler : MonoBehaviour
             if (m_InGameTempweapons[i].UnlockStatus == false)
             {
                 m_InGameTempweapons[i].UnlockStatus = true;
+                PlayerPrefs.SetInt("TempWeaponInGameSlots" + i + ".Unlocked", 1);
                 OnDataChange();
                 return true;
             }
