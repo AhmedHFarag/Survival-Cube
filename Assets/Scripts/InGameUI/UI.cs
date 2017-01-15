@@ -205,8 +205,9 @@ public class UI : MonoBehaviour
     public void ReloadSameScene()
     {
         Time.timeScale = 1;
-        paused = false;
-        GameManager.Instance.ReloadSameScene();
+        //paused = false;
+        //GameManager.Instance.ReloadSameScene();
+        GameManager.Instance.GoToLevelSelect();
 
     }
     public void ReturnToMainmenu()
