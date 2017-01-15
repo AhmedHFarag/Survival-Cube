@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
     public virtual void Attack()
     {
         myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion()+ AvoidBullets(), moveSpeed);
-        transform.LookAt(Target);
+        transform.LookAt(new Vector3(Target.position.x,transform.position.y, Target.position.z));
     }
     internal void ChangeSpeed(float percentage)
     {
