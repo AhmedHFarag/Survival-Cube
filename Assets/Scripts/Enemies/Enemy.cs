@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody myRigid;
     private float Distance;
 
+    public GameObject EnemyArt;
     private Canvas health;
 
     float MyArea = 5;
@@ -73,6 +74,7 @@ public class Enemy : MonoBehaviour
     public virtual void Attack()
     {
         myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion()+ AvoidBullets(), moveSpeed);
+        transform.LookAt(Target);
     }
     internal void ChangeSpeed(float percentage)
     {
@@ -201,7 +203,7 @@ public class Enemy : MonoBehaviour
         //}
         StartCoroutine("death");
         gameObject.GetComponent<BoxCollider>().enabled = false;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        EnemyArt.SetActive( false);
         if (health)
         {
             health.enabled = false;
@@ -227,7 +229,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<BoxCollider>().enabled = true;
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        EnemyArt.SetActive( true);
         Explosion.Stop();
         gameObject.SetActive(false);
     }
