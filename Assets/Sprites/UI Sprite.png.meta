@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6da54e75b9d841f41b6f364f850291ff
-timeCreated: 1484214251
+timeCreated: 1484480560
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -33,6 +33,10 @@ TextureImporter:
     21300052: UI Sprite_14
     21300054: Loading_4
     21300056: Loading_5
+    21300058: Share
+    21300060: Shop
+    21300062: Inventory
+    21300064: EnemyCards
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -496,6 +500,58 @@ TextureImporter:
         height: 202
       alignment: 9
       pivot: {x: 0.6652615, y: 0.7138047}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Share
+      rect:
+        serializedVersion: 2
+        x: 1846
+        y: 1766
+        width: 113
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Shop
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1132
+        width: 149
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Inventory
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 964
+        width: 149
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EnemyCards
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 798
+        width: 149
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -239,7 +239,7 @@ MeshRenderer:
     firstSubMesh: 0
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
+  m_ProbeAnchor: {fileID: 4000012889208232}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
@@ -311,6 +311,7 @@ MonoBehaviour:
   AddedScore: 30
   healthBar: {fileID: 114000013795904028}
   AvBullets: 0
+  EnemyArt: {fileID: 0}
 --- !u!114 &114000010726825820
 MonoBehaviour:
   m_ObjectHideFlags: 1
