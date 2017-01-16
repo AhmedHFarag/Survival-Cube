@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224000012899098632}
   - component: {fileID: 114000013795904028}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224000011287574938}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 224000013435588500}
   - component: {fileID: 222000012528791976}
   - component: {fileID: 114000011337540952}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 224000012732244332}
   - component: {fileID: 222000011999767714}
   - component: {fileID: 114000012854820296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4000012558356284}
   - component: {fileID: 198000010750152694}
   - component: {fileID: 199000013330553078}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 223000014039096994}
   - component: {fileID: 114000014264418282}
   - component: {fileID: 114000010726825820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyHealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}

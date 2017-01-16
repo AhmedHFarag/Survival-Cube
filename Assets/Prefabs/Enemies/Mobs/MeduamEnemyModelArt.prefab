@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4420193161322512}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MeduamEnemyModelArt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4744476393220200}
   - component: {fileID: 33595620601992996}
   - component: {fileID: 23901203375550744}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Object006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4265985037530176}
   - component: {fileID: 33102793076742702}
   - component: {fileID: 23055119493189554}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4470534391656508}
   - component: {fileID: 33503073236691042}
   - component: {fileID: 23301052449723050}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Object007
   m_TagString: Untagged
   m_Icon: {fileID: 0}

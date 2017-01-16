@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224000012546294954}
   - component: {fileID: 222000013354278094}
   - component: {fileID: 114000012270225816}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224000013154341084}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4000012043916622}
   - component: {fileID: 198000010895430366}
   - component: {fileID: 199000012612447752}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224000010636625370}
   - component: {fileID: 114000012824354158}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 224000011717222286}
   - component: {fileID: 222000012666256828}
   - component: {fileID: 114000012030225000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 223000010889881196}
   - component: {fileID: 114000011758690718}
   - component: {fileID: 114000012303382324}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyHealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 4753684734615840}
   - component: {fileID: 33999097372166132}
   - component: {fileID: 23329797228960008}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4426717400190316}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ArtModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 4039378641834876}
   - component: {fileID: 33845469199123922}
   - component: {fileID: 23722350398899980}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Object007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 4872316048530056}
   - component: {fileID: 33859366582892096}
   - component: {fileID: 23882817022603818}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Object006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,8 +244,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1335734098166710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.431, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalPosition: {x: -0, y: 2.2, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 4872316048530056}
   - {fileID: 4039378641834876}
@@ -418,8 +418,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 2}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 5, y: 4, z: 5}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &114000010964063760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3304,7 +3304,7 @@ RectTransform:
   m_GameObject: {fileID: 1000013048030072}
   m_LocalRotation: {x: 0, y: 0.7073474, z: -0.70686615, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224000010636625370}
   m_Father: {fileID: 4000012398354736}
