@@ -172,6 +172,13 @@ public class UI : MonoBehaviour
         
         yield return null;
     }
+    public void EndScoreAndCoinRoll()
+    {
+        StopCoroutine("CoinRoll");
+        StopCoroutine("ScoreRoll");
+        txtEndScore.text = DataHandler.Instance.GetInGameScore().ToString();
+        CoinsEnd.text = DataHandler.Instance.GetInGameCoins().ToString();
+    }
     public void UpdateControls()
     {
         if (_Controls0.isOn)
