@@ -126,6 +126,7 @@ public class Player_Controller : MonoBehaviour
         if (ReversedControls)
         {
             _Xdir *= -1;
+            _Ydir *= -1;
         }
         if (InputManager.Instance.ControlSchemeJoyStick==true)
         {
