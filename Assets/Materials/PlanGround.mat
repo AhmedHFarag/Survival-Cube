@@ -76,7 +76,7 @@ Material:
       second: 1
     - first:
         name: _Cutoff
-      second: 0.06716418
+      second: 0.1
     - first:
         name: _DetailNormalMapScale
       second: 1
@@ -125,7 +125,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.009407449, g: 0.6397059, b: 0.6397059, a: 1}
+      second: {r: 0, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

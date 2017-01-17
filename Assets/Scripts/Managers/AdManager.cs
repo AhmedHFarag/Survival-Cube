@@ -20,7 +20,7 @@ public class AdManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Advertisement.Initialize(gameID, true);
+        Advertisement.Initialize(gameID);
         Vungle.init("585922924db489ea1e000877", "Test_iOS", "Test_Windows");
         Vungle.onAdFinishedEvent += (AdFinishedEventArgs) =>
         {
