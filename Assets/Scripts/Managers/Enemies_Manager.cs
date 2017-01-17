@@ -95,7 +95,12 @@ public class Enemies_Manager : MonoBehaviour
                             //increase defficulity
                             Currentlevel++;
                         }
-                        DataHandler.Instance.SetWaveUnlocked((Currentlevel - 1) * 10 + CurrentWaveNumber);
+                        if (DataHandler.Instance.GetLevelUnlocked((Currentlevel - 1) * 10 + CurrentWaveNumber) == 0)
+                        {
+                            DataHandler.Instance.SetWaveUnlocked((Currentlevel - 1) * 10 + CurrentWaveNumber);
+                            DataHandler.Instance.SetMaxWaveReached((Currentlevel - 1) * 10 + CurrentWaveNumber);
+                        }
+                        
                     }
                 }
             }

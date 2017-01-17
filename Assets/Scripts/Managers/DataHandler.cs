@@ -708,6 +708,7 @@ public class DataHandler : MonoBehaviour
         }
         else
         {
+            Player.MaxWaveReached = 1;
             PlayerPrefs.SetInt(MaxWaveReachedRef, Player.MaxWaveReached);
         }
         if(PlayerPrefs.HasKey(HighestWaveStreakRef))
@@ -716,6 +717,7 @@ public class DataHandler : MonoBehaviour
         }
         else
         {
+            Player.HighestWaveStreak = 0;
             PlayerPrefs.SetInt(HighestWaveStreakRef, Player.HighestWaveStreak);
         }
         #region Level Data
