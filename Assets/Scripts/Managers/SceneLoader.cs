@@ -34,8 +34,7 @@ public class SceneLoader : MonoBehaviour {
     {
 
         // This line waits for 3 seconds before executing the next line in the coroutine.
-        // This line is only necessary for this demo. The scenes are so simple that they load too fast to read the "Loading..." text.
-        yield return new WaitForSeconds(5);
+        
 
         // Start an asynchronous operation to load the scene that was passed to the LoadNewScene coroutine.
         AsyncOperation async = SceneManager.LoadSceneAsync(NextScene);
