@@ -63,7 +63,6 @@ MonoBehaviour:
   Weapons:
   - {fileID: 1000014077669724, guid: 61abb298b6d00fc45866d51f27b45fdb, type: 2}
   - {fileID: 1000014077669724, guid: 1d8e269f0edc2f4498acc21ace531f35, type: 2}
-  - {fileID: 100000, guid: e342ee7cb10751440ad319ad10f6a2f5, type: 2}
   TempWeapons:
   - {fileID: 1000010880404766, guid: 87ee3be4dfc13b44b95a27112e740188, type: 2}
   - {fileID: 1000012197687638, guid: 2d37dc2bfa7f3e7439fe704acbd36fd7, type: 2}
@@ -77,6 +76,8 @@ MonoBehaviour:
   currentGameScene: 0
   currentScene: 0
   currentState: 0
-  Show_FPS: 0
+  Show_FPS: 1
   weaponCoolDown: 20
   IsconnectedToGoogleServices: 0
+  CurrentWaveNumber: 0
+  Currentlevel: 1
