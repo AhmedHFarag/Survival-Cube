@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3d3f02006116eb54eaa545631b72abfa
+timeCreated: 1484828824
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gtek Technology
+  fontNames:
+  - Gtek Technology
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
