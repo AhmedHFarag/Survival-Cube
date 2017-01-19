@@ -260,7 +260,7 @@ MonoBehaviour:
   Speed: 2
   MyRigid: {fileID: 0}
   sound: {fileID: 0}
-  timeForSelfDestory: 0.8
+  timeForSelfDestory: 1.5
 --- !u!135 &135761101308644036
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6da54e75b9d841f41b6f364f850291ff
-timeCreated: 1484480560
+timeCreated: 1484819703
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -37,6 +37,15 @@ TextureImporter:
     21300060: Shop
     21300062: Inventory
     21300064: EnemyCards
+    21300066: UI Sprite_1
+    21300068: UI Sprite_2
+    21300070: UI Sprite_3
+    21300072: UI Sprite_4
+    21300074: Level1
+    21300076: LeaderBoard
+    21300078: Large_Play_Button
+    21300080: Achivements
+    21300082: UI Sprite_15
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -169,10 +178,10 @@ TextureImporter:
       name: Pause_BackGround
       rect:
         serializedVersion: 2
-        x: 688
-        y: 976
-        width: 812
-        height: 710
+        x: 719
+        y: 1040
+        width: 736
+        height: 641
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +191,10 @@ TextureImporter:
       name: Play_Button
       rect:
         serializedVersion: 2
-        x: 1318
-        y: 1780
-        width: 229
-        height: 234
+        x: 1317
+        y: 1779
+        width: 231
+        height: 236
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +204,10 @@ TextureImporter:
       name: Home_Button
       rect:
         serializedVersion: 2
-        x: 1579
-        y: 1897
-        width: 113
-        height: 116
+        x: 1576
+        y: 1892
+        width: 127
+        height: 127
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,9 +218,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1707
-        y: 1897
-        width: 113
-        height: 116
+        y: 1890
+        width: 129
+        height: 126
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,10 +230,10 @@ TextureImporter:
       name: Small_Play_Button
       rect:
         serializedVersion: 2
-        x: 1847
-        y: 1899
-        width: 111
-        height: 114
+        x: 1842
+        y: 1893
+        width: 127
+        height: 127
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -312,10 +321,10 @@ TextureImporter:
       name: Sound
       rect:
         serializedVersion: 2
-        x: 611
-        y: 1732
-        width: 93
-        height: 95
+        x: 598
+        y: 1722
+        width: 119
+        height: 120
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -550,6 +559,123 @@ TextureImporter:
         y: 798
         width: 149
         height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI Sprite_1
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 1153
+        width: 136
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI Sprite_2
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1156
+        width: 137
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI Sprite_3
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 956
+        width: 135
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI Sprite_4
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 391
+        width: 735
+        height: 643
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level1
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 807
+        width: 495
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: LeaderBoard
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 601
+        width: 168
+        height: 173
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Large_Play_Button
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 307
+        width: 461
+        height: 472
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Achivements
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 418
+        width: 154
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI Sprite_15
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 143
+        width: 897
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
