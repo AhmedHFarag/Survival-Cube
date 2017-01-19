@@ -254,7 +254,7 @@ public class UI : MonoBehaviour
     {
         Time.timeScale = 0;
         Background.gameObject.SetActive(true);
-        while (Background.color.a < 1)
+        while (Background.color.a < 0.75f)
         {
             yield return StartCoroutine(CoroutineUtilities.WaitForRealTime(0.01f));
             Background.color = new Vector4(0, 0, 0, Background.color.a + 0.1f);
