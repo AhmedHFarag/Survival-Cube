@@ -100,7 +100,7 @@ public class DataHandler : MonoBehaviour
     PlayerData Player;
     WaveData Wave;
 
-    WeaponSlotData[] m_MainMenu_MainWeaponSlots=new WeaponSlotData[3];
+    WeaponSlotData[] m_MainMenu_MainWeaponSlots=new WeaponSlotData[2];
     WeaponSlotData[] m_MainMenu_TempWeaponSlots = new WeaponSlotData[4];
     BoostData[] Boosts = new BoostData[12];
     EnergyBoostData[] EnergyBoosts = new EnergyBoostData[4];
