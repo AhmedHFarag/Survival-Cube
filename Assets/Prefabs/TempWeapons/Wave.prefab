@@ -57,7 +57,7 @@ MonoBehaviour:
   UnlockCost: 2000
   InGameUseCost: 100
   LifeTime: 5
-  UISprite: {fileID: 21300000, guid: 366dfc4f715db30429dfecf0a0e31687, type: 3}
+  UISprite: {fileID: 21300022, guid: 6da54e75b9d841f41b6f364f850291ff, type: 3}
 --- !u!198 &198000010186526680
 ParticleSystem:
   m_ObjectHideFlags: 1
