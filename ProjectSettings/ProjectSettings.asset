@@ -120,14 +120,14 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Castling.SurvivalCube
-  bundleVersion: 1.1
+  bundleIdentifier: com.Castling.Survival_Cube
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
   xboxOneDisableKinectGpuReservation: 0
   protectGraphicsMemory: 0
-  AndroidBundleVersionCode: 9
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 17
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -211,7 +211,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: af7711c1460db4842ac7549a05bdca70, type: 3}
+      m_Icon: {fileID: 2800000, guid: 21ce5711aa3523b4c89e15031abaed22, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []

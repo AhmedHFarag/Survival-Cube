@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6da54e75b9d841f41b6f364f850291ff
-timeCreated: 1484831890
+timeCreated: 1484902162
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -47,6 +47,13 @@ TextureImporter:
     21300080: Achivements
     21300082: UI Sprite_15
     21300084: WeaponMultiplay
+    21300086: Plus_Button
+    21300088: SpredShot
+    21300090: SingleShot
+    21300092: EmptySlot
+    21300094: Reset
+    21300096: Arrow_Right
+    21300098: Arrow_Left
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -449,19 +456,6 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Close_Button
-      rect:
-        serializedVersion: 2
-        x: 848
-        y: 1750
-        width: 56
-        height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: JoyStick_BackGround
       rect:
         serializedVersion: 2
@@ -690,6 +684,97 @@ TextureImporter:
         y: 1524
         width: 160
         height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Plus_Button
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 1340
+        width: 160
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SpredShot
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 932
+        width: 201
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: SingleShot
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 77
+        width: 196
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EmptySlot
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 77
+        width: 201
+        height: 202
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Reset
+      rect:
+        serializedVersion: 2
+        x: 1591
+        y: 1669
+        width: 278
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Arrow_Right
+      rect:
+        serializedVersion: 2
+        x: 1883
+        y: 1616
+        width: 114
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Arrow_Left
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 1479
+        width: 115
+        height: 134
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

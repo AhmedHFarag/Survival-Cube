@@ -623,7 +623,7 @@ MonoBehaviour:
   - {fileID: 4000010476163194}
   - {fileID: 4000013538484202}
   - {fileID: 4000013627359562}
-  UISprite: {fileID: 21300000, guid: fb5e3f40a208cf844a17e950c78d675b, type: 3}
+  UISprite: {fileID: 21300088, guid: 6da54e75b9d841f41b6f364f850291ff, type: 3}
   Cost: 10000
   BullectNumberInUse: 20
   maxBullectNumber: 100
