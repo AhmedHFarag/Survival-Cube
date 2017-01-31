@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public int CurrentWaveNumber = 0;//
     public int Currentlevel = 1;//
+    public bool IsAttacking = false;
 
     void Awake()
     {

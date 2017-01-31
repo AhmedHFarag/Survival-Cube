@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour {
         var handler = movementChanged;
         if (handler != null) handler(xmovement, ymovement);
     }
-    private static void OnAttack(bool atk)// Invoking the movement event
+    private static void OnAttack(bool atk)
     {
         var handler = attack;
         if (handler != null) handler(atk);

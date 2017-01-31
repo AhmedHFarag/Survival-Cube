@@ -29,7 +29,7 @@ public class DefaultWeapon : MonoBehaviour
     {
         EllapsedTime += Time.deltaTime;
         //Fire Rate To be Deleted Need to be added in weapon class
-        if (EllapsedTime > 1/FireRate)
+        if (EllapsedTime > 1/FireRate && GameManager.Instance.IsAttacking)
         {
             EllapsedTime = 0;
             Fire();

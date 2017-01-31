@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public enum AxisOption
     {
@@ -39,7 +39,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     public void OnDrag(PointerEventData data)
     {
         Vector3 newPos = Vector3.zero;
-
+        m_StartPos = data.pressPosition;
         int delta = (int)Vector2.Distance(data.position, m_StartPos);
         delta = Mathf.Clamp(delta, 0, MovementRange);
         Vector2 dir = (data.position - new Vector2(m_StartPos.x, m_StartPos.y)).normalized;
@@ -51,7 +51,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerUp(PointerEventData data)
     {
-        transform.position = m_StartPos;
+        //transform.position = m_StartPos;
         //UpdateVirtualAxes(m_StartPos);
     }
 

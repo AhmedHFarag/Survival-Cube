@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
+
 public delegate void GamePaused();
 
 public delegate void GameResumed();
@@ -24,6 +27,7 @@ public class UI : MonoBehaviour
     public Toggle _ControlsJoyStick;
     public GameObject ControlsJoyStick;
     public Toggle _ControlsTouch;
+
     public int WaveNumber=1;
     Animator _anim;
     private GameObject pauseMenu;
@@ -269,6 +273,8 @@ public class UI : MonoBehaviour
         pauseMenuAnim.SetTrigger("isMenuUp");
         paused = false;
     }
+
+  
 }
 
 public static class CoroutineUtilities

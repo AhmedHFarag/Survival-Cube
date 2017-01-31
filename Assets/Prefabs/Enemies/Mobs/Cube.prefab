@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffa796628fa0114cb53e7627baffa9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefaultMoveSpeed: 4
+  DefaultMoveSpeed: 8
   DefaultAttackDamage: 10
   DefaultHP: 50
   AddedCoins: 2
