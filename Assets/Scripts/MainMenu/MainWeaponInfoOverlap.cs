@@ -10,6 +10,7 @@ public class MainWeaponInfoOverlap : MonoBehaviour
     public Image WeaponImage;
     public Button UseButton;
     public Button BuyButton;
+    public Button UpgradeButton;
     public Button DeleteButton;
     public Button cancelButton;
     public static MainWeaponInfoOverlap Instance;
@@ -40,6 +41,9 @@ public class MainWeaponInfoOverlap : MonoBehaviour
         BuyButton.onClick.RemoveAllListeners();
         DeleteButton.onClick.RemoveAllListeners();
         cancelButton.onClick.RemoveAllListeners();
+        UpgradeButton.onClick.RemoveAllListeners();
+
+        UpgradeButton.gameObject.SetActive(false);
         UseButton.gameObject.SetActive(false);
         BuyButton.gameObject.SetActive(false);
         DeleteButton.gameObject.SetActive(false);
@@ -64,6 +68,9 @@ public class MainWeaponInfoOverlap : MonoBehaviour
         BuyButton.onClick.RemoveAllListeners();
         DeleteButton.onClick.RemoveAllListeners();
         cancelButton.onClick.RemoveAllListeners();
+        UpgradeButton.onClick.RemoveAllListeners();
+
+        UpgradeButton.gameObject.SetActive(false);
         UseButton.gameObject.SetActive(false);
         BuyButton.gameObject.SetActive(false);
         DeleteButton.gameObject.SetActive(false);
@@ -88,6 +95,9 @@ public class MainWeaponInfoOverlap : MonoBehaviour
         BuyButton.onClick.RemoveAllListeners();
         DeleteButton.onClick.RemoveAllListeners();
         cancelButton.onClick.RemoveAllListeners();
+        UpgradeButton.onClick.RemoveAllListeners();
+
+        UpgradeButton.gameObject.SetActive(false);
         UseButton.gameObject.SetActive(false);
         BuyButton.gameObject.SetActive(false);
         DeleteButton.gameObject.SetActive(false);
@@ -107,6 +117,9 @@ public class MainWeaponInfoOverlap : MonoBehaviour
         BuyButton.onClick.RemoveAllListeners();
         DeleteButton.onClick.RemoveAllListeners();
         cancelButton.onClick.RemoveAllListeners();
+        UpgradeButton.onClick.RemoveAllListeners();
+
+        UpgradeButton.gameObject.SetActive(false);
         UseButton.gameObject.SetActive(false);
         BuyButton.   gameObject.SetActive(false);
         DeleteButton.gameObject.SetActive(false);
@@ -131,6 +144,9 @@ public class MainWeaponInfoOverlap : MonoBehaviour
         BuyButton.onClick.RemoveAllListeners();
         DeleteButton.onClick.RemoveAllListeners();
         cancelButton.onClick.RemoveAllListeners();
+        UpgradeButton.onClick.RemoveAllListeners();
+
+        UpgradeButton.gameObject.SetActive(false);
         UseButton.gameObject.SetActive(false);
         BuyButton.gameObject.SetActive(false);
         DeleteButton.gameObject.SetActive(false);
@@ -141,6 +157,33 @@ public class MainWeaponInfoOverlap : MonoBehaviour
 
         UseButton.onClick.AddListener(UseEvent);
         UseButton.onClick.AddListener(ClosePanel);
+
+        cancelButton.onClick.AddListener(ClosePanel);
+        gameObject.SetActive(true);
+    }
+    public void MainWeapon_ShowUpgrade(int WeaponIndex, UnityAction UseEvent)
+    {
+        DefaultWeapon temp = GameManager.Instance.Weapons[WeaponIndex].GetComponent<DefaultWeapon>();
+        WeaponName.text = temp.UpgradeCosts[DataHandler.Instance.GetMainWeaponLevel(WeaponIndex)].ToString();
+        WeaponImage.sprite = temp.UISprite;
+
+        UseButton.onClick.RemoveAllListeners();
+        BuyButton.onClick.RemoveAllListeners();
+        DeleteButton.onClick.RemoveAllListeners();
+        cancelButton.onClick.RemoveAllListeners();
+        UpgradeButton.onClick.RemoveAllListeners();
+
+        UpgradeButton.gameObject.SetActive(false);
+        UseButton.gameObject.SetActive(false);
+        BuyButton.gameObject.SetActive(false);
+        DeleteButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
+
+        UpgradeButton.gameObject.SetActive(true);
+        cancelButton.gameObject.SetActive(true);
+
+        UpgradeButton.onClick.AddListener(UseEvent);
+        UpgradeButton.onClick.AddListener(ClosePanel);
 
         cancelButton.onClick.AddListener(ClosePanel);
         gameObject.SetActive(true);

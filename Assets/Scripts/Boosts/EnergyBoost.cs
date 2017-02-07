@@ -17,8 +17,7 @@ public class EnergyBoost : Boost {
     }
     public override void Toggle()
     {
-        DataHandler.Instance.ToggleEnergyBoost(ID, is_Active);
-        
+        DataHandler.Instance.ToggleEnergyBoost(ID, is_Active);        
     }
     public override void Activate()
     {

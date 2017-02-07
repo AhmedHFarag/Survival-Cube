@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000013457020636}
   - component: {fileID: 114000013386031308}
   m_Layer: 0
-  m_Name: Multiplayturrets
+  m_Name: Multiplyturrets lvl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

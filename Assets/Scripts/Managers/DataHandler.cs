@@ -12,9 +12,53 @@ public class DataHandler : MonoBehaviour
       public bool UnlockStatus;
       public int WeaponCost;
       public int WeaponDamage;
+      public int Level;
     }
-    
-    struct BoostData
+    public struct SlowTimeData
+    {
+        public float Duration;
+        public float SlowFactor;
+        public int UpgradeCost;
+    }
+    public struct WaveClearData
+    {
+        public int Damage;
+        public int UpgradeCost;
+    }
+    public struct ElectricData
+    {
+        public int Damage;
+        public float Duration;
+        public int UpgradeCost;
+    }
+    public struct TurretMultiplyData
+    {
+        public int ExtraTurrets;
+        public int UpgradeCost;
+    }
+    public struct UpgradeMainWeaponData
+    {
+        public int UpgradeIndex;
+        public int WeaponIndex;
+        public int UpgradeCost;
+        public float FireRate;
+        public int Damage;
+        public float Duration;
+        public float SlowFactor;
+        public int ExtraTurrets;
+    }
+    public struct UpgradeTempWeaponData
+    {
+        public int UpgradeIndex;
+        public int WeaponIndex;
+        public int UpgradeCost;
+        public int Damage;
+        public float FireRate;
+        public float Duration;
+        public float SlowFactor;
+        public float ExtraTurrets;
+    }
+    public struct BoostData
     {
         public int ID;
         public int Count;
@@ -57,7 +101,8 @@ public class DataHandler : MonoBehaviour
        public int ID;
        public int Damage;
        public int Range;
-       public int FireRate;
+       public float FireRate;
+       public int Level;
     }
     struct WaveData
     {
@@ -93,20 +138,31 @@ public class DataHandler : MonoBehaviour
     {
         public int ID;
         public bool Unlocked;
-        public int FireRate;
+        public float FireRate;
         public int Damage;
+        public int Level;
+        public float Duration;
+        public float SlowFactor;
+        public int ExtraTurrets;
     }
 
     PlayerData Player;
+    WaveClearData ClearWeapon;
+    SlowTimeData SlowWeapon;
+    ElectricData ElectricWeapon;
+    TurretMultiplyData MultipleWeapon;
     WaveData Wave;
 
-    WeaponSlotData[] m_MainMenu_MainWeaponSlots=new WeaponSlotData[2];
-    WeaponSlotData[] m_MainMenu_TempWeaponSlots = new WeaponSlotData[4];
+    WeaponSlotData[] MainWeapons=new WeaponSlotData[2];
+    WeaponSlotData[] TempWeapons = new WeaponSlotData[4];
+    UpgradeMainWeaponData[] MainWeaponUpgs = new UpgradeMainWeaponData[6];
+    UpgradeTempWeaponData[] TempWeaponUpgs = new UpgradeTempWeaponData[12];
     BoostData[] Boosts = new BoostData[12];
     EnergyBoostData[] EnergyBoosts = new EnergyBoostData[4];
     FireRateBoostData[] FireRateBoosts = new FireRateBoostData[3];
     DamageBoostData[] DamageBoosts = new DamageBoostData[1];
     ShieldBoostData[] ShieldBoosts = new ShieldBoostData[4];
+
     LevelData[] Levels = new LevelData[10];
     WaveData[] Waves = new WaveData[200];
     string MaxWaveReachedRef = "MaxWaveReached";
@@ -310,58 +366,102 @@ public class DataHandler : MonoBehaviour
         }
         #region Main Weapons Initialization
         //Main menu Main Weapons Slots 
-        for (int i = 0; i < m_MainMenu_MainWeaponSlots.Length; i++)
+        for (int i = 0; i < MainWeapons.Length; i++)
         {
             if (PlayerPrefs.HasKey("MainWeaponSlots"+i+".ID"))
             {
-                m_MainMenu_MainWeaponSlots[i].ID = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".ID");
+                MainWeapons[i].ID = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".ID");
             }
             else
             {
                 PlayerPrefs.SetInt("MainWeaponSlots" + i + ".ID", i);
-                m_MainMenu_MainWeaponSlots[i].ID = i;
+                MainWeapons[i].ID = i;
             }
             //Unlocked
             if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".Unlocked"))
             {
                 if (PlayerPrefs.GetInt("MainWeaponSlots" + i + ".Unlocked")==0)
                 {
-                    m_MainMenu_MainWeaponSlots[i].Unlocked =false ;
+                    MainWeapons[i].Unlocked =false ;
                 }
                 else
                 {
-                    m_MainMenu_MainWeaponSlots[i].Unlocked = true;
+                    MainWeapons[i].Unlocked = true;
                 }
                 
             }
             else
             {
                 PlayerPrefs.SetInt("MainWeaponSlots" + i + ".Unlocked", 0);
-                m_MainMenu_MainWeaponSlots[i].Unlocked = false;
+                MainWeapons[i].Unlocked = false;
             }
 
             //Fire Rate
             if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".FireRate"))
             {
-                m_MainMenu_MainWeaponSlots[i].FireRate = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".FireRate");
+                MainWeapons[i].FireRate = PlayerPrefs.GetFloat("MainWeaponSlots" + i + ".FireRate");
             }
             else
             {
-                PlayerPrefs.SetInt("MainWeaponSlots" + i + ".FireRate", 1);
-                m_MainMenu_MainWeaponSlots[i].FireRate = 1;
+                PlayerPrefs.SetFloat("MainWeaponSlots" + i + ".FireRate", 1);
+                MainWeapons[i].FireRate = 1;
             }
 
             //Damage
             if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".Damage"))
             {
-                m_MainMenu_MainWeaponSlots[i].Damage = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".Damage");
+                MainWeapons[i].Damage = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".Damage");
             }
             else
             {
                 PlayerPrefs.SetInt("MainWeaponSlots" + i + ".Damage", 10);
-                m_MainMenu_MainWeaponSlots[i].Damage = 10;
+                MainWeapons[i].Damage = 10;
             }
-
+            if(PlayerPrefs.HasKey("MainWeaponSlots" + i + ".Level"))
+            {
+                MainWeapons[i].Level = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".Level");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("MainWeaponSlots" + i + ".Level", 0);
+                MainWeapons[i].Level = 0;
+            }
+            if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".Duration"))
+            {
+                MainWeapons[i].Duration = PlayerPrefs.GetFloat("MainWeaponSlots" + i + ".Duration");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("MainWeaponSlots" + i + ".Duration", 5);
+                MainWeapons[i].Duration = 5;
+            }
+            if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".SlowFactor"))
+            {
+                MainWeapons[i].SlowFactor = PlayerPrefs.GetFloat("MainWeaponSlots" + i + ".SlowFactor");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("MainWeaponSlots" + i + ".SlowFactor", 1);
+                MainWeapons[i].SlowFactor = 1;
+            }
+            if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".ExtraTurrets"))
+            {
+                MainWeapons[i].ExtraTurrets = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".ExtraTurrets");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("MainWeaponSlots" + i + ".ExtraTurrets", 0);
+                MainWeapons[i].ExtraTurrets = 0;
+            }
+            if (PlayerPrefs.HasKey("MainWeaponSlots" + i + ".FireRate"))
+            {
+                MainWeapons[i].FireRate = PlayerPrefs.GetFloat("MainWeaponSlots" + i + ".FireRate");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("MainWeaponSlots" + i + ".FireRate", 1);
+                MainWeapons[i].FireRate = 1;
+            }
         }
         #endregion
 
@@ -601,36 +701,109 @@ public class DataHandler : MonoBehaviour
 
         #region Temp Weapons Initialization
         //Main menu Temp Weapons Slots 
-        for (int i = 0; i < m_MainMenu_TempWeaponSlots.Length; i++)
+        for (int i = 0; i < TempWeapons.Length; i++)
         {
             if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".ID"))
             {
-                m_MainMenu_TempWeaponSlots[i].ID = PlayerPrefs.GetInt("TempWeaponSlots" + i + ".ID");
+                TempWeapons[i].ID = PlayerPrefs.GetInt("TempWeaponSlots" + i + ".ID");
             }
             else
             {
                 PlayerPrefs.SetInt("TempWeaponSlots" + i + ".ID", i);
-                m_MainMenu_TempWeaponSlots[i].ID = i;
+                TempWeapons[i].ID = i;
             }
 
             if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".Unlocked"))
             {
                 if (PlayerPrefs.GetInt("TempWeaponSlots" + i + ".Unlocked") == 0)
                 {
-                    m_MainMenu_TempWeaponSlots[i].Unlocked = false;
+                    TempWeapons[i].Unlocked = false;
                 }
                 else
                 {
-                    m_MainMenu_TempWeaponSlots[i].Unlocked = true;
+                    TempWeapons[i].Unlocked = true;
                 }
 
             }
             else
             {
                 PlayerPrefs.SetInt("TempWeaponSlots" + i + ".Unlocked", 0);
-                m_MainMenu_TempWeaponSlots[i].Unlocked = false;
+                TempWeapons[i].Unlocked = false;
+            }
+            if(PlayerPrefs.HasKey("TempWeaponSlots" + i + ".Level"))
+            {
+                TempWeapons[i].Level = PlayerPrefs.GetInt("TempWeaponSlots" + i + ".Level");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("TempWeaponSlots" + i + ".Level", 0);
+                TempWeapons[i].Level = 0;
+            }
+            if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".Duration"))
+            {
+                TempWeapons[i].Duration = PlayerPrefs.GetFloat("TempWeaponSlots" + i + ".Duration");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("TempWeaponSlots" + i + ".Duration", 5);
+                TempWeapons[i].Duration = 5;
+            }
+            if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".SlowFactor"))
+            {
+                TempWeapons[i].SlowFactor = PlayerPrefs.GetFloat("TempWeaponSlots" + i + ".SlowFactor");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("TempWeaponSlots" + i + ".SlowFactor", 1);
+                TempWeapons[i].SlowFactor = 1;
+            }
+            if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".ExtraTurrets"))
+            {
+                TempWeapons[i].ExtraTurrets = PlayerPrefs.GetInt("TempWeaponSlots" + i + ".ExtraTurrets");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("TempWeaponSlots" + i + ".ExtraTurrets", 0);
+                TempWeapons[i].ExtraTurrets = 0;
+            }
+            if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".FireRate"))
+            {
+                TempWeapons[i].FireRate = PlayerPrefs.GetFloat("TempWeaponSlots" + i + ".FireRate");
+            }
+            else
+            {
+                PlayerPrefs.SetFloat("TempWeaponSlots" + i + ".FireRate", 1);
+                TempWeapons[i].FireRate = 1;
+            }
+            if (PlayerPrefs.HasKey("TempWeaponSlots" + i + ".Damage"))
+            {
+                TempWeapons[i].Damage = PlayerPrefs.GetInt("TempWeaponSlots" + i + ".Damage");
+            }
+            else
+            {
+                PlayerPrefs.SetInt("TempWeaponSlots" + i + ".Damage", 10);
+                TempWeapons[i].Damage = 10;
             }
         }
+        if(PlayerPrefs.HasKey("ClearWeapon.Damage"))
+        {
+            ClearWeapon.Damage = PlayerPrefs.GetInt("ClearWeapon.Damage");
+        }
+        else
+        {
+            ClearWeapon.Damage = 100;
+            PlayerPrefs.SetInt("ClearWeapon.Damage", 100);
+        }
+        if(PlayerPrefs.HasKey("ClearWeapon.UpgradeCost"))
+        {
+            ClearWeapon.UpgradeCost = PlayerPrefs.GetInt("ClearWeapon.UpgradeCost");
+        }
+        else
+        {
+            ClearWeapon.UpgradeCost = 200;
+            PlayerPrefs.SetInt("ClearWeapon.UpgradeCost", 200);
+        }
+
         #endregion
 
         #region Temp Weapons InGameSlots
@@ -663,12 +836,93 @@ public class DataHandler : MonoBehaviour
                 PlayerPrefs.SetInt("TempWeaponInGameSlots" + i + ".Unlocked", 0);
                 m_InGameTempweapons[i].UnlockStatus = false;
             }
+
             //m_InGameTempweapons[i].WeaponID = -1;
             //m_InGameTempweapons[i].UnlockStatus = false;
         }
         m_InGameTempweapons[0].UnlockStatus = true;
         #endregion
         //Master Volume
+        #region Main Weapons Upgrades
+        for (int j = 0; j < MainWeapons.Length; j++)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (PlayerPrefs.HasKey("MainWeapon" + j + "Upgrade" + i + ".UpgradeIndex"))
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].UpgradeIndex = PlayerPrefs.GetInt("MainWeapon" + j + "Upgrade" + i + ".UpgradeIndex");
+                }
+                else
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].UpgradeIndex = i;
+                    PlayerPrefs.SetInt("MainWeapon" + j + "Upgrade" + i + ".UpgradeIndex", MainWeaponUpgs[j + (i * MainWeapons.Length)].UpgradeIndex);
+                }
+                if (PlayerPrefs.HasKey("MainWeapon" + j + "Upgrade" + i + ".UpgradeCost"))
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].UpgradeCost = PlayerPrefs.GetInt("MainWeapon" + j + "Upgrade" + i + ".UpgradeCost");
+                }
+                else
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].UpgradeCost = (i+1) * 100;
+                    PlayerPrefs.SetInt("MainWeapon" + j + "Upgrade" + i + ".UpgradeCost", MainWeaponUpgs[j + (i * MainWeapons.Length)].UpgradeCost);
+                }
+                if (PlayerPrefs.HasKey("MainWeapon" + j + "Upgrade" + i + ".WeaponIndex"))
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].WeaponIndex = PlayerPrefs.GetInt("MainWeapon" + j + "Upgrade" + i + ".WeaponIndex");
+                }
+                else
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].WeaponIndex = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".ID");
+                    PlayerPrefs.SetInt("MainWeapon" + j + "Upgrade" + i + ".WeaponIndex", MainWeaponUpgs[j + (i * MainWeapons.Length)].WeaponIndex);
+                }
+                if (PlayerPrefs.HasKey("MainWeapon" + j + "Upgrade" + i + ".Damage"))
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].Damage = PlayerPrefs.GetInt("MainWeapon" + j + "Upgrade" + i + ".Damage");
+                }
+                else
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].Damage = PlayerPrefs.GetInt("MainWeaponSlots" + i + ".Damage");
+                    PlayerPrefs.SetInt("MainWeapon" + j + "Upgrade" + i + ".Damage", MainWeaponUpgs[j + (i * MainWeapons.Length)].Damage);
+                }
+                if (PlayerPrefs.HasKey("MainWeapon" + j + "Upgrade" + i + ".Duration"))
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].Duration = PlayerPrefs.GetFloat("MainWeapon" + j + "Upgrade" + i + ".Duration");
+                }
+                else
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].Duration = 5;
+                    PlayerPrefs.SetFloat("MainWeapon" + j + "Upgrade" + i + ".Duration", MainWeaponUpgs[j + (i * MainWeapons.Length)].Duration);
+                }
+                if (PlayerPrefs.HasKey("MainWeapon" + j + "Upgrade" + i + ".SlowFactor"))
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].SlowFactor = PlayerPrefs.GetFloat("MainWeapon" + j + "Upgrade" + i + ".SlowFactor");
+                }
+                else
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].SlowFactor = 2;
+                    PlayerPrefs.SetFloat("MainWeapon" + j + "Upgrade" + i + ".SlowFactor", MainWeaponUpgs[j + (i * MainWeapons.Length)].SlowFactor);
+                }
+                if (PlayerPrefs.HasKey("MainWeapon" + j + "Upgrade" + i + ".ExtraTurrets"))
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].ExtraTurrets = PlayerPrefs.GetInt("MainWeapon" + j + "Upgrade" + i + ".ExtraTurrets");
+                }
+                else
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].ExtraTurrets = 2;
+                    PlayerPrefs.SetInt("MainWeapon" + j + "Upgrade" + i + ".ExtraTurrets", MainWeaponUpgs[j + (i * MainWeapons.Length)].ExtraTurrets);
+                }
+                if (PlayerPrefs.HasKey("MainWeapon" + j + "Upgrade" + i + ".FireRate"))
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].FireRate = PlayerPrefs.GetFloat("MainWeapon" + j + "Upgrade" + i + ".FireRate");
+                }
+                else
+                {
+                    MainWeaponUpgs[j + (i * MainWeapons.Length)].FireRate = 2;
+                    PlayerPrefs.SetFloat("MainWeapon" + j + "Upgrade" + i + ".FireRate", MainWeaponUpgs[j + (i * MainWeapons.Length)].FireRate);
+                }
+            }
+        }
+        #endregion
         if (PlayerPrefs.HasKey("bgVolume"))
         {
             BG_Volume = PlayerPrefs.GetFloat("bgVolume");
@@ -925,16 +1179,16 @@ public class DataHandler : MonoBehaviour
     }
     public bool GetMainWeaponSlotStatus(int index)
     {
-        return m_MainMenu_MainWeaponSlots[index].Unlocked;
+        return MainWeapons[index].Unlocked;
     }
     public bool GetTempWeaponSlotStatus(int index)
     {
-        return m_MainMenu_TempWeaponSlots[index].Unlocked;
+        return TempWeapons[index].Unlocked;
     }
     public List<int> GetUnlockedMainWeaponsIDs()
     {
         List<int> IDs = new List<int>();
-        foreach (var item in m_MainMenu_MainWeaponSlots)
+        foreach (var item in MainWeapons)
         {
             if (item.Unlocked)
             {
@@ -947,7 +1201,7 @@ public class DataHandler : MonoBehaviour
     public List<int> GetUnlockedTempWeaponsIDs()
     {
         List<int> IDs = new List<int>();
-        foreach (var item in m_MainMenu_TempWeaponSlots)
+        foreach (var item in TempWeapons)
         {
             if (item.Unlocked)
             {
@@ -960,7 +1214,7 @@ public class DataHandler : MonoBehaviour
     public List<int> GetLockedMainWeaponsIDs()
     {
         List<int> IDs = new List<int>();
-        foreach (var item in m_MainMenu_MainWeaponSlots)
+        foreach (var item in MainWeapons)
         {
             if (item.Unlocked==false)
             {
@@ -973,7 +1227,7 @@ public class DataHandler : MonoBehaviour
     public List<int> GetLockedTempWeaponsIDs()
     {
         List<int> IDs = new List<int>();
-        foreach (var item in m_MainMenu_TempWeaponSlots)
+        foreach (var item in TempWeapons)
         {
             if (item.Unlocked == false)
             {
@@ -982,6 +1236,22 @@ public class DataHandler : MonoBehaviour
         }
         return IDs;
 
+    }
+    public int GetMainWeaponLevel(int index)
+    {
+        return MainWeapons[index].Level;
+    }
+    public int GetMainWeaponDamage(int index)
+    {
+        return MainWeapons[index].Damage;
+    }
+    public float GetMainWeaponFireRate(int index)
+    {
+        return MainWeapons[index].FireRate;
+    }
+   public int GetTempWeaponLevel(int index)
+    {
+        return TempWeapons[index].Level;
     }
     public List<TempWeaponsData> Get_InGameTempweaponsSlots()
     {
@@ -1214,10 +1484,10 @@ public class DataHandler : MonoBehaviour
 
     public bool UnlockMainWeapon(int index)
     {
-        if (m_MainMenu_MainWeaponSlots[index].Unlocked == false)
+        if (MainWeapons[index].Unlocked == false)
         {
             PlayerPrefs.SetInt("MainWeaponSlots" + index + ".Unlocked", 1);
-            m_MainMenu_MainWeaponSlots[index].Unlocked = true;
+            MainWeapons[index].Unlocked = true;
             OnDataChange();
             return true;
         }
@@ -1228,10 +1498,10 @@ public class DataHandler : MonoBehaviour
     }
     public bool UnlockTempWeapon(int index)
     {
-        if (m_MainMenu_TempWeaponSlots[index].Unlocked == false)
+        if (TempWeapons[index].Unlocked == false)
         {
             PlayerPrefs.SetInt("TempWeaponSlots" + index + ".Unlocked", 1);
-            m_MainMenu_TempWeaponSlots[index].Unlocked = true;
+            TempWeapons[index].Unlocked = true;
             OnDataChange();
             return true;
         }
@@ -1241,6 +1511,20 @@ public class DataHandler : MonoBehaviour
         }
     }
 
+    public void SetMainWeaponStats(int index, int damage, float fireRate, float duration, float slowFactor, int extraTurrets)
+    {
+        MainWeapons[index].Damage = damage;
+        PlayerPrefs.SetInt("MainWeaponSlots" + index + ".Damage", damage);
+        MainWeapons[index].FireRate = fireRate;
+        PlayerPrefs.SetFloat("MainWeaponSlots" + index + ".FireRate", fireRate);
+        MainWeapons[index].Duration = duration;
+        PlayerPrefs.SetFloat("MainWeaponSlots" + index + ".Duration", duration);
+        MainWeapons[index].SlowFactor = slowFactor;
+        PlayerPrefs.SetFloat("MainWeaponSlots" + index + ".SlowFactor", slowFactor);
+        MainWeapons[index].ExtraTurrets = extraTurrets;
+        PlayerPrefs.SetInt("MainWeaponSlots" + index + ".ExtraTurrets", extraTurrets);
+        PlayerPrefs.Save();
+    }
     #region Boost Setters
     public void AddEnergyBoost(int index, int count)
     {
@@ -1388,5 +1672,23 @@ public class DataHandler : MonoBehaviour
     public void MainMenuWasLoaded()
     {
         OnDataChange();
+    }
+    public void UpgradeMainWeapon(int index)
+    {
+        int lvl = GetMainWeaponLevel(index) +1;
+        MainWeapons[index].Level += 1;
+        PlayerPrefs.SetInt("MainWeaponSlots" + index + ".Level", MainWeapons[index].Level);
+        int damage = MainWeaponUpgs[index + (MainWeapons.Length * lvl)].Damage;
+        float fireRate = MainWeaponUpgs[index + (MainWeapons.Length * lvl)].FireRate;
+        float duration = MainWeaponUpgs[index + (MainWeapons.Length * lvl)].Duration;
+        float slowFactor = MainWeaponUpgs[index + (MainWeapons.Length * lvl)].SlowFactor;
+        int extraTurrets = MainWeaponUpgs[index + (MainWeapons.Length * lvl)].ExtraTurrets;
+        SetMainWeaponStats(index, damage, fireRate, duration, slowFactor, extraTurrets);
+    }
+    public void UpgradeTempWeapon(int index)
+    {
+        int lvl = GetTempWeaponLevel(index) +1;
+        TempWeapons[index].Level += 1;
+        PlayerPrefs.SetInt("TempWeaponSlots" + index + ".Level", TempWeapons[index].Level);
     }
 }

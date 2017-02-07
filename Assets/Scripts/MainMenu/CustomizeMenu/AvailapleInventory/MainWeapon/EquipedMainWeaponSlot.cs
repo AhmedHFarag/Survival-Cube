@@ -8,4 +8,11 @@ public class EquipedMainWeaponSlot : ItemSlot
     {
         MainWeaponInfoOverlap.Instance.MainWeapon_ShowInfo(ItemIndex);
     }
+    public void Upgrade()
+    {
+        MainWeaponInfoOverlap.Instance.MainWeapon_ShowUpgrade(ItemIndex, delegate ()
+        {
+            GameManager.Instance.UpgradeMainWeapon(this.ItemIndex);
+        });
+    }
 }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4000010110691632}
   - component: {fileID: 114000013257427378}
   m_Layer: 0
-  m_Name: LandMines
+  m_Name: LandMines lvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,4 +56,4 @@ MonoBehaviour:
   InGameUseCost: 100
   LifeTime: 5
   UISprite: {fileID: 21300000, guid: 951c27b1e3a110b43b7d55230ab97e2e, type: 3}
-  Mine: {fileID: 1000011732958740, guid: 929e8b52901b5b6499f005703d7a64b7, type: 2}
+  Mine: {fileID: 1000011732958740, guid: d4c5f4ade3a3d2a4785683dcf8e226ca, type: 2}

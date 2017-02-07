@@ -36,13 +36,15 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> Items=new List<GameObject>();
     public List<GameObject> Weapons = new List<GameObject>();
+    public List<GameObject> MainWeaponLvls = new List<GameObject>();
     public List<GameObject> TempWeapons = new List<GameObject>();
+    public List<GameObject> TempWeaponLvls = new List<GameObject>();
     public List<EnergyBoost> EnergyBoosts = new List<EnergyBoost>();
     public List<FireRateBoost> FireRateBoosts = new List<FireRateBoost>();
     public List<DamageBoost> DamageBoosts = new List<DamageBoost>();
     public List<ShieldBoost> ShieldBoosts = new List<ShieldBoost>();
     List<Boost> ActiveBoosts = new List<Boost>();
-
+    
     [HideInInspector]
     public GameStates currentGameStates;
 
@@ -62,7 +64,7 @@ public class GameManager : MonoBehaviour
     public int CurrentWaveNumber = 0;//
     public int Currentlevel = 1;//
     public bool IsAttacking = false;
-
+ 
     void Awake()
     {
         if (Instance == null)
@@ -334,5 +336,17 @@ public class GameManager : MonoBehaviour
     {
         UI.Pause -= PauseGame;
         UI.Resume -= ResumeGame;
+    }
+    public void UpgradeMainWeapon(int index)
+    {
+        DataHandler.Instance.UpgradeMainWeapon(index);
+        int level = DataHandler.Instance.GetMainWeaponLevel(index);
+        Weapons[index] = MainWeaponLvls[level+(index*3)];
+    }
+    public void UpgradeTempWeapon(int index)
+    {
+        DataHandler.Instance.UpgradeTempWeapon(index);
+        int level = DataHandler.Instance.GetTempWeaponLevel(index);
+        TempWeapons[index] = TempWeaponLvls[level + (index * 3)];
     }
 }
