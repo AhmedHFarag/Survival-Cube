@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   UnlockCost: 450
+  UpgradeCost: 150
   InGameUseCost: 50
   LifeTime: 10
   UISprite: {fileID: 21300084, guid: 6da54e75b9d841f41b6f364f850291ff, type: 3}
