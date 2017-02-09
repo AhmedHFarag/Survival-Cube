@@ -34,6 +34,7 @@ public class EquipedTempWeaponSlots : Inventory
             }
         }
     }
+
     public override void ReloadData()
     {
         foreach (Transform child in transform)

@@ -339,14 +339,20 @@ public class GameManager : MonoBehaviour
     }
     public void UpgradeMainWeapon(int index)
     {
-        DataHandler.Instance.UpgradeMainWeapon(index);
-        int level = DataHandler.Instance.GetMainWeaponLevel(index);
-        Weapons[index] = MainWeaponLvls[level+(index*3)];
+        if (DataHandler.Instance.GetMainWeaponLevel(index) < 2)
+        {
+            DataHandler.Instance.UpgradeMainWeapon(index);
+            int level = DataHandler.Instance.GetMainWeaponLevel(index);
+            Weapons[index] = MainWeaponLvls[level + (index * 3)];
+        }
     }
     public void UpgradeTempWeapon(int index)
     {
-        DataHandler.Instance.UpgradeTempWeapon(index);
-        int level = DataHandler.Instance.GetTempWeaponLevel(index);
-        TempWeapons[index] = TempWeaponLvls[level + (index * 3)];
+        if (DataHandler.Instance.GetTempWeaponLevel(index) < 2)
+        {
+            DataHandler.Instance.UpgradeTempWeapon(index);
+            int level = DataHandler.Instance.GetTempWeaponLevel(index);
+            TempWeapons[index] = TempWeaponLvls[level + (index * 3)];
+        }
     }
 }

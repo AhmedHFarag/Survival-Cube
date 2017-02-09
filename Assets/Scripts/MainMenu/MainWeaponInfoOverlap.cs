@@ -188,6 +188,33 @@ public class MainWeaponInfoOverlap : MonoBehaviour
         cancelButton.onClick.AddListener(ClosePanel);
         gameObject.SetActive(true);
     }
+    public void TempWeapon_ShowUpgrade(int WeaponIndex, UnityAction UseEvent)
+    {
+        TempWeapon temp = GameManager.Instance.TempWeapons[WeaponIndex].GetComponent<TempWeapon>();
+        WeaponName.text = temp.UpgradeCost.ToString();
+        WeaponImage.sprite = temp.UISprite;
+
+        UseButton.onClick.RemoveAllListeners();
+        BuyButton.onClick.RemoveAllListeners();
+        DeleteButton.onClick.RemoveAllListeners();
+        cancelButton.onClick.RemoveAllListeners();
+        UpgradeButton.onClick.RemoveAllListeners();
+
+        UpgradeButton.gameObject.SetActive(false);
+        UseButton.gameObject.SetActive(false);
+        BuyButton.gameObject.SetActive(false);
+        DeleteButton.gameObject.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
+
+        UpgradeButton.gameObject.SetActive(true);
+        cancelButton.gameObject.SetActive(true);
+
+        UpgradeButton.onClick.AddListener(UseEvent);
+        UpgradeButton.onClick.AddListener(ClosePanel);
+
+        cancelButton.onClick.AddListener(ClosePanel);
+        gameObject.SetActive(true);
+    }
     void ClosePanel()
     {
         gameObject.SetActive(false);

@@ -12,4 +12,14 @@ public class TempWeaponSlot : ItemSlot
         // });
         MainMenuSliders.Instance.TempWeaponSelectedToSlot = this.ItemIndex;
     }
+    public void Upgrade()
+    {
+        if (DataHandler.Instance.GetTempWeaponLevel(ItemIndex) < 2)
+        {
+            MainWeaponInfoOverlap.Instance.TempWeapon_ShowUpgrade(ItemIndex, delegate ()
+            {
+                GameManager.Instance.UpgradeTempWeapon(this.ItemIndex);
+            });
+        }
+    }
 }

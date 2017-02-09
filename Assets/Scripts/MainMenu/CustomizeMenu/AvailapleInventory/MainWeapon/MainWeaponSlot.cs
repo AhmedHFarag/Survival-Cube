@@ -13,9 +13,12 @@ public class MainWeaponSlot : ItemSlot
     }
     public void Upgrade()
     {
-        MainWeaponInfoOverlap.Instance.MainWeapon_ShowUpgrade(ItemIndex, delegate ()
+        if (DataHandler.Instance.GetMainWeaponLevel(ItemIndex) < 2)
         {
-            GameManager.Instance.UpgradeMainWeapon(this.ItemIndex);
-        });
+            MainWeaponInfoOverlap.Instance.MainWeapon_ShowUpgrade(ItemIndex, delegate ()
+            {
+                GameManager.Instance.UpgradeMainWeapon(this.ItemIndex);
+            });
+        }
     }
 }

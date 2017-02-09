@@ -5,6 +5,7 @@ public class TempWeapon : MonoBehaviour
 {
     public int Damage;
     public int UnlockCost;
+    public int UpgradeCost;
     public int InGameUseCost;
     public int LifeTime = 5;
     public Sprite UISprite;

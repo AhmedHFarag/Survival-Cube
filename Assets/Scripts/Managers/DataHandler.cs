@@ -156,7 +156,7 @@ public class DataHandler : MonoBehaviour
     WeaponSlotData[] MainWeapons=new WeaponSlotData[2];
     WeaponSlotData[] TempWeapons = new WeaponSlotData[4];
     UpgradeMainWeaponData[] MainWeaponUpgs = new UpgradeMainWeaponData[6];
-    UpgradeTempWeaponData[] TempWeaponUpgs = new UpgradeTempWeaponData[12];
+    UpgradeTempWeaponData[] TempWeaponUpgs = new UpgradeTempWeaponData[15];
     BoostData[] Boosts = new BoostData[12];
     EnergyBoostData[] EnergyBoosts = new EnergyBoostData[4];
     FireRateBoostData[] FireRateBoosts = new FireRateBoostData[3];

@@ -11,6 +11,16 @@ public class TempWeaponInGameSlot : ItemSlot
         DataHandler.Instance.SetTempWeaponToSlot(SlotNumber, MainMenuSliders.Instance.TempWeaponSelectedToSlot);
         MainMenuSliders.Instance.TempWeaponSelectedToSlot = -1;
     }
+    public void Upgrade()
+    {
+        if (DataHandler.Instance.GetTempWeaponLevel(ItemIndex) < 2)
+        {
+            MainWeaponInfoOverlap.Instance.TempWeapon_ShowUpgrade(ItemIndex, delegate ()
+            {
+                GameManager.Instance.UpgradeTempWeapon(this.ItemIndex);
+            });
+        }
+    }
     private void FixedUpdate()
     {
         if (MainMenuSliders.Instance.TempWeaponSelectedToSlot>-1)
