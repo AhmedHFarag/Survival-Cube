@@ -134,6 +134,7 @@ public class DataHandler : MonoBehaviour
         public int Shield;
         
     }
+    
     struct WeaponSlotData
     {
         public int ID;
@@ -145,7 +146,15 @@ public class DataHandler : MonoBehaviour
         public float SlowFactor;
         public int ExtraTurrets;
     }
-
+    struct BundlesData
+    {
+        public float CoinPrice100;
+        public float CoinPrice500;
+        public float CoinPrice1000;
+        public float CoinPrice2000;
+        public float CoinPrice4000;
+        public float CoinPrice10000;
+    }
     PlayerData Player;
     WaveClearData ClearWeapon;
     SlowTimeData SlowWeapon;
@@ -153,7 +162,7 @@ public class DataHandler : MonoBehaviour
     TurretMultiplyData MultipleWeapon;
     WaveData Wave;
 
-    WeaponSlotData[] MainWeapons=new WeaponSlotData[2];
+    WeaponSlotData[] MainWeapons= new WeaponSlotData[2];
     WeaponSlotData[] TempWeapons = new WeaponSlotData[4];
     UpgradeMainWeaponData[] MainWeaponUpgs = new UpgradeMainWeaponData[6];
     UpgradeTempWeaponData[] TempWeaponUpgs = new UpgradeTempWeaponData[15];
@@ -170,6 +179,7 @@ public class DataHandler : MonoBehaviour
 
     MainWeaponData m_InGameMainWeapon;
     TempWeaponsData[] m_InGameTempweapons=new TempWeaponsData[3];
+    BundlesData Bundle;
 
     public static DataHandler Instance;
     [HideInInspector]
@@ -923,6 +933,7 @@ public class DataHandler : MonoBehaviour
             }
         }
         #endregion
+        #region General
         if (PlayerPrefs.HasKey("bgVolume"))
         {
             BG_Volume = PlayerPrefs.GetFloat("bgVolume");
@@ -974,6 +985,7 @@ public class DataHandler : MonoBehaviour
             Player.HighestWaveStreak = 0;
             PlayerPrefs.SetInt(HighestWaveStreakRef, Player.HighestWaveStreak);
         }
+        #endregion
         #region Level Data
         for (int i = 0; i < Levels.Length; i++)
         {
@@ -1019,7 +1031,62 @@ public class DataHandler : MonoBehaviour
             }
         }
         #endregion
-        
+        #region Bundle data
+        if(PlayerPrefs.HasKey("100CoinsPrice"))
+        {
+            Bundle.CoinPrice100 = PlayerPrefs.GetFloat("100CoinsPrice");
+        }
+        else
+        {
+            Bundle.CoinPrice100 = 0.1f;
+            PlayerPrefs.SetFloat("100CoinsPrice",0.1f);
+        }
+        if (PlayerPrefs.HasKey("500CoinsPrice"))
+        {
+            Bundle.CoinPrice500 = PlayerPrefs.GetFloat("500CoinsPrice");
+        }
+        else
+        {
+            Bundle.CoinPrice500 = 0.4f;
+            PlayerPrefs.SetFloat("500CoinsPrice", 0.4f);
+        }
+        if (PlayerPrefs.HasKey("1000CoinsPrice"))
+        {
+            Bundle.CoinPrice1000 = PlayerPrefs.GetFloat("1000CoinsPrice");
+        }
+        else
+        {
+            Bundle.CoinPrice1000 = 0.75f;
+            PlayerPrefs.SetFloat("1000CoinsPrice", 0.75f);
+        }
+        if (PlayerPrefs.HasKey("2000CoinsPrice"))
+        {
+            Bundle.CoinPrice2000 = PlayerPrefs.GetFloat("2000CoinsPrice");
+        }
+        else
+        {
+            Bundle.CoinPrice2000 = 1.25f;
+            PlayerPrefs.SetFloat("2000CoinsPrice", 1.25f);
+        }
+        if (PlayerPrefs.HasKey("4000CoinsPrice"))
+        {
+            Bundle.CoinPrice4000 = PlayerPrefs.GetFloat("4000CoinsPrice");
+        }
+        else
+        {
+            Bundle.CoinPrice4000 = 2.25f;
+            PlayerPrefs.SetFloat("4000CoinsPrice", 2.25f);
+        }
+        if (PlayerPrefs.HasKey("10000CoinsPrice"))
+        {
+            Bundle.CoinPrice10000 = PlayerPrefs.GetFloat("10000CoinsPrice");
+        }
+        else
+        {
+            Bundle.CoinPrice10000 = 5f;
+            PlayerPrefs.SetFloat("10000CoinsPrice", 5f);
+        }
+        #endregion
         //Saving 
         PlayerPrefs.Save();
     }

@@ -12,7 +12,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     Vector3 startPosition;
     Transform startParent;
     [HideInInspector]
-    public Inventory MyInventory;
+    public InventoryUI MyInventory;
     public enum Weapontype
     {
         Main,Temp
@@ -24,7 +24,7 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     bool Unlocked = false;
     void OnEnable()
     {
-        MyInventory = GetComponentInParent<Inventory>();
+        MyInventory = GetComponentInParent<InventoryUI>();
     }
     void Start()
     {

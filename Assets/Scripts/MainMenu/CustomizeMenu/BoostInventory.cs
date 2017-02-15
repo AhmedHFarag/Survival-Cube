@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoostInventory : Inventory {
+public class BoostInventory : InventoryUI {
 
     public override void ReloadData()
     {

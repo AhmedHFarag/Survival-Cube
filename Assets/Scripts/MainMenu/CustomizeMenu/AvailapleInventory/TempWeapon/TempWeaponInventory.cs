@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TempWeaponInventory : Inventory
+public class TempWeaponInventory : InventoryUI
 {
     protected new void Awake()
     {

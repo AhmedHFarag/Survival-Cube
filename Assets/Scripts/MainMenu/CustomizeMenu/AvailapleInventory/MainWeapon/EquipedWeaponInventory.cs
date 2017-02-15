@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipedWeaponInventory : Inventory {
+public class EquipedWeaponInventory : InventoryUI {
 
     protected new void Awake()
     {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopMainWeaponsInventory : Inventory {
+public class ShopMainWeaponsInventory : InventoryUI {
     protected new void Awake()
     {
         base.Awake();

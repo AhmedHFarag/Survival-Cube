@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MainWeaponInventory : Inventory
+public class MainWeaponInventory : InventoryUI
 {
     protected new void Awake()
     {
