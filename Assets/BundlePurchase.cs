@@ -47,9 +47,10 @@ public class BundlePurchase : MonoBehaviour {
         
         // Transmit options and start the service
         OpenIAB.init(options);
+        OpenIAB.queryInventory(new string[] { SKU });
         if (!_isInitialized)
             return;
-        OpenIAB.queryInventory(new string[] { SKU });
+        
         
     }
     private void OnEnable()
@@ -102,6 +103,7 @@ public class BundlePurchase : MonoBehaviour {
         Debug.Log("queryInventorySucceededEvent: " + inventory);
         if (inventory != null)
         {
+            _inventory = inventory;
         }
     }
     private void queryInventoryFailedEvent(string error)
