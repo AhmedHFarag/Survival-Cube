@@ -48,10 +48,12 @@ public class BundlePurchase : MonoBehaviour {
         // Transmit options and start the service
         OpenIAB.init(options);
         OpenIAB.queryInventory(new string[] { SKU });
+
         if (!_isInitialized)
             return;
-        
-        
+
+
+
     }
     private void OnEnable()
     {

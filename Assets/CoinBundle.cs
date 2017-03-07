@@ -22,12 +22,12 @@ public class CoinBundle : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-		if(PurchaseManager._inventory!=null && !isInitialized)
-        {
-            Price = PurchaseManager._inventory.GetSkuDetails(ID).Price;
-            Title = PurchaseManager._inventory.GetSkuDetails(ID).Title;
-            TextUI.text = Title + " = " + Price;
-            isInitialized = true;
-        }
+		//if(PurchaseManager._inventory!=null && !isInitialized)
+  //      {
+  //          Price = PurchaseManager._inventory.GetSkuDetails(ID).Price;
+  //          Title = PurchaseManager._inventory.GetSkuDetails(ID).Title;
+  //          TextUI.text = Title + " = " + Price;
+  //          isInitialized = true;
+  //      }
 	}
 }
