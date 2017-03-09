@@ -23,7 +23,7 @@ using System.Collections.Generic;
  */ 
 public class OpenIABTest : MonoBehaviour
 {
-    const string SKU = "sku";
+    const string SKU = "100coins";
 
     string _label = "";
     bool _isInitialized = false;
@@ -57,11 +57,10 @@ public class OpenIABTest : MonoBehaviour
     private void Start()
     {
         // Map skus for different stores       
-        OpenIAB.mapSku(SKU, OpenIAB_Android.STORE_GOOGLE, "sku");
+        OpenIAB.mapSku(SKU, OpenIAB_Android.STORE_GOOGLE, "100coins");
         OpenIAB.mapSku(SKU, OpenIAB_Android.STORE_AMAZON, "sku");
         OpenIAB.mapSku(SKU, OpenIAB_Android.STORE_SAMSUNG, "100000105017/samsung_sku");
         OpenIAB.mapSku(SKU, OpenIAB_iOS.STORE, "sku");
-        OpenIAB.mapSku(SKU, OpenIAB_WP8.STORE, "ammo");
 
         
     }
@@ -118,7 +117,8 @@ public class OpenIABTest : MonoBehaviour
             options.checkInventoryTimeoutMs = Options.INVENTORY_CHECK_TIMEOUT_MS * 2;
             options.discoveryTimeoutMs = Options.DISCOVER_TIMEOUT_MS * 2;
             options.checkInventory = false;
-            options.verifyMode = OptionsVerifyMode.VERIFY_SKIP;
+            options.verifyMode = OptionsVerifyMode.VERIFY_ONLY_KNOWN;
+            options.storeKeys.Add(OpenIAB_Android.STORE_GOOGLE, "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmX+XCw0oeenOUxoV32ntXoAg/rqcySQuLW/bEVKjQp20YqmJJ/aQVpSB/S5LqhtF8V7j+zmwIrELHdv1fBEl3Pqj4sAeLD2fnqbDuWexHc39sDq2qORHLXROSgOuTpwkHUTPxXTPLlBdnd+YfoiKfGggy1s0rZTTWn5/5K5DvBATBcUN4dAigbKDc3twxpZWeZZowbUi+5u2Sn2bjZNyFFcItUkMVAWnPB+CB7/fyjKI5bK93il0ribLho20sxwAbCuqJcVk//57IJheWIH1TsSH0sJKxGRxA6hMaSCb2+ZI2Gt4I/31wTZLePBVyFdwf1r6mXJKN0dotiv0MWgdCQIDAQAB");
             options.prefferedStoreNames = new string[] { OpenIAB_Android.STORE_AMAZON };
             options.availableStoreNames = new string[] { OpenIAB_Android.STORE_AMAZON };
             options.storeKeys = new Dictionary<string, string> { {OpenIAB_Android.STORE_GOOGLE, googlePublicKey} };
@@ -128,10 +128,12 @@ public class OpenIABTest : MonoBehaviour
 
             // Transmit options and start the service
             OpenIAB.init(options);
+
         }
 
         if (!_isInitialized)
             return;
+        OpenIAB.queryInventory(new string[] { SKU });
 
         if (Button("Query Inventory"))
         {
