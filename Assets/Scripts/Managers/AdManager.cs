@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+
+#if UNITY_ADS
 using UnityEngine.Advertisements;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -20,7 +23,9 @@ public class AdManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+#if UNITY_ADS
         Advertisement.Initialize(gameID);
+#endif
         Vungle.init("585922924db489ea1e000877", "Test_iOS", "Test_Windows");
         Vungle.onAdFinishedEvent += (AdFinishedEventArgs) =>
         {
@@ -30,25 +35,34 @@ public class AdManager : MonoBehaviour
     }
     public void ShowUnityAd()
     {
+#if UNITY_ADS
+
         if (Advertisement.IsReady())
         {
             Advertisement.Show();
         }
+#endif
     }
     public void ShowUnityVideo()
     {
+#if UNITY_ADS
+
         if (Advertisement.IsReady("video"))
         {
             Advertisement.Show("video");
         }
+#endif
     }
     public void ShowUnityRewardedAd()
     {
+#if UNITY_ADS
+
         if (Advertisement.IsReady("rewardedVideo"))
         {
             var options = new ShowOptions { resultCallback = HandleShowResult };
             Advertisement.Show("rewardedVideo", options);
         }
+#endif
     }
     public void ShowVungleAd()
     {
@@ -61,6 +75,8 @@ public class AdManager : MonoBehaviour
         Vungle.playAdWithOptions(options);
         
     }
+#if UNITY_ADS
+    
     private void HandleShowResult(ShowResult result)
     {
         switch (result)
@@ -81,6 +97,7 @@ public class AdManager : MonoBehaviour
         }
 
     }
+#endif
 }
 public class AdFinishedEventArgs : EventArgs
 {
