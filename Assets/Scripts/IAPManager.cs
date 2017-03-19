@@ -29,7 +29,31 @@ public class IAPManager : MonoBehaviour , IStoreListener
             {"100coins", GooglePlay.Name},
             {"100coins", MacAppStore.Name}
         });
-
+        builder.AddProduct("100coins", ProductType.Consumable, new IDs
+        {
+            {"200coins", GooglePlay.Name},
+            {"200coins", MacAppStore.Name}
+        });
+        builder.AddProduct("500coins", ProductType.Consumable, new IDs
+        {
+            {"500coins", GooglePlay.Name},
+            {"500coins", MacAppStore.Name}
+        });
+        builder.AddProduct("1000coins", ProductType.Consumable, new IDs
+        {
+            {"1000coins", GooglePlay.Name},
+            {"1000coins", MacAppStore.Name}
+        });
+        builder.AddProduct("5000coins", ProductType.Consumable, new IDs
+        {
+            {"5000coins", GooglePlay.Name},
+            {"5000coins", MacAppStore.Name}
+        });
+        builder.AddProduct("10000coins", ProductType.Consumable, new IDs
+        {
+            {"10000coins", GooglePlay.Name},
+            {"10000coins", MacAppStore.Name}
+        });
         UnityPurchasing.Initialize(this, builder);
     }
 
@@ -90,6 +114,21 @@ public class IAPManager : MonoBehaviour , IStoreListener
         {
             case "100coins":
                 DataHandler.Instance.AddCoins(100);
+                break;
+            case "200coins":
+                DataHandler.Instance.AddCoins(200);
+                break;
+            case "500coins":
+                DataHandler.Instance.AddCoins(500);
+                break;
+            case "1000coins":
+                DataHandler.Instance.AddCoins(1000);
+                break;
+            case "5000coins":
+                DataHandler.Instance.AddCoins(5000);
+                break;
+            case "10000coins":
+                DataHandler.Instance.AddCoins(10000);
                 break;
 
             default:
