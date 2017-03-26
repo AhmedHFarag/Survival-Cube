@@ -120,6 +120,14 @@ public class Player_Controller : MonoBehaviour
         gameObject.SetActive(false);
         GameManager.Instance.ThePlayerDied();
     }
+    public void LeftMove(float x, float y)
+    {
+
+        Vector3 heading = new Vector3(x * 30, 0, y * 30);
+
+        _MyRig.velocity = new Vector3(y * 30, 0, x * 30);
+
+    }
     public void Move(float _Xdir, float _Ydir)
     {
         IsMoving = false;

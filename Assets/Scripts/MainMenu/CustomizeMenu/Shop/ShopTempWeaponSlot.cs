@@ -27,6 +27,19 @@ public class ShopTempWeaponSlot : ItemSlot
                     DataHandler.Instance.AddCoins(-GameManager.Instance.TempWeapons[ItemIndex].GetComponent<TempWeapon>().UnlockCost);
                         //Save unlocked Main weapon 
                         DataHandler.Instance.UnlockTempWeapon(ItemIndex);
+                    switch (ItemIndex)
+
+                    {
+                        case 0:
+                            GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_electroshock_therapy, 100);
+                            break;
+                        case 1:
+
+                            GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_sweep_the_legs, 500);
+                            break;
+                        default:
+                            break;
+                    }
                 })
                , new UnityAction(() => { }), new UnityAction(() => { }));
 

@@ -10,7 +10,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: CASTLING STUDIOS
+  companyName: Castling
   productName: Survival Cube
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -120,14 +120,14 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Castling.Survival_Cube
+  bundleIdentifier: com.Castling.SurvivalCube
   bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
   xboxOneDisableKinectGpuReservation: 0
   protectGraphicsMemory: 0
-  AndroidBundleVersionCode: 4
+  AndroidBundleVersionCode: 9
   AndroidMinSdkVersion: 17
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -196,7 +196,7 @@ PlayerSettings:
   AndroidTargetDevice: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: E:/Work/Survival-Cube/KeyStore/Servival_Cube_UserKey.keystore
+  AndroidKeystoreName: D:/Castling/SC/KeyStore/Servival_Cube_UserKey.keystore
   AndroidKeyaliasName: survivalcube
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

@@ -219,17 +219,60 @@ public class GameManager : MonoBehaviour
         Currentlevel = Level;
       
         SceneManager.LoadScene(2);
-       
+        
+        if (IsconnectedToGoogleServices)
+        {
+            //Games.Achievements.unlock(mGoogleApiClient, "my_achievement_id");
+            UnlockAchievement(SurvivalCubeResources.achievement_the_adventure_begins,  100);
+        }
         //DataHandler.Instance.ResetPlayerInGameData();
 
         StartCoroutine("IncreaseEnergy");
         //UnlockAchievement1();
     }
+    
+    public void UnlockAchievement(string achievement, int coins, int increment)
+    {
+        if (IsconnectedToGoogleServices)
+        {
+            PlayGamesPlatform.Instance.IncrementAchievement(achievement, increment, (bool success) =>
+            {
+                if (success)
+                {
+                    DataHandler.Instance.AddCoins(coins);
+
+                }
+                // handle success or failure
+            });
+        }
+    }
+    public void UnlockAchievement(string achievement, int coins)
+    {
+        if (IsconnectedToGoogleServices)
+        {
+            Social.ReportProgress(achievement, 100.0f, (bool success) =>
+            {
+                if (success)
+                {
+                    DataHandler.Instance.AddCoins(coins);
+                }
+                //    _success = success;
+                //    // handle success or failure
+            });
+        }
+    }
     public void StartGame()
     {
         //Enemies_Manager.Instance.ResetWaveAndLevel();
         SceneManager.LoadScene("Game");
-        
+
+        if (IsconnectedToGoogleServices)
+        {
+            //Games.Achievements.unlock(mGoogleApiClient, "my_achievement_id");
+
+            UnlockAchievement(SurvivalCubeResources.achievement_the_adventure_begins, 100);
+
+        }
         DataHandler.Instance.ResetPlayerInGameData();
 
         StartCoroutine("IncreaseEnergy");
@@ -246,7 +289,8 @@ public class GameManager : MonoBehaviour
     public void ThePlayerDied()
     {
         StopCoroutine("IncreaseEnergy");
-        
+        DataHandler.Instance.AddPlayerDeath();
+        GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_getting_tired_of__resurrecting_you, 100, 1);
         OnPlayerDies();
     }
     public void NewWavStarted()
@@ -300,19 +344,7 @@ public class GameManager : MonoBehaviour
         }
         return IsconnectedToGoogleServices;
     }
-    public bool UnlockAchievement1()
-    {
-        bool _success=false;
-        if (IsconnectedToGoogleServices)
-        {
-            Social.ReportProgress(SurvivalCubeResources.achievement_test1, 100.0f, (bool success) => {
-
-                _success = success;
-                // handle success or failure
-            });
-        }
-        return _success;
-    }
+  
     public bool ReportScoreToLeaderBoard(int Score)
     {
         bool _success = false;

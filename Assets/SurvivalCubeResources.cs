@@ -24,12 +24,20 @@
 
 public static class SurvivalCubeResources
 {
-        public const string achievement_test5 = "CgkI2M_Y7rYQEAIQBQ"; // <GPGSID>
+        public const string achievement_same_but_different = "CgkI2M_Y7rYQEAIQAw"; // <GPGSID>
+        public const string achievement_locked_and_loaded = "CgkI2M_Y7rYQEAIQDg"; // <GPGSID>
         public const string leaderboard_topplayers = "CgkI2M_Y7rYQEAIQBg"; // <GPGSID>
-        public const string achievement_test1 = "CgkI2M_Y7rYQEAIQAQ"; // <GPGSID>
-        public const string achievement_test2 = "CgkI2M_Y7rYQEAIQAg"; // <GPGSID>
-        public const string achievement_test3 = "CgkI2M_Y7rYQEAIQAw"; // <GPGSID>
-        public const string achievement_test4 = "CgkI2M_Y7rYQEAIQBA"; // <GPGSID>
+        public const string achievement_loose_cannon = "CgkI2M_Y7rYQEAIQCg"; // <GPGSID>
+        public const string achievement_triple_the_threat = "CgkI2M_Y7rYQEAIQAg"; // <GPGSID>
+        public const string achievement_here_they_come_again = "CgkI2M_Y7rYQEAIQCw"; // <GPGSID>
+        public const string achievement_technomurderer = "CgkI2M_Y7rYQEAIQDA"; // <GPGSID>
+        public const string achievement_sweep_the_legs = "CgkI2M_Y7rYQEAIQDQ"; // <GPGSID>
+        public const string achievement_the_adventure_begins = "CgkI2M_Y7rYQEAIQAQ"; // <GPGSID>
+        public const string achievement_robot_genocide = "CgkI2M_Y7rYQEAIQCA"; // <GPGSID>
+        public const string achievement_getting_tired_of__resurrecting_you = "CgkI2M_Y7rYQEAIQBA"; // <GPGSID>
+        public const string achievement_robot_apocalypse = "CgkI2M_Y7rYQEAIQCQ"; // <GPGSID>
+        public const string achievement_mayhem = "CgkI2M_Y7rYQEAIQBw"; // <GPGSID>
+        public const string achievement_electroshock_therapy = "CgkI2M_Y7rYQEAIQBQ"; // <GPGSID>
 
 }
 

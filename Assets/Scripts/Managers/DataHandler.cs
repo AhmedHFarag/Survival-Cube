@@ -132,6 +132,8 @@ public class DataHandler : MonoBehaviour
         public float FireRateMultiplyer;
         public float DamageMultiplyer;
         public int Shield;
+        public int EnemiesKilled;
+        public int Deaths;
         
     }
     
@@ -352,6 +354,25 @@ public class DataHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("Shield", 0);
             Player.Shield = 0;
+        }
+        if (PlayerPrefs.HasKey("EnemiesKilled"))
+        {
+            Player.EnemiesKilled = PlayerPrefs.GetInt("EnemiesKilled");
+
+        }
+        else
+        {
+            Player.EnemiesKilled = 0;
+            PlayerPrefs.SetInt("EnemiesKilled", 0);
+        }
+        if(PlayerPrefs.HasKey("PlayerDeaths"))
+        {
+            Player.Deaths = PlayerPrefs.GetInt("PlayerDeaths");
+        }
+        else
+        {
+            Player.Deaths = 0;
+            PlayerPrefs.SetInt("PlayerDeaths", 0);
         }
         //if (PlayerPrefs.HasKey("InGameScore"))
         //{
@@ -1211,7 +1232,14 @@ public class DataHandler : MonoBehaviour
     {
         return Player.HighScore;
     }
-
+    public int GetEnemiesKilled()
+    {
+        return Player.EnemiesKilled;
+    }
+    public int GetPlayerDeaths()
+    {
+        return Player.Deaths;
+    }
     public string GetBestScoreStr()
     {
         return Player.HighScore.ToString();
@@ -1735,7 +1763,16 @@ public class DataHandler : MonoBehaviour
     {
         inGameScore += amountToBeAdded;
     }
-
+    public void AddEnemyKilled()
+    {
+        Player.EnemiesKilled++;
+        PlayerPrefs.SetInt("EnemiesKilled", Player.EnemiesKilled);
+    }
+    public void AddPlayerDeath()
+    {
+        Player.Deaths++;
+        PlayerPrefs.SetInt("PlayerDeaths", Player.Deaths);
+    }
     public void MainMenuWasLoaded()
     {
         OnDataChange();

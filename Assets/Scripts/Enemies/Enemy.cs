@@ -212,6 +212,15 @@ public class Enemy : MonoBehaviour
         {
             Explosion.Play();
         }
+        if(!isCollidedWithEnemy)
+        {
+            DataHandler.Instance.AddEnemyKilled();
+            GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_loose_cannon, 50, 1);
+            GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_technomurderer, 75, 1);
+            GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_mayhem, 100, 1);
+            GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_robot_genocide, 150, 1);
+            GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_robot_apocalypse, 500, 1);
+        }
         //raise event
         if (OnEnemyDie != null) { OnEnemyDie(this.gameObject, AddedScore, AddedCoins, isCollidedWithEnemy); }
     }

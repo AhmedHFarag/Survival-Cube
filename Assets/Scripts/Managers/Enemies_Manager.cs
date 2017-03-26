@@ -81,6 +81,7 @@ public class Enemies_Manager : MonoBehaviour
                     if (activeEnemies.Count <= 0)
                     {
                         CurrentWaveNumber++;
+                        GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_here_they_come_again, 300, 1);
                         if (CurrentWaveNumber < WavesData.Count)
                         {
                             CurrentEnemieNumber = 0;
@@ -94,6 +95,10 @@ public class Enemies_Manager : MonoBehaviour
                             CurrentWaveNumber = 0;
                             //increase defficulity
                             Currentlevel++;
+                            if(Currentlevel==2)
+                            {
+                                GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_same_but_different, 500);
+                            }
                         }
                         if (DataHandler.Instance.GetLevelUnlocked((Currentlevel - 1) * 10 + CurrentWaveNumber) == 0)
                         {

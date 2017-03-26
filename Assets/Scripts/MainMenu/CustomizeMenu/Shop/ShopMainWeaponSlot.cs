@@ -27,6 +27,14 @@ public class ShopMainWeaponSlot : ItemSlot
                     DataHandler.Instance.AddCoins(-GameManager.Instance.Weapons[ItemIndex].GetComponent<DefaultWeapon>().Cost);
                         //Save unlocked Main weapon 
                         DataHandler.Instance.UnlockMainWeapon(ItemIndex);
+                    switch (ItemIndex)
+                    {
+                        case 1:
+                            GameManager.Instance.UnlockAchievement(SurvivalCubeResources.achievement_triple_the_threat, 0);
+                            break;
+                        default:
+                            break;
+                    }
                 })
                , new UnityAction(() => { }), new UnityAction(() => { }));
 
