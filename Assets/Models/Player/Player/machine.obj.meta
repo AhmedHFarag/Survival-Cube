@@ -1,17 +1,27 @@
 fileFormatVersion: 2
-guid: 17f1c4ec28d529d40aaa13943d134373
-timeCreated: 1494840985
+guid: b6df6e2a2c8e9c349ad558efb19421ff
+timeCreated: 1495276188
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: RetopoSurface003
+    100002: Object003
+    100004: Object004
+    100006: Sphere013
     400000: //RootNode
-    400002: RetopoSurface003
-    2300000: RetopoSurface003
-    3300000: RetopoSurface003
-    4300000: RetopoSurface003
+    400002: Object003
+    400004: Object004
+    400006: Sphere013
+    2300000: Object003
+    2300002: Object004
+    2300004: Sphere013
+    3300000: Object003
+    3300002: Object004
+    3300004: Sphere013
+    4300000: Object003
+    4300002: Object004
+    4300004: Sphere013
   materials:
     importMaterials: 1
     materialName: 0
@@ -38,7 +48,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.15
+    globalScale: 0.2
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

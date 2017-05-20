@@ -1,32 +1,17 @@
 fileFormatVersion: 2
-guid: 4feb662ff092a224f8dc7851208897eb
-timeCreated: 1495276188
+guid: 2ccbbd3217d12a347a61a32d4503508d
+timeCreated: 1495276187
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Cylinder007
-    100002: //RootNode
-    100004: Object001
-    100006: Object002
-    100008: Sphere013
-    400000: Cylinder007
-    400002: //RootNode
-    400004: Object001
-    400006: Object002
-    400008: Sphere013
-    2300000: Cylinder007
-    2300002: Object001
-    2300004: Object002
-    2300006: Sphere013
-    3300000: Cylinder007
-    3300002: Object001
-    3300004: Object002
-    3300006: Sphere013
-    4300000: Cylinder007
-    4300002: Object001
-    4300004: Object002
-    4300006: Sphere013
+    100000: //RootNode
+    100002: RetopoSurface003
+    400000: //RootNode
+    400002: RetopoSurface003
+    2300000: RetopoSurface003
+    3300000: RetopoSurface003
+    4300000: RetopoSurface003
   materials:
     importMaterials: 1
     materialName: 0

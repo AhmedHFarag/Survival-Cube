@@ -31,7 +31,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         var delta = m_StartPos - value;
         delta.y = -delta.y;
         delta /= MovementRange;
-        InputManager.Instance.UpdateAxis(-delta.x, delta.y);
+        InputManager.Instance.UpdateAxis(delta.x, -delta.y);
 
     }
 

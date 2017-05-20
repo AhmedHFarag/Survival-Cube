@@ -58,8 +58,9 @@ public class Player_Controller : MonoBehaviour
         InputManager.movementChanged += Move;
         InputManager.attack += Fire;
         m_BaiscWeapon = Instantiate(GameManager.Instance.GetMainWeapon());
-        m_BaiscWeapon.transform.rotation = transform.rotation;
+        m_BaiscWeapon.transform.rotation = WeaponPos.rotation;
         m_BaiscWeapon.transform.position = WeaponPos.position;
+
         m_BaiscWeapon.transform.parent = transform;
         BasicWeapon = m_BaiscWeapon.GetComponent<DefaultWeapon>();
     }
