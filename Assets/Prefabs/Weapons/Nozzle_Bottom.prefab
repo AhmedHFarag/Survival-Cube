@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33551239439115936}
   - component: {fileID: 23308325488142132}
   m_Layer: 0
-  m_Name: Cylinder007
+  m_Name: Nozzle_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

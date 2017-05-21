@@ -57,6 +57,8 @@ public class Player_Controller : MonoBehaviour
         _MyRig = GetComponent<Rigidbody>();
         InputManager.movementChanged += Move;
         InputManager.attack += Fire;
+        InputManager.leftmovementChanged += LeftMove;
+
         m_BaiscWeapon = Instantiate(GameManager.Instance.GetMainWeapon());
         m_BaiscWeapon.transform.rotation = WeaponPos.rotation;
         m_BaiscWeapon.transform.position = WeaponPos.position;
@@ -123,10 +125,15 @@ public class Player_Controller : MonoBehaviour
     }
     public void LeftMove(float x, float y)
     {
-
-        Vector3 heading = new Vector3(x * 30, 0, y * 30);
-
-        _MyRig.velocity = new Vector3(y * 30, 0, x * 30);
+        float px = x;
+        float py = y;
+        y = py * Mathf.Cos(45 ) - px * Mathf.Sin(45);
+        x = py * Mathf.Sin(45) + px * Mathf.Cos(45);
+        x = Mathf.Abs(x) < 0.2 ? 0 : x;
+        y = Mathf.Abs(y) < 0.2f ? 0 : y;
+        Vector3 heading = new Vector3(x, 0, y);
+        
+        _MyRig.velocity = new Vector3(x , 0, y ) *30;
 
     }
     public void Move(float _Xdir, float _Ydir)

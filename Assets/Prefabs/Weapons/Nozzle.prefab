@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33210396513798906}
   - component: {fileID: 23485122875667144}
   m_Layer: 0
-  m_Name: Object001
+  m_Name: Nozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -63,11 +63,19 @@ MonoBehaviour:
   Weapons:
   - {fileID: 1000014077669724, guid: 61abb298b6d00fc45866d51f27b45fdb, type: 2}
   - {fileID: 1000014077669724, guid: 1d8e269f0edc2f4498acc21ace531f35, type: 2}
+  MainWeaponLvls:
+  - {fileID: 1000014077669724, guid: 61abb298b6d00fc45866d51f27b45fdb, type: 2}
+  - {fileID: 1000014077669724, guid: 09ba7360c364131479c70a82af189c2c, type: 2}
+  - {fileID: 1000014077669724, guid: 381b4c194ee91f34a8683a3e47766213, type: 2}
+  - {fileID: 1000014077669724, guid: 1d8e269f0edc2f4498acc21ace531f35, type: 2}
+  - {fileID: 1000014077669724, guid: 338a149f0451d4846a5d164bf4cd3090, type: 2}
+  - {fileID: 1000014077669724, guid: b7c2cde469bc6f049b3c09c0a6ca1cb3, type: 2}
   TempWeapons:
   - {fileID: 1000010880404766, guid: 87ee3be4dfc13b44b95a27112e740188, type: 2}
   - {fileID: 1000012197687638, guid: 2d37dc2bfa7f3e7439fe704acbd36fd7, type: 2}
   - {fileID: 1000012773356702, guid: dc955a41a41631047acc81ef0a322b80, type: 2}
   - {fileID: 1000013749124272, guid: 81ce093d8342b9241886484d13142a6f, type: 2}
+  TempWeaponLvls: []
   EnergyBoosts: []
   FireRateBoosts: []
   DamageBoosts: []
@@ -76,8 +84,9 @@ MonoBehaviour:
   currentGameScene: 0
   currentScene: 0
   currentState: 0
-  Show_FPS: 1
+  Show_FPS: 0
   weaponCoolDown: 20
   IsconnectedToGoogleServices: 0
   CurrentWaveNumber: 0
   Currentlevel: 1
+  IsAttacking: 0

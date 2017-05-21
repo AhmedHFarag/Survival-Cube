@@ -31,7 +31,7 @@ public class LeftJoystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         var delta = value- m_StartPos;
         delta.y = delta.y;
         delta /= MovementRange;
-        InputManager.Instance.UpdateLeftAxis(-delta.x, delta.y);
+        InputManager.Instance.UpdateLeftAxis(delta.x, delta.y);
 
     }
 
@@ -45,14 +45,16 @@ public class LeftJoystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         Vector2 dir = (data.position - new Vector2(m_StartPos.x, m_StartPos.y)).normalized;
         newPos = dir * delta;
         transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
+
         UpdateVirtualAxes(transform.position);
+
     }
 
 
     public void OnPointerUp(PointerEventData data)
     {
-        //transform.position = m_StartPos;
-        //UpdateVirtualAxes(m_StartPos);
+        transform.position = m_StartPos;
+        UpdateVirtualAxes(m_StartPos);
     }
 
 
