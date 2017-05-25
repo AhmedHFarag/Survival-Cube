@@ -10,6 +10,7 @@ TagManager:
   - Shooter
   - Target
   - Missile
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Bullet
   - Enemy
   - Plane
-  - 
+  - EnemyBullet
   - 
   - 
   - 

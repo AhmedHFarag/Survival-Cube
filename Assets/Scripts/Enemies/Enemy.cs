@@ -4,9 +4,15 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Melee,
+        Ranged
+    }
     public delegate void EnemyBehaviour(GameObject Sender, int AddedScore,int AddedCoins, bool isCollidedWithPlayer);
     public static event EnemyBehaviour OnEnemyDie;
 
+    public EnemyType Type=EnemyType.Melee;
     Transform Target;
     public float DefaultMoveSpeed=5;
     float moveSpeed;    
@@ -14,6 +20,7 @@ public class Enemy : MonoBehaviour
     int AttackDamage;
     public float DefaultHP = 200;
     public int AddedCoins = 20;
+    public float Range;
     float HP;
     ParticleSystem Explosion;
     public int AddedScore = 10;
@@ -23,6 +30,8 @@ public class Enemy : MonoBehaviour
     private float Distance;
 
     public GameObject EnemyArt;
+    public Animator Anim;
+    public Transform[] FirePositions;
     private Canvas health;
 
     float MyArea = 5;
@@ -32,6 +41,7 @@ public class Enemy : MonoBehaviour
     float Coh_Force = 1;
     float AlignForce = 1;
     float EllapsedTime = 0;
+    bool isFiring = false;
     void OnEnable()
     {
         int CurrentLevel = Enemies_Manager.Instance.GetCurrentLevel();
@@ -73,8 +83,26 @@ public class Enemy : MonoBehaviour
     }
     public virtual void Attack()
     {
-        myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation()+ Alignment()+ Cohesion()+ AvoidBullets(), moveSpeed);
+        if (Type == EnemyType.Melee || Distance > Range)
+        {
+            myRigid.velocity = Truncate(myRigid.velocity + ToPlayer() + Separation() + Alignment() + Cohesion() + AvoidBullets(), moveSpeed);
+            if(isFiring)
+                Invoke("StopFireBullets", 1.5f);
+        }
+        else
+        {
+            myRigid.velocity = Vector3.zero;
+            if (!isFiring)
+            {
+                StartCoroutine("FireBullets");
+            }
+        }
         transform.LookAt(new Vector3(Target.position.x,transform.position.y, Target.position.z));
+    }
+    void StopFireBullets()
+    {
+        StopCoroutine("FireBullets");
+        isFiring = false;
     }
     internal void ChangeSpeed(float percentage)
     {
@@ -241,5 +269,28 @@ public class Enemy : MonoBehaviour
         EnemyArt.SetActive( true);
         Explosion.Stop();
         gameObject.SetActive(false);
+    }
+    IEnumerator FireBullets()
+    {
+        isFiring = true;
+        while (true)
+        {
+            Anim.SetTrigger("Attack");
+            yield return new WaitForSeconds(0.11f);
+            foreach (Transform FirePos in FirePositions)
+            {
+                GameObject obj = Enemies_Manager.Instance.BulletPool.GetObject();
+                if (obj)
+                {
+                    obj.transform.position = FirePos.position;
+                    obj.transform.forward = FirePos.forward;
+                    obj.transform.rotation = FirePos.rotation;
+                    obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    obj.SetActive(true);
+                    obj.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+                }
+            }
+            yield return new WaitForSeconds(1);
+        }
     }
 }

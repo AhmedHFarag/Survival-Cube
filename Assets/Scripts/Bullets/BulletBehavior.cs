@@ -29,12 +29,25 @@ public class BulletBehavior : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Enemy"))
+        if (gameObject.CompareTag("Bullet"))
         {
-            other.gameObject.GetComponent<Enemy>().TakeDamage((int)Mathf.Floor(Damage*Player_Controller.Instance.DamageMultiplier));
-            StopCoroutine("SelfDestory");
-            gameObject.SetActive(false);
+            if (other.collider.CompareTag("Enemy"))
+            {
+                other.gameObject.GetComponent<Enemy>().TakeDamage((int)Mathf.Floor(Damage * Player_Controller.Instance.DamageMultiplier));
+                StopCoroutine("SelfDestory");
+                gameObject.SetActive(false);
 
+            }
+        }
+        else
+        {
+            if(other.collider.CompareTag("Player"))
+            {
+                other.gameObject.GetComponent<Player_Controller>().TakeDamage(Damage);
+                StopCoroutine("SelfDestory");
+                gameObject.SetActive(false);
+
+            }
         }
     }
 

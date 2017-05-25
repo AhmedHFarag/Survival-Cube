@@ -17,7 +17,7 @@ public class Player_Controller : MonoBehaviour
 
     public int HitPoints = 100;
     public float DamageMultiplier = 1;
-
+    public Transform AnimationHolder;
     public AnimationCurve motionCurve = AnimationCurve.Linear(0, 0, 1, 1);
     public float Defaultspeed = 2f;
     public float AutoAimThreshold = 5f;
@@ -63,8 +63,16 @@ public class Player_Controller : MonoBehaviour
         m_BaiscWeapon.transform.rotation = WeaponPos.rotation;
         m_BaiscWeapon.transform.position = WeaponPos.position;
 
-        m_BaiscWeapon.transform.parent = transform;
+        m_BaiscWeapon.transform.parent = AnimationHolder;
         BasicWeapon = m_BaiscWeapon.GetComponent<DefaultWeapon>();
+    }
+    void OnEnable()
+    {
+        if (_MyRig == null)
+        {
+            _MyRig = GetComponent<Rigidbody>();
+
+        }
     }
     void Update()
     {
@@ -310,6 +318,7 @@ public class Player_Controller : MonoBehaviour
     void OnDisable()
     {
         InputManager.movementChanged -= Move;
+        InputManager.leftmovementChanged -= LeftMove;
         InputManager.attack -= Fire;
     }
 }

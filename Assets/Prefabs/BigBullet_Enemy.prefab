@@ -25,9 +25,9 @@ GameObject:
   - component: {fileID: 82428536340606524}
   - component: {fileID: 199659570798726418}
   - component: {fileID: 198693475643302244}
-  m_Layer: 9
-  m_Name: BigBullet_lvl3
-  m_TagString: Bullet
+  m_Layer: 12
+  m_Name: BigBullet_Enemy
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 32
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!82 &82428536340606524
 AudioSource:
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657da3df4bb0fbb4fa3aad2762e6c930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 35
+  Damage: 5
   Speed: 2
   MyRigid: {fileID: 0}
   sound: {fileID: 0}

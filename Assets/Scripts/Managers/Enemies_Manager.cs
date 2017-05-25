@@ -16,6 +16,9 @@ public class Enemies_Manager : MonoBehaviour
     [HideInInspector]
     public List<Transform> spawnPoints = new List<Transform>();
     #endregion
+    public GameObject Bullet;
+    [HideInInspector]
+    public ObjectPool BulletPool;
 
     #region EnemiesWaves
     int CurrentWaveNumber = 0;//
@@ -42,6 +45,7 @@ public class Enemies_Manager : MonoBehaviour
     }
     void Start()
     {
+        BulletPool = GameManager.Instance.CreatePool(Bullet, 25, 50);
         foreach (var item in _SpawnPoints.GetComponentsInChildren<Transform>().Skip(1))
         {
             spawnPoints.Add(item);
