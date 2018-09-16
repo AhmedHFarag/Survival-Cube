@@ -2094,7 +2094,7 @@ Prefab:
         type: 2}
       propertyPath: WavesData.Array.data[0].Enemies.Array.data[1].Prefab
       value: 
-      objectReference: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3,
+      objectReference: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389,
         type: 2}
     - target: {fileID: 114000011847551850, guid: 11cb8c91ce7e0014aae930053e511b35,
         type: 2}
@@ -2106,7 +2106,7 @@ Prefab:
         type: 2}
       propertyPath: WavesData.Array.data[0].Enemies.Array.data[0].Prefab
       value: 
-      objectReference: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3,
+      objectReference: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11cb8c91ce7e0014aae930053e511b35, type: 2}

@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
     float AlignForce = 1;
     float EllapsedTime = 0;
     bool isFiring = false;
+	bool isAlive = true;
     void OnEnable()
     {
         int CurrentLevel = Enemies_Manager.Instance.GetCurrentLevel();
@@ -52,10 +53,12 @@ public class Enemy : MonoBehaviour
         healthBar.value = HP;
         health.enabled = true;
         moveSpeed = DefaultMoveSpeed * CurrentLevel;
-    }
+		isAlive = true;
 
-    // Use this for initialization
-    void Start()
+	}
+
+	// Use this for initialization
+	void Start()
     {
 
         Explosion = gameObject.GetComponentInChildren<ParticleSystem>();
@@ -73,8 +76,11 @@ public class Enemy : MonoBehaviour
         {
             healthBar.value = HP;
         }
-
-        Attack();
+		if (isAlive) {
+			Attack();
+		} else {
+			myRigid.velocity = Vector3.zero;
+		}
     }
     
     public virtual void Patrol()
@@ -224,11 +230,12 @@ public class Enemy : MonoBehaviour
     }
     public void Die(bool isCollidedWithEnemy = false)
     {
-        //if (isCollidedWithEnemy)
-        //{
-        //    //update score
-        //    GameManager.Instance.score += 10;
-        //}
+		//if (isCollidedWithEnemy)
+		//{
+		//    //update score
+		//    GameManager.Instance.score += 10;
+		//}
+		isAlive = false;
         StartCoroutine("death");
         gameObject.GetComponent<BoxCollider>().enabled = false;
         EnemyArt.SetActive( false);

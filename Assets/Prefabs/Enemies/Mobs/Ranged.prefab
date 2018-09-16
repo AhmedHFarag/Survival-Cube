@@ -2880,7 +2880,7 @@ MonoBehaviour:
   DefaultAttackDamage: 10
   DefaultHP: 150
   AddedCoins: 5
-  Range: 50
+  Range: 40
   AddedScore: 20
   healthBar: {fileID: 114000012900575432}
   AvBullets: 0

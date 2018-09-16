@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000011644724522}
-  - 114: {fileID: 114000011847551850}
+  - component: {fileID: 4000011644724522}
+  - component: {fileID: 114000011847551850}
   m_Layer: 0
   m_Name: Enemies_Manager
   m_TagString: Untagged
@@ -36,10 +36,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011847551850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,124 +51,118 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67308b6905fc3e249a78212d12087177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Show_FPS: 1
   _SpawnPoints: {fileID: 0}
   spawnPoints: []
+  Bullet: {fileID: 1104390497061418, guid: 0850087006810244681fda787ba4fafa, type: 2}
   WavesData:
   - Enemies:
     - Count: 4
       Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
     Intensity: 1
   - Enemies:
-    - Count: 3
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 2
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
-    Intensity: 1
-  - Enemies:
-    - Count: 6
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    - Count: 2
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
-    - Count: 1
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    Intensity: 1
-  - Enemies:
-    - Count: 5
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
-    - Count: 2
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
     - Count: 5
       Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
     Intensity: 1
   - Enemies:
-    - Count: 8
+    - Count: 4
+      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 5
       Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
     - Count: 3
+      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
+    - Count: 3
+      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
+    - Count: 4
+      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 4
+      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 3
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
+    - Count: 3
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
+    Intensity: 1
+  - Enemies:
+    - Count: 4
+      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
+    - Count: 3
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
+    - Count: 2
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
+    - Count: 5
+      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
+    Intensity: 1.5
+  - Enemies:
+    - Count: 2
       Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
     - Count: 7
       Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    Intensity: 1
-  - Enemies:
-    - Count: 10
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
     - Count: 4
       Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 9
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    Intensity: 1.5
-  - Enemies:
-    - Count: 8
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
-    - Count: 6
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 12
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    Intensity: 1.5
-  - Enemies:
-    - Count: 10
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
     - Count: 4
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 9
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    Intensity: 1.5
-  - Enemies:
-    - Count: 4
-      Prefab: {fileID: 1000012703302400, guid: 1bf6a096e864b0e4fb7c90813af7c5bf, type: 2}
+      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
+    - Count: 3
+      Prefab: {fileID: 1000012890231070, guid: b70444328ad805a449a03a0092da33a3, type: 2}
     - Count: 5
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 9
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    - Count: 6
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
-    Intensity: 1.5
-  - Enemies:
-    - Count: 10
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
-    - Count: 4
-      Prefab: {fileID: 1000012703302400, guid: 1bf6a096e864b0e4fb7c90813af7c5bf, type: 2}
-    - Count: 9
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    - Count: 9
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    Intensity: 1.5
-  - Enemies:
-    - Count: 10
-      Prefab: {fileID: 1000012703302400, guid: 1bf6a096e864b0e4fb7c90813af7c5bf, type: 2}
-    - Count: 4
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 9
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    Intensity: 1.5
-  - Enemies:
-    - Count: 10
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 10
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    Intensity: 3
-  - Enemies:
-    - Count: 6
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 6
-      Prefab: {fileID: 1000012703302400, guid: 1bf6a096e864b0e4fb7c90813af7c5bf, type: 2}
-    - Count: 6
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    Intensity: 1.5
-  - Enemies:
-    - Count: 10
-      Prefab: {fileID: 1000012703302400, guid: 1bf6a096e864b0e4fb7c90813af7c5bf, type: 2}
-    - Count: 4
-      Prefab: {fileID: 1000012890231070, guid: eca8bb842fcb05c4eb7a1f2ec8ffe172, type: 2}
-    - Count: 9
-      Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
-    Intensity: 1.5
-  - Enemies:
-    - Count: 10
-      Prefab: {fileID: 1000012890231070, guid: 6cd83de5aa9014947916243ecfabc389, type: 2}
-    - Count: 6
-      Prefab: {fileID: 1000012703302400, guid: 1bf6a096e864b0e4fb7c90813af7c5bf, type: 2}
-    - Count: 15
       Prefab: {fileID: 1000012890231070, guid: 6288db3d0a60cf341817717d8ee1b908, type: 2}
     Intensity: 1.5
   activeEnemies: []
